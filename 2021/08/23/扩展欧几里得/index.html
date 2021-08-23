@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">archive_a | Hexo</title>
+  <title itemprop="name">Hexo</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -394,78 +394,151 @@
   </div>
 </header>
 
-      <div class="blank" style="padding-top: 75px;">
-</div>
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
 <div id="content" class="site-content">
-  <div id="main">
-    <header class="page-header">
-      <h1 class="cat-title">
-      归档</h1>
-      <span class="cat-des">
-        <p>
-        Archives</p>
-      </span>
-    </header>
-    <div id="main-part">
-      <article class="art">
-        <div class="art-main">
-          <div class="art-content">
-            <div id="archives">
-              <p style="text-align:right;">
-                [<span id="al_expand_collapse" style="cursor: s-resize;">
-                全部展开/收缩</span>
-              ]</p>
-              
-              
-              
-              
-              
-                
-                <h3 class="al_year">2021年</h3>
-              
-              
-                
-                <ul class="al_mon_list">
-                  <li class="al_li">
-                    <span class="al_mon" style="cursor: s-resize;">
-                      08月(<span id="post-num">
-                      3</span>
-                    篇文章)</span>
-                    <ul class="al_post_list" style="">
-              
-                      <li>
-                        <a href="/2021/08/23/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/">
-                          <span style="color:#0bf;">
-                          23日18:11:56</span>
-                          
-                        </a>
-                      </li>
-                      
-              
-              
-              
-              
-              
-                      <li>
-                        <a href="/2021/08/23/hello-world/">
-                          <span style="color:#0bf;">
-                          23日15:55:43</span>
-                          Hello World
-                        </a>
-                      </li>
-                      
-                    </ul>
-                  </li>
-                </ul>
-              
-              
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+          <header class="entry-header">
+            <h1 class="entry-title"></h1>
+            <p class="entry-census">&nbsp;·&nbsp;2021-8-23&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+
+            <hr>
+          </header>
+        
+        <div class="entry-content">
+          <h1 id="欧几里得（辗转相除）"><a href="#欧几里得（辗转相除）" class="headerlink" title="欧几里得（辗转相除）"></a>欧几里得（辗转相除）</h1><p>Gcd(a,b) = gcd(b,a%b) </p>
+<p>在算法实现中的结束条件是a=gcd,b=0;<br>注意 a需要大于b</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//求公约数的三种办法</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd1</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> b?gcd1(b,a%b):a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd2</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t;</span><br><span class="line">	<span class="keyword">while</span>(b)&#123;</span><br><span class="line">		t=a%b;  </span><br><span class="line">		a=b;  </span><br><span class="line">		b=t;  </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">__gcd</span><br></pre></td></tr></table></figure>
+
+<h1 id="扩展欧几里得"><a href="#扩展欧几里得" class="headerlink" title="扩展欧几里得"></a>扩展欧几里得</h1><h2 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h2><p>对于不完全为 0 的非负整数 a，b，gcd（a，b）表示 a，b 的最大公约数，必然存在整数对 x，y ，使得 gcd（a，b）=a<em>x+b</em>y。<br>通解形式为：<br>x=x0+b/gcd(a,b) * n  (相当于x每次可以增减：b/gcd的整数倍)<br>y=y0+a/gcd(a,b) * n  (相当于y每次可以增减：a/gcd的整数倍)<br><strong>注意：x求出来后，y通常由x代入方程求得</strong></p>
+<h2 id="最小正整数解："><a href="#最小正整数解：" class="headerlink" title="最小正整数解："></a>最小正整数解：</h2><p>x=(x+b/gcd*n)%(b/gcd) = x%(b/gcd)     （b/gcd(a,b)应取正）<br>若x&lt;=0，则x+=b/gcd</p>
+<p>要求 x 的最小整数解. 如果有几个这样的X和Y，您应该输出|X| + |Y |是最小值的一对。如果有几个X和Y满足最小准则，输出X≤Y的对。</p>
+<p>证明</p>
+<p><img src="https://img-blog.csdnimg.cn/2d98ca1be1234a5e84009714551cd70c.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoZVNoaW5lOTEy,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p> <img src="https://img-blog.csdnimg.cn/ea9a0eaecc4d428eaa2d2c5250602b8a.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoZVNoaW5lOTEy,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>可得***<br>X= x0+(b/gcd)*t<br>Y=y0-(a/gcd)*t</p>
+<p>已知最终状态x=1 y=0 a=gcd  b=0<br>和递推式 gcd(a,b)=gcd(b,a%b)</p>
+<p>的代码为<br> <img src="https://img-blog.csdnimg.cn/68b922b46d2e41d9938538b403edbe47.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoZVNoaW5lOTEy,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>求得ax+by=gcd(a,b)的一组可行解(最小)<br>x = x0 + (b/gcd)*t</p>
+<p>   y = y0 – (a/gcd)*t</p>
+<pre><code>为什么不是：
+
+    x = x0 + b*t
+
+    y = y0 – a*t
+
+这个问题也是在今天早上想通的，想通之后忍不住喷了自己一句弱逼。那是因为：
+
+b/gcd 是 b 的因子， a/gcd 是 a 的因子是吧？
+那么，由于 t的取值范围是整数，你说 (b/gcd)*t 取到的值多还是 b*t 取到的值多？
+同理，(a/gcd)*t 取到的值多还是 a*gcd 取到的值多？
+那肯定又要问了，那为什么不是更小的数，非得是 b/gcd 和a/gcd ？
+
+注意到：我们令 B = b/gcd ， A = a、gcd ， 那么，A 和 B 一定是互素的吧？
+这不就证明了 最小的系数就是 A 和 B 了吗？
+</code></pre>
+<p>————————————————<br>版权声明：本文为CSDN博主「zhj5chengfeng」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhjchengfeng5/article/details/7786595">https://blog.csdn.net/zhjchengfeng5/article/details/7786595</a></p>
+<h2 id="可能的坑，"><a href="#可能的坑，" class="headerlink" title="可能的坑，"></a>可能的坑，</h2><ol>
+<li>先要  除c *gcd</li>
+<li>a=b=0 c不等于0 无解</li>
+<li>有整数解的条件  c%gcd==0 </li>
+<li>求最小正整数解：m=b/gcd<br>X=(x%gcd+m)%gcd</li>
+</ol>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="1-uva12775"><a href="#1-uva12775" class="headerlink" title="1 uva12775"></a>1 uva12775</h3><h3 id="2-c-border"><a href="#2-c-border" class="headerlink" title="2 c border"></a>2 c border</h3><p>ax+by=c的不定方程有解的充要条件是c是gcd(a,b)的倍数。</p>
+<p>所以多于多个数字而言，c是gcd(x1,x2,x3,x4…xn)的倍数。</p>
+<p>既然是倍数而且题目说是无限个，所以只要求出了这个c，那么接下来后面的数只会是c的倍数。</p>
+<p>比如c=gcd(x1,x2,x3)，那么c肯定满足gcd(x1,x2)，所以求出了c=gcd(x1,x2,x3….xn)后，然后枚举倍数0,1,2,3…..看c*i%k是不是出现过，出现过就停止，不然就继续枚举。</p>
+<p>特别的当c=1时候，说明互质，也就是在k以内的1的倍数都可以取到。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n,k;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>,&amp;n,&amp;k);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> gcd=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> tmp;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;tmp);</span><br><span class="line">		<span class="keyword">if</span>(gcd==<span class="number">-1</span>)gcd=tmp;</span><br><span class="line">		<span class="keyword">else</span> gcd=__gcd(gcd,tmp);</span><br><span class="line">	&#125;</span><br><span class="line">	gcd=__gcd(gcd,k);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> sum=k/gcd;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,sum);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;k;i+=gcd)&#123;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,i);</span><br><span class="line">		(i+gcd)&gt;=k?<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>):<span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="贝祖定理"><a href="#贝祖定理" class="headerlink" title="贝祖定理"></a>贝祖定理</h1><p>设a,b是不全为零的整数，则存在整数x,y, 使得ax+by=gcd(a,b).<br>可推广至N个</p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/custom/donate/AliPayQR.jpg"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/custom/donate/WeChanQR.jpg"></li>
+              </ul>
             </div>
           </div>
         </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
       </article>
-    </div>
-  </div>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+          
+            <div class="post-nepre full next">
+          
+            <a href="/2021/08/23/hello-world/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                Hello World</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz",
+        appKey: "mgOpfzbkHYqU92CV4IDlAUHQ",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
+
+
 
     </div>    
     <div class="ins-search">
