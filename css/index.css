@@ -623,7 +623,7 @@ body::after {
   position: fixed;
   height: 100vh;
   z-index: -2;
-  background: url("https://cdn.jsdelivr.net/gh/TheShineyue/cdn@1.2/images/背景1.jpg") no-repeat center/cover;
+  background: url("https://cdn.jsdelivr.net/gh/TheShineyue/cdn@1.2/images/背景3.jpg") no-repeat center/cover;
 }
 .container {
   white-space: normal;
