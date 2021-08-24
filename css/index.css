@@ -1016,18 +1016,7 @@ body::after {
   overflow: auto;
   position: relative;
   max-height: 70vh;
-  white-space: normal;
-  word-wrap: break-word;
-  word-break: break-word;
-}
-.sidebar-toc .toc-child {
-  display: none;
-}
-.sidebar-toc .active > .toc-child {
-  display: block;
-}
-.sidebar-toc .current > .toc-child {
-  display: block;
+  white-space: nowrap;
 }
 .sidebar-toc .active > a,
 .sidebar-toc .current > a {
