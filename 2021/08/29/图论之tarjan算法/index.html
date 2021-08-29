@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/cdn@1.3/360/2029225.jpg">
 <meta property="article:published_time" content="2021-08-29T03:12:29.689Z">
-<meta property="article:modified_time" content="2021-08-29T03:27:54.074Z">
+<meta property="article:modified_time" content="2021-08-29T03:29:59.736Z">
 <meta property="article:author" content="TheShineyue">
 <meta property="article:tag" content="graph theory">
 <meta property="article:tag" content="acm">
@@ -52,7 +52,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></he
 
         <h1 id="tarjan"   >
           <a href="#tarjan" class="heading-link"><i class="fas fa-link"></i></a><a href="#tarjan" class="headerlink" title="tarjan"></a>tarjan</h1>
-      <blockquote><p>先放一个巨巨的博文，我看过来感觉最容易懂的一篇</p><footer><strong>Seth Godin</strong><cite><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://blog.csdn.net/xizi_ghq/article/details/88372277" >tarjan</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></cite></footer></blockquote>
+      <blockquote><p>先放一个巨巨的博文，我看过来感觉最容易懂的一篇</p><footer><strong>https://blog.csdn.net/xizi_ghq/article/details/88372277 tarjan</strong></footer></blockquote>
 
 <p>初始化的low和dfn应当一样<br>如果遍历到 没有遍历过的点，以这个点开始dfs(tarjan)</p>
 <p>开始判断：如果y点访问过了,<br>                则low [ x ] = min（low [ x ]，dfn[ y ]),<br>                y是目前可追溯到的最早结点。<br>                如果y没有访问过，那么继续遍历点y，<br>                并设low [ x ] = low[ y ]<br>                以便在后来的操作中找到了更早的追溯值来更新点x的low。</p>
