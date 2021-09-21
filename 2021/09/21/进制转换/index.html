@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="c语言基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XTUOJ作业3题解">
+<meta property="og:url" content="http://example.com/2021/09/21/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/index.html">
+<meta property="og:site_name" content="Liyue">
+<meta property="og:description" content="c语言基础">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d84621b6e4c3463d8d7ce88c4a4e0489.png">
+<meta property="article:published_time" content="2021-09-21T05:39:50.032Z">
+<meta property="article:modified_time" content="2021-09-21T05:44:57.871Z">
+<meta property="article:author" content="TheShineyue">
+<meta property="article:tag" content="homework">
+<meta property="article:tag" content="base">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/d84621b6e4c3463d8d7ce88c4a4e0489.png"><title>XTUOJ作业3题解 | Liyue</title><link ref="canonical" href="http://example.com/2021/09/21/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/links/"><span class="header-nav-menu-item__icon"><i class="fas fa-link"></i></span><span class="header-nav-menu-item__text">友链</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Liyue</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">XTUOJ作业3题解</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-09-21</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2021-09-21</span></span></div></header><div class="post-body"><p>c语言基础</p>
+<span id="more"></span>
+<p>简单介绍一下10进制转2进制的算法</p>
+
+        <h1 id="算法思想"   >
+          <a href="#算法思想" class="heading-link"><i class="fas fa-link"></i></a><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h1>
+      
+        <h2 id="思路"   >
+          <a href="#思路" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路" class="headerlink" title="思路"></a>思路</h2>
+      <p>采用”除2取余，逆序排列”法。</p>
+<p>具体做法是：<br>用2整除十进制整数，可以得到一个商和余数；<br>再用2去除商，又会得到一个商和余数，<br>如此进行，<br>直到商为小于1时为止，<br>然后把先得到的余数作为二进制数的低位有效位，<br>后得到的余数作为二进制数的高位有效位，依次排列起来。</p>
+
+        <h2 id="示例"   >
+          <a href="#示例" class="heading-link"><i class="fas fa-link"></i></a><a href="#示例" class="headerlink" title="示例"></a>示例</h2>
+      
+        <h3 id="255-（11111111）B"   >
+          <a href="#255-（11111111）B" class="heading-link"><i class="fas fa-link"></i></a><a href="#255-（11111111）B" class="headerlink" title="255=（11111111）B"></a>255=（11111111）B</h3>
+      <p>255/2=127=====余1<br>127/2=63======余1<br>63/2=31=======余1<br>31/2=15=======余1<br>15/2=7========余1<br>7/2=3=========余1<br>3/2=1=========余1<br>1/2=0=========余1</p>
+
+        <h3 id="789-1100010101-B"   >
+          <a href="#789-1100010101-B" class="heading-link"><i class="fas fa-link"></i></a><a href="#789-1100010101-B" class="headerlink" title="789=1100010101(B)"></a>789=1100010101(B)</h3>
+      <p>789/2=394 余1 第10位<br>394/2=197 余0 第9位<br>197/2=98 余1 第8位<br>98/2=49 余0 第7位<br>49/2=24 余1 第6位<br>24/2=12 余0 第5位<br>12/2=6 余0 第4位<br>6/2=3 余0 第3位<br>3/2=1 余1 第2位<br>1/2=0 余1 第1位</p>
+
+        <h3 id="图片"   >
+          <a href="#图片" class="heading-link"><i class="fas fa-link"></i></a><a href="#图片" class="headerlink" title="图片"></a>图片</h3>
+      <p><img src="https://img-blog.csdnimg.cn/d84621b6e4c3463d8d7ce88c4a4e0489.png" alt="在这里插入图片描述"></p>
+
+        <h2 id="原理（看不懂算了）"   >
+          <a href="#原理（看不懂算了）" class="heading-link"><i class="fas fa-link"></i></a><a href="#原理（看不懂算了）" class="headerlink" title="原理（看不懂算了）"></a>原理（看不懂算了）</h2>
+      <p>众所周知，二进制的基数为2，我们十进制化二进制时所除的2就是它的基数。谈到它的原理，就不得不说说关于位权的概念。某进制计数制中各位数字符号所表示的数值表示该数字符号值乘以一个与数字符号有关的常数，该常数称为 “位权 ” 。位权的大小是以基数为底，数字符号所处的位置的序号为指数的整数次幂。十进制数的百位、十位、个位、十分位的权分别是10的2次方、10的1次方、10的0次方，10的-1次方。二进制数就是2的n次幂。<br>按权展开求和正是非十进制化十进制的方法。<br>下面我们开讲原理，举个十进制整数转换为二进制整数的例子，假设十进制整数A化得的二进制数为edcba 的形式，那么用上面的方法按权展开， 得<br>A=a(2^0)+b(2^1)+c(2^2)+d(2^3)+e(2^4) （后面的和不正是化十进制的过程吗）<br>假设该数未转化为二进制,除以基数2得<br>A/2=a(2^0)/2+b(2^1)/2+c(2^2)/2+d(2^3)/2+e(2^4)/2<br>注意：a除不开二，余下了！其他的绝对能除开，因为他们都包含2，而a乘的是1，他本身绝对不包含因数2，只能余下。<br>商得：<br>b(2^0)+c(2^1)+d(2^2)+e(2^3)，再除以基数2余下了b，以此类推。<br>当这个数不能再被2除时，先余掉的a位数在原数低，而后来的余数数位高，所以要把所有的余数反过来写。正好是edcba</p>
+
+        <h2 id="声明"   >
+          <a href="#声明" class="heading-link"><i class="fas fa-link"></i></a><a href="#声明" class="headerlink" title="声明"></a>声明</h2>
+      <p>以上文字图片来自百度百科</p>
+<p>如果看不懂也没事，我们记住结论往下看</p>
+
+        <h1 id="代码实现"   >
+          <a href="#代码实现" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1>
+      <figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int a[]</span><br><span class="line">void change(int x)&#123;//把x从10进制变成2进制</span><br><span class="line">	int cnt=1;</span><br><span class="line">	<span class="keyword">while</span>(x)&#123;</span><br><span class="line">		int y=x%2;</span><br><span class="line">		a[cnt++]=y;</span><br><span class="line">		x/=2;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<p>然后再输出的时候从后往前遍历</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://example.com">TheShineyue</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://example.com/2021/09/21/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">http://example.com/2021/09/21/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/homework/">homework</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/base/">base</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2021/09/21/XTUOJ%E4%BD%9C%E4%B8%9A3/"><span class="paginator-prev__text">XTUOJ作业3题解</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3"><span class="toc-number">1.</span> <span class="toc-text">
+          算法思想</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">1.1.</span> <span class="toc-text">
+          思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.2.</span> <span class="toc-text">
+          示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#255-%EF%BC%8811111111%EF%BC%89B"><span class="toc-number">1.2.1.</span> <span class="toc-text">
+          255&#x3D;（11111111）B</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#789-1100010101-B"><span class="toc-number">1.2.2.</span> <span class="toc-text">
+          789&#x3D;1100010101(B)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87"><span class="toc-number">1.2.3.</span> <span class="toc-text">
+          图片</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%EF%BC%88%E7%9C%8B%E4%B8%8D%E6%87%82%E7%AE%97%E4%BA%86%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">
+          原理（看不懂算了）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E"><span class="toc-number">1.4.</span> <span class="toc-text">
+          声明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">
+          代码实现</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://cdn.jsdelivr.net/gh/TheShineyue/cdn@1.3/images/二次3.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">她与AC皆是期盼</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">19</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">13</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>TheShineyue</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.4.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>
