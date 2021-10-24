@@ -465,6 +465,52 @@
 <p>无论是什么博弈，0都是奇异状态</p>
 <p>女谢大有言：dp打表找规律也是好办法</p>
 <p>此外，上文都是基于<br><span class="exturl"><a class="exturl__link"   href="https://blog.csdn.net/lgdblue/article/details/15809893" >https://blog.csdn.net/lgdblue/article/details/15809893</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span><br>的思路书写的</p>
+
+        <h1 id="练习部分"   >
+          <a href="#练习部分" class="heading-link"><i class="fas fa-link"></i></a><a href="#练习部分" class="headerlink" title="练习部分"></a>练习部分</h1>
+      <p>感谢不知名的大佬留下的遗产：<br><span class="exturl"><a class="exturl__link"   href="https://172.16.79.125/contest/view.action?cid=627#problem/A" >数学之博弈论</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>写了这套题不禁暗骂自己一句蒟蒻，只会博弈的皮毛。</p>
+<p>在博弈中最优的操作往往是重复对面的操作，从简单的开始推规律，思考必胜法则</p>
+<p><span class="exturl"><a class="exturl__link"   href="https://www.zhihu.com/question/29910524" >清晰透彻的对nim解释</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span><br>大佬nb</p>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> maxn = <span class="number">1005</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	计算从1-n的sg</span></span><br><span class="line"><span class="comment">	array储存可以走的步数，而array[0]是有多少走法</span></span><br><span class="line"><span class="comment">	array从小到大排序</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	可选步数为1-m的连续整数 sg(x)=x%(m+1)</span></span><br><span class="line"><span class="comment">	可选步数为任意，sg(x)=x</span></span><br><span class="line"><span class="comment">	可选步数为一系列不连续的数，用getsg</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> sg[maxn],hash[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_sg</span><span class="params">(<span class="keyword">int</span> array[],<span class="keyword">int</span> n=maxn<span class="number">-1</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(sg,<span class="number">0</span>,<span class="keyword">sizeof</span> sg);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="built_in">memset</span>(hash,<span class="number">0</span>,<span class="keyword">sizeof</span> hash);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=array[<span class="number">0</span>];j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(i&lt;array[j])<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">			hash[sg[i]-array[j]]=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=n;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(!hash[j])&#123;</span><br><span class="line">				sg[i]=j;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="A"   >
+          <a href="#A" class="heading-link"><i class="fas fa-link"></i></a><a href="#A" class="headerlink" title="A"></a>A</h2>
+      <p>很简单，每次输入一个就异或就好</p>
+
+        <h2 id="B"   >
+          <a href="#B" class="heading-link"><i class="fas fa-link"></i></a><a href="#B" class="headerlink" title="B"></a>B</h2>
+      <p>第一步从某堆中去掉至少一个，然后把任意数量的放到别堆（不为0）<br>思考小规模的问题获得规律：</p>
+<p>如果有两堆：<br>1 1 ：后手<br>1 2 ：先手<br>1 3 ：先手<br>2 2 ：后手 </p>
+<p>如果有三堆：<br>1 1 1 ：先手<br>1 2 1 ：先手<br>2 2 2 ：先手</p>
+<p>如果有四堆：<br>1 1 1 1 :后手<br>1 2 3 3 ：先手</p>
+<p>可以看出，存在一种奇异态势为”完美匹配“：<br>一一对应的情况下，后手只需要模仿先手的操作就可以获胜</p>
+
+        <h2 id="C"   >
+          <a href="#C" class="heading-link"><i class="fas fa-link"></i></a><a href="#C" class="headerlink" title="C"></a>C</h2>
+      <p>很新颖，问我有多少个必败点</p>
+<p>大佬说过：<br>a1^a2^…^an=k<br>一定存在某个ai,他的二进制在k的最高位上是1（否则最高位的1何处而来）<br>此时ai^k&lt;ai一定成立，把ai改写成ai^k，此时^和变为0</p>
+<p>那么，把所有的数异或好，再一个一个检查，如果满足上述条件，这个ai就是一个必败点，sum++</p>
+
+        <h2 id="D"   >
+          <a href="#D" class="heading-link"><i class="fas fa-link"></i></a><a href="#D" class="headerlink" title="D"></a>D</h2>
+      <p>公平组合游戏</p>
+<p>用DFS计算出每个结点的sg值：<br>相当于把一个博弈分解成许多子博弈</p>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mex</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(sg[x]!=<span class="number">-1</span>)<span class="keyword">return</span> sg[x];</span><br><span class="line">	<span class="keyword">bool</span> vis[maxn];<span class="comment">//</span></span><br><span class="line">	<span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="keyword">sizeof</span> vis);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[x];~i;i=edge[i].next)&#123;</span><br><span class="line">		<span class="keyword">int</span> j=edge[i].to;</span><br><span class="line">		sg[j]=<span class="built_in">mex</span>(j);</span><br><span class="line">		vis[sg[j]]=<span class="number">1</span>;<span class="comment">//</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;<span class="number">1</span>;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(vis[i]==<span class="number">0</span>)&#123;</span><br><span class="line">			sg[x]=i;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sg[x];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+<p>注意：vis必须在函数里面<br>计算到下一个结点的sg<br>取区间外最小i作为sg</p>
+
+        <h2 id="E"   >
+          <a href="#E" class="heading-link"><i class="fas fa-link"></i></a><a href="#E" class="headerlink" title="E"></a>E</h2>
+      <figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">bool</span> f=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> a=<span class="built_in">ceil</span>(n/<span class="number">9.0</span>),b=n<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a&lt;=<span class="number">1</span>&amp;&amp;<span class="number">1</span>&lt;=b)&#123;</span><br><span class="line">			<span class="keyword">if</span>(!f)cout&lt;&lt;<span class="string">&quot;Stan wins.\n&quot;</span>;</span><br><span class="line">			<span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot;Ollie wins.\n&quot;</span>;</span><br><span class="line">			<span class="keyword">return</span> ;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(!f)&#123;</span><br><span class="line">			b=a<span class="number">-1</span>;</span><br><span class="line">			a=<span class="built_in">ceil</span>(a/<span class="number">2.0</span>);</span><br><span class="line">			f=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			b=a<span class="number">-1</span>;</span><br><span class="line">			a=<span class="built_in">ceil</span>(a/<span class="number">9.0</span>);</span><br><span class="line">			f=<span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>循环向前，得出每段的胜者</p>
+
+        <h2 id="F"   >
+          <a href="#F" class="heading-link"><i class="fas fa-link"></i></a><a href="#F" class="headerlink" title="F"></a>F</h2>
+      <p>显然对称取是最优策略</p>
+<p>大于等于3后，无论先手怎么取，后手都能让图像保持对称</p>
+<p>即1 2 先手<br>之后后手</p>
 ]]></content>
       <categories>
         <category>acm</category>
