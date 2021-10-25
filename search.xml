@@ -348,8 +348,55 @@
     <title>博弈论</title>
     <url>/2021/09/15/%E5%8D%9A%E5%BC%88%E8%AE%BA%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<p>博弈论经典模型</p>
-<p>未完待续</p>
 <span id="more"></span>
+
+        <h1 id="大总结"   >
+          <a href="#大总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#大总结" class="headerlink" title="大总结"></a>大总结</h1>
+      
+        <h2 id="打表"   >
+          <a href="#打表" class="heading-link"><i class="fas fa-link"></i></a><a href="#打表" class="headerlink" title="打表"></a>打表</h2>
+      <figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> maxn = <span class="number">1005</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	计算从1-n的sg</span></span><br><span class="line"><span class="comment">	array储存可以走的步数，而k是有多少走法</span></span><br><span class="line"><span class="comment">	array从小到大排序</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	可选步数为1-m的连续整数 sg(x)=x%(m+1)</span></span><br><span class="line"><span class="comment">	可选步数为任意，sg(x)=x</span></span><br><span class="line"><span class="comment">	可选步数为一系列不连续的数，用getsg</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> k,array[<span class="number">120</span>],sg[<span class="number">10002</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getsg</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(sg[x]!=<span class="number">-1</span>)<span class="keyword">return</span> ;</span><br><span class="line">	<span class="keyword">bool</span> vis[<span class="number">10002</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="keyword">sizeof</span> vis);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> temp;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=k;i++)&#123;</span><br><span class="line">		temp=x-array[i];</span><br><span class="line">		<span class="keyword">if</span>(temp&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(sg[temp]==<span class="number">-1</span>)&#123;</span><br><span class="line">				<span class="built_in">getsg</span>(temp);</span><br><span class="line">			&#125;</span><br><span class="line">			vis[sg[temp]]=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">			sg[x]=i;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//main </span></span><br><span class="line"></span><br><span class="line"><span class="built_in">memset</span>(sg,<span class="number">-1</span>,<span class="keyword">sizeof</span> sg);</span><br><span class="line"></span><br><span class="line">sg[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="单个sg"   >
+          <a href="#单个sg" class="heading-link"><i class="fas fa-link"></i></a><a href="#单个sg" class="headerlink" title="单个sg"></a>单个sg</h2>
+      <figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> maxn = <span class="number">2005</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> sg[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getsg</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x&lt;<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//特判</span></span><br><span class="line">	<span class="keyword">if</span>(sg[x]!=<span class="number">-1</span>) <span class="keyword">return</span> sg[x];</span><br><span class="line">	<span class="keyword">bool</span> vis[maxn];</span><br><span class="line">	<span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="keyword">sizeof</span> vis);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=x;i++)&#123;</span><br><span class="line">		<span class="comment">//每个子问题的sg^ 的vis=1;</span></span><br><span class="line">		vis[<span class="built_in">getsg</span>(i<span class="number">-3</span>)^<span class="built_in">getsg</span>(x-i<span class="number">-2</span>)]=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">			sg[x]=i;</span><br><span class="line">			<span class="keyword">return</span> i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(sg,<span class="number">-1</span>,<span class="keyword">sizeof</span> sg);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="dp-记忆化搜索"   >
+          <a href="#dp-记忆化搜索" class="heading-link"><i class="fas fa-link"></i></a><a href="#dp-记忆化搜索" class="headerlink" title="dp||记忆化搜索"></a>dp||记忆化搜索</h2>
+      <p>由于有些时候子问题过于复杂，或者说博弈者过多，可以用这个</p>
+<p>如：poj2068</p>
+<p>可以用一个dp[第几个人在取] [还有多少个石头]</p>
+<p>显然所有J=0都是必胜</p>
+
+        <h2 id="图上博弈（树上博弈）"   >
+          <a href="#图上博弈（树上博弈）" class="heading-link"><i class="fas fa-link"></i></a><a href="#图上博弈（树上博弈）" class="headerlink" title="图上博弈（树上博弈）"></a>图上博弈（树上博弈）</h2>
+      
+        <h3 id="一是DFS往下-子节点的sg"   >
+          <a href="#一是DFS往下-子节点的sg" class="heading-link"><i class="fas fa-link"></i></a><a href="#一是DFS往下-子节点的sg" class="headerlink" title="一是DFS往下^子节点的sg"></a>一是DFS往下^子节点的sg</h3>
+      
+        <h3 id="树上博弈"   >
+          <a href="#树上博弈" class="heading-link"><i class="fas fa-link"></i></a><a href="#树上博弈" class="headerlink" title="树上博弈"></a>树上博弈</h3>
+      <p>叶子的sg为0</p>
+
+        <h4 id="克朗原理"   >
+          <a href="#克朗原理" class="heading-link"><i class="fas fa-link"></i></a><a href="#克朗原理" class="headerlink" title="克朗原理"></a>克朗原理</h4>
+      <p>对于某个点，sg[u]=(所有子节点的sg+1)的异或和</p>
+
+        <h4 id="费森原理"   >
+          <a href="#费森原理" class="heading-link"><i class="fas fa-link"></i></a><a href="#费森原理" class="headerlink" title="费森原理"></a>费森原理</h4>
+      <p>奇数环等价于只有一个端点的一条边<br>偶数环等价于一个点</p>
+
+        <h2 id="变形，先拿完输"   >
+          <a href="#变形，先拿完输" class="heading-link"><i class="fas fa-link"></i></a><a href="#变形，先拿完输" class="headerlink" title="变形，先拿完输"></a>变形，先拿完输</h2>
+      
+        <h3 id="SJ定理"   >
+          <a href="#SJ定理" class="heading-link"><i class="fas fa-link"></i></a><a href="#SJ定理" class="headerlink" title="SJ定理"></a>SJ定理</h3>
+      <p>先手胜利的条件：<br>如果异或非0 至少一个子游戏的SG&gt;1<br>如果异或为0 而且所有子游戏的SG为1 </p>
+
+        <h2 id="小心得"   >
+          <a href="#小心得" class="heading-link"><i class="fas fa-link"></i></a><a href="#小心得" class="headerlink" title="小心得"></a>小心得</h2>
+      <p>从小规模分析</p>
+<p>把大问题分解成小问题的^</p>
 
         <h1 id="博弈前置知识"   >
           <a href="#博弈前置知识" class="heading-link"><i class="fas fa-link"></i></a><a href="#博弈前置知识" class="headerlink" title="博弈前置知识"></a>博弈前置知识</h1>
