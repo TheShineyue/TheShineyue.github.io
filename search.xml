@@ -1952,4 +1952,131 @@ b/gcd 是 b 的因子， a/gcd 是 a 的因子是吧？
         <tag>Graph theory</tag>
       </tags>
   </entry>
+  <entry>
+    <title>组合数学</title>
+    <url>/2021/11/16/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/</url>
+    <content><![CDATA[<p>组合数学</p>
+<span id="more"></span>
+
+        <h1 id="知识点"   >
+          <a href="#知识点" class="heading-link"><i class="fas fa-link"></i></a><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1>
+      
+        <h2 id="Dn-错置"   >
+          <a href="#Dn-错置" class="heading-link"><i class="fas fa-link"></i></a><a href="#Dn-错置" class="headerlink" title="Dn 错置"></a>Dn 错置</h2>
+      <p>一个人写了n封不同的信及相应的n个不同的信封，他把这n封信都装错了信封，问都装错信封的装法有多少种？<br>Dn=n!(1-(1/1!)+(1/2!)-(1/3!)+…+(-1)^n*(1/n!))</p>
+
+        <h2 id="隔板法"   >
+          <a href="#隔板法" class="heading-link"><i class="fas fa-link"></i></a><a href="#隔板法" class="headerlink" title="隔板法"></a>隔板法</h2>
+      
+        <h2 id="抽屉原理"   >
+          <a href="#抽屉原理" class="heading-link"><i class="fas fa-link"></i></a><a href="#抽屉原理" class="headerlink" title="抽屉原理"></a>抽屉原理</h2>
+      
+        <h2 id="结合dp也是好办法"   >
+          <a href="#结合dp也是好办法" class="heading-link"><i class="fas fa-link"></i></a><a href="#结合dp也是好办法" class="headerlink" title="结合dp也是好办法"></a>结合dp也是好办法</h2>
+      
+        <h2 id="母函数"   >
+          <a href="#母函数" class="heading-link"><i class="fas fa-link"></i></a><a href="#母函数" class="headerlink" title="母函数"></a>母函数</h2>
+      <p>普通型母函数主要是来求组合的方案数，而指数型母函数是求多重排列数。</p>
+
+        <h3 id="普通型生成函数"   >
+          <a href="#普通型生成函数" class="heading-link"><i class="fas fa-link"></i></a><a href="#普通型生成函数" class="headerlink" title="普通型生成函数"></a>普通型生成函数</h3>
+      <p>组合问题，每一项不用除以阶乘</p>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 55</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> a[MAXN],b[MAXN];</span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> s[MAXN],e[MAXN],v[MAXN];</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mu</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"></span>&#123; <span class="comment">//n为因子个数 </span></span><br><span class="line"> </span><br><span class="line">	<span class="keyword">int</span> i,j,k;</span><br><span class="line"> </span><br><span class="line">	<span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(a));</span><br><span class="line"> </span><br><span class="line">	a[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line"> </span><br><span class="line">	&#123; <span class="comment">//前i项相乘 </span></span><br><span class="line"> </span><br><span class="line">		<span class="built_in">memset</span>(b,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(b));</span><br><span class="line"> </span><br><span class="line">		<span class="comment">//j为第i种物品可能的数量，j*v[i]即第i个括号中第j项的系数</span></span><br><span class="line"> </span><br><span class="line">		<span class="keyword">for</span>(j=s[i];j&lt;=e[i]&amp;&amp;j*v[i]&lt;=MAXN;j++)</span><br><span class="line"> </span><br><span class="line">			<span class="keyword">for</span>(k=<span class="number">0</span>;k+j*v[i]&lt;=MAXN;k++) <span class="comment">//计算对前i-1项相乘的结果的第k项的系数产生的影响 </span></span><br><span class="line"> </span><br><span class="line">				b[k+j*v[i]]+=a[k];</span><br><span class="line"> </span><br><span class="line">		<span class="built_in">memcpy</span>(a,b,<span class="built_in"><span class="keyword">sizeof</span></span>(b)); <span class="comment">//将b数组存回a数组 </span></span><br><span class="line"> </span><br><span class="line">	&#125;	</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="指数型生成函数"   >
+          <a href="#指数型生成函数" class="heading-link"><i class="fas fa-link"></i></a><a href="#指数型生成函数" class="headerlink" title="指数型生成函数"></a>指数型生成函数</h3>
+      <p><img src="https://img-blog.csdnimg.cn/8817977b63ee4d298c4b395ee5a4c731.png" alt="在这里插入图片描述"></p>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> DB;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m,num[maxn+<span class="number">5</span>],fac[maxn+<span class="number">5</span>];DB a[maxn+<span class="number">5</span>],b[maxn+<span class="number">5</span>];</span><br><span class="line"><span class="comment">//a[i]是 当前x^i对应的系数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    fac[<span class="number">0</span>]=<span class="number">1</span>;<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=maxn;i++) fac[i]=fac[i<span class="number">-1</span>]*i;</span><br><span class="line">    <span class="keyword">while</span> (~<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m))&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;num[i]);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=m;i++) a[i]=<span class="number">0</span>,b[i]=<span class="number">0</span>;a[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> t=<span class="number">1</span>;t&lt;=n;t++)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=m;i++)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>;i+j&lt;=m&amp;&amp;j&lt;=num[t];j++)</span><br><span class="line">                    b[i+j]+=a[i]/fac[j]; <span class="comment">//a,b需要是实数</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=m;i++) a[i]=b[i],b[i]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%.0f\n&quot;</span>,a[m]*fac[m]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+        <h3 id="与泰勒展开的结合"   >
+          <a href="#与泰勒展开的结合" class="heading-link"><i class="fas fa-link"></i></a><a href="#与泰勒展开的结合" class="headerlink" title="与泰勒展开的结合"></a>与泰勒展开的结合</h3>
+      <p><img   src="https://img-blog.csdnimg.cn/473fbd1774cc4a52afd5e420705a8af4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAVGhlU2hpbmU5MTI=,size_20,color_FFFFFF,t_70,g_se,x_16" style="width: image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,tepx;height: t_Q1NETiBAVGhlU2hpbmU5MTIpx;"  alt="在这里插入图片描述"></p>
+
+        <h2 id="斯特林数"   >
+          <a href="#斯特林数" class="heading-link"><i class="fas fa-link"></i></a><a href="#斯特林数" class="headerlink" title="斯特林数"></a>斯特林数</h2>
+      
+        <h3 id="第一类斯特林数"   >
+          <a href="#第一类斯特林数" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一类斯特林数" class="headerlink" title="第一类斯特林数"></a>第一类斯特林数</h3>
+      <p>S1(n,m) n-&gt;m个圆<br>S1(n,n)=1,S1(n,0)=0<br>S1(n,m)=(n-1)S1(n-1,m)+S1(n-1,m-1) (n&gt;1,m&gt;1)<br>S1(n,1)=(n-1)!<br>S1(n,n-1)=n(n-1)/2<br>S1(n,m)&gt;=S2{n,m}</p>
+
+        <h3 id="第二类斯特林数"   >
+          <a href="#第二类斯特林数" class="heading-link"><i class="fas fa-link"></i></a><a href="#第二类斯特林数" class="headerlink" title="第二类斯特林数"></a>第二类斯特林数</h3>
+      <p>n-&gt;m个空<br>S2{n,m}=S2{n-1,m-1}+S2{n-1,m}*m,n&gt;=1<br>n&lt;m S2{n,m}=0<br>n&gt;=1 S2{n,1}=1<br>n&gt;=2 S2{n,2}=2^(n-1)-1</p>
+
+        <h1 id="板子"   >
+          <a href="#板子" class="heading-link"><i class="fas fa-link"></i></a><a href="#板子" class="headerlink" title="板子"></a>板子</h1>
+      
+        <h2 id="组合数"   >
+          <a href="#组合数" class="heading-link"><i class="fas fa-link"></i></a><a href="#组合数" class="headerlink" title="组合数"></a>组合数</h2>
+      <figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;maxn;i++)&#123;</span><br><span class="line">		c[i][<span class="number">0</span>]=c[i][i]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;i;j++)&#123;</span><br><span class="line">			c[i][j]=(c[i<span class="number">-1</span>][j<span class="number">-1</span>]+c[i<span class="number">-1</span>][j])%mod;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="第二类斯特林数-1"   >
+          <a href="#第二类斯特林数-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#第二类斯特林数-1" class="headerlink" title="第二类斯特林数"></a>第二类斯特林数</h2>
+      <figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;maxn;i++)&#123;</span><br><span class="line">	p[i][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">	p[i][i]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;i;j++)&#123;</span><br><span class="line">		p[i][j]=(j*p[i<span class="number">-1</span>][j]%mod+p[i<span class="number">-1</span>][j<span class="number">-1</span>]%mod)%mod;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="错位"   >
+          <a href="#错位" class="heading-link"><i class="fas fa-link"></i></a><a href="#错位" class="headerlink" title="错位"></a>错位</h2>
+      <figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> maxn = <span class="number">30</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> D[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	D[<span class="number">1</span>]=<span class="number">0</span>;D[<span class="number">2</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">3</span>;i&lt;maxn;i++)&#123;</span><br><span class="line">		D[i]=(i<span class="number">-1</span>)*(D[i<span class="number">-1</span>]+D[i<span class="number">-2</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="普通生成母函数"   >
+          <a href="#普通生成母函数" class="heading-link"><i class="fas fa-link"></i></a><a href="#普通生成母函数" class="headerlink" title="普通生成母函数"></a>普通生成母函数</h2>
+      <figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> maxn =<span class="number">55</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> a[maxn],b[maxn];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> num[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> t;</span><br><span class="line">	cin&gt;&gt;t;</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		<span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="keyword">sizeof</span> a);</span><br><span class="line">		<span class="built_in">memset</span>(b,<span class="number">0</span>,<span class="keyword">sizeof</span> b);</span><br><span class="line">		a[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">26</span>;i++)&#123;</span><br><span class="line">			cin&gt;&gt;num[i];</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">26</span>;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(num[i]==<span class="number">0</span>)<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=<span class="number">50</span>;j++)&#123;<span class="comment">//枚举多项式前50项</span></span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;=num[i]&amp;&amp;k*i+j&lt;=<span class="number">50</span>;k++)&#123;</span><br><span class="line">					b[k*i+j]+=a[j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=<span class="number">50</span>;j++)&#123;</span><br><span class="line">				a[j]=b[j],b[j]=<span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">50</span>;i++)&#123;</span><br><span class="line">			ans+=a[i];</span><br><span class="line">		&#125;</span><br><span class="line">		cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="题目"   >
+          <a href="#题目" class="heading-link"><i class="fas fa-link"></i></a><a href="#题目" class="headerlink" title="题目"></a>题目</h1>
+      
+        <h2 id="隔板加抽屉"   >
+          <a href="#隔板加抽屉" class="heading-link"><i class="fas fa-link"></i></a><a href="#隔板加抽屉" class="headerlink" title="隔板加抽屉"></a>隔板加抽屉</h2>
+      <p>HDU - 1205</p>
+
+        <h3 id="题面"   >
+          <a href="#题面" class="heading-link"><i class="fas fa-link"></i></a><a href="#题面" class="headerlink" title="题面"></a>题面</h3>
+      <p>HOHO，终于从Speakless手上赢走了所有的糖果，是Gardon吃糖果时有个特殊的癖好，就是不喜欢将一样的糖果放在一起吃，喜欢先吃一种，下一次吃另一种，这样；可是Gardon不知道是否存在一种吃糖果的顺序使得他能把所有糖果都吃完？请你写个程序帮忙计算一下。</p>
+
+        <h3 id="思路"   >
+          <a href="#思路" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路" class="headerlink" title="思路"></a>思路</h3>
+      <p>计算得最多的一种糖果 x<br>剩下的糖果数总和为 y</p>
+<p>计算得一种符合条件的排列方法：<br>把x个糖果排列好，把剩下的糖果作为隔板插入产生的x-1个空里面<br>此时由于抽屉原理，需要x-1个糖果即可<br>多余x-1的糖果可以再次看成把一个小规模的糖果插入一个大规模的已排列好的糖果排列中<br>即y&gt;=x-1输出Yes</p>
+<p>下面证明必要性：<br>当y&lt;x-1时 x必有两天连着吃</p>
+
+        <h2 id="第二类斯特林数-容斥"   >
+          <a href="#第二类斯特林数-容斥" class="heading-link"><i class="fas fa-link"></i></a><a href="#第二类斯特林数-容斥" class="headerlink" title="第二类斯特林数||容斥"></a>第二类斯特林数||容斥</h2>
+      <p>HDU - 6143 </p>
+
+        <h3 id="题意"   >
+          <a href="#题意" class="heading-link"><i class="fas fa-link"></i></a><a href="#题意" class="headerlink" title="题意"></a>题意</h3>
+      <p>要求从m个字符中拿一定字符 分给两段n n<br>前n和后n的字符不能有重复<br>求方案数</p>
+
+        <h3 id="思路-1"   >
+          <a href="#思路-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3>
+      <p>遍历i从1到m<br>C(m,i)*dp (i,n) *(m-i)^n</p>
+<p>其中的DPi n代表把i个字符可重复的放入n位中的方法数</p>
+<p>DP i n = (DP i-1 n +DP i-1,n-1)* i<br> <del>//why 不是 DP i n =(DP i-1 n +DP i n-1 +DP i-1 n-1)</del><br> <del>//好像会有重复，之后好好想想</del><br>想到了，第二类斯特林数</p>
+
+        <h2 id="第二类斯特林数-插板法"   >
+          <a href="#第二类斯特林数-插板法" class="heading-link"><i class="fas fa-link"></i></a><a href="#第二类斯特林数-插板法" class="headerlink" title="第二类斯特林数+插板法"></a>第二类斯特林数+插板法</h2>
+      <p>HDU - 4045</p>
+
+        <h3 id="题意-1"   >
+          <a href="#题意-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3>
+      <p>n r k m</p>
+<p>把n个机器取r个，两两编号之差大于等于k，r个分成i组（i在1到m）</p>
+
+        <h3 id="思路-2"   >
+          <a href="#思路-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3>
+      <p>其实就是俩问题，① 把n个正确取出r个，② 把r分成i组，第二类斯特林数<br>主要是前面的那个问题，两两编号之差大于等于k,所以每k取一个，这样就有(r-1)k+1个必须的机器了<br>此时如果发现n&lt;(r-1)k+1则无解<br>然后多余的机器为 n-((r-1)k+1)<br>多余和原来要取出的r个一起插入r个位置<br>C((r-1)k+1+r,r)</p>
+<p>②也不必多说，裸的板子</p>
+]]></content>
+      <categories>
+        <category>acm</category>
+        <category>math</category>
+      </categories>
+      <tags>
+        <tag>acm</tag>
+        <tag>math</tag>
+      </tags>
+  </entry>
 </search>
