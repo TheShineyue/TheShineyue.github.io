@@ -1606,6 +1606,10 @@ b/gcd 是 b 的因子， a/gcd 是 a 的因子是吧？
           <a href="#Dn-错置" class="heading-link"><i class="fas fa-link"></i></a><a href="#Dn-错置" class="headerlink" title="Dn 错置"></a>Dn 错置</h2>
       <p>一个人写了n封不同的信及相应的n个不同的信封，他把这n封信都装错了信封，问都装错信封的装法有多少种？<br>Dn=n!(1-(1/1!)+(1/2!)-(1/3!)+…+(-1)^n*(1/n!))</p>
 
+        <h2 id="排列组合"   >
+          <a href="#排列组合" class="heading-link"><i class="fas fa-link"></i></a><a href="#排列组合" class="headerlink" title="排列组合"></a>排列组合</h2>
+      <p>有的时候，把阶乘保存起来也是快速求排列组合的好方法<br><img src="https://img-blog.csdnimg.cn/fb7fe72e8fe04ef981b3d3bb614561ef.png"></p>
+
         <h2 id="隔板法"   >
           <a href="#隔板法" class="heading-link"><i class="fas fa-link"></i></a><a href="#隔板法" class="headerlink" title="隔板法"></a>隔板法</h2>
       
