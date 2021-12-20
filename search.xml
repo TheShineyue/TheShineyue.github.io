@@ -2834,4 +2834,50 @@ b/gcd 是 b 的因子， a/gcd 是 a 的因子是吧？
         <tag>homework</tag>
       </tags>
   </entry>
+  <entry>
+    <title>数论试卷错题</title>
+    <url>/2021/12/20/%E6%95%B0%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E8%AF%95%E5%8D%B7%E9%94%99%E9%A2%98%EF%BC%89/</url>
+    <content><![CDATA[<p>数论试卷错题</p>
+<span id="more"></span>
+
+        <h1 id="群"   >
+          <a href="#群" class="heading-link"><i class="fas fa-link"></i></a><a href="#群" class="headerlink" title="群"></a>群</h1>
+      <ul>
+<li>无限循环群有两个生成元，若一个是a，另一个是a^-1</li>
+<li>对于陪集H，任何a属于G，有|aH|=|H|</li>
+<li>任何质数阶的群必是循环群，并且其子群必是平凡子群（循环群）
+        <h1 id="环-amp-域"   >
+          <a href="#环-amp-域" class="heading-link"><i class="fas fa-link"></i></a><a href="#环-amp-域" class="headerlink" title="环&amp;域"></a>环&amp;域</h1>
+      </li>
+<li>幺元： 乘法的单位元</li>
+<li>对于加法，存在零元和负元</li>
+<li>环的乘法有零，所以不能作为一个群，不满足消去律。</li>
+<li>去零元后，消去律和无零因子等价（消去环）</li>
+<li>环R除了R和（0）没有别的理想==R为单纯环</li>
+<li>主理想是(2) Z/(2)=[0]2 [1]2</li>
+<li>&lt;R,+,·&gt;是域=&gt; &lt;R,+&gt;是交换群，&lt;R，·&gt;-{0}是交换群</li>
+<li>取整数环的主理想（0） |Z/(0)|=|Z| <del>(0)+x</del> </li>
+<li>R是含幺环，子环不一定是含幺环</li>
+<li>域是整环，有限整环是域</li>
+<li>整环满足消去律（含幺无零因子交换环）
+        <h1 id="格"   >
+          <a href="#格" class="heading-link"><i class="fas fa-link"></i></a><a href="#格" class="headerlink" title="格"></a>格</h1>
+      </li>
+<li>有限格即有界格 每个S都有最大下界和最小上界</li>
+<li>布尔代数运算需要满足等幂律（axa=a…）交换律 结合律 吸收律 分配律</li>
+<li>只需要交换、分配、单位、逆</li>
+<li>有余分配格每个元素恰有一个余元素</li>
+<li>保序映射（偏序关系不变）同态一定保序，保序不一定同态</li>
+<li>n维格和（|S|=n，S的幂集）同构</li>
+</ul>
+]]></content>
+      <categories>
+        <category>curriculum</category>
+        <category>math</category>
+      </categories>
+      <tags>
+        <tag>math</tag>
+        <tag>curriculum</tag>
+      </tags>
+  </entry>
 </search>
