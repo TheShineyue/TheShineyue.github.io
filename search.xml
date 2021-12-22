@@ -2840,6 +2840,7 @@ b/gcd 是 b 的因子， a/gcd 是 a 的因子是吧？
     <content><![CDATA[<p>数论试卷错题</p>
 <span id="more"></span>
 
+
         <h1 id="群"   >
           <a href="#群" class="heading-link"><i class="fas fa-link"></i></a><a href="#群" class="headerlink" title="群"></a>群</h1>
       <ul>
@@ -2878,6 +2879,92 @@ b/gcd 是 b 的因子， a/gcd 是 a 的因子是吧？
       <tags>
         <tag>math</tag>
         <tag>curriculum</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++知识点复习笔记（上）</title>
+    <url>/2021/12/22/C++%E4%B8%8B/</url>
+    <content><![CDATA[<p>c++的面向对象部分</p>
+<span id="more"></span>
+
+        <h1 id="对象与类"   >
+          <a href="#对象与类" class="heading-link"><i class="fas fa-link"></i></a><a href="#对象与类" class="headerlink" title="对象与类"></a>对象与类</h1>
+      <ul>
+<li>可以在类中直接定义函数体。这时成员函数在编译时是作为内联函数来实现的</li>
+<li>重载时，函数的形参必须在类型或数目上不同</li>
+<li>可以有缺省参数的成员函数，若形参不完全缺省，则必须从形参的右边开始缺省。</li>
+<li>返回引用类型的成员函数(可以返回私有数据成员的引用)</li>
+<li>若定义的类要说明该类的对象时，构造函数必须是公有的成员函数。如果定义的类仅用于派生其它类时，则可将构造函数定义为保护的成员函数。</li>
+<li>在定义类时，一旦定义了类的构造函数，编译器就不会产生缺省的构造函数。并且缺省的构造函数只能有一个。缺省的构造函数包括两种情况：没有参数的构造函数或者各参数均有缺省值。</li>
+<li>对于静态对象，是在首次定义对象时，调用构造函数的，且由于对象一直存在，只调用一次构造函数。<br>对于全局对象，是在main函数执行之前调用构造函数的<br>缺省的构造函数并不对所产生对象的数据成员赋初值；即新产生对象的数据成员的值是不确定的。 </li>
+<li>构造函数可以带参数、可以重载，同时没有返回值。</li>
+<li>一个类中，只能定义一个析构函数，析构函数不允许重载。</li>
+<li>而用delete运算符来释放p1所指向的对象数组占用的存储空间时，在指针变量的前面必须加上[ ]， 才能将数组元素所占用的空间全部释放。否则，只释放第0个元素所占用的空间。</li>
+<li>完成拷贝功能的构造函数的一般格式为：<br>ClassName::ClassName(ClassName  &amp;&lt;变量名&gt;)//引用<br>{    ……<br>//   函数体完成对应数据成员的赋值<br>}</li>
+<li>如果没有定义完成拷贝功能的构造函数，编译器自动生成一个隐含的完成拷贝功能的构造函数，依次完成类中对应数据成员的拷贝。</li>
+<li>但是，当类中的数据成员中使用new运算符，动态地申请存储空间进行赋初值时，必须在类中显式地定义一个完成拷贝功能的构造函数，以便正确实现数据成员的复制。</li>
+<li>ClassName::ClassName(args):c1(args1),..,cn(agrsn)<br>{<br>…… //对其它成员的初始化<br>}<br>初始化对象成员的参数（实参）可以是表达式。，也可以仅对部分对象成员进行初始化。</li>
+<li>对对象成员的构造函数的调用顺序取决于这些对象成员在类中说明的顺序，与它们在成员初始化列表中的顺序无关。<br>当建立类ClassName的对象时，先调用各个对象成员的构造函数，初始化相应的对象成员，然后才执行类ClassName的构造函数，初始化类ClassName中的其它成员。析构函数的调用顺序与构造函数正好相反。</li>
+</ul>
+
+        <h1 id="继承和派生类"   >
+          <a href="#继承和派生类" class="heading-link"><i class="fas fa-link"></i></a><a href="#继承和派生类" class="headerlink" title="继承和派生类"></a>继承和派生类</h1>
+      <ul>
+<li>将类的构造函数或析构函数的访问权限定义为保护的时，这种类为抽象类。 </li>
+<li>多重派生</li>
+</ul>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span>  <span class="title">D</span>:</span> <span class="keyword">public</span>  A, <span class="keyword">protected</span> B, <span class="keyword">private</span> C </span><br><span class="line">&#123;    ....<span class="comment">//派生类中新增加成员</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D</span>:</span><span class="keyword">public</span> A,B,<span class="keyword">private</span> C</span><br><span class="line">&#123;&#125;;</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>初始化基类函数</li>
+</ul>
+<p>构造函数不能被继承,派生类的构造函数必须调用基类的构造函数来初始化基类成员基类子对象。</p>
+<p>派生类构造函数的调用顺序如下：<br>1、基类的构造函数<br>2、子对象类的构造函数<br>3、派生类的构造函数</p>
+<p>当撤销派生类对象时，析构函数的调用正好相反。</p>
+<ul>
+<li>当派生类中新增加的数据或函数与基类中原有的同名时，若不加限制，则优先调用派生类中的成员。</li>
+<li>任一基类在派生类中只能继承一次，否则，会造成成员名的冲突 </li>
+<li> 可以将派生类对象的值赋给基类对象。反之不行</li>
+<li>在多重派生的过程中，若使公共基类在派生类中只有一个拷贝，则可将这种基类说明为虚基类。</li>
+<li>在派生类的定义中，只要在基类的类名前加上关键字virtual，就可以将基类说明为虚基类。</li>
+<li>再次强调，用虚基类进行多重派生时，若虚基类没有缺省的构造函数，则在每一个派生类的构造函数中都必须有对虚基类构造函数的调用 （且首先调用）。</li>
+<li>友元函数需要在类体内进行说明，在前面加上关键字friend。</li>
+<li>一个友元函数的实例</li>
+</ul>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">double</span> x,y;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">A</span>(<span class="keyword">double</span> a,<span class="keyword">double</span> b)&#123;x=a,y=b&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">Sum</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> x+y;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">friend</span> <span class="keyword">double</span> <span class="title">Sum</span><span class="params">(A &amp;a)</span></span>&#123;<span class="keyword">return</span> a.x+a.b&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">A <span class="title">t1</span><span class="params">(<span class="number">4</span>,<span class="number">5</span>)</span>,<span class="title">t2</span><span class="params">(<span class="number">10</span>,<span class="number">20</span>)</span></span>;</span><br><span class="line">	cout&lt;&lt;t1.<span class="built_in">Sum</span>()&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">Sum</span>(t2)&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<ul>
+<li>友元函数不是类的函数，友元函数近似于普通的函数，它不带有this指针，因此必须将对象名或对象的引用作为友元函数的参数，这样才能访问到对象的成员。</li>
+<li>友元类： 在class A中定义 friend class B ，对于B而言，A是透明的。</li>
+<li>不管是按哪一种方式派生，基类的私有成员在派生类中都是不可见的。<br>如果在一个派生类中要访问基类中的私有成员，可以将这个派生类声明为基类的友元。</li>
+</ul>
+
+        <h1 id="多态性"   >
+          <a href="#多态性" class="heading-link"><i class="fas fa-link"></i></a><a href="#多态性" class="headerlink" title="多态性"></a>多态性</h1>
+      <p><img src="https://img-blog.csdnimg.cn/2c797fcb28ef48f988f80651430bf93d.png" alt="在这里插入图片描述"></p>
+
+        <h2 id="虚函数"   >
+          <a href="#虚函数" class="heading-link"><i class="fas fa-link"></i></a><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h2>
+      <ul>
+<li>一旦把基类的成员函数定义为虚函数，由基类所派生出来的所有派生类中，该函数均保持虚函数的特性。 </li>
+<li>在派生类中重新定义基类中的虚函数时，可以不用关键字virtual来修饰这个成员函数 。</li>
+<li>虚函数是用关键字virtual修饰的某基类中的protected或public成员函数。它可以在派生类中重新定义，以形成不同版本。只有在程序的执行过程中，依据指针具体指向哪个类对象，或依据引用哪个类对象，才能确定激活哪一个版本，实现动态聚束。</li>
+<li>当在基类中把成员函数定义为虚函数后，在其派生类中定义的虚函数必须与基类中的虚函数同名，参数的类型、顺序、参数的个数必须一一对应，函数的返回的类型也相同。若函数名相同，但参数的个数不同或者参数的类型不同时，则属于函数的重载，而不是虚函数。若函数名不同，显然这是不同的成员函数。</li>
+<li><img   src="https://img-blog.csdnimg.cn/d018393a61d1499d9802dc876a744317.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAVGhlU2hpbmU5MTI=,size_20,color_FFFFFF,t_70,g_se,x_16" style="width: image/watermark,type_d3F5LXplbmhlaQ,shadow_50,tepx;height: t_Q1NETiBAVGhlU2hpbmU5MTIpx;"  alt="在这里插入图片描述"></li>
+<li>虚函数必须是类的一个成员函数，不能是友元函数，也不能是静态的成员函数。</li>
+<li>可把析构函数定义为虚函数，但是，不能将构造函数定义为虚函数。</li>
+<li>1、在定义纯虚函数时，不能定义虚函数的实现部分。<br>2、把函数名赋于0，本质上是将指向函数体的指针值赋为初值0。与定义空函数不一样，空函数的函数体为空，即调用该函数时，不执行任何动作。在没有重新定义这种纯虚函数之前，是不能调用这种函数的。<br>3、把至少包含一个纯虚函数的类，称为抽象类。这种类只能作为派生类的基类，不能用来说明这种类的对象。</li>
+<li>为了保持静态数据成员取值的一致性，通常在构造函数中不给静态数据成员置初值，而是在对静态数据成员的定义性说明时指定初值。 </li>
+</ul>
+]]></content>
+      <categories>
+        <category>curriculum</category>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>curriculum</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
 </search>

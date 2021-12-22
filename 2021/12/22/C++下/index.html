@@ -1,0 +1,390 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="c++的面向对象部分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++知识点复习笔记（上）">
+<meta property="og:url" content="http://example.com/2021/12/22/C++%E4%B8%8B/index.html">
+<meta property="og:site_name" content="Liyue">
+<meta property="og:description" content="c++的面向对象部分">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2c797fcb28ef48f988f80651430bf93d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d018393a61d1499d9802dc876a744317.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAVGhlU2hpbmU5MTI=,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2021-12-22T07:00:03.703Z">
+<meta property="article:modified_time" content="2021-12-22T07:00:26.463Z">
+<meta property="article:author" content="TheShineyue">
+<meta property="article:tag" content="curriculum">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2c797fcb28ef48f988f80651430bf93d.png"><title>c++知识点复习笔记（上） | Liyue</title><link ref="canonical" href="http://example.com/2021/12/22/C++%E4%B8%8B/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/links/"><span class="header-nav-menu-item__icon"><i class="fas fa-link"></i></span><span class="header-nav-menu-item__text">友链</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Liyue</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">c++知识点复习笔记（上）</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-12-22</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2021-12-22</span></span></div></header><div class="post-body"><p>c++的面向对象部分</p>
+<span id="more"></span>
+
+        <h1 id="对象与类"   >
+          <a href="#对象与类" class="heading-link"><i class="fas fa-link"></i></a><a href="#对象与类" class="headerlink" title="对象与类"></a>对象与类</h1>
+      <ul>
+<li>可以在类中直接定义函数体。这时成员函数在编译时是作为内联函数来实现的</li>
+<li>重载时，函数的形参必须在类型或数目上不同</li>
+<li>可以有缺省参数的成员函数，若形参不完全缺省，则必须从形参的右边开始缺省。</li>
+<li>返回引用类型的成员函数(可以返回私有数据成员的引用)</li>
+<li>若定义的类要说明该类的对象时，构造函数必须是公有的成员函数。如果定义的类仅用于派生其它类时，则可将构造函数定义为保护的成员函数。</li>
+<li>在定义类时，一旦定义了类的构造函数，编译器就不会产生缺省的构造函数。并且缺省的构造函数只能有一个。缺省的构造函数包括两种情况：没有参数的构造函数或者各参数均有缺省值。</li>
+<li>对于静态对象，是在首次定义对象时，调用构造函数的，且由于对象一直存在，只调用一次构造函数。<br>对于全局对象，是在main函数执行之前调用构造函数的<br>缺省的构造函数并不对所产生对象的数据成员赋初值；即新产生对象的数据成员的值是不确定的。 </li>
+<li>构造函数可以带参数、可以重载，同时没有返回值。</li>
+<li>一个类中，只能定义一个析构函数，析构函数不允许重载。</li>
+<li>而用delete运算符来释放p1所指向的对象数组占用的存储空间时，在指针变量的前面必须加上[ ]， 才能将数组元素所占用的空间全部释放。否则，只释放第0个元素所占用的空间。</li>
+<li>完成拷贝功能的构造函数的一般格式为：<br>ClassName::ClassName(ClassName  &amp;&lt;变量名&gt;)//引用<br>{    ……<br>//   函数体完成对应数据成员的赋值<br>}</li>
+<li>如果没有定义完成拷贝功能的构造函数，编译器自动生成一个隐含的完成拷贝功能的构造函数，依次完成类中对应数据成员的拷贝。</li>
+<li>但是，当类中的数据成员中使用new运算符，动态地申请存储空间进行赋初值时，必须在类中显式地定义一个完成拷贝功能的构造函数，以便正确实现数据成员的复制。</li>
+<li>ClassName::ClassName(args):c1(args1),..,cn(agrsn)<br>{<br>…… //对其它成员的初始化<br>}<br>初始化对象成员的参数（实参）可以是表达式。，也可以仅对部分对象成员进行初始化。</li>
+<li>对对象成员的构造函数的调用顺序取决于这些对象成员在类中说明的顺序，与它们在成员初始化列表中的顺序无关。<br>当建立类ClassName的对象时，先调用各个对象成员的构造函数，初始化相应的对象成员，然后才执行类ClassName的构造函数，初始化类ClassName中的其它成员。析构函数的调用顺序与构造函数正好相反。</li>
+</ul>
+
+        <h1 id="继承和派生类"   >
+          <a href="#继承和派生类" class="heading-link"><i class="fas fa-link"></i></a><a href="#继承和派生类" class="headerlink" title="继承和派生类"></a>继承和派生类</h1>
+      <ul>
+<li>将类的构造函数或析构函数的访问权限定义为保护的时，这种类为抽象类。 </li>
+<li>多重派生</li>
+</ul>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span>  <span class="title">D</span>:</span> <span class="keyword">public</span>  A, <span class="keyword">protected</span> B, <span class="keyword">private</span> C </span><br><span class="line">&#123;    ....<span class="comment">//派生类中新增加成员</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D</span>:</span><span class="keyword">public</span> A,B,<span class="keyword">private</span> C</span><br><span class="line">&#123;&#125;;</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>初始化基类函数</li>
+</ul>
+<p>构造函数不能被继承,派生类的构造函数必须调用基类的构造函数来初始化基类成员基类子对象。</p>
+<p>派生类构造函数的调用顺序如下：<br>1、基类的构造函数<br>2、子对象类的构造函数<br>3、派生类的构造函数</p>
+<p>当撤销派生类对象时，析构函数的调用正好相反。</p>
+<ul>
+<li>当派生类中新增加的数据或函数与基类中原有的同名时，若不加限制，则优先调用派生类中的成员。</li>
+<li>任一基类在派生类中只能继承一次，否则，会造成成员名的冲突 </li>
+<li> 可以将派生类对象的值赋给基类对象。反之不行</li>
+<li>在多重派生的过程中，若使公共基类在派生类中只有一个拷贝，则可将这种基类说明为虚基类。</li>
+<li>在派生类的定义中，只要在基类的类名前加上关键字virtual，就可以将基类说明为虚基类。</li>
+<li>再次强调，用虚基类进行多重派生时，若虚基类没有缺省的构造函数，则在每一个派生类的构造函数中都必须有对虚基类构造函数的调用 （且首先调用）。</li>
+<li>友元函数需要在类体内进行说明，在前面加上关键字friend。</li>
+<li>一个友元函数的实例</li>
+</ul>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">double</span> x,y;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">A</span>(<span class="keyword">double</span> a,<span class="keyword">double</span> b)&#123;x=a,y=b&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">Sum</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> x+y;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">friend</span> <span class="keyword">double</span> <span class="title">Sum</span><span class="params">(A &amp;a)</span></span>&#123;<span class="keyword">return</span> a.x+a.b&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">A <span class="title">t1</span><span class="params">(<span class="number">4</span>,<span class="number">5</span>)</span>,<span class="title">t2</span><span class="params">(<span class="number">10</span>,<span class="number">20</span>)</span></span>;</span><br><span class="line">	cout&lt;&lt;t1.<span class="built_in">Sum</span>()&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">Sum</span>(t2)&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<ul>
+<li>友元函数不是类的函数，友元函数近似于普通的函数，它不带有this指针，因此必须将对象名或对象的引用作为友元函数的参数，这样才能访问到对象的成员。</li>
+<li>友元类： 在class A中定义 friend class B ，对于B而言，A是透明的。</li>
+<li>不管是按哪一种方式派生，基类的私有成员在派生类中都是不可见的。<br>如果在一个派生类中要访问基类中的私有成员，可以将这个派生类声明为基类的友元。</li>
+</ul>
+
+        <h1 id="多态性"   >
+          <a href="#多态性" class="heading-link"><i class="fas fa-link"></i></a><a href="#多态性" class="headerlink" title="多态性"></a>多态性</h1>
+      <p><img src="https://img-blog.csdnimg.cn/2c797fcb28ef48f988f80651430bf93d.png" alt="在这里插入图片描述"></p>
+
+        <h2 id="虚函数"   >
+          <a href="#虚函数" class="heading-link"><i class="fas fa-link"></i></a><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h2>
+      <ul>
+<li>一旦把基类的成员函数定义为虚函数，由基类所派生出来的所有派生类中，该函数均保持虚函数的特性。 </li>
+<li>在派生类中重新定义基类中的虚函数时，可以不用关键字virtual来修饰这个成员函数 。</li>
+<li>虚函数是用关键字virtual修饰的某基类中的protected或public成员函数。它可以在派生类中重新定义，以形成不同版本。只有在程序的执行过程中，依据指针具体指向哪个类对象，或依据引用哪个类对象，才能确定激活哪一个版本，实现动态聚束。</li>
+<li>当在基类中把成员函数定义为虚函数后，在其派生类中定义的虚函数必须与基类中的虚函数同名，参数的类型、顺序、参数的个数必须一一对应，函数的返回的类型也相同。若函数名相同，但参数的个数不同或者参数的类型不同时，则属于函数的重载，而不是虚函数。若函数名不同，显然这是不同的成员函数。</li>
+<li><img   src="https://img-blog.csdnimg.cn/d018393a61d1499d9802dc876a744317.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAVGhlU2hpbmU5MTI=,size_20,color_FFFFFF,t_70,g_se,x_16" style="width: image/watermark,type_d3F5LXplbmhlaQ,shadow_50,tepx;height: t_Q1NETiBAVGhlU2hpbmU5MTIpx;"  alt="在这里插入图片描述"></li>
+<li>虚函数必须是类的一个成员函数，不能是友元函数，也不能是静态的成员函数。</li>
+<li>可把析构函数定义为虚函数，但是，不能将构造函数定义为虚函数。</li>
+<li>1、在定义纯虚函数时，不能定义虚函数的实现部分。<br>2、把函数名赋于0，本质上是将指向函数体的指针值赋为初值0。与定义空函数不一样，空函数的函数体为空，即调用该函数时，不执行任何动作。在没有重新定义这种纯虚函数之前，是不能调用这种函数的。<br>3、把至少包含一个纯虚函数的类，称为抽象类。这种类只能作为派生类的基类，不能用来说明这种类的对象。</li>
+<li>为了保持静态数据成员取值的一致性，通常在构造函数中不给静态数据成员置初值，而是在对静态数据成员的定义性说明时指定初值。 </li>
+</ul>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://example.com">TheShineyue</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://example.com/2021/12/22/C++%E4%B8%8B/">http://example.com/2021/12/22/C++%E4%B8%8B/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/curriculum/">curriculum</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/c/">c++</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2021/12/20/%E6%95%B0%E8%AE%BA%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E8%AF%95%E5%8D%B7%E9%94%99%E9%A2%98%EF%BC%89/"><span class="paginator-prev__text">数论试卷错题</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E4%B8%8E%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">
+          对象与类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F%E7%B1%BB"><span class="toc-number">2.</span> <span class="toc-text">
+          继承和派生类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E6%80%81%E6%80%A7"><span class="toc-number">3.</span> <span class="toc-text">
+          多态性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E5%87%BD%E6%95%B0"><span class="toc-number">3.1.</span> <span class="toc-text">
+          虚函数</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://cdn.jsdelivr.net/gh/TheShineyue/cdn@1.3/images/二次3.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">她与AC皆是期盼</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">41</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">23</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">20</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>TheShineyue</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.4.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.xml';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.xml"></script></body></html>
