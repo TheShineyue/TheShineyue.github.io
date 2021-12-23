@@ -3083,4 +3083,120 @@ b/gcd 是 b 的因子， a/gcd 是 a 的因子是吧？
         <tag>homework</tag>
       </tags>
   </entry>
+  <entry>
+    <title>XTUc语言期末考注意事项</title>
+    <url>/2021/12/23/XTUOJ%E8%80%83%E5%89%8D%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>略述期末考常考的一些知识点和考试的时候要注意的东西</p>
+<span id="more"></span>
+
+
+
+        <h1 id="注意"   >
+          <a href="#注意" class="heading-link"><i class="fas fa-link"></i></a><a href="#注意" class="headerlink" title="注意"></a>注意</h1>
+      <ol>
+<li>考试一般前5道题是大家都能做的，无非就是用时长短的问题。学的好的同学要把第六题第七题也视作自己的目标去解决，最后的第八题看运气了。。。（反正我当年没写出来去年的第八题）</li>
+<li>2题左右能及格，6题左右满绩不是问题</li>
+<li>心态很重要！ 平时周四下午或周末可以规定一段时间给自己当模拟测试，熟悉acm式的期末考。此外，也要相信题目肯定在自己的能力范围内，冷静思考疏漏之处。</li>
+<li>罚时是 你交这道题的用时+错误次数*20分钟，所以有的时候要多想想，”真的考虑到所有细节了吗？“再交，不然交太多次罚时爆炸，让你拿不到应该得到的分数。</li>
+<li>考试流程：签到题稳稳出（前两题要考虑到所有细节），中等题遇到不会先跳（因为有的时候题目会有点坑，去年的第五题好像就是出了一点问题，我因为看不懂跳过写下题而节约了不少罚时），做到第六题回过头解决刚刚跳过的题目，最后解决第七题和第八题，第八题可能涉及一些比较难的算法，比如DP。<br>在我看来，签到题稳稳出是最重要的，你开题开得稳，自然心态就放松下来了。</li>
+<li>保证常考的知识点你都已经掌握</li>
+<li>可以带书进去，把一些容易忘的细节或模板记上去</li>
+<li>期末考试是按从简单到难的，如果对自己的心态不信任，就别去看榜，容易慌。</li>
+<li>后两三题适当计算一下时间复杂度，但是发现无论如何也优化不了的用暴力也没事。前面的题不会太为难你，尽量去思考暴力解法</li>
+</ol>
+
+        <h1 id="知识点"   >
+          <a href="#知识点" class="heading-link"><i class="fas fa-link"></i></a><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1>
+      <p>以下只是常考且我想让大家考前看的知识点，有些小知识点可能有所遗漏。</p>
+
+        <h2 id="暴力和贪心求法"   >
+          <a href="#暴力和贪心求法" class="heading-link"><i class="fas fa-link"></i></a><a href="#暴力和贪心求法" class="headerlink" title="暴力和贪心求法"></a>暴力和贪心求法</h2>
+      <p>很多问题都是只用暴力解决就好，不再赘述。但是有点题目是不能贪心写的，比如17年的D。</p>
+
+        <h2 id="打图像"   >
+          <a href="#打图像" class="heading-link"><i class="fas fa-link"></i></a><a href="#打图像" class="headerlink" title="打图像"></a>打图像</h2>
+      <p>年年必考<br>说一下我解决这类的心得：</p>
+<ol>
+<li>找到规律，得到上一行和下一行，左一列和右一列的关系，这是我们打图像的基础。</li>
+<li>选择处理框架，一般有二维数组保存图像和直接输出两种办法，视情况使用</li>
+<li>打印一部分就编译运行，确保这一步没问题再编写下一部分的代码</li>
+<li>在程序写完后，输出最大情况和最小情况（比如n取值是0到25，分别打印一个0一个25，看看在边界情况下有没有问题）</li>
+</ol>
+<p>期末考前记得从oj拿一道这类的题练练手感。</p>
+<p>说一道我印象特别深刻的题，用了二维数组不断覆盖的解法:<br>打印一个</p>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line">AAAAAA</span><br><span class="line">ABBBBA</span><br><span class="line">ABCCBA</span><br><span class="line">ABCCBA</span><br><span class="line">ABBBBA</span><br><span class="line">AAAAAA</span><br></pre></td></tr></table></div></figure>
+<p>我们可以先把数组都变成A，</p>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line">AAAAAA 			</span><br><span class="line">AAAAAA</span><br><span class="line">AAAAAA</span><br><span class="line">AAAAAA </span><br><span class="line">AAAAAA</span><br><span class="line">AAAAAA</span><br></pre></td></tr></table></div></figure>
+<p>再到更小的范围变成B</p>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line">AAAAAA</span><br><span class="line">ABBBBA</span><br><span class="line">ABBBBA</span><br><span class="line">ABBBBA</span><br><span class="line">ABBBBA</span><br><span class="line">AAAAAA</span><br></pre></td></tr></table></div></figure>
+<p>…</p>
+<p>这类题目显然二维数组的方法比直接输出更好</p>
+
+        <h2 id="质数相关问题"   >
+          <a href="#质数相关问题" class="heading-link"><i class="fas fa-link"></i></a><a href="#质数相关问题" class="headerlink" title="质数相关问题"></a>质数相关问题</h2>
+      <p>这也是年年都有，难度不一。总的来说，只需要掌握埃筛就能解决绝大部分的问题了，</p>
+<p>但是近几年也考到了前缀和和欧筛，复习时间充足还是要看看。</p>
+
+        <h3 id="埃筛模板"   >
+          <a href="#埃筛模板" class="heading-link"><i class="fas fa-link"></i></a><a href="#埃筛模板" class="headerlink" title="埃筛模板"></a>埃筛模板</h3>
+      <figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> maxn=<span class="number">1000000</span>+<span class="number">300</span>;</span><br><span class="line"><span class="keyword">int</span> num[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GetPrime</span><span class="params">()</span></span>&#123;</span><br><span class="line">    __int64 i,j;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=maxn<span class="number">-1</span>;i++)num[i]=<span class="number">1</span>;</span><br><span class="line">        num[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;maxn;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(j=i*i;j&lt;maxn;j+=i)&#123;</span><br><span class="line">            num[j]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="前缀和"   >
+          <a href="#前缀和" class="heading-link"><i class="fas fa-link"></i></a><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h3>
+      <p>比如说1-10中2 3 8是符合条件的<br>那么我们用一个数组a[11]={0,0,1,2,2,2,2,2,3,3,3}来表示<br>其中 a[i]的含义是0-i中有多少个符合要求的，然后对于第x位是否符合要求只需要看a[x]-a[x-1]<br>（和差分互为逆运算）<br>前缀和常用来优化算法，降低时间复杂度，2017年的G题等都考到了前缀和与质数的结合</p>
+
+        <h2 id="杨辉三角"   >
+          <a href="#杨辉三角" class="heading-link"><i class="fas fa-link"></i></a><a href="#杨辉三角" class="headerlink" title="杨辉三角"></a>杨辉三角</h2>
+      <p>排列组合也是比较常考的，记住杨辉三角的打表程序即可</p>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;maxn;i++)&#123;<span class="comment">//maxn是打表范围</span></span><br><span class="line">		c[i][<span class="number">0</span>]=c[i][i]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;i;j++)&#123;</span><br><span class="line">			c[i][j]=(c[i<span class="number">-1</span>][j<span class="number">-1</span>]+c[i<span class="number">-1</span>][j]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="GCD和LCM"   >
+          <a href="#GCD和LCM" class="heading-link"><i class="fas fa-link"></i></a><a href="#GCD和LCM" class="headerlink" title="GCD和LCM"></a>GCD和LCM</h2>
+      <figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;<span class="comment">//求最大公倍数</span></span><br><span class="line">    <span class="keyword">return</span> b?<span class="built_in">Gcd</span>(b,a%b):a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>lcm(最小公倍数)用gcd可以得知</p>
+<p>这类题目要注意数据范围很可能爆int<br>因为几个很大的互质的数的最小公倍数可以很轻松的达到1e10的级别，拿不准的看到这类问题就用__int64或longlong就好</p>
+<p>此外gcd经常应用到分数一类的问题上，将分数通分。<br>分数问题要注意几个特殊情况：分母为1   分母变成了0（此时无解）    分子是0。</p>
+
+        <h2 id="进制转化类问题"   >
+          <a href="#进制转化类问题" class="heading-link"><i class="fas fa-link"></i></a><a href="#进制转化类问题" class="headerlink" title="进制转化类问题"></a>进制转化类问题</h2>
+      <p><span class="exturl"><a class="exturl__link"   href="https://theshineyue.github.io/2021/09/21/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" >2进制转化</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>遇到16进制要注意对（A~F）的处理</p>
+
+        <h2 id="模拟类题目"   >
+          <a href="#模拟类题目" class="heading-link"><i class="fas fa-link"></i></a><a href="#模拟类题目" class="headerlink" title="模拟类题目"></a>模拟类题目</h2>
+      <p><span class="exturl"><a class="exturl__link"   href="http://202.197.224.59/exam/index.php/problem/exam_read/id/1371/exam_id/355" >19年A题，模拟一个游戏</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span><br>模拟类问题的特点就是细节多，题目复杂，一不小心就会错，就拿19年A题来讲，我当初写的时候就以为遇到X不影响金币的累计，被卡了特别久。</p>
+<p>这种题可以采用跳过的处理方法（一旦看错题意可能这场就没了），最直接的考验代码能力的问题。</p>
+<p>处理方法就是平时多写，看清题目再下手（列出注意点）</p>
+
+        <h2 id="字符串类"   >
+          <a href="#字符串类" class="heading-link"><i class="fas fa-link"></i></a><a href="#字符串类" class="headerlink" title="字符串类"></a>字符串类</h2>
+      <p>要么对字符串处理的函数足够了解，知道他们的运用条件，要么自己写相关的函数</p>
+
+        <h2 id="排序类问题"   >
+          <a href="#排序类问题" class="heading-link"><i class="fas fa-link"></i></a><a href="#排序类问题" class="headerlink" title="排序类问题"></a>排序类问题</h2>
+      <p>快速排序<br>谢大快排模板：</p>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">less</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> *a,<span class="keyword">const</span> <span class="keyword">void</span> *b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *pa,*pb;</span><br><span class="line">    pa = (<span class="keyword">int</span> *)a;</span><br><span class="line">    pb = (<span class="keyword">int</span> *)b;</span><br><span class="line">    <span class="keyword">return</span> *pa - *pb;   </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">greater</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> *a,<span class="keyword">const</span> <span class="keyword">void</span> *b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *pa,*pb;</span><br><span class="line">    pa = (<span class="keyword">int</span> *)a;</span><br><span class="line">    pb = (<span class="keyword">int</span> *)b;</span><br><span class="line">    <span class="keyword">return</span> *pb - *pa;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">prt</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,a[i]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">     </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">10</span>]=&#123;<span class="number">3</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">8</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">4</span>,<span class="number">3</span>&#125;;</span><br><span class="line">    <span class="built_in">prt</span>(a,<span class="number">10</span>);</span><br><span class="line">    <span class="built_in">qsort</span>(a,<span class="number">10</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span>),less);</span><br><span class="line">    <span class="built_in">prt</span>(a,<span class="number">10</span>);</span><br><span class="line">    <span class="built_in">qsort</span>(a,<span class="number">10</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span>),greater);</span><br><span class="line">    <span class="built_in">prt</span>(a,<span class="number">10</span>);</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="其他细节"   >
+          <a href="#其他细节" class="heading-link"><i class="fas fa-link"></i></a><a href="#其他细节" class="headerlink" title="其他细节"></a>其他细节</h2>
+      <ol>
+<li>注意初始化！数组清空，变量赋初始值！</li>
+<li>注意数据范围！（比如对0、1的考虑）</li>
+<li>如果题目没说不能重复考虑重复的情况！</li>
+<li>x/a的向上取整就是(x-1)/a+1</li>
+<li>浮点数的格式化输出都搞清楚了吗，%f %lf %g</li>
+<li>如果对优先级没有自信，每个式子都老老实实套上括号</li>
+</ol>
+]]></content>
+      <categories>
+        <category>21级计科一班</category>
+        <category>homework</category>
+      </categories>
+      <tags>
+        <tag>homework</tag>
+      </tags>
+  </entry>
 </search>
