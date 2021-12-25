@@ -3357,9 +3357,12 @@ delete []a;    //释放int数组空间
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>XTUOJ作业15 2018期末考试题解</title>
     <url>/2021/12/24/XTUOJ-text2018/</url>
-    <content><![CDATA[
+    <content><![CDATA[<p>作业14</p>
+<span id="more"></span>
+
+
         <h1 id="A-Quiz"   >
           <a href="#A-Quiz" class="heading-link"><i class="fas fa-link"></i></a><a href="#A-Quiz" class="headerlink" title="A Quiz"></a>A Quiz</h1>
       <p>答案是BDACD</p>
@@ -3417,6 +3420,62 @@ delete []a;    //释放int数组空间
 <p>边界条件： dp[x] [0] = dp[0] [x] =1; dp[0] [0]=0;</p>
 <figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> N = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll __int64</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    ll rb[<span class="number">120</span>][<span class="number">120</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">100</span>;i++)&#123;</span><br><span class="line">        rb[<span class="number">0</span>][i]=<span class="number">1</span>;</span><br><span class="line">        rb[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">111</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=<span class="number">111</span>;j++)&#123;</span><br><span class="line">            rb[i][j]=(rb[i<span class="number">-1</span>][j]%N+rb[i][j<span class="number">-1</span>]%N+rb[i<span class="number">-1</span>][j<span class="number">-1</span>]%N)%N;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;t);<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="keyword">int</span> n,m;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%I64d\n&quot;</span>,rb[n][m]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
 
+
+        <h1 id="G"   >
+          <a href="#G" class="heading-link"><i class="fas fa-link"></i></a><a href="#G" class="headerlink" title="G"></a>G</h1>
+      
+        <h1 id="H"   >
+          <a href="#H" class="heading-link"><i class="fas fa-link"></i></a><a href="#H" class="headerlink" title="H"></a>H</h1>
+      ]]></content>
+      <categories>
+        <category>21级计科一班</category>
+        <category>homework</category>
+      </categories>
+      <tags>
+        <tag>homework</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>全排列问题</title>
+    <url>/2021/12/25/%E5%85%A8%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>递归解决全排列问题</p>
+<span id="more"></span>
+
+
+        <h1 id="不要求字典序"   >
+          <a href="#不要求字典序" class="heading-link"><i class="fas fa-link"></i></a><a href="#不要求字典序" class="headerlink" title="不要求字典序"></a>不要求字典序</h1>
+      <p>先用一个数组储存1~n。</p>
+<p>每次把一个数（1<del>n）放到最左边，然后把剩下的数在缩小了一个规模的情况下继续排列递归。在这样的处理中，0</del>l是我们已经处理好的数据，l+1~r是我们备选的数据。同时这样的处理也会保证每个数只会用一次。</p>
+<p>换句话说</p>
+<p>事实上维护了一个不断增加的数组，每次都在数组后添加一个数。</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 9</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Swap</span><span class="params">(<span class="keyword">int</span> L[],<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> Tmp=L[i];</span><br><span class="line">	L[i]=L[j];</span><br><span class="line">	L[j]=Tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> L[],<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;<span class="comment">//递归处理l-r的全排列</span></span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">if</span>(l==r)&#123;<span class="comment">//把i和最左边的数交换</span></span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=r;i++)<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,L[i]);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(i=l;i&lt;=r;i++)&#123;</span><br><span class="line">            <span class="comment">//选在当前位置用i的分支</span></span><br><span class="line">			<span class="built_in">Swap</span>(L,l,i);</span><br><span class="line">			<span class="built_in">dfs</span>(L,l+<span class="number">1</span>,r);</span><br><span class="line">            <span class="comment">//不选用i</span></span><br><span class="line">			<span class="built_in">Swap</span>(L,l,i);<span class="comment">//复原</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n,L[MAXN];</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)L[i]=i+<span class="number">1</span>;</span><br><span class="line">		<span class="built_in">dfs</span>(L,<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="要求字典序"   >
+          <a href="#要求字典序" class="heading-link"><i class="fas fa-link"></i></a><a href="#要求字典序" class="headerlink" title="要求字典序"></a>要求字典序</h1>
+      
+        <h2 id="书本做法"   >
+          <a href="#书本做法" class="heading-link"><i class="fas fa-link"></i></a><a href="#书本做法" class="headerlink" title="书本做法"></a>书本做法</h2>
+      <p>但是上述的做法是简单的交换，会使得字典序被破坏。</p>
+<p>想要保证字典序，要在交换的时候整体右移。（换句话说，就是让无序待选的右半部分保持字典序，使得for循环会按字典序进行）</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 9</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">RightShift</span><span class="params">(<span class="keyword">int</span> L[],<span class="keyword">int</span> l,<span class="keyword">int</span> i)</span></span>&#123;<span class="comment">//使其保证字典序</span></span><br><span class="line">	<span class="keyword">int</span> t=L[i];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&gt;l;j--)L[j]=L[j<span class="number">-1</span>];</span><br><span class="line">	L[l]=t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">LeftShift</span><span class="params">(<span class="keyword">int</span> L[],<span class="keyword">int</span> l,<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t=L[l];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=l;j&lt;i;j++)L[j]=L[j+<span class="number">1</span>];</span><br><span class="line">	L[i]=t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> L[],<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=r;i++)<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,L[i]);</span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=l;i&lt;=r;i++)&#123;</span><br><span class="line">			<span class="built_in">RightShift</span>(L,l,i);</span><br><span class="line">			<span class="built_in">dfs</span>(L,l+<span class="number">1</span>,r);</span><br><span class="line">			<span class="built_in">LeftShift</span>(L,l,i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> L[MAXN],n;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)L[i]=i+<span class="number">1</span>;</span><br><span class="line">		<span class="built_in">dfs</span>(L,<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="优化做法"   >
+          <a href="#优化做法" class="heading-link"><i class="fas fa-link"></i></a><a href="#优化做法" class="headerlink" title="优化做法"></a>优化做法</h2>
+      <p>书本做法会把数组左右移动，实际上，这是非常浪费时间的做法。</p>
+<p>上述的算法是把待选的数放右边，但是由于交换会让右边的字典序变化，所以要不断左右移动保持字典序。</p>
+<p>如果我每次都从1~n中选待选，用一个bool数组标记选用与否，那么就既可以保证字典序又节约时间开销。</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">25</span>];</span><br><span class="line"><span class="keyword">bool</span> chosen[<span class="number">25</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(k==n+<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,ans[i]);</span><br><span class="line">		<span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(chosen[i])<span class="keyword">continue</span>;</span><br><span class="line">		ans[k]=i;</span><br><span class="line">		chosen[i]=<span class="number">1</span>;</span><br><span class="line">		<span class="built_in">dfs</span>(k+<span class="number">1</span>);</span><br><span class="line">		chosen[i]=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="built_in">dfs</span>(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
 ]]></content>
+      <categories>
+        <category>base</category>
+      </categories>
+      <tags>
+        <tag>base</tag>
+      </tags>
   </entry>
 </search>
