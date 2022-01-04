@@ -3666,4 +3666,163 @@ delete []a;    //释放int数组空间
         <tag>homework</tag>
       </tags>
   </entry>
+  <entry>
+    <title></title>
+    <url>/2021/12/31/codefores%20Set%20or%20Decrease/</url>
+    <content><![CDATA[
+        <h1 id="题意"   >
+          <a href="#题意" class="heading-link"><i class="fas fa-link"></i></a><a href="#题意" class="headerlink" title="题意"></a>题意</h1>
+      <p>给定一个数组arr[i] 和 k可执行以下两种操作：</p>
+<ol>
+<li>把某一个元素-1。</li>
+<li>把某个元素赋值成另一个元素。</li>
+</ol>
+<p>求使sum(arr[i])&lt;=k的最小操作数。</p>
+
+        <h1 id="思路"   >
+          <a href="#思路" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路" class="headerlink" title="思路"></a>思路</h1>
+      <p>显然，数组的数的位置与最后的答案的结果无关。</p>
+<p>很自然的想法，最优的操作必然是：把最小的元素减小至x，把最大的y个赋值成x。</p>
+<p>那么操作后的结果是:<br>x    a1 a2 a3 … an-y x x x … x</p>
+<p>那么最后结果为：</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>数学分析复习</title>
+    <url>/2022/01/02/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E5%A4%8D%E4%B9%A0/</url>
+    <content><![CDATA[<p>数学分析复习</p>
+<span id="more"></span>
+
+        <h1 id="数项级数"   >
+          <a href="#数项级数" class="heading-link"><i class="fas fa-link"></i></a><a href="#数项级数" class="headerlink" title="数项级数"></a>数项级数</h1>
+      
+        <h2 id="比较原则"   >
+          <a href="#比较原则" class="heading-link"><i class="fas fa-link"></i></a><a href="#比较原则" class="headerlink" title="比较原则"></a>比较原则</h2>
+      <p>an&lt;=bn 可以求 an/bn的极限</p>
+<p>常用的比较对象：</p>
+<ol>
+<li>1/n 发散</li>
+<li>1/n^2 收敛</li>
+</ol>
+
+        <h2 id="阿贝尔判别法"   >
+          <a href="#阿贝尔判别法" class="heading-link"><i class="fas fa-link"></i></a><a href="#阿贝尔判别法" class="headerlink" title="阿贝尔判别法"></a>阿贝尔判别法</h2>
+      <p>利用极值点 函数求值</p>
+<p>单调有界+收敛 = 收敛</p>
+
+        <h1 id="函数列"   >
+          <a href="#函数列" class="heading-link"><i class="fas fa-link"></i></a><a href="#函数列" class="headerlink" title="函数列"></a>函数列</h1>
+      
+        <h2 id="一致收敛性"   >
+          <a href="#一致收敛性" class="heading-link"><i class="fas fa-link"></i></a><a href="#一致收敛性" class="headerlink" title="一致收敛性"></a>一致收敛性</h2>
+      <ol>
+<li>M判别法</li>
+<li>柯西准则</li>
+<li>余项准则<br>部分和函数列Sn 极限S Rn = S -Sn</li>
+</ol>
+
+        <h2 id="性质"   >
+          <a href="#性质" class="heading-link"><i class="fas fa-link"></i></a><a href="#性质" class="headerlink" title="性质"></a>性质</h2>
+      <p>求和 求导 求积 求极限 可以互换</p>
+]]></content>
+      <categories>
+        <category>curriculum</category>
+        <category>math</category>
+      </categories>
+      <tags>
+        <tag>math</tag>
+        <tag>curriculum</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计组复习-知识点</title>
+    <url>/2021/12/31/%E8%AE%A1%E7%BB%84%E5%A4%8D%E4%B9%A0/</url>
+    <content><![CDATA[<p>计组复习-知识点</p>
+<span id="more"></span>
+
+
+        <h1 id="大纲"   >
+          <a href="#大纲" class="heading-link"><i class="fas fa-link"></i></a><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h1>
+      
+        <h2 id="第二章"   >
+          <a href="#第二章" class="heading-link"><i class="fas fa-link"></i></a><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2>
+      <ol>
+<li>数据在计算机中的表示，文字在计算机中的表示</li>
+<li>定点数加法和减法运算方法</li>
+<li>逻辑运算方法</li>
+<li>设计ALU（多功能顶点运算器）</li>
+<li>浮点数的运算方法，//设计一个浮点数运算器</li>
+</ol>
+
+        <h2 id="第三章"   >
+          <a href="#第三章" class="heading-link"><i class="fas fa-link"></i></a><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2>
+      <ol>
+<li>存储器的概述 (SRAM+DRAM)， 只读存储器，闪速存储器</li>
+<li>设计大容量存储器，可以通过地址找到目标芯片</li>
+<li>Cache存储器及其计算</li>
+</ol>
+
+        <h1 id="缺漏知识点"   >
+          <a href="#缺漏知识点" class="heading-link"><i class="fas fa-link"></i></a><a href="#缺漏知识点" class="headerlink" title="缺漏知识点"></a>缺漏知识点</h1>
+      
+        <h2 id="第二章-1"   >
+          <a href="#第二章-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#第二章-1" class="headerlink" title="第二章"></a>第二章</h2>
+      
+        <h3 id="补码原码与真值"   >
+          <a href="#补码原码与真值" class="heading-link"><i class="fas fa-link"></i></a><a href="#补码原码与真值" class="headerlink" title="补码原码与真值"></a>补码原码与真值</h3>
+      
+        <h4 id="判断溢出"   >
+          <a href="#判断溢出" class="heading-link"><i class="fas fa-link"></i></a><a href="#判断溢出" class="headerlink" title="判断溢出"></a>判断溢出</h4>
+      <p>双符号。最高位永远是正确的符号</p>
+
+        <h4 id="补码减法"   >
+          <a href="#补码减法" class="heading-link"><i class="fas fa-link"></i></a><a href="#补码减法" class="headerlink" title="补码减法"></a>补码减法</h4>
+      <p>可以证明： [－y]补 ＝－[y]补 　(mod 2n+1)</p>
+<p>由 [y]补 求[－y]补 规则：连同符号位一起求反加1。　</p>
+
+        <h3 id="阵列乘法运算"   >
+          <a href="#阵列乘法运算" class="heading-link"><i class="fas fa-link"></i></a><a href="#阵列乘法运算" class="headerlink" title="阵列乘法运算"></a>阵列乘法运算</h3>
+      
+        <h3 id="逻辑运算"   >
+          <a href="#逻辑运算" class="heading-link"><i class="fas fa-link"></i></a><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h3>
+      <p>逻辑运算不影响符号N和溢出OV，肯定会影响Z</p>
+<p><strong>算术左移和逻辑左移的效果是一样的,效果都是*2<br>逻辑右移最高位补0,算术右移最高位补符号位.</strong></p>
+
+        <h3 id="浮点数运算"   >
+          <a href="#浮点数运算" class="heading-link"><i class="fas fa-link"></i></a><a href="#浮点数运算" class="headerlink" title="浮点数运算"></a>浮点数运算</h3>
+      <ol>
+<li><p>0操作数检查</p>
+</li>
+<li><p>对阶</p>
+<p>2.1 Ex-Ey=h</p>
+<p>2.2 小的 M右移h位 E+h</p>
+<p>2.3 尾数相加</p>
+<p>2.4 结果规范化</p>
+</li>
+</ol>
+
+        <h3 id="实验设计-ALU"   >
+          <a href="#实验设计-ALU" class="heading-link"><i class="fas fa-link"></i></a><a href="#实验设计-ALU" class="headerlink" title="实验设计 ALU"></a>实验设计 ALU</h3>
+      <ol>
+<li>乘法运算 32+32-&gt;64  两个单符号变成一个双符号位</li>
+<li>（.(cin1), … ）最后一个不能加,</li>
+<li>.v 输入wire 输出reg      tb.v 输入reg 输出 wire</li>
+</ol>
+
+        <h2 id="第三章-1"   >
+          <a href="#第三章-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#第三章-1" class="headerlink" title="第三章"></a>第三章</h2>
+      
+        <h3 id="存储器"   >
+          <a href="#存储器" class="heading-link"><i class="fas fa-link"></i></a><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h3>
+      <p><img src="C:\Users\TheShine\Desktop\存储器概述.jpg"></p>
+]]></content>
+      <categories>
+        <category>curriculum</category>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>curriculum</tag>
+        <tag>计算机组成原理</tag>
+      </tags>
+  </entry>
 </search>
