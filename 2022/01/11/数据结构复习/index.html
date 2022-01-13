@@ -1,0 +1,635 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="数据结构复习😭">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构复习（新，考前版）">
+<meta property="og:url" content="http://example.com/2022/01/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Liyue">
+<meta property="og:description" content="数据结构复习😭">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-11T15:33:33.447Z">
+<meta property="article:modified_time" content="2022-01-13T16:16:55.702Z">
+<meta property="article:author" content="TheShineyue">
+<meta property="article:tag" content="curriculum">
+<meta property="article:tag" content="data structure">
+<meta name="twitter:card" content="summary"><title>数据结构复习（新，考前版） | Liyue</title><link ref="canonical" href="http://example.com/2022/01/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/links/"><span class="header-nav-menu-item__icon"><i class="fas fa-link"></i></span><span class="header-nav-menu-item__text">友链</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Liyue</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">数据结构复习（新，考前版）</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2022-01-11</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2022-01-14</span></span></div></header><div class="post-body"><p>数据结构复习😭</p>
+<span id="more"></span>
+
+<ol>
+<li><p>数据结构定义<br> 操作集<br> 组织方式（逻辑结构+物理存储结构）<br> （算法）</p>
+</li>
+<li><p>数据类型<br> 数据对象集<br> 操作集<br> （抽象数据类型） 不依赖具体实现</p>
+</li>
+<li><p>算法<br> 有限指令集：（输入）+有限步骤+输出<br> 算法 ！= 程序<br> 不同点： ① 程序可以无限运行 ② 算法比较抽象，强调表现做什么</p>
+</li>
+<li><p>算法的评价指标<br> ① 空间复杂度 S<br> ② 时间复杂度 T   最大下界：Ω  最小上界：O</p>
+</li>
+<li><p>复合算法时间复杂度的计算<br> +：     max(O1,O2)<br> *:     O1*O2<br> for:     循环次数* 循环体复杂度<br> if :     条件判断和各个分支复杂度中max<br> n^k:     O(n^k)</p>
+</li>
+<li><p>链表<br> 双向链表 前驱单元指针<br> 双向循环链表 尾结点指向头结点 头结点指向尾结点</p>
+<p> 双向链表的插入 例： 于P指向的a2结点后插入新结点t </p>
+ <figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">DNode</span> * <span class="title">PtrToDNode</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">DNode</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> Data;</span><br><span class="line">    PtrToDNode Next;</span><br><span class="line">    PtrToDNode Previous;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> PtrToDNode Dlist;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Insert</span></span><br><span class="line">	t-&gt;Previous = p ;</span><br><span class="line">	t-&gt;Next = p-&gt;Next ;</span><br><span class="line">	<span class="comment">//保存了结点信息</span></span><br><span class="line">	p-&gt;Next-&gt;Previous = t;</span><br><span class="line">	p-&gt;Next = t;</span><br></pre></td></tr></table></div></figure>
+<p> 因为下一个结点往往是由上一个结点求得的，所以尽可能先操作后一个结点。</p>
+</li>
+<li><p>队列</p>
+</li>
+</ol>
+<p>队列的插入和删除分别在两个不同的端点实现的</p>
+<p>判断队列是否满 ：</p>
+<p>① 记录Size 或用一个bool记录最后一次是出队还是入队<br>② 少用一个空间，把 [(Rear+1)%Size==Front]视为队满</p>
+<p>链式存储实现<br>    Front 指向链表的头结点<br>    Rear 指向链表的尾结点<br>    在尾部插入结点 在头部删除结点<br>    因为在头部删除结点比较方便，尾部的Rear不好找前一个</p>
+<ol start="8">
+<li>查找<br>查找方法分为：<br>静态和动态（静态为数据不变，动态为数据可以增减）<br>以比较或映射实现<br>二分查找和顺序查找都是静态查找</li>
+<li>二分查找</li>
+</ol>
+<p>在增序列a[]中 </p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//求&gt;=x的最小解</span></span><br><span class="line"><span class="keyword">int</span> l=<span class="number">1</span>,r=n;</span><br><span class="line">	<span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">		<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(a[mid]&gt;=x)r=mid;</span><br><span class="line">        l=mid<span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">return</span> a[l];<span class="comment">//l==r</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//求&lt;=x的最大解</span></span><br><span class="line"><span class="keyword">int</span> l=<span class="number">1</span>,r=n;</span><br><span class="line"><span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">	<span class="keyword">int</span> mid=(l+r+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(a[mid]&lt;=x)l=mid;</span><br><span class="line">    r=mid+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> a[l];</span><br></pre></td></tr></table></div></figure>
+
+<ol start="10">
+<li>树</li>
+</ol>
+<p>层次： 规定根节点在第一层，其他的是父节点层次+1</p>
+<p>路径长度： 从A点到B点包含的分支个数</p>
+<p>深度： 最大层次</p>
+<p>度： 结点最大度</p>
+<ol start="11">
+<li>二叉树</li>
+</ol>
+<p>性质：</p>
+<p>① 第i层的最大结点数为 2^(i-1)</p>
+<p>②深度为k的二叉树结点数 2^k -1</p>
+<p>③ 叶子的个数是度为2的点数+1</p>
+<ol start="12">
+<li><p>二叉树的遍历</p>
+<p>① 中序遍历 ： 先根节点 再左子树 再右子树</p>
+<p>② 先序遍历</p>
+<p>③ 后序遍历</p>
+<p>按根节点遍历的位置命名    </p>
+<p>④ 层序遍历 BFS</p>
+</li>
+</ol>
+<ol start="13">
+<li>用后序遍历和中序遍历得到先序遍历</li>
+</ol>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function">BinTree <span class="title">CreateTree</span><span class="params">(<span class="keyword">int</span> In[],<span class="keyword">int</span> Pos[],<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	BinTree T;</span><br><span class="line">	<span class="keyword">if</span>(!n)<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	T=(BinTree)<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(struct TNode));</span><br><span class="line">	T-&gt;Data=Pos[n<span class="number">-1</span>];<span class="comment">//根节点</span></span><br><span class="line">	T-&gt;Left=T-&gt;Right=<span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)<span class="comment">//找到根节点在中序遍历中的位置</span></span><br><span class="line">		<span class="keyword">if</span>(In[i]==Pos[n<span class="number">-1</span>])<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//此时对于中序遍历而言 0~i-1为左子树 i+1~n为右子树</span></span><br><span class="line">	<span class="comment">//对于后序遍历而言 0~i-1为左子树 （因为得知左子树大小为i）</span></span><br><span class="line">	T-&gt;Left  = <span class="built_in">CreateTree</span>(In,Pos,i);</span><br><span class="line">	T-&gt;Right = <span class="built_in">CreateTree</span>(In+i+<span class="number">1</span>,Pos+i,n-i<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> T;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+<ol start="14">
+<li><p>二叉搜索树定义</p>
+<p>① 空</p>
+<p>② 非空左子树的所有Key小于其根节点    </p>
+<p>非空右子树的所有Key大于其根节点            </p>
+<p>左子树和右子树都是二叉搜索树</p>
+<p><strong>中序遍历后得到递增序列</strong></p>
+</li>
+<li><p>二叉搜索树的相关操作</p>
+</li>
+</ol>
+<ul>
+<li>查找Key</li>
+</ul>
+<p>二分查找</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Position <span class="title">Find</span><span class="params">(BinTree BT,<span class="keyword">int</span> X)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!BT) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">if</span>(X&gt;BT-&gt;Data)</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Find</span>(BT-&gt;Right,X);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(X&lt;BT-&gt;Data)</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Find</span>(BT-&gt;Left,X);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> BT;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Position <span class="title">Find2</span><span class="params">(BinTree BT,<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(BT)&#123;</span><br><span class="line">		<span class="keyword">if</span>(X&gt;BT-&gt;Right)</span><br><span class="line">			BT=BT-&gt;Right;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(X&lt;BT-&gt;Left)</span><br><span class="line">			BT=BT-&gt;Left;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> BT;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><p>查找最大和最小元素</p>
+<p>最小元素必然在最左端</p>
+<p>最大元素必然在最右端</p>
+</li>
+</ul>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Position <span class="title">FindMin</span><span class="params">(BinTree BT)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!BT)<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(!BT-&gt;Left)<span class="keyword">return</span> BT;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">FindMin</span>(BT-&gt;Left);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Position <span class="title">FindMax</span><span class="params">(BinTree BT)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!BT)<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(!BT-&gt;Right)<span class="keyword">return</span> BT;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">FindMax</span>(BT-&gt;Right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><p>插入</p>
+<p>用Find</p>
+<p>如果找到 放弃插入</p>
+<p>如果没找到，查找终止的位置就是插入的位置</p>
+</li>
+<li><p>删除</p>
+<p>如果是叶子，直接删去即可</p>
+<p>如果只有一个孩子结点，将父节点与孩子结点相连</p>
+<p>如果有左右子树 取左子树的最大元素或右子树的最小元素充当根节点</p>
+</li>
+</ul>
+<ol start="15">
+<li> 平衡二叉树 AVL树</li>
+</ol>
+<pre><code>定义：空树或     左右子树都是AVL树，左右子树的高度差不超过1
+
+
+
+调整方法
+
+① 单旋调整
+
+② 双旋调整
+</code></pre>
+<ol start="16">
+<li>堆</li>
+</ol>
+<p>优先队列</p>
+<p>完全二叉树通常用数组表示</p>
+<ul>
+<li><p>最大堆：结点大于等于子结点</p>
+</li>
+<li><p>最小堆：结点小于等于子结点</p>
+</li>
+</ul>
+<p>过滤法（最大堆）</p>
+<p>从新增结点开始，顺父节点到根节点的路径</p>
+<p>如果小于新元素就下移，直到有比新元素大的结点或根节点也下移为止</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">HNode</span> * <span class="title">Heap</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Heap</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> *Data;</span><br><span class="line">	<span class="keyword">int</span> size;<span class="comment">//当前元素个数</span></span><br><span class="line">	<span class="keyword">int</span> Cap;<span class="comment">//最大容量</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> Heap MaxHeap;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXDATA 1000</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">IsFull</span><span class="params">(MaxHeap H)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (H-&gt;size==H-&gt;Cap);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Insert</span><span class="params">(MaxHeap H,<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">if</span>(IsFull)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	i=++H-&gt;size;</span><br><span class="line">	<span class="keyword">for</span>(;H-&gt;Data[i/<span class="number">2</span>]&lt;x;i/=<span class="number">2</span>)</span><br><span class="line">		H-&gt;Data[i]=H-&gt;Data[i/<span class="number">2</span>];</span><br><span class="line">	H-&gt;Data[i]=x;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+<p>删除</p>
+<p>取出根节点，把最后一个元素作为根向下过滤</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Empty</span><span class="params">(MaxHeap H)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> H-&gt;size==<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">DeleteMax</span><span class="params">(MaxHeap H)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,Child;</span><br><span class="line">	<span class="keyword">int</span> MaxItem,x;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">Empty</span>(H))<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	MaxItem=H-&gt;Data[<span class="number">1</span>];</span><br><span class="line">	x=H-&gt;Data[H-&gt;size--];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i*<span class="number">2</span>&lt;=H-&gt;size;i=Child)&#123;</span><br><span class="line">		Child=i*<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span>((Child!=H-&gt;size)&amp;&amp;(H-&gt;Data[Child]&lt;H-&gt;Data[Child+<span class="number">1</span>]))</span><br><span class="line">			Child++;<span class="comment">//左右结点中较大的一个</span></span><br><span class="line">		<span class="keyword">if</span>(x&gt;=H-&gt;Data[Child])<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			H-&gt;Data[i]=H-&gt;Data[Child];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	H-&gt;Data[i]=x;</span><br><span class="line">	<span class="keyword">return</span> MaxItem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+
+
+<p>建立最大堆</p>
+<p>用所有有子结点的点下滤即可，O（n）</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PercDown</span><span class="params">(MaxHeap H,<span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,Child;</span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line"></span><br><span class="line">	x=H-&gt;Data[p];</span><br><span class="line">	<span class="keyword">for</span>(i=p;i*<span class="number">2</span>&lt;=H-&gt;size;i=Child)&#123;</span><br><span class="line">		Child=i*<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span>((Child!=H-&gt;size)&amp;&amp;(H-&gt;Data[Child]&lt;H-&gt;Data[Child+<span class="number">1</span>]))</span><br><span class="line">			Child++;</span><br><span class="line">		<span class="keyword">if</span>(x&gt;=H-&gt;Data[Child])<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			H-&gt;Data[i]=H-&gt;Data[Child];</span><br><span class="line">	&#125;</span><br><span class="line">	H-&gt;Data[i]=x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BuildHeap</span><span class="params">(MaxHeap H)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=H-&gt;size/<span class="number">2</span>;i&gt;<span class="number">0</span>;i--)&#123;</span><br><span class="line">		<span class="built_in">PercDown</span>(H,i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+<ol start="17">
+<li> 哈夫曼编码</li>
+</ol>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">HTNode</span> * <span class="title">HuffmanTree</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">HTNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> weight;</span><br><span class="line">	HuffmanTree Left;</span><br><span class="line">	HuffmanTree Right;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">HNode</span> * <span class="title">Heap</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Heap</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	HuffmanTree Data;</span><br><span class="line">	<span class="keyword">int</span> size;<span class="comment">//当前元素个数</span></span><br><span class="line">	<span class="keyword">int</span> Cap;<span class="comment">//最大容量</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> Heap MinHeap;</span><br><span class="line"></span><br><span class="line"><span class="function">HuffmanTree <span class="title">Huffman</span><span class="params">(MinHeap H)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,n;</span><br><span class="line">	<span class="comment">//结点权值已经在最小堆中</span></span><br><span class="line">	HuffmanTree T;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">BuildHeap</span>(H);<span class="comment">//建成最小堆</span></span><br><span class="line"></span><br><span class="line">	n=H-&gt;size;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;n;i++)&#123;<span class="comment">//作合并n-1次</span></span><br><span class="line">		T=(HuffmanTree)<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(struct HTNode));</span><br><span class="line">		T-&gt;Left = <span class="built_in">DeleteMin</span>(H);<span class="comment">//删</span></span><br><span class="line">		T-&gt;Right = <span class="built_in">DeleteMin</span>(H);</span><br><span class="line">		T-&gt;weight=T-&gt;Left-&gt;weight+T-&gt;Right-&gt;weight;</span><br><span class="line">		<span class="built_in">Insert</span>(H,T);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">DeleteMin</span>(H);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+
+<ol start="18">
+<li> 集合</li>
+</ol>
+<ol start="19">
+<li> 散列函数构造</li>
+</ol>
+<p>① 直接定址法</p>
+<p>②出留余数法 h(key)=key mod p</p>
+<p>③ 数字分析法 去除重复的部分</p>
+<ol start="20">
+<li>处理冲突的方法</li>
+</ol>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> MaxnTableSize = <span class="number">10000</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span> &#123;</span>Legitimate , Empty , Deleted &#125; EntryType;<span class="comment">//合法 空 已删除</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">HashEntry</span> <span class="title">Cell</span>;</span><span class="comment">//散列单元</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">HashEntry</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> Data;</span><br><span class="line">	EntryType Info;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">TblNode</span> * <span class="title">HashTable</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TblNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> TableSize;</span><br><span class="line">	Cell * Cells;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//表长需要一个素数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">NextPrime</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="comment">//得到大于n小于MaxnTableSize的最小素数</span></span><br><span class="line">	<span class="keyword">int</span> p=(n&amp;<span class="number">1</span>)?n+<span class="number">2</span>:n+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(p&lt;=MaxnTableSize)&#123;</span><br><span class="line">		<span class="keyword">bool</span> f=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">3</span>;i*i&lt;=p;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(!(p%i))&#123;</span><br><span class="line">				f=<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(f)<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">else</span> p+=<span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">HashTable <span class="title">CreateTable</span><span class="params">(<span class="keyword">int</span> TableSize)</span></span>&#123;</span><br><span class="line">	HashTable H;</span><br><span class="line">	H=(HashTable)<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(struct TblNode));</span><br><span class="line"></span><br><span class="line">	H-&gt;TableSize=<span class="built_in">NextPrime</span>(TableSize);</span><br><span class="line">	H-&gt;Cells=(Cell *)<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(Cell)*(H-&gt;TableSize));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;H-&gt;TableSize;i++)</span><br><span class="line">		H-&gt;Cells[i].Info=Empty;</span><br><span class="line">	<span class="keyword">return</span> H;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+<ul>
+<li><p>开放地址法</p>
+<p>发生了i次冲突，下一个地址将增加di</p>
+<p>hi(key)=(h(key)+di)%TableSize</p>
+</li>
+</ul>
+<p>① 线性探测法 </p>
+<p>将di取为i    </p>
+<p>可能出现多个元素在相邻位置堆积的现象，后续插入产生多次冲突（一次聚集现象）。    </p>
+<p>② 平方探测法</p>
+<p>取di为 ±i^2</p>
+<p>当TableSize为4k+3形式的素数时，平方探测必然遍历所有位置</p>
+<p>出现二次聚集</p>
+<p>用一个标记代表已经删除</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//平方探测的查找函数</span></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(HashTable H,<span class="keyword">int</span> Key)</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> i,j;</span><br><span class="line">		<span class="keyword">int</span> CNum=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">		i=j=<span class="built_in">Hash</span>(Key,H-&gt;TableSize);<span class="comment">//初始散列位置</span></span><br><span class="line">		<span class="comment">//非空而且非查找位置，冲突</span></span><br><span class="line">		<span class="keyword">while</span>(H-&gt;Cells[i].Info!=Empty&amp;&amp;H-&gt;Cells[i].Data!=Key)&#123;</span><br><span class="line">			<span class="keyword">if</span>(++CNum%<span class="number">2</span>)&#123;</span><br><span class="line">				<span class="comment">//奇数次冲突</span></span><br><span class="line">				<span class="comment">//增量为 [(CNum+1)/2]^2</span></span><br><span class="line">				i=j+(CNum+<span class="number">1</span>)*(CNum+<span class="number">1</span>)/<span class="number">4</span>;</span><br><span class="line">				i=i%H-&gt;TableSize;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				i=j-(CNum+<span class="number">1</span>)*(CNum+<span class="number">1</span>)/<span class="number">4</span>;</span><br><span class="line">				i=(i+H-&gt;TableSize)%H-&gt;TableSize;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//平方探测的插入函数</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">Insert</span><span class="params">(HashTable H,<span class="keyword">int</span> Key)</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> pos=<span class="built_in">Find</span>(H,Key);</span><br><span class="line">		<span class="keyword">if</span>(H-&gt;Cells[pos].Info!=Legitimate)&#123;</span><br><span class="line">			H-&gt;Cells[pos].Info=Legitimate;</span><br><span class="line">			H-&gt;Cells[pos].Data=Key;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>③ 双散列探测（双哈希？）</p>
+<p>④ 再散列法 扩大散列表</p>
+<ul>
+<li>链地址法</li>
+</ul>
+<p>给每一个地址一个单链表，把所有同义词存储起来</p>
+<ol start="21">
+<li>图的概念</li>
+</ol>
+<p>简单路径  除了首尾，其他点都不同。</p>
+<p>回路    简单路径头尾相同</p>
+<p>简单图    无回路或重边</p>
+<p>网图 边上带权</p>
+<ol start="22">
+<li>图的存储结构</li>
+</ol>
+<ul>
+<li>邻接矩阵</li>
+</ul>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> maxn = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> INFF = <span class="number">65535</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> WeightType;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> DataType;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">GNode</span> * <span class="title">PtrToGNode</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">GNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> Nv;<span class="comment">//点数</span></span><br><span class="line">	<span class="keyword">int</span> Ne;<span class="comment">//边数</span></span><br><span class="line">	WeightType G[maxn][maxn];</span><br><span class="line">	DataType Data[maxn];<span class="comment">//顶点数据</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> PtrToGNode MGraph;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ENode</span> * <span class="title">PtrToENode</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ENode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> V1,V2;</span><br><span class="line">	WeightType Weight;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> PtrToENode Edge;</span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">MGraph <span class="title">CreateGraph</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	MGraph Graph;</span><br><span class="line"></span><br><span class="line">	Graph=(MGraph)<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(struct GNode));</span><br><span class="line">	Graph-&gt;Nv=n;</span><br><span class="line">	Graph-&gt;Ne=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;Graph-&gt;Nv;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;Graph-&gt;Nv;j++)&#123;</span><br><span class="line">			Graph-&gt;G[i][j]=INFF;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> Graph;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Insert</span><span class="params">(MGraph Graph,Edge E)</span></span>&#123;</span><br><span class="line">	Graph-&gt;G[E-&gt;V1][E-&gt;V2]=E-&gt;Weight;</span><br><span class="line">	Graph-&gt;G[E-&gt;V2][E-&gt;V1]=E-&gt;Weight;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<ul>
+<li>邻接表</li>
+</ul>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ENode</span> * <span class="title">PtrToENode</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ENode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> V1,V2;</span><br><span class="line">	WeightType Weight;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> PtrToENode Edge;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">AdjVNode</span> * <span class="title">PtrToAdjVNode</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AdjVNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> AdjV;</span><br><span class="line">	<span class="keyword">int</span> Weight;</span><br><span class="line">	PtrToAdjVNode Next;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Vnode</span>&#123;</span></span><br><span class="line">	PtrToAdjVNode FirstEdge;</span><br><span class="line">	<span class="keyword">int</span> Data;</span><br><span class="line">&#125;AdjList[maxn];</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">GNode</span> * <span class="title">PtrToGNode</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">GNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> Nv;</span><br><span class="line">	<span class="keyword">int</span> Ne;</span><br><span class="line">	AdjList G;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> PtrToGNode LGraph;</span><br><span class="line"></span><br><span class="line"><span class="function">LGraph <span class="title">CreateGraph</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	LGraph Graph;</span><br><span class="line"></span><br><span class="line">	Graph=(LGraph)<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span> (struct GNode));</span><br><span class="line">	Graph-&gt;Nv=n;</span><br><span class="line">	Graph-&gt;Ne=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;Graph-&gt;Nv;i++)</span><br><span class="line">		Graph-&gt;G[i].FirstEdge=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">return</span> Graph;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<ol start="23">
+<li>图的遍历</li>
+</ol>
+<ul>
+<li>DFS</li>
+<li>BFS</li>
+</ul>
+<ol start="24">
+<li>最小生成树</li>
+</ol>
+<p>① Prim<br>连通的前提下选最短边</p>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//伪码</span></span><br><span class="line">Vt = &#123;v0&#125; Et=&#123;空&#125;</span><br><span class="line"><span class="keyword">while</span>(Vt!=V)&#123;</span><br><span class="line">	(u,v)=min&#123;Wuv|u∈Vt,v∈V-Vt&#125;</span><br><span class="line">	Et=Et+&#123;(u,v)&#125;</span><br><span class="line">	Vt=Vt+&#123;v&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<p>② Kruskal<br>无回路的前提下选最短边</p>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Kruskal</span><span class="params">(LGraph Graph,LGraph MST)</span></span>&#123;</span><br><span class="line">	MST=包含所有顶点但没边的图;</span><br><span class="line">	<span class="keyword">while</span>(MST中的边没到n<span class="number">-1</span>&amp;&amp;原图边集非空)&#123;</span><br><span class="line">		<span class="comment">//最小堆</span></span><br><span class="line">		从E中取最小代价边;</span><br><span class="line">		从E中删去此边(V,W);</span><br><span class="line">		<span class="keyword">if</span>(此边在MST不构成回路)</span><br><span class="line">			把(V,W)加入MST</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			丢弃</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> 最小权重和</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<ol start="25">
+<li>单源最短路径</li>
+</ol>
+<p>dijkstra </p>
+<ol start="26">
+<li>多源最短路径</li>
+</ol>
+<p>Floyd</p>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Floyd</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;n;k++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(G[i][k]+G[k][j]&lt;G[i][j])&#123;</span><br><span class="line">					G[i][j]=G[i][k]+G[k][j];</span><br><span class="line">					<span class="keyword">if</span>(i==j&amp;&amp;G[i][j]&lt;<span class="number">0</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">					path[i][j]=k;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+<ol start="27">
+<li>选择</li>
+<li><ol>
+<li>选择排序</li>
+</ol>
+</li>
+</ol>
+<p>O(n^2)</p>
+<p>28.2. 堆排序</p>
+<p>递增序列</p>
+<p>把序列搞成最大堆<br>取最大与最后一个交换<br>把第一个下滤<br>如此循环</p>
+<p>O(nlogn)</p>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PercDown</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> p,<span class="keyword">int</span> N)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,Child;</span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line">	x=A[p];</span><br><span class="line">	<span class="keyword">for</span>(i=p;(i*<span class="number">2</span>+<span class="number">1</span>)&lt;N;i=Child)&#123;</span><br><span class="line">		Child=i*<span class="number">2</span>+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>((Child!=N<span class="number">-1</span>)&amp;&amp;(A[Child]&lt;A[Child+<span class="number">1</span>]))</span><br><span class="line">			Child++;</span><br><span class="line">		<span class="keyword">if</span>(x&gt;=A[Child])<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">else</span> </span><br><span class="line">			A[i]=A[Child];</span><br><span class="line">	&#125;</span><br><span class="line">	A[i]=x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HeapSort</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> N)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=N/<span class="number">2</span><span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">		<span class="built_in">PercDown</span>(A,i,N);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=N<span class="number">-1</span>;i&gt;<span class="number">0</span>;i--)&#123;</span><br><span class="line">		<span class="built_in">swap</span>(A[<span class="number">0</span>],A[i]);</span><br><span class="line">		<span class="built_in">PercDown</span>(A,<span class="number">0</span>,i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<ol start="28">
+<li>插入<br>28.1. 简单插入排序<br>O(n^2)<br>28.2. 希尔排序<br>O(n^2)    n^3/2<figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShellSort</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> N)</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> Si,D,P,i;</span><br><span class="line"><span class="keyword">int</span> Tmp;</span><br><span class="line"><span class="keyword">int</span> Sedgewick[]=&#123;<span class="number">929</span>,<span class="number">505</span>,<span class="number">209</span>,<span class="number">109</span>,<span class="number">41</span>,<span class="number">19</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(Si=<span class="number">0</span>;Sedgewick[Si]&gt;=N;Si++)</span><br><span class="line">	;</span><br><span class="line"><span class="keyword">for</span>(D=Sedgewick[Si];D&gt;<span class="number">0</span>;D=Sedgewick[++Si])</span><br><span class="line">	<span class="keyword">for</span>(P=D;P&lt;N;P++)&#123;</span><br><span class="line">		Tmp=A[P];</span><br><span class="line">		<span class="keyword">for</span>(i=P;i&gt;=D&amp;&amp;A[i-D]&gt;Tmp;i-=D)</span><br><span class="line">			A[i]=A[i-D];</span><br><span class="line">		A[i]=Tmp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure></li>
+<li>交换</li>
+</ol>
+<p>29.1. 冒泡排序<br>29.2. 快速排序</p>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Median3</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> Left,<span class="keyword">int</span> Right)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> Center=(Left+Right)/<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">if</span>(A[Left]&gt;A[Center])</span><br><span class="line">		<span class="built_in">swap</span>(A[Left],A[Center]);</span><br><span class="line">	<span class="keyword">if</span>(A[Left]&gt;A[Right])</span><br><span class="line">		<span class="built_in">swap</span>(A[Left],A[Right]);</span><br><span class="line">	<span class="keyword">if</span>(A[Center]&gt;A[Right])</span><br><span class="line">		<span class="built_in">swap</span>(A[Center],A[Right]);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">swap</span>(A[Center],A[Right<span class="number">-1</span>]);</span><br><span class="line">	<span class="keyword">return</span> A[Right<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Qsort</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> Left,<span class="keyword">int</span> Right)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> p,low,high;</span><br><span class="line">	p=<span class="built_in">Median3</span>(A,Left,Right);</span><br><span class="line">	low=Left;</span><br><span class="line">	high=Right<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">while</span>(A[++low]&lt;p);</span><br><span class="line">		<span class="keyword">while</span>(A[--high]&gt;p);</span><br><span class="line">		<span class="keyword">if</span>(low&lt;high)<span class="built_in">swap</span>(A[low],A[high]);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">swap</span>(A[low],A[Right<span class="number">-1</span>]);</span><br><span class="line">	<span class="built_in">Qsort</span>(A,Left,low<span class="number">-1</span>);</span><br><span class="line">	<span class="built_in">Qsort</span>(A,low+<span class="number">1</span>,Right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<p>30.归并排序</p>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> TmpA[],<span class="keyword">int</span> L,<span class="keyword">int</span> R,<span class="keyword">int</span> RightEnd)</span></span>&#123;</span><br><span class="line">	<span class="comment">//A[L]~A[R-1] &amp; A[R]~A[RightEnd]</span></span><br><span class="line">	<span class="keyword">int</span> LeftEnd,Numint,Tmp;</span><br><span class="line"></span><br><span class="line">	LeftEnd=R<span class="number">-1</span>;</span><br><span class="line">	Tmp=L;</span><br><span class="line">	Numint=RightEnd-L+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(L&lt;=LeftEnd&amp;&amp;R&lt;=RightEnd)&#123;</span><br><span class="line">		<span class="keyword">if</span>(A[L]&lt;=A[R])</span><br><span class="line">			TmpA[Tmp++]=A[L++];</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			TmpA[Tmp++]=A[R++];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(L&lt;=LeftEnd)</span><br><span class="line">		TmpA[Tmp++]=A[L++];</span><br><span class="line">	<span class="keyword">while</span>(R&lt;=RightEnd)</span><br><span class="line">		TmpA[Tmp++]=A[R++];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;Numint;i++,RightEnd--)</span><br><span class="line">		A[RightEnd]=TmpA[RightEnd];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Msort</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> TmpA[],<span class="keyword">int</span> L,<span class="keyword">int</span> RightEnd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> center;</span><br><span class="line">	<span class="keyword">if</span>(L&lt;RightEnd)&#123;</span><br><span class="line">		center=(L+RightEnd)/<span class="number">2</span>;</span><br><span class="line">		<span class="built_in">Msort</span>(A,TmpA,L,center);</span><br><span class="line">		<span class="built_in">Msort</span>(A,TmpA,center+<span class="number">1</span>,RightEnd);</span><br><span class="line">		<span class="built_in">Merge</span>(A,TmpA,L,center+<span class="number">1</span>,RightEnd);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>31.基数排序</p>
+<p>31.1.桶排序</p>
+<p>31.2.基数排序<br>32. 排序算法总结</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>排序方法</th>
+<th>平均时间复杂度</th>
+<th>最坏复杂度</th>
+<th>空间复杂度</th>
+<th>稳定性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简单选择</td>
+<td>N^2</td>
+<td>N^2</td>
+<td>1</td>
+<td>不稳定</td>
+</tr>
+<tr>
+<td>直接插入</td>
+<td>N^2</td>
+<td>N^2</td>
+<td>1</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>冒泡排序</td>
+<td>N^2</td>
+<td>N^2</td>
+<td>1</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>希尔排序</td>
+<td>N^d</td>
+<td>N^2</td>
+<td>1</td>
+<td>不稳定</td>
+</tr>
+<tr>
+<td>堆排序</td>
+<td>Nlog2N</td>
+<td>Nlog2N</td>
+<td>1</td>
+<td>不稳定</td>
+</tr>
+<tr>
+<td>快速排序</td>
+<td>Nlog2N</td>
+<td>N^2</td>
+<td>log2N</td>
+<td>不稳定</td>
+</tr>
+<tr>
+<td>归并排序</td>
+<td>Nlog2N</td>
+<td>Nlog2N</td>
+<td>N</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>基数排序</td>
+<td>N+R</td>
+<td>N+R</td>
+<td>N+R</td>
+<td>稳定</td>
+</tr>
+</tbody></table></div>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://example.com">TheShineyue</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://example.com/2022/01/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/">http://example.com/2022/01/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/curriculum/">curriculum</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/data-structure/">data structure</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2022/01/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E7%A8%8B%E5%AE%9E%E9%AA%8C%E9%A2%98/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">数据结构课程实验题</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2022/01/02/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E5%A4%8D%E4%B9%A0/"><span class="paginator-prev__text">数学分析复习</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://cdn.jsdelivr.net/gh/TheShineyue/cdn@1.3/images/二次3.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">她与AC皆是期盼</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">53</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">24</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">21</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>TheShineyue</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.4.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.xml';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.xml"></script></body></html>
