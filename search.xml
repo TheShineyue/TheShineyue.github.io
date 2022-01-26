@@ -4557,4 +4557,46 @@ delete []a;    //释放int数组空间
         <tag>note</tag>
       </tags>
   </entry>
+  <entry>
+    <title>剪枝算法</title>
+    <url>/2022/01/26/%E5%89%AA%E6%9E%9D%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>关于剪枝的讨论</p>
+<span id="more"></span>
+
+
+        <h1 id="几种策略"   >
+          <a href="#几种策略" class="heading-link"><i class="fas fa-link"></i></a><a href="#几种策略" class="headerlink" title="几种策略"></a>几种策略</h1>
+      <ol>
+<li>优化搜索顺序</li>
+<li>排除等效冗余</li>
+<li>可行性剪枝</li>
+<li>最优性剪枝</li>
+<li>记忆化搜索 </li>
+</ol>
+<p>当状态空间是树形时，不会重复访问，所有不用记忆化</p>
+
+        <h1 id="例"   >
+          <a href="#例" class="heading-link"><i class="fas fa-link"></i></a><a href="#例" class="headerlink" title="例"></a>例</h1>
+      
+        <h2 id="acwing-167"   >
+          <a href="#acwing-167" class="heading-link"><i class="fas fa-link"></i></a><a href="#acwing-167" class="headerlink" title="acwing 167"></a>acwing 167</h2>
+      <p>枚举出原始木条的长度len，当然len是sum的约数，cnt是原始木条的个数</p>
+<p>然后尝试用小木条拼接成多条原始木条</p>
+<p>剪枝：</p>
+<ol>
+<li>先用长木条拼接（如果从小到大，可能多条小木条拼接后才发现不能拼接）</li>
+<li>限制拼接木条采用的小木条是递减的（先拼接长再拼接短和反过来是等价的）</li>
+<li>记录上一次尝试拼接的小木条，如果上次失败这次也会失败。</li>
+<li>如果拼接的第一根就失败，无论如何都不能拼接成功</li>
+<li>如果拼接后恰好拼完一根，下一次拼接失败也无论如何都不能成功。（同4）</li>
+</ol>
+<figure class="highlight cpp"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a&gt;b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">100</span>],v[<span class="number">100</span>],n,len,cnt;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> stick,<span class="keyword">int</span> cab,<span class="keyword">int</span> last)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(stick&gt;cnt)<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">if</span>(cab==len)<span class="keyword">return</span> <span class="built_in">dfs</span>(stick+<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>);<span class="comment">//?1</span></span><br><span class="line">	<span class="keyword">int</span> fail=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=last;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!v[i]&amp;&amp;cab+a[i]&lt;=len&amp;&amp;fail!=a[i])&#123;</span><br><span class="line">			v[i]=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(<span class="built_in">dfs</span>(stick,cab+a[i],i+<span class="number">1</span>))<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			fail=a[i];</span><br><span class="line">			v[i]=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">if</span>(cab==<span class="number">0</span>||cab+a[i]==len)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>(cin&gt;&gt;n&amp;&amp;n)&#123;</span><br><span class="line">		<span class="keyword">int</span> val=<span class="number">0</span>,sum=<span class="number">0</span>;;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">			cin&gt;&gt;a[i];</span><br><span class="line">			sum+=a[i];</span><br><span class="line">			val=<span class="built_in">max</span>(val,a[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">sort</span>(a+<span class="number">1</span>,a+<span class="number">1</span>+n,cmp);</span><br><span class="line">		<span class="keyword">for</span>(len=val;len&lt;=sum;len++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(sum%len)<span class="keyword">continue</span>;</span><br><span class="line">			cnt=sum/len;</span><br><span class="line">			<span class="built_in">memset</span>(v,<span class="number">0</span>,<span class="keyword">sizeof</span> v);</span><br><span class="line">			<span class="keyword">if</span>(<span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>))<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		cout&lt;&lt;len&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+]]></content>
+      <categories>
+        <category>base</category>
+      </categories>
+      <tags>
+        <tag>base</tag>
+      </tags>
+  </entry>
 </search>
