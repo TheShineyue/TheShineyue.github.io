@@ -4673,4 +4673,93 @@ delete []a;    //释放int数组空间
         <tag>CodeFores</tag>
       </tags>
   </entry>
+  <entry>
+    <title>CodeFores 22年寒假打卡2</title>
+    <url>/2022/01/30/CodeFores%E5%AF%92%E5%81%872/</url>
+    <content><![CDATA[<p>2022.01.29 三题 day2</p>
+<span id="more"></span>
+
+
+        <h1 id="Not-Adding"   >
+          <a href="#Not-Adding" class="heading-link"><i class="fas fa-link"></i></a><a href="#Not-Adding" class="headerlink" title="Not Adding"></a>Not Adding</h1>
+      <p> <span class="exturl"><a class="exturl__link"   href="https://codeforces.com/problemset/problem/1627/D" >1627D</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>1900</p>
+
+        <h2 id="思路"   >
+          <a href="#思路" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路" class="headerlink" title="思路"></a>思路</h2>
+      <p>从结果的角度出发，想哪些数才会被添加</p>
+<p>1-max</p>
+<p>所以遍历1-max 当一个数满足</p>
+<ol>
+<li>本身存在</li>
+<li>所有倍数如果存在，他们的gcd=本身</li>
+</ol>
+<p>解释一下第二点</p>
+<p>假设 x 存在 那么必然至少两个数 yx,zx存在且yz互质<br>gcd(y,z)=1<br>gcd(yx,zx)=x</p>
+<p>所以满足gcd(tx…)=x即可</p>
+
+        <h2 id="Code"   >
+          <a href="#Code" class="heading-link"><i class="fas fa-link"></i></a><a href="#Code" class="headerlink" title="Code"></a>Code</h2>
+      <figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> N = <span class="number">1e6</span>+<span class="number">10</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> b?<span class="built_in">Gcd</span>(b,a%b):a;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">bool</span> vis[N];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">int</span> ma=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> x;cin&gt;&gt;x;</span><br><span class="line">		vis[x]=<span class="number">1</span>;</span><br><span class="line">		ma=<span class="built_in">max</span>(ma,x);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=ma;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">			<span class="keyword">int</span> t=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=i*<span class="number">2</span>;j&lt;=ma;j+=i)&#123;</span><br><span class="line">				<span class="keyword">if</span>(vis[j])</span><br><span class="line">					t=<span class="built_in">Gcd</span>(t,j);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(t==i)cnt++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;cnt&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="Monsters-And-Spells"   >
+          <a href="#Monsters-And-Spells" class="heading-link"><i class="fas fa-link"></i></a><a href="#Monsters-And-Spells" class="headerlink" title="Monsters And Spells"></a>Monsters And Spells</h1>
+      <p><span class="exturl"><a class="exturl__link"   href="https://codeforces.com/problemset/problem/1626/C" >1626C</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>1700</p>
+
+        <h2 id="思路-1"   >
+          <a href="#思路-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2>
+      <p>每次比较从1开始和从上一次的值开始何者更优即可</p>
+<p>主要是有一个坑点，可能会“鼠目寸光”（因为题目保证能解决就忽视了对具体细节的探讨）</p>
+<p>样例 ：</p>
+<p>1 2 3</p>
+<p>1 1 3</p>
+<p>这个样例如果没想到就会出错</p>
+<p>解决办法也很简单，在初始的时候从后往前遍历一次，取 至少的和当前的 的max</p>
+
+        <h2 id="Code-1"   >
+          <a href="#Code-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#Code-1" class="headerlink" title="Code"></a>Code</h2>
+      <figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="function">ll <span class="title">sum</span><span class="params">(ll n,ll base)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (n+<span class="number">1</span>)*n/<span class="number">2</span>+base*n;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t;</span><br><span class="line">	cin&gt;&gt;t;</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		<span class="keyword">int</span> n;</span><br><span class="line">		cin&gt;&gt;n;</span><br><span class="line">		<span class="function">vector&lt;ll&gt; <span class="title">a</span><span class="params">(n)</span></span>;</span><br><span class="line">		<span class="function">vector&lt;ll&gt; <span class="title">b</span><span class="params">(n)</span></span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">			cin&gt;&gt;a[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">			cin&gt;&gt;b[i];</span><br><span class="line">		&#125;</span><br><span class="line"> </span><br><span class="line">		<span class="comment">/**/</span></span><br><span class="line">		<span class="comment">//	KEY </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-2</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">			b[i]=<span class="built_in">max</span>(b[i],b[i+<span class="number">1</span>]-(a[i+<span class="number">1</span>]-a[i]));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">/**/</span></span><br><span class="line"> </span><br><span class="line">		ll ans=<span class="built_in">sum</span>(b[<span class="number">0</span>],<span class="number">0</span>);</span><br><span class="line">		ll now=b[<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">			ll qqq=a[i]-a[i<span class="number">-1</span>];</span><br><span class="line">			<span class="keyword">if</span>(qqq&gt;=b[i])&#123;</span><br><span class="line">				ans+=<span class="built_in">sum</span>(b[i],<span class="number">0</span>);</span><br><span class="line">				now=b[i];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				ans+=(now+<span class="number">1</span>+now+qqq)*(qqq)/<span class="number">2</span>;</span><br><span class="line">				now=now+qqq;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="Road-Optimization"   >
+          <a href="#Road-Optimization" class="heading-link"><i class="fas fa-link"></i></a><a href="#Road-Optimization" class="headerlink" title="Road Optimization"></a>Road Optimization</h1>
+      <p><span class="exturl"><a class="exturl__link"   href="https://codeforces.com/problemset/problem/1625/C" >1625C</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>1700</p>
+
+        <h2 id="思路-2"   >
+          <a href="#思路-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路-2" class="headerlink" title="思路"></a>思路</h2>
+      <p><del>dp是真的难😭</del></p>
+<p>dp[i] [j]: 当前是第i个 删除j个</p>
+<p>状态转移方程：</p>
+<p>把i+1 到 pos-1的全删了</p>
+<p>g = j+ pos -i -1 更新后多删的</p>
+<p>i (0,n) 当前的路标</p>
+<p>j (0, min(k,i)] 当前最多已经删了 min(k,i)个</p>
+<p>dp[pos] [g] = min (dp[pos] [g] , dp[i] [j]+v[i]*(d[pos]-d[i]))</p>
+<p>再遍历一次取dp[n-1] []的最小值</p>
+
+        <h2 id="Code-2"   >
+          <a href="#Code-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#Code-2" class="headerlink" title="Code"></a>Code</h2>
+      <figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> N = <span class="number">505</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">int</span> d[N],v[N];</span><br><span class="line"><span class="keyword">int</span>  dp[N][N];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> n,l,k;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;l&gt;&gt;k;</span><br><span class="line">	<span class="built_in">memset</span>(dp,<span class="number">0x3f</span>,<span class="keyword">sizeof</span> dp);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">		cin&gt;&gt;d[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">		cin&gt;&gt;v[i];</span><br><span class="line">	&#125;</span><br><span class="line">	d[n++]=l;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=k;i++)</span><br><span class="line">		dp[<span class="number">0</span>][i]=<span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=<span class="built_in">min</span>(k,i);j++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> pos=i+<span class="number">1</span>;pos&lt;n;pos++)&#123;</span><br><span class="line">				<span class="keyword">int</span> g= j+pos-i<span class="number">-1</span>;</span><br><span class="line">				<span class="keyword">if</span>(g&lt;=k)&#123;</span><br><span class="line">					dp[pos][g] = <span class="built_in">min</span> (dp[pos][g],dp[i][j]+v[i]*(d[pos]-d[i]));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> m = INT_MAX;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=k;i++)&#123;</span><br><span class="line">		m=<span class="built_in">min</span>(m,dp[n<span class="number">-1</span>][i]);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	cout&lt;&lt;m&lt;&lt;endl;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Exercises</category>
+        <category>training</category>
+        <category>2022寒假</category>
+      </categories>
+      <tags>
+        <tag>Exercises</tag>
+        <tag>training</tag>
+        <tag>CodeFores</tag>
+      </tags>
+  </entry>
 </search>
