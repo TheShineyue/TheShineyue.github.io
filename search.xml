@@ -4762,4 +4762,110 @@ delete []a;    //释放int数组空间
         <tag>CodeFores</tag>
       </tags>
   </entry>
+  <entry>
+    <title>CodeFores 22年寒假打卡3</title>
+    <url>/2022/02/01/CodeFores%E5%AF%92%E5%81%873/</url>
+    <content><![CDATA[<p>2022.01.29 三题 day3 赛后补题系列</p>
+<span id="more"></span>
+
+<p><span class="exturl"><a class="exturl__link"   href="https://codeforces.com/contest/1632" >🔗链接</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>耻辱罚坐系列 认真补题B-D</p>
+
+        <h1 id="B"   >
+          <a href="#B" class="heading-link"><i class="fas fa-link"></i></a><a href="#B" class="headerlink" title="B"></a>B</h1>
+      
+        <h2 id="思路"   >
+          <a href="#思路" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路" class="headerlink" title="思路"></a>思路</h2>
+      <p>我们需要相邻异或的最大值最小</p>
+<p>观察如下二进制</p>
+<p>0000</p>
+<p>0001</p>
+<p>0010</p>
+<p>…</p>
+<p>1000</p>
+<p>1001</p>
+<p>1010</p>
+<p>很自然的想法是 最高位上有1的这几个数，决定了最大值，同时他们之间相互异或后的值比较小，问题的关键是选定这几个数中最小的，和0接触，从而使最大值最小</p>
+
+        <h2 id="Code"   >
+          <a href="#Code" class="heading-link"><i class="fas fa-link"></i></a><a href="#Code" class="headerlink" title="Code"></a>Code</h2>
+      <figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">int</span> qqq=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(qqq*<span class="number">2</span>&lt;n)qqq*=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-1</span>;i&gt;=qqq;i--)cout&lt;&lt;i&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;qqq;i++)cout&lt;&lt;i&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t;</span><br><span class="line">	cin&gt;&gt;t;</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		<span class="built_in">solve</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h2 id="C"   >
+          <a href="#C" class="heading-link"><i class="fas fa-link"></i></a><a href="#C" class="headerlink" title="C"></a>C</h2>
+      
+        <h2 id="思路-1"   >
+          <a href="#思路-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2>
+      <p>首先 第三种操作只操作一次是最优的</p>
+<p>因为三操作后a&gt;b，之后只能操作b++了，如果还要再三操作只会徒增操作数</p>
+<p>也就是说最优解是将a,b先++，至a’ b’后再进行三操作再b++。</p>
+<p>那么可以推出如下公式：</p>
+<p>res=(a’-a)+(b’-b)+(a’|b’-b’)+1  </p>
+<p>化简得：</p>
+<p>res=a’+(a’|b’)-(1+a+b)</p>
+<p>可以枚举a’ from a to b 算出最优b’代入式子循环取min</p>
+<p>（根据b’&gt;b a’|b’尽可能小来推出结论）</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th align="center">a’ 的第i位</th>
+<th align="center">b的第i位</th>
+<th align="center">b’的第i位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1 or 0 (为了保证b’&gt;b 取1)</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody></table></div>
+<p>但是同样注意一点：</p>
+<p>如果 0 1操作过多，可能导致a’|b’不是所谓尽可能小，当我们通过1 0的情况使得b’&gt;b后就把剩下的位全部置0，这才是最优解法</p>
+
+        <h2 id="Code-1"   >
+          <a href="#Code-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#Code-1" class="headerlink" title="Code"></a>Code</h2>
+      <figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t;</span><br><span class="line">	cin&gt;&gt;t;</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		<span class="keyword">int</span> a,b;</span><br><span class="line">		cin&gt;&gt;a&gt;&gt;b;</span><br><span class="line">		<span class="keyword">int</span> res=b-a,c=a+b<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> a1=a;a1&lt;b;a1++)&#123;</span><br><span class="line">			<span class="keyword">int</span> b1=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">22</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">				<span class="keyword">if</span>((b&gt;&gt;i)&amp;<span class="number">1</span>)&#123;</span><br><span class="line">					b1^=(<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span>&#123;</span><br><span class="line">					<span class="keyword">if</span>((a1&gt;&gt;i)&amp;<span class="number">1</span>)&#123;</span><br><span class="line">						b1^=(<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			res=<span class="built_in">min</span>(res,(b1|a1)+a1-c);</span><br><span class="line">		&#125;</span><br><span class="line">		cout&lt;&lt;res&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="D"   >
+          <a href="#D" class="heading-link"><i class="fas fa-link"></i></a><a href="#D" class="headerlink" title="D"></a>D</h1>
+      <p>有点难，下次一定</p>
+
+        <h2 id="思路-2"   >
+          <a href="#思路-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路-2" class="headerlink" title="思路"></a>思路</h2>
+      
+        <h2 id="Code-2"   >
+          <a href="#Code-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#Code-2" class="headerlink" title="Code"></a>Code</h2>
+      ]]></content>
+      <categories>
+        <category>Exercises</category>
+        <category>training</category>
+        <category>2022寒假</category>
+      </categories>
+      <tags>
+        <tag>Exercises</tag>
+        <tag>training</tag>
+        <tag>CodeFores</tag>
+      </tags>
+  </entry>
 </search>
