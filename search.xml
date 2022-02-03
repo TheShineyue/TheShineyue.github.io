@@ -4868,4 +4868,563 @@ b/gcd 是 b 的因子， a/gcd 是 a 的因子是吧？
         <tag>Graph theory</tag>
       </tags>
   </entry>
+  <entry>
+    <title>ST算法</title>
+    <url>/2022/02/01/ST/</url>
+    <content><![CDATA[<p>RMQ问题中 在O（NlogN）的预处理后，以O（1）的复杂度回答下标在l-r中的最大值是多少</p>
+<span id="more"></span>
+
+<p>F[i] [j]代表数列A中从下标i开始的2^j个数中的最大值，[ i,i+2^j-1 ]。</p>
+<p>F[i] [0] = A[i] ;</p>
+<p>递推时，把子区间的长度成倍增长，有公式：</p>
+<p>F[i] [j] =max (F[i] [j-1],F[i+2^(j-1),j-1])</p>
+<p>即每个子区间都是左右两个小子区间递推得出</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ST_prework</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)f[i][<span class="number">0</span>]=a[i];</span><br><span class="line">	<span class="keyword">int</span> t=<span class="built_in">log</span>(n)/<span class="built_in">log</span>(<span class="number">2</span>)+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;t;j++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n-(<span class="number">1</span>&lt;&lt;j)+<span class="number">1</span>;i++)&#123;</span><br><span class="line">			f[i][j]=<span class="built_in">max</span>(f[i][j<span class="number">-1</span>],f[i+(<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))][j<span class="number">-1</span>])</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+<p>然后查询l,r范围时，查询l开始的2^k个数，与r结束的2^k个数，k为尽可能大，最大值必然在这两者之间</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ST_query</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> k=<span class="built_in">log2</span>(r-l+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">max</span>(f[l][k],f[r-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+]]></content>
+      <categories>
+        <category>base</category>
+      </categories>
+      <tags>
+        <tag>base</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>acm数据结构学习规划</title>
+    <url>/2022/02/03/acm%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/</url>
+    <content><![CDATA[<p>acm数据结构学习</p>
+<span id="more"></span>
+
+
+
+
+        <h1 id="数据结构学习规划"   >
+          <a href="#数据结构学习规划" class="heading-link"><i class="fas fa-link"></i></a><a href="#数据结构学习规划" class="headerlink" title="数据结构学习规划"></a>数据结构学习规划</h1>
+      <p><strong>Updata</strong>  2022/01/21：来源于HDU的题目暂时无法提交，题面可以在Vjudge中进行查看。  </p>
+<p> Tips : 下文中Wiki特指OIWIKI，学习资料均来源于OIWIKI与B站。  </p>
+
+        <h2 id="第一单元"   >
+          <a href="#第一单元" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一单元" class="headerlink" title="第一单元"></a>第一单元</h2>
+      
+        <h3 id="1-资料"   >
+          <a href="#1-资料" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-资料" class="headerlink" title="1.资料"></a>1.资料</h3>
+      <p>单调栈学习资料：</p>
+<blockquote>
+<p>1.<a href="oi-wiki.org/ds/monotonous-stack/">单调栈 - OI Wiki(oi-wiki.org)</a></p>
+</blockquote>
+<p>单调队列学习资料：</p>
+<blockquote>
+<p>1.<a href="oi-wiki.org/ds/monotonous-queue/">单调队列 - OI Wiki(oi-wiki.org)</a></p>
+</blockquote>
+
+        <h3 id="2-例题"   >
+          <a href="#2-例题" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-例题" class="headerlink" title="2.例题"></a>2.例题</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>Origin</th>
+<th>Title</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POJ 2823</td>
+<td>Sliding Window</td>
+</tr>
+<tr>
+<td>POJ 3250</td>
+<td>Bad Hair Day</td>
+</tr>
+<tr>
+<td>POJ 3061</td>
+<td>Subsequence</td>
+</tr>
+<tr>
+<td>HDU 3530</td>
+<td>Subsequence</td>
+</tr>
+<tr>
+<td>POJ 2796</td>
+<td>Feel Good</td>
+</tr>
+<tr>
+<td>POJ 2566</td>
+<td>Bound Found</td>
+</tr>
+<tr>
+<td>POJ 3494</td>
+<td>Largest Submatrix of All 1’s</td>
+</tr>
+<tr>
+<td>洛谷P3088</td>
+<td>Crowded Cows S</td>
+</tr>
+<tr>
+<td>BZOJ1113</td>
+<td>海报PLA1</td>
+</tr>
+<tr>
+<td>BZOJ2424</td>
+<td>订货</td>
+</tr>
+</tbody></table></div>
+
+        <h3 id="3-测试题"   >
+          <a href="#3-测试题" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-测试题" class="headerlink" title="3.测试题"></a>3.测试题</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>Origin</th>
+<th>Title</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POJ 3320</td>
+<td>Jessica’s Reading Problem</td>
+</tr>
+<tr>
+<td>HDU 4193</td>
+<td>Non-negative Partial Sums</td>
+</tr>
+<tr>
+<td>CodeForces 91B</td>
+<td>Queue</td>
+</tr>
+<tr>
+<td>POJ 2559</td>
+<td>Largest Rectangle in a Histogram</td>
+</tr>
+<tr>
+<td>POJ 2100</td>
+<td>Graveyard Design</td>
+</tr>
+<tr>
+<td>HDU 6957</td>
+<td>Maximal submatrix</td>
+</tr>
+</tbody></table></div>
+
+        <h2 id="第二单元"   >
+          <a href="#第二单元" class="heading-link"><i class="fas fa-link"></i></a><a href="#第二单元" class="headerlink" title="第二单元"></a>第二单元</h2>
+      
+        <h3 id="1-资料-1"   >
+          <a href="#1-资料-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-资料-1" class="headerlink" title="1.资料"></a>1.资料</h3>
+      <p>并查集学习资料</p>
+<blockquote>
+<p> <span class="exturl"><a class="exturl__link"   href="https://oi-wiki.org/ds/dsu/" >并查集 - OI Wiki(oi-wiki.org)</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p> <span class="exturl"><a class="exturl__link"   href="https://www.bilibili.com/video/BV14t411J781?from=search&seid=6050086221143956172&spm_id_from=333.337.0.0" >学习视频</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</blockquote>
+<p>最小生成树学习资料</p>
+<blockquote>
+<p> <span class="exturl"><a class="exturl__link"   href="https://oi-wiki.org/graph/mst/" >最小生成树 - OI Wiki(oi-wiki.org)</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</blockquote>
+
+        <h3 id="2-例题-1"   >
+          <a href="#2-例题-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-例题-1" class="headerlink" title="2.例题"></a>2.例题</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>Origin</th>
+<th>Title</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POJ 1679</td>
+<td>The Unique MST</td>
+</tr>
+<tr>
+<td>HDU 1272</td>
+<td>小希的迷宫</td>
+</tr>
+<tr>
+<td>HDU 3038</td>
+<td>How Many Answers Are Wrong</td>
+</tr>
+<tr>
+<td>POJ 2236</td>
+<td>Wireless Network</td>
+</tr>
+<tr>
+<td>POJ 1984</td>
+<td>Navigation Nightmare</td>
+</tr>
+<tr>
+<td>HDU 1233</td>
+<td>还是畅通工程</td>
+</tr>
+<tr>
+<td>POJ 1182</td>
+<td>食物链</td>
+</tr>
+<tr>
+<td>POJ 1417</td>
+<td>True Liars</td>
+</tr>
+<tr>
+<td>HDU 1863</td>
+<td>畅通工程</td>
+</tr>
+<tr>
+<td>POJ 2728</td>
+<td>Desert King</td>
+</tr>
+</tbody></table></div>
+
+        <h3 id="3-测试题-1"   >
+          <a href="#3-测试题-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-测试题-1" class="headerlink" title="3.测试题"></a>3.测试题</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>Origin</th>
+<th>Title</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POJ 1733</td>
+<td>Parity game</td>
+</tr>
+<tr>
+<td>HDU 1879</td>
+<td>继续畅通工程</td>
+</tr>
+<tr>
+<td>HDU 1213</td>
+<td>How Many Tables</td>
+</tr>
+<tr>
+<td>POJ 1456</td>
+<td>Supermarket</td>
+</tr>
+<tr>
+<td>CodeForces 1213G</td>
+<td>Path Queries</td>
+</tr>
+<tr>
+<td>CodeForces 1245D</td>
+<td>Shichikuji and Power Grid</td>
+</tr>
+</tbody></table></div>
+
+        <h2 id="第三单元"   >
+          <a href="#第三单元" class="heading-link"><i class="fas fa-link"></i></a><a href="#第三单元" class="headerlink" title="第三单元"></a>第三单元</h2>
+      
+        <h3 id="1-资料-2"   >
+          <a href="#1-资料-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-资料-2" class="headerlink" title="1.资料"></a>1.资料</h3>
+      <p>ST表学习资料</p>
+<blockquote>
+<p> <span class="exturl"><a class="exturl__link"   href="https://oi-wiki.org/ds/sparse-table/" >ST表 - OI Wiki(oi-wiki.org)</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</blockquote>
+<p>倍增学习资料</p>
+<blockquote>
+<p><span class="exturl"><a class="exturl__link"   href="https://oi-wiki.org/graph/lca/" >倍增 - OI Wiki(oi-wiki.org)</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><span class="exturl"><a class="exturl__link"   href="https://www.bilibili.com/video/BV1w441197Zv?spm_id_from=333.999.0.0" >学习视频</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</blockquote>
+
+        <h3 id="2-例题-2"   >
+          <a href="#2-例题-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-例题-2" class="headerlink" title="2.例题"></a>2.例题</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>Origin</th>
+<th>Title</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POJ 2019</td>
+<td>Cornfields</td>
+</tr>
+<tr>
+<td>POJ 3264</td>
+<td>Balanced Lineup</td>
+</tr>
+<tr>
+<td>CodeForces 1175E</td>
+<td>Minimal Segment Cover</td>
+</tr>
+<tr>
+<td>HDU 3486</td>
+<td>Interviewe</td>
+</tr>
+<tr>
+<td>POJ 3368</td>
+<td>Frequent values</td>
+</tr>
+<tr>
+<td>HDU 2586</td>
+<td>How far away ？</td>
+</tr>
+<tr>
+<td>CodeForces 519E</td>
+<td>A and B and Lecture Rooms</td>
+</tr>
+<tr>
+<td>POJ 1330</td>
+<td>Nearest Common Ancestors</td>
+</tr>
+<tr>
+<td>CodeForces 1142B</td>
+<td>Lynyrd Skynyrd</td>
+</tr>
+<tr>
+<td>CodeForces 208E</td>
+<td>Blood Cousins</td>
+</tr>
+</tbody></table></div>
+
+        <h3 id="3-测试题-2"   >
+          <a href="#3-测试题-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-测试题-2" class="headerlink" title="3.测试题"></a>3.测试题</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>Origin</th>
+<th>Title</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CodeForces 1335F</td>
+<td>Robots on a Grid</td>
+</tr>
+<tr>
+<td>CodeForces 1328E</td>
+<td>Tree Queries</td>
+</tr>
+<tr>
+<td>HDU 2305</td>
+<td>WorstWeather Ever</td>
+</tr>
+<tr>
+<td>CodeForces 359D</td>
+<td>Pair of Numbers</td>
+</tr>
+<tr>
+<td>POJ 1986</td>
+<td>Distance Queries</td>
+</tr>
+<tr>
+<td>CodeForces 1535E</td>
+<td>Gold Transfer</td>
+</tr>
+</tbody></table></div>
+
+        <h2 id="第四单元"   >
+          <a href="#第四单元" class="heading-link"><i class="fas fa-link"></i></a><a href="#第四单元" class="headerlink" title="第四单元"></a>第四单元</h2>
+      
+        <h3 id="1-资料-3"   >
+          <a href="#1-资料-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-资料-3" class="headerlink" title="1.资料"></a>1.资料</h3>
+      <p> 树状数组学习资料</p>
+<blockquote>
+<p><span class="exturl"><a class="exturl__link"   href="https://oi-wiki.org/ds/fenwick/" >树状数组 - OI Wiki(oi-wiki.org)</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</blockquote>
+<p>线段数组学习资料</p>
+<blockquote>
+<p><span class="exturl"><a class="exturl__link"   href="https://oi-wiki.org/ds/seg/" >线段树 - OI Wiki(oi-wiki.org)</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</blockquote>
+<p>视频资料</p>
+<blockquote>
+<p><span class="exturl"><a class="exturl__link"   href="https://www.bilibili.com/video/BV1tt411u7XL?spm_id_from=333.999.0.0" >学习视频</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</blockquote>
+
+        <h3 id="2-例题-3"   >
+          <a href="#2-例题-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-例题-3" class="headerlink" title="2.例题"></a>2.例题</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>Origin</th>
+<th>Title</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HDU 1166</td>
+<td>敌兵布阵</td>
+</tr>
+<tr>
+<td>HDU 1754</td>
+<td>I Hate It</td>
+</tr>
+<tr>
+<td>POJ 3468</td>
+<td>A Simple Problem with Integers</td>
+</tr>
+<tr>
+<td>POJ 2528</td>
+<td>Mayor’s posters</td>
+</tr>
+<tr>
+<td>HDU 4027</td>
+<td>Can you answer these queries?</td>
+</tr>
+<tr>
+<td>HDU 1255</td>
+<td>覆盖的面积</td>
+</tr>
+<tr>
+<td>HDU 1540</td>
+<td>Tunnel Warfare</td>
+</tr>
+<tr>
+<td>HDU 3974</td>
+<td>Assign the task</td>
+</tr>
+<tr>
+<td>POJ 2029</td>
+<td>Get Many Persimmon Trees</td>
+</tr>
+<tr>
+<td>POJ 2482</td>
+<td>Stars in Your Window</td>
+</tr>
+</tbody></table></div>
+
+        <h3 id="3-测试题-3"   >
+          <a href="#3-测试题-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-测试题-3" class="headerlink" title="3.测试题"></a>3.测试题</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>Origin</th>
+<th>Title</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HDU 5147</td>
+<td>Sequence II</td>
+</tr>
+<tr>
+<td>HDU 4614</td>
+<td>Vases and Flowers</td>
+</tr>
+<tr>
+<td>HDU 1828</td>
+<td>Picture</td>
+</tr>
+<tr>
+<td>POJ 2352</td>
+<td>Stars</td>
+</tr>
+<tr>
+<td>HDU 1698</td>
+<td>Just a Hook</td>
+</tr>
+<tr>
+<td>CodeForces 1263E</td>
+<td>Editor</td>
+</tr>
+</tbody></table></div>
+
+        <h2 id="第五单元"   >
+          <a href="#第五单元" class="heading-link"><i class="fas fa-link"></i></a><a href="#第五单元" class="headerlink" title="第五单元"></a>第五单元</h2>
+      
+        <h3 id="1-资料-4"   >
+          <a href="#1-资料-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-资料-4" class="headerlink" title="1.资料"></a>1.资料</h3>
+      <p>莫队学习资料</p>
+<blockquote>
+<p><span class="exturl"><a class="exturl__link"   href="https://oi-wiki.org/misc/mo-algo-intro/" >莫队 - OI Wiki(oi-wiki.org)</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><span class="exturl"><a class="exturl__link"   href="https://www.bilibili.com/video/BV14t411J781?spm_id_from=333.999.0.0" >学习视频</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</blockquote>
+<p>可持久化线段树学习资料</p>
+<blockquote>
+<p><span class="exturl"><a class="exturl__link"   href="https://oi-wiki.org/ds/persistent-seg/" >可持久化线段树 - OI Wiki(oi-wiki.org)</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</blockquote>
+
+        <h3 id="2-例题-4"   >
+          <a href="#2-例题-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-例题-4" class="headerlink" title="2.例题"></a>2.例题</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>Origin</th>
+<th>Title</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CodeForces 86D</td>
+<td>Powerful array</td>
+</tr>
+<tr>
+<td>CodeForces 617E</td>
+<td>XOR and Favorite Number</td>
+</tr>
+<tr>
+<td>HDU 6534</td>
+<td>Chika and Friendly Pairs</td>
+</tr>
+<tr>
+<td>POJ 3468</td>
+<td>A Simple Problem with Integers</td>
+</tr>
+<tr>
+<td>HDU 6183</td>
+<td>Color it</td>
+</tr>
+<tr>
+<td>CodeForces 915E</td>
+<td>Physical Education Lessons</td>
+</tr>
+<tr>
+<td>POJ 2104</td>
+<td>K-th Number</td>
+</tr>
+<tr>
+<td>CodeForces 840D</td>
+<td>Destiny</td>
+</tr>
+<tr>
+<td>HDU 6601</td>
+<td>Keen On Everything But Triangle</td>
+</tr>
+</tbody></table></div>
+]]></content>
+      <categories>
+        <category>acm</category>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>acm</tag>
+        <tag>data structure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>线段树</title>
+    <url>/2022/02/01/%E7%BA%BF%E6%AE%B5%E6%A0%91/</url>
+    <content><![CDATA[<p>线段树学习</p>
+<span id="more"></span>
+
+
+        <h1 id="简单介绍"   >
+          <a href="#简单介绍" class="heading-link"><i class="fas fa-link"></i></a><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h1>
+      <ol>
+<li>线段树的每个结点代表了一个区间</li>
+<li>具有唯一的根结点，代表的区间是【1，N】</li>
+<li>每个叶节点的区间长度为1</li>
+<li>对于每个非叶结点【l,r】 ,【l,mid】 【mid+1,r】（mid=(l+r)/2）是他的左右儿子</li>
+<li>除去最后一层，是一个完全二叉树 设root=1 ，x的左节点为2x ，右节点是2x+1 </li>
+<li>保存的数组为4N</li>
+</ol>
+
+        <h1 id="建树"   >
+          <a href="#建树" class="heading-link"><i class="fas fa-link"></i></a><a href="#建树" class="headerlink" title="建树"></a>建树</h1>
+      <figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> N =<span class="number">52</span>;</span><br><span class="line"><span class="keyword">int</span> a[N];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SegmentTree</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l,r;</span><br><span class="line">    <span class="keyword">int</span> dat;</span><br><span class="line">&#125;t[N*<span class="number">4</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    t[p].l=l,t[p].r=r;</span><br><span class="line">    <span class="keyword">if</span>(l==r)&#123;t[p].dat=a[l];&#125;</span><br><span class="line">    <span class="keyword">int</span> mid=(l+r)/<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">build</span>(p*<span class="number">2</span>,l,mid);</span><br><span class="line">    <span class="built_in">build</span>(p*<span class="number">2</span>+<span class="number">1</span>,mid+<span class="number">1</span>,r);</span><br><span class="line"></span><br><span class="line">    t[p].dat=<span class="built_in">max</span>(t[p*<span class="number">2</span>].dat,t[p*<span class="number">2</span>+<span class="number">1</span>].dat);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//build(1,1,n);</span></span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="更改"   >
+          <a href="#更改" class="heading-link"><i class="fas fa-link"></i></a><a href="#更改" class="headerlink" title="更改"></a>更改</h1>
+      <figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> x,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="comment">//A[x]-&gt;v</span></span><br><span class="line">    <span class="keyword">if</span>(t[p].l==t[p].r)&#123;t[p].dat=v;<span class="keyword">return</span>;&#125;</span><br><span class="line">    <span class="keyword">int</span> mid = (t[p].l+t[p].r)/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;=mid) <span class="built_in">change</span>(p*<span class="number">2</span>,x,v);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">change</span>(p*<span class="number">2</span>+<span class="number">1</span>,x,v);</span><br><span class="line">    t[p].dat = <span class="built_in">max</span>(t[p*<span class="number">2</span>].dat,t[p*<span class="number">2</span>+<span class="number">1</span>].dat);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//change(1,x,v);</span></span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="查询"   >
+          <a href="#查询" class="heading-link"><i class="fas fa-link"></i></a><a href="#查询" class="headerlink" title="查询"></a>查询</h1>
+      <figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ask</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=t[p].l&amp;&amp;r&gt;=t[p].r)<span class="keyword">return</span> t[p].dat;</span><br><span class="line">    <span class="keyword">int</span> mid = (t[p].l+t[p].r)/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> val = - (<span class="number">1</span>&lt;&lt;<span class="number">30</span>);</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=mid) val = <span class="built_in">max</span> (val,<span class="built_in">ask</span>(p*<span class="number">2</span>,l,r));</span><br><span class="line">    <span class="keyword">if</span>(r&gt;mid) val = <span class="built_in">max</span> (val,<span class="built_in">ask</span>(p*<span class="number">2</span>+<span class="number">1</span>,l,r));</span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//cout&lt;&lt;ask(1,l,r)&lt;&lt;endl</span></span><br></pre></td></tr></table></div></figure>
+
+]]></content>
+      <categories>
+        <category>acm</category>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>acm</tag>
+        <tag>data structure</tag>
+      </tags>
+  </entry>
 </search>
