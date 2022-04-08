@@ -1,0 +1,689 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="汇编学习-自学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="汇编学习">
+<meta property="og:url" content="http://example.com/2022/03/21/%E6%B1%87%E7%BC%96/index.html">
+<meta property="og:site_name" content="Liyue">
+<meta property="og:description" content="汇编学习-自学">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-21T10:59:54.291Z">
+<meta property="article:modified_time" content="2022-04-05T12:11:04.816Z">
+<meta property="article:author" content="TheShineyue">
+<meta property="article:tag" content="curriculum">
+<meta property="article:tag" content="汇编语言">
+<meta name="twitter:card" content="summary"><title>汇编学习 | Liyue</title><link ref="canonical" href="http://example.com/2022/03/21/%E6%B1%87%E7%BC%96/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/links/"><span class="header-nav-menu-item__icon"><i class="fas fa-link"></i></span><span class="header-nav-menu-item__text">友链</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Liyue</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">汇编学习</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2022-03-21</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2022-04-05</span></span></div></header><div class="post-body"><p>汇编学习-自学</p>
+<span id="more"></span>
+
+
+        <h1 id="第一章"   >
+          <a href="#第一章" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1>
+      <ul>
+<li>虚拟机 一个软件程序，模拟其他物理或虚拟计算机的功能</li>
+</ul>
+
+        <h1 id="第二章"   >
+          <a href="#第二章" class="heading-link"><i class="fas fa-link"></i></a><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h1>
+      <ul>
+<li>内存读取数据比从寄存器中慢得多</li>
+</ul>
+<p>从内存中取数据 取地址、设置RD处理、等待存储器响应、从数据总线取数</p>
+<ul>
+<li>x86处理机操作模式</li>
+</ul>
+<p>保护、实地址、系统管理模式、子模式：虚拟8086模式</p>
+<ol>
+<li>保护模式</li>
+</ol>
+<p>​    所有指令和特性都是可用的，分配给程序的独立内存。</p>
+<p>​    分配给程序的独立内存区域是段，而且处理器会阻止程序使用自身段以外的内存</p>
+<ol start="2">
+<li><p>实地址模式</p>
+<p>切换到其他模式的功能。</p>
+<p>需要直接访问系统内存和硬件设备时，比较有用</p>
+</li>
+<li><p>系统管理模式</p>
+<p>提供了电源管理和系统安全等机制，定制处理器</p>
+</li>
+<li><p>虚拟8086模式</p>
+<p>是保护模式的特殊模式</p>
+<p>保护模式下，直接执行实地址模式 MS-DOS</p>
+<p>如果有程序崩溃或者在内存中写数据 都不会影响其他程序</p>
+<p>可开启多个独立的虚拟8086会话</p>
+</li>
+</ol>
+<ul>
+<li>寄存器 p28</li>
+</ul>
+<p>通用寄存器： 8 </p>
+<p>32位 EAX EBX ECX EDX （32-8）</p>
+<p>32位 ESI EBP EDI ESP （32-16）</p>
+<p>EAX 乘除</p>
+<p>ECX CPU循环计数器</p>
+<p>ESI EDI 高速存储器传输指令 - 变址选址的寄存器</p>
+<p>EBP 高级语言引用堆栈中的函数参数和局部变量</p>
+<p>段寄存器 6</p>
+<p>16位 </p>
+<p>CS<br>SS<br>DS<br>ES<br>FS<br>GS</p>
+<p>指令指针 1  </p>
+<p>32位</p>
+<p>EIP</p>
+<p>下一条指令的位置</p>
+<p>EFLAGS寄存器 1</p>
+<p>32位</p>
+<p>MMX</p>
+<p>8个64位寄存器 单指令多数据</p>
+<p>XMM</p>
+<p>8个128位的寄存器</p>
+<ul>
+<li>内存</li>
+</ul>
+<ol>
+<li>ROM</li>
+<li>EPROM 可擦除可编程只读</li>
+<li>DRAM 保存程序和数据</li>
+<li>SRAN cache 不需要刷新</li>
+<li>VRAM 视频数据</li>
+<li>CMOSRAM 系统主板上 由电池供电，电源关闭后仍能保存</li>
+</ol>
+
+        <h1 id="第三章"   >
+          <a href="#第三章" class="heading-link"><i class="fas fa-link"></i></a><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h1>
+      <ul>
+<li>以字母开头的16进制数必须加一个前导0</li>
+<li>默认不区分大小写</li>
+<li>标号 </li>
+</ul>
+<p>是一种标识符，位于指令或变量的前端 表示指令或变量的地址</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">array DWORD 1024,2048</span><br><span class="line">	  DWORD 4096,8192</span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">array DWORD 1024,2048,</span><br><span class="line">	  DWORD 4096,8192</span><br></pre></td></tr></table></div></figure>
+
+<p>指令标号需要用冒号结束</p>
+<ul>
+<li><p>count : 内存</p>
+</li>
+<li><p>块注释 COMMENT ！ … !</p>
+</li>
+<li><p>NOP 空指令 把指令的地址对齐</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.386	;表示这是32位程序</span><br><span class="line">COMMENT !</span><br><span class="line">.model flat,	;内存模式</span><br><span class="line">	stdcall		;调用规范</span><br><span class="line">!</span><br><span class="line">.model flat, stdcall</span><br><span class="line">.stack 4096</span><br><span class="line">	ExitProcess PROTO, dwExitCode:DWORD ;return 0 </span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">sum DWORD 0</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">solve PROC</span><br><span class="line">	mov eax, 5</span><br><span class="line">	add eax, 6</span><br><span class="line">	mov sum, eax</span><br><span class="line"></span><br><span class="line">	INVOKE ExitProcess,0</span><br><span class="line">solve ENDP ;一个过程的结束</span><br><span class="line">end solve</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>数据类型</li>
+</ul>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BYTE</td>
+<td>8位无符号</td>
+</tr>
+<tr>
+<td>SBYTE</td>
+<td>8位有符号</td>
+</tr>
+<tr>
+<td>WORD</td>
+<td>16位无符号</td>
+</tr>
+<tr>
+<td>SWORD</td>
+<td>16位有符号</td>
+</tr>
+<tr>
+<td>DWORD</td>
+<td>32位无符号</td>
+</tr>
+<tr>
+<td>SDWORD</td>
+<td>32位有符号</td>
+</tr>
+<tr>
+<td>FWORD</td>
+<td>48位整数</td>
+</tr>
+<tr>
+<td>QWORD</td>
+<td>64位整数 Q代表四子</td>
+</tr>
+<tr>
+<td>TBTYE</td>
+<td>80（10字节）整数 T代表10</td>
+</tr>
+<tr>
+<td>REAL4</td>
+<td>4字节 32位 实数</td>
+</tr>
+<tr>
+<td>REAL8</td>
+<td>8字节 64位 实数</td>
+</tr>
+<tr>
+<td>REAL10</td>
+<td>10字节 80位 实数</td>
+</tr>
+</tbody></table></div>
+<ul>
+<li>伪指令<br>DB DW DD DQ DT</li>
+<li>0Dh,0Ah 换行</li>
+<li>定义方法</li>
+</ul>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val DB ?</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>定义字符串</li>
+</ul>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">; 0 作为结束标记</span><br><span class="line">greeting BYTE &quot;Moonlit night&quot;,0</span><br><span class="line"></span><br><span class="line">; 如果没有 变成字符数组</span><br><span class="line">greeting BYTE &quot;Moonlit night&quot;</span><br><span class="line">;=&gt; &quot;M&quot; &quot;o&quot; &quot;o&quot; &quot;n&quot; &quot;l&quot; ...</span><br><span class="line"></span><br><span class="line">; 可以写成多行</span><br><span class="line">string BYTE &quot;Moonlit&quot;,0Dh,0Ah</span><br><span class="line">	   BYTE &quot; night&quot;</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>行连续字符 \</li>
+</ul>
+<p>把两个源代码连成一条语句 必须是一行的最后一个字符</p>
+<p>string BYTE “Moonlit night corporate”</p>
+<p>和</p>
+<p>string \</p>
+<p>BYTE “Moonlit night corporate”</p>
+<p>等价</p>
+<ul>
+<li>DUP 初始化</li>
+</ul>
+<p>为多个数据项分配存储空间。</p>
+<p>BYTE 20 DUP(0) ; 20个0</p>
+<p>BYTE 4 DUP(“STACK”) ;4个”STACK”</p>
+<ul>
+<li>小端顺序和大端顺序</li>
+</ul>
+<p>处理器在内存中以小端顺序存放</p>
+<p>小端： 低低高高 反直觉</p>
+<p>大端： 低高高低 直觉</p>
+<ul>
+<li>符号</li>
+</ul>
+<p>const :</p>
+<p>可以被重定义</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COUNT=500 ; COUNT 为一个常量</span><br></pre></td></tr></table></div></figure>
+
+<p>当前地址计数器</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">selfPtr DWORD $</span><br><span class="line">; 计算偏移量作为数组大小</span><br><span class="line">ListSize = ($-list)/(每个元素的所占的内存)</span><br></pre></td></tr></table></div></figure>
+
+
+
+<ul>
+<li>EQU</li>
+</ul>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">约等于 #define</span><br><span class="line">name EQU symbol</span><br><span class="line">如果用括号括起来不会计算</span><br><span class="line">不能重定义</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>TEXTEQU</li>
+</ul>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name TEXTEQU &lt;text&gt;</span><br><span class="line">name TEXTEQU text</span><br><span class="line">name TEXTEQU %text</span><br></pre></td></tr></table></div></figure>
+
+
+
+<ul>
+<li>64位编程</li>
+</ul>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">;32位</span><br><span class="line">.386</span><br><span class="line">.model flat,stdcall</span><br><span class="line">.stack 4096</span><br><span class="line"></span><br><span class="line">ExitProcess PROTO,dwExitCode:DWORD</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">;64位</span><br><span class="line">ExitProcess PROTO</span><br><span class="line"></span><br><span class="line">mov ecx,0</span><br><span class="line">call ExitProcess </span><br><span class="line">main ENDP</span><br><span class="line">END</span><br><span class="line"></span><br><span class="line">EAX-&gt;RAX</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h1 id="第四章"   >
+          <a href="#第四章" class="heading-link"><i class="fas fa-link"></i></a><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h1>
+      <ul>
+<li>不能直接把较小的操作数复制到较大的操作数中</li>
+</ul>
+<p>解决办法：</p>
+<p>先把较大的操作数初始化，然后放入低位</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">count WORD 1</span><br><span class="line">.code</span><br><span class="line">MOV ECX, 0</span><br><span class="line">MOV CX,count</span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">;当存入负数时</span><br><span class="line">.data</span><br><span class="line">count SWORD -16</span><br><span class="line">.code</span><br><span class="line">MOV ECX, 0FFFFFFFh</span><br><span class="line">MOV CX,count</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><p>MOVZX 全零扩展并传送</p>
+<p>只适用于无符号整数</p>
+</li>
+<li><p>MOVSZ 符号扩展并传送</p>
+<p>只适用于有符号整数</p>
+<p>在目的操作数的全部扩展位上重复较小操作数的最高位（符号位）</p>
+</li>
+<li><p>LAHF 加载状态位到AH</p>
+<p>把EFLAGS的低字节给AH </p>
+<p>包括 符号、零、辅助进位、奇偶、进位</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">saveflag BYTE ?</span><br><span class="line">.code</span><br><span class="line">lahf</span><br><span class="line">mov saveflag,ah</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><p>SAHF</p>
+<p>把AH到状态寄存器低字节</p>
+</li>
+<li><p>XCHG</p>
+<p>交换</p>
+</li>
+</ul>
+<p>​    操作数中必须有一个reg</p>
+<ul>
+<li><p>INC ++</p>
+</li>
+<li><p>DEC –</p>
+<p>INC 和 DEC不会影响进位标志位</p>
+</li>
+<li><p>ADD</p>
+<p>把长度相同的源操作数和目的操作数进行相加操作</p>
+</li>
+<li><p>SUB</p>
+<p>减</p>
+</li>
+<li><p>NEG 把操作数按位取反+1 求相反数</p>
+</li>
+<li><p>状态标志位</p>
+<p>进位    无符号整数溢出 进位时1</p>
+<p>溢出    有符号整数溢出 溢出时1</p>
+<p>零    结果是零 零时1</p>
+<p>符号 最高位</p>
+<p>奇偶 <strong>当最低字节中1的个数为偶数时PF=1</strong> </p>
+<p>辅助进位标志    <strong>最低有效字节中位3有进位</strong></p>
+</li>
+<li><p>在NEG操作后不能正确存储 结果无效</p>
+</li>
+<li><p>OFFSET 运算符</p>
+<p>数据标号的偏移量</p>
+<p>可以用一个变量的偏移量来初始化另一个双字变量，从而创建指针</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bigArray DOWRD 500 DUP(?)</span><br><span class="line">pArray DOWRD bigArray</span><br></pre></td></tr></table></div></figure></li>
+<li><p>ALIGN</p>
+<p>可取 1 2 4 8  16</p>
+<p>i : 对齐i字节边界</p>
+</li>
+<li><p>PTR</p>
+<p>重写操作数大小</p>
+<ul>
+<li>把较大的写入较小</li>
+</ul>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">var DWORD 12345678H</span><br><span class="line">.code</span><br><span class="line">MOV AX,WORD PTR var</span><br><span class="line">; AX-&gt; 5678H 低位</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>把两个较小的写入较大</li>
+</ul>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">var DORD 5678H,1234H</span><br><span class="line">.code</span><br><span class="line">MOV EAX,DWORD PTR var</span><br><span class="line">;EAX = 12345678H</span><br></pre></td></tr></table></div></figure></li>
+<li><p>TYPE</p>
+<p>返回变量单个元素的大小，以字节为单位</p>
+</li>
+<li><p>LENGTHOF</p>
+<p>计算元素的个数 </p>
+<p>如果出现了嵌套的DUP 是两者之积</p>
+<p>如果有多个程序行，返回第一行的大小</p>
+</li>
+<li><p>SIZEOF</p>
+<p>= LENGTHOF*TYPE</p>
+</li>
+<li><p>LABEL 伪指令</p>
+<p>插入一个标号，定义他的大小属性，不分配空间，为数据段中定义的下一个提供不同的名称和大小属性。</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">LongValue LABEL DWORD</span><br><span class="line">val1 WORD 5678h</span><br><span class="line">val2 WORD 1234h</span><br><span class="line">.code</span><br><span class="line">mov eax,LongValue ;EAX = 12345678h</span><br></pre></td></tr></table></div></figure></li>
+<li><p>间接寻址</p>
+<ul>
+<li><p>间接寻址与PTR</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">;ERROR</span><br><span class="line">inc [esi]</span><br><span class="line"></span><br><span class="line">;ACCEPT</span><br><span class="line">inc BYTE PTR [esi]</span><br></pre></td></tr></table></div></figure></li>
+<li><p>遍历数组</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">arrayB BYTE 10h,20h,30h</span><br><span class="line">.code</span><br><span class="line">mov esi,OFFSET arrayB</span><br><span class="line">mov AL,[esi]</span><br><span class="line">inc esi</span><br><span class="line">mov AL,[esi]</span><br><span class="line">inc esi</span><br><span class="line">mov AL,[esi]</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+</li>
+<li><p>变址寻址</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">arrayB BYTE 10h,20h,30h</span><br><span class="line">.code</span><br><span class="line">mov esi,0</span><br><span class="line">mov AL,arrayB[esi]</span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.data </span><br><span class="line">arrayW WORD 1000h,2000h,3000h</span><br><span class="line">.code</span><br><span class="line">mov esi, OFFSET arrayW</span><br><span class="line">mov ax,[esi]	;AX=1000h</span><br><span class="line">mov ax,[esi+2]	;AX=2000h</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>变址操作数中的比例因子</li>
+</ul>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">arrayD DWORD 100h,200h,300h,400h</span><br><span class="line">.code</span><br><span class="line">mov esi,3*TYPE arrayD</span><br><span class="line">mov eax,arrayD[esi] ;400h</span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data </span><br><span class="line">arrayD DOWRD 1,2,3,4</span><br><span class="line">.code</span><br><span class="line">mov esi,3</span><br><span class="line">mov eax,arrayD[esi*4]</span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">arrayD DWORD 1,2,3,4</span><br><span class="line">mov esi,3</span><br><span class="line">mov eax,arrayD[esi*TYPE arrayD]</span><br></pre></td></tr></table></div></figure></li>
+<li><p>指针</p>
+<p>一个变量保存另一个变量的地址</p>
+<p>指针大小根据编译器模式（32位或64位）而定</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ptrB DWORD arrayB</span><br><span class="line">ptrB DWORD OFFSET arrayB</span><br></pre></td></tr></table></div></figure></li>
+<li><p>TYPEDEF </p>
+<p>放在最前面</p>
+<p>在数据段之前</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PBYTE TYPEDEF PTR BYTE</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">arrayB BYTE 10h,20h,30h,40h</span><br><span class="line">ptr1 PBYTE arrayB</span><br><span class="line">;使用指针访问数据</span><br><span class="line">.code</span><br><span class="line">mov esi ,ptr1</span><br><span class="line">mob al , [esi]</span><br></pre></td></tr></table></div></figure></li>
+<li><p>JMP LOOP</p>
+<ul>
+<li>JMP 无条件转移</li>
+</ul>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">top:</span><br><span class="line">	JMP top</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><p>LOOP ECX计数器循环，ECX自动成为计数器，每循环一次ECX减一</p>
+</li>
+<li><p>循环目标必须是距离当前地址计数器-128~127</p>
+</li>
+<li><p>步骤。1.ECX–。2.比较0和ECX</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mov ax,0</span><br><span class="line">mov ecx,5</span><br><span class="line">L1:</span><br><span class="line">	inc ax</span><br><span class="line">	loop L1</span><br></pre></td></tr></table></div></figure></li>
+<li><p>嵌套循环</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">count DWORD ?</span><br><span class="line">.code</span><br><span class="line">	mov ecx,100 ;外层循环次数</span><br><span class="line">L1:</span><br><span class="line">	mov count ecx</span><br><span class="line">	mov ecx ,20 ;内层循环次数</span><br><span class="line">L2:</span><br><span class="line">	;</span><br><span class="line">	loop L2 ; 重复L2</span><br><span class="line">	mov ecx,count ;恢复外层循环计数值</span><br><span class="line">	loop L1 ;重复外层循环</span><br><span class="line">	</span><br></pre></td></tr></table></div></figure>
+
+<p>p118</p>
+</li>
+</ul>
+</li>
+</ul>
+
+        <h1 id="典型"   >
+          <a href="#典型" class="heading-link"><i class="fas fa-link"></i></a><a href="#典型" class="headerlink" title="典型"></a>典型</h1>
+      <ul>
+<li>循环次数</li>
+</ul>
+<p>ECX &lt;- ECX-1</p>
+<p>if ECX != 0 break</p>
+<p>ECX=0时最大</p>
+<p>循环次数看ECX中的数</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://example.com">TheShineyue</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://example.com/2022/03/21/%E6%B1%87%E7%BC%96/">http://example.com/2022/03/21/%E6%B1%87%E7%BC%96/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/curriculum/">curriculum</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/">汇编语言</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2022/04/08/%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%A4%87%E6%88%98/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">蓝桥杯备战</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2022/03/16/%E4%B8%89%E5%88%86%E6%B3%95/"><span class="paginator-prev__text">三分</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">
+          第一章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0"><span class="toc-number">2.</span> <span class="toc-text">
+          第二章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0"><span class="toc-number">3.</span> <span class="toc-text">
+          第三章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0"><span class="toc-number">4.</span> <span class="toc-text">
+          第四章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B8%E5%9E%8B"><span class="toc-number">5.</span> <span class="toc-text">
+          典型</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://cdn.jsdelivr.net/gh/TheShineyue/cdn@1.3/images/二次3.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">她与AC皆是期盼</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">75</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">30</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">26</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>TheShineyue</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.4.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.xml';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.xml"></script></body></html>
