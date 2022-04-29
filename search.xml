@@ -7679,7 +7679,61 @@ b/gcd 是 b 的因子， a/gcd 是 a 的因子是吧？
 <p>​    100~900</p>
 <p>​    bold 粗</p>
 <p>font-style 风格</p>
+<p>​    italic 斜体</p>
+<p>​    oblique斜体 *all</p>
 <p>color </p>
+
+        <h1 id="CSS注释"   >
+          <a href="#CSS注释" class="heading-link"><i class="fas fa-link"></i></a><a href="#CSS注释" class="headerlink" title="CSS注释"></a>CSS注释</h1>
+      <p>/* */</p>
+
+        <h1 id="文本样式"   >
+          <a href="#文本样式" class="heading-link"><i class="fas fa-link"></i></a><a href="#文本样式" class="headerlink" title="文本样式"></a>文本样式</h1>
+      <p>text-indent 首行缩进</p>
+<figure class="highlight css"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">			   <span class="attribute">font-size</span>: <span class="number">14px</span>;<span class="comment">/*字体大小*/</span></span><br><span class="line">			   <span class="attribute">text-indent</span>: <span class="number">28px</span>;<span class="comment">/*两个字*/</span></span><br><span class="line">		   &#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>text-align 水平对齐</p>
+<p>left 左对齐</p>
+<p>center 居中对齐</p>
+<p>right 右对齐</p>
+<p>text-decoration 文本修饰</p>
+<p>none 去除所有划线</p>
+<p>underline 下划线</p>
+<p>line-through 中划线</p>
+<p>overline 顶划线</p>
+<p>text-transform 大小写</p>
+<p>none 无转换</p>
+<p>uppercase大写</p>
+<p>lowercase 小写</p>
+<p>capitalize 首字母大写</p>
+
+        <h1 id="行高"   >
+          <a href="#行高" class="heading-link"><i class="fas fa-link"></i></a><a href="#行高" class="headerlink" title="行高"></a>行高</h1>
+      <p>line-heght 一行的高度</p>
+
+        <h1 id="字间距"   >
+          <a href="#字间距" class="heading-link"><i class="fas fa-link"></i></a><a href="#字间距" class="headerlink" title="字间距"></a>字间距</h1>
+      <p>letter-spaceing:像素</p>
+
+        <h1 id="词间距"   >
+          <a href="#词间距" class="heading-link"><i class="fas fa-link"></i></a><a href="#词间距" class="headerlink" title="词间距"></a>词间距</h1>
+      <p>word-spaceing 对于中文无效</p>
+<p>67</p>
+
+        <h1 id="图片"   >
+          <a href="#图片" class="heading-link"><i class="fas fa-link"></i></a><a href="#图片" class="headerlink" title="图片"></a>图片</h1>
+      
+        <h2 id="图片大小"   >
+          <a href="#图片大小" class="heading-link"><i class="fas fa-link"></i></a><a href="#图片大小" class="headerlink" title="图片大小"></a>图片大小</h2>
+      <p>width:像素值</p>
+<p>height:像素值</p>
+
+        <h2 id="图片对齐"   >
+          <a href="#图片对齐" class="heading-link"><i class="fas fa-link"></i></a><a href="#图片对齐" class="headerlink" title="图片对齐"></a>图片对齐</h2>
+      <p>text-align:</p>
+<p>left</p>
+<p>center</p>
+<p>right</p>
 ]]></content>
       <categories>
         <category>前端</category>
