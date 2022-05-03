@@ -50,20 +50,41 @@
 		}
 		#words{
 			text-align: center;
-			font-size: 28px;/*字体大小*/
-			line-height: 100px;
-			font-weight: 700;
+			font-size: 26px;/*字体大小*/
+			line-height: 50px;
+			font-weight: 600;
 			margin: 10px auto;
+		}
+		#mus{
+			text-align: center;
+			margin: 10px auto;
+		}
+		#words2{
+			text-align: center;
+			font-size: 14px;/*字体大小*/
+			line-height: 20px;
+			/*font-weight: 200;*/
+			margin: 5px auto;
 		}
     </style>
 </head>
 <body>
-<div id="words">实现循环展示:</div>
-<embed height="0" width="0" src="music/1.mp3">
+<div id="words">
+	闪电风暴后，一定是那充满蓝天白云，充满碧草繁花的世界。
+</div>
+<br>
+<div id="words2">
+	更新于 2022.05.03
+</div>
+<div id="mus">
+	<audio controls autoplay>
+		<source src="music/1.mp3">
+	</audio>
+</div>
 <div id="div2">
-		<form method="POST">
-			<input id="wjn" type="button" style="width: 200px;height: 100px;" value="点开我哦^-^">		
-		</form>
+	<form method="POST">
+		<input id="wjn" type="button" style="width: 200px;height: 100px;" value="点开我哦^-^">		
+	</form>
 </div>
 <div class="imgBox">
     <img class="img-slide img1" src="img/1.jpg" alt="1">
@@ -84,7 +105,7 @@
         }
         a[index].style.display='block';
     }
-    setInterval(ChangeImg,2500);
+    setInterval(ChangeImg,2600);
 </script>
 </body>
 </html>
