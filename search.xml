@@ -5265,6 +5265,20 @@ b/gcd 是 b 的因子， a/gcd 是 a 的因子是吧？
       <p>这个题目和 01 背包问题不一样的是，现在第 i 个物品不是只能取一次，而是可以取 <img   src="https://www.zhihu.com/equation?tex=l_i" style=""  alt="[公式]"> 次了。</p>
 <p>我们能不能把它转换成一个 01 背包问题呢？答案显然是可以的，一个可以取 <img   src="https://www.zhihu.com/equation?tex=l_i" style=""  alt="[公式]"> 次的物品，是不是等价于 <img   src="https://www.zhihu.com/equation?tex=l_i" style=""  alt="[公式]"> 个只能取一次的物品呀？</p>
 <p>于是乎，问题变成了一个有 <img   src="https://www.zhihu.com/equation?tex=%5Csum_%7Bi=1%7D%5Enl_i" style=""  alt="[公式]"> 个物品，袋子的总容量为 m 的 01 背包问题。</p>
+<p>但是也可以把 <img   src="https://www.zhihu.com/equation?tex=l_i" style=""  alt="[公式]"> 二进制分解，取对应的二进制能组合出任意一种情况。</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> p[<span class="number">2005</span>],v[<span class="number">2005</span>],w[<span class="number">2005</span>],l[<span class="number">2005</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;v[i],&amp;w[i],&amp;l[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(p,<span class="number">0</span>,<span class="keyword">sizeof</span> p);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> res=l[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=res;res-=k,k*=<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=m;j&gt;=v[i]*k;j--)&#123;</span><br><span class="line">                p[j]=<span class="built_in">max</span>(p[j],p[j-v[i]*k]+w[i]*k);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=m;j&gt;=v[i]*res;j--)&#123;</span><br><span class="line">            p[j]=<span class="built_in">max</span>(p[j],p[j-v[i]*res]+w[i]*res);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,p[m]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="分组背包"   >
+          <a href="#分组背包" class="heading-link"><i class="fas fa-link"></i></a><a href="#分组背包" class="headerlink" title="分组背包"></a>分组背包</h1>
+      <p>有 <img   src="https://www.zhihu.com/equation?tex=n(1%E2%89%A4n%E2%89%A41000)" style=""  alt="[公式]"> 个物品要放到一个袋子里，袋子的总容量为 <img   src="https://www.zhihu.com/equation?tex=m(1%E2%89%A4m+%E2%89%A41000)" style=""  alt="[公式]"> ，第 <img   src="https://www.zhihu.com/equation?tex=i" style=""  alt="[公式]"> 个物品属于第 <img   src="https://www.zhihu.com/equation?tex=a_i(1%E2%89%A4a_i%E2%89%A41000)" style=""  alt="[公式]"> 组，<strong>每组物品我们只能从中选择一个</strong>。第 <img   src="https://www.zhihu.com/equation?tex=i" style=""  alt="[公式]"> 个物品的体积为 <img   src="https://www.zhihu.com/equation?tex=v_i(1%E2%89%A4v_i%E2%89%A41000)" style=""  alt="[公式]"> ，把它放进袋子里会获得 <img   src="https://www.zhihu.com/equation?tex=w_+i(1%E2%89%A4w+_i%E2%89%A41000)" style=""  alt="[公式]"> 的收益。问如何选择物品，使得在物品的总体积不超过 <img   src="https://www.zhihu.com/equation?tex=m" style=""  alt="[公式]"> 的情况下，获得最大的收益？请求出最大收益。</p>
+<p>可以看成每次从每组选一个性价比最高的01背包</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">2005</span>],v[<span class="number">2005</span>],w[<span class="number">2005</span>];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">2005</span>];</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; c[<span class="number">2005</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;a[i],&amp;v[i],&amp;w[i]);</span><br><span class="line">        c[a[i]].<span class="built_in">push_back</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="keyword">sizeof</span> f);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">1000</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=m;j&gt;=<span class="number">0</span>;j--)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> k:c[i])&#123;</span><br><span class="line">                <span class="keyword">if</span>(v[k]&lt;=j)&#123;</span><br><span class="line">                    f[j]=<span class="built_in">max</span>(f[j],f[j-v[k]]+w[k]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,f[m]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="二维背包"   >
+          <a href="#二维背包" class="heading-link"><i class="fas fa-link"></i></a><a href="#二维背包" class="headerlink" title="二维背包"></a>二维背包</h1>
+      <p>有 <img   src="https://www.zhihu.com/equation?tex=n(1%E2%89%A4n%E2%89%A4100)" style=""  alt="[公式]"> 种物品要放到一个袋子里，袋子的总容量为 <img   src="https://www.zhihu.com/equation?tex=m(1%E2%89%A4m+%E2%89%A4100)" style=""  alt="[公式]"> ，我们一共有 <img   src="https://www.zhihu.com/equation?tex=k(1%E2%89%A4k%E2%89%A4100)" style=""  alt="[公式]"> 点体力值。第 <img   src="https://www.zhihu.com/equation?tex=i" style=""  alt="[公式]"> 种物品的体积为 <img   src="https://www.zhihu.com/equation?tex=v_i(1%E2%89%A4v_i%E2%89%A4100)" style=""  alt="[公式]"> ，把它放进袋子里会获得 <img   src="https://www.zhihu.com/equation?tex=w_+i(1%E2%89%A4w_+i%E2%89%A4100)" style=""  alt="[公式]"> 的收益，并且消耗我们 <img   src="https://www.zhihu.com/equation?tex=t_i(1%E2%89%A4t_i%E2%89%A4100)" style=""  alt="[公式]"> 点体力值，每种物品只能取一次，问如何选择物品，使得在物品的总体积不超过 <img   src="https://www.zhihu.com/equation?tex=m" style=""  alt="[公式]"> 并且花费总体力不超过 <img   src="https://www.zhihu.com/equation?tex=k" style=""  alt="[公式]"> 的情况下，获得最大的收益？请求出最大收益。</p>
 
         <h1 id="D-Pol-and-Ball-and-White-Red-graph"   >
           <a href="#D-Pol-and-Ball-and-White-Red-graph" class="heading-link"><i class="fas fa-link"></i></a><a href="#D-Pol-and-Ball-and-White-Red-graph" class="headerlink" title="D Pol and Ball and White-Red graph"></a>D Pol and Ball and White-Red graph</h1>
@@ -6641,7 +6655,116 @@ b/gcd 是 b 的因子， a/gcd 是 a 的因子是吧？
 </li>
 </ul>
 </li>
+<li><p>堆栈</p>
+<ul>
+<li>PUSH</li>
+<li>POP</li>
+<li>PUSHFD 操作对象是EFLAGS</li>
+<li>POPFD </li>
+<li>PUSHAD POPAD 按EAX ECX EDX EBX ESP</li>
+<li>PUSHA POPA 按AX CX DX BX SP SI DI</li>
+<li>PROC和ENDP定义</li>
 </ul>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="code"><pre><span class="line">main PROC</span><br><span class="line">RET 结束过程</span><br><span class="line">main ENDP</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>标号只有在被定义的过程才可见，全局标号 Ex::</li>
+<li>USES 保存和恢复变化的值</li>
+</ul>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="code"><pre><span class="line">ArraySum PROC USES esi ecx</span><br><span class="line">PUSH EAX</span><br><span class="line">EAX...</span><br><span class="line">POP EAX</span><br><span class="line">EAX的值会丢失</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+
+        <h1 id="第六章"   >
+          <a href="#第六章" class="heading-link"><i class="fas fa-link"></i></a><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h1>
+      <ul>
+<li><p>CMP a，b</p>
+<p>a-b ZF=1就跳转jz 如果是ZF=0跳转jnz 进位跳转JC 不进位跳转JNC</p>
+<p>JE 相等跳转    !  JNE</p>
+<p>JL 小于跳转</p>
+<p>JG 大于跳转</p>
+<p>无符号数 JAE 大于等于</p>
+</li>
+<li><p>条件循环</p>
+<ul>
+<li>LOOPZ LOOPE 为0跳转</li>
+<li>LOOPNZ LOOPNE 为0跳转</li>
+</ul>
+</li>
+<li><p>条件结构</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="code"><pre><span class="line">if op1&gt;op2</span><br><span class="line">    call Routine1</span><br><span class="line">else</span><br><span class="line">    call Routine2</span><br><span class="line">end if</span><br><span class="line"></span><br><span class="line">MOV EAX,op1</span><br><span class="line">CMP EAX,op2</span><br><span class="line">JG A1</span><br><span class="line">CALL Routine2</span><br><span class="line">JMP A2</span><br><span class="line">A1:CALL Routine1</span><br><span class="line">A2:</span><br></pre></td></tr></table></div></figure></li>
+<li><p>JBE 无符号跳转</p>
+</li>
+<li><p>JLE  有符号比较跳转</p>
+</li>
+<li><p>左移 SHL 算术左移SAL</p>
+</li>
+<li><p>右移SHR 算术右移SAR]</p>
+</li>
+<li><p>循环左移 ROL ax,4</p>
+</li>
+<li><p>循环右移 ROR ax,3</p>
+</li>
+<li><p>带进位循环左移 RCL</p>
+</li>
+<li><p>带进位循环右移 RCR\</p>
+</li>
+<li><p>SHLD SHRD 双精度左移右移 ax ab 4</p>
+</li>
+<li><p>MUL </p>
+</li>
+<li><p>IMUL </p>
+</li>
+<li><p>DIV</p>
+</li>
+<li><p>IDIV 有符号除法</p>
+</li>
+<li><p>ADC 带进位加法</p>
+</li>
+<li><p>SBB 带借位减法</p>
+</li>
+</ul>
+
+        <h1 id="第八章"   >
+          <a href="#第八章" class="heading-link"><i class="fas fa-link"></i></a><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h1>
+      <ul>
+<li>INVOKE  把参数入栈 </li>
+</ul>
+
+        <h1 id="错题"   >
+          <a href="#错题" class="heading-link"><i class="fas fa-link"></i></a><a href="#错题" class="headerlink" title="错题"></a>错题</h1>
+      <p>JMP FAR PTR DONE </p>
+<p>短转移、近转移 段内转移</p>
+<p>JMP SHORT   JMP  NEAR PTR</p>
+<p>远转移   段间转移</p>
+<p>无条件跳转到DONE</p>
+<p>JAE/JBE 无符号条件转移</p>
+<p>JGE/JNL 有符号条件跳转</p>
+<p>DEC [BX] 错误 只给了地址，没有确定类型</p>
+<p>MUL CL 正确，另一个操作数在 AL\AX\EAX 结果放在 AL:AH\AX:DX\EAX:EDX</p>
+<p>物理地址 = 段地址*10H + 偏移地址</p>
+<p>最开始的物理地址在12ABH*10H+00ABH</p>
+<p>一个字=两个字节=16位</p>
+<p>最后一个相对于第一个地址的偏移量为（128-1）字。</p>
+<p>偏移量为 127 * 2 = FEH </p>
+<p>答案为: 12ABH*10H+00ABH + FEH = 12C59H</p>
+<p>外循环初值应该置外循环之外，内循环初值应在两者之间</p>
+<p>ZF 零标志</p>
+<p>CF 进位标志</p>
+<p>JNE 不相等跳转 ZF=0</p>
+<p>基址寻址的寄存器可以是SI DI</p>
+<p>movsb指令用于把字节从ds:si 搬到es:di；搬运前先把字符串的长度存在cx寄存器中，然后重复的次数就是cx寄存器所存数据的值。</p>
+<p>REP MOVSB</p>
+<p>在一段汇编程序中多次调用另一段程序，用宏指令比用子程序实现起来占内存空间大，但速度快</p>
+<p>在程序执行过程中，IP寄存器中始终保存的是下一条指令的首地址</p>
+<p>PSW寄存器中有6个条件状态位，3位控制状态位</p>
+<p>ADD A,B</p>
+<p> A和B均为寄存器是允许的,一个为寄存器而另一个为存储器也是允许的, 但不允许两个都是存储器操作数.</p>
+<p>NEG 对所有取反+1 取相反数操作</p>
+<p>INC 和 DEC不影响CF标志位</p>
+<p>源串<strong>一般</strong>存放在数据段(DS)，偏移地址由SI指定，允许段重设<br> 目标串<strong>必须</strong>在附加段(ES)，偏移地址由DI指定<br> 串长度值由CX指定</p>
+<p>DX</p>
+<p>算术右移SAR </p>
+<p>IDIV</p>
 
         <h1 id="典型"   >
           <a href="#典型" class="heading-link"><i class="fas fa-link"></i></a><a href="#典型" class="headerlink" title="典型"></a>典型</h1>
@@ -7743,6 +7866,72 @@ b/gcd 是 b 的因子， a/gcd 是 a 的因子是吧？
       <tags>
         <tag>前端</tag>
         <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树状数组</title>
+    <url>/2022/05/07/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<p>树状数组学习</p>
+<span id="more"></span>
+
+
+        <h1 id="工作原理"   >
+          <a href="#工作原理" class="heading-link"><i class="fas fa-link"></i></a><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h1>
+      <p><img src="https://oi-wiki.org/ds/images/fenwick.svg" alt="img"></p>
+
+        <h1 id="操作"   >
+          <a href="#操作" class="heading-link"><i class="fas fa-link"></i></a><a href="#操作" class="headerlink" title="操作"></a>操作</h1>
+      
+        <h3 id="单点修改"   >
+          <a href="#单点修改" class="heading-link"><i class="fas fa-link"></i></a><a href="#单点修改" class="headerlink" title="单点修改"></a>单点修改</h3>
+      <p>将ax+k</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&amp;-x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(x&lt;=n)&#123;</span><br><span class="line">        c[x]=c[x]+k;</span><br><span class="line">        x=x+<span class="built_in">lowbit</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="前缀求和"   >
+          <a href="#前缀求和" class="heading-link"><i class="fas fa-link"></i></a><a href="#前缀求和" class="headerlink" title="前缀求和"></a>前缀求和</h2>
+      <p>1-x</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&amp;-x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getsum</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(x&gt;=<span class="number">1</span>)&#123;</span><br><span class="line">        ans=ans+c[x];</span><br><span class="line">        x=x-<span class="built_in">lowbit</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="O-n-建树"   >
+          <a href="#O-n-建树" class="heading-link"><i class="fas fa-link"></i></a><a href="#O-n-建树" class="headerlink" title="O(n) 建树"></a>O(n) 建树</h2>
+      <figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		t[i]+=a[i];</span><br><span class="line">		<span class="keyword">int</span> j=i+<span class="built_in">lowbit</span>(i);</span><br><span class="line">		<span class="keyword">if</span>(j&lt;=n)&#123;</span><br><span class="line">			t[j]+=t[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="时间戳优化"   >
+          <a href="#时间戳优化" class="heading-link"><i class="fas fa-link"></i></a><a href="#时间戳优化" class="headerlink" title="时间戳优化"></a>时间戳优化</h2>
+      <figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">int</span> tag[N],t[N],Tag;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">()</span></span>&#123;</span><br><span class="line">	++Tag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> k,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(k&lt;=n)&#123;</span><br><span class="line">		<span class="keyword">if</span>(tag[k]!=Tag)t[k]=<span class="number">0</span>;</span><br><span class="line">		t[k]+=v,tag[k]=Tag;</span><br><span class="line">		k+=<span class="built_in">lowbit</span>(k);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getsum</span><span class="params">(<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(k)&#123;</span><br><span class="line">		<span class="keyword">if</span>(tag[k]==Tag)ret+=t[k];</span><br><span class="line">		k-=<span class="built_in">lowbit</span>(k);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="实例"   >
+          <a href="#实例" class="heading-link"><i class="fas fa-link"></i></a><a href="#实例" class="headerlink" title="实例"></a>实例</h1>
+      
+        <h2 id="单点修改，区间查询"   >
+          <a href="#单点修改，区间查询" class="heading-link"><i class="fas fa-link"></i></a><a href="#单点修改，区间查询" class="headerlink" title="单点修改，区间查询"></a>单点修改，区间查询</h2>
+      <p>区间查询时 l,r</p>
+<p>getsum(r)-getsum(l-1)</p>
+
+        <h2 id="区间修改，单点查询"   >
+          <a href="#区间修改，单点查询" class="heading-link"><i class="fas fa-link"></i></a><a href="#区间修改，单点查询" class="headerlink" title="区间修改，单点查询"></a>区间修改，单点查询</h2>
+      <p>维护差分数组</p>
+<p>区间l r,add y时</p>
+<p>给t[l]+y</p>
+<p>给t[r+1]-y</p>
+
+        <h2 id="区间修改，区间查询"   >
+          <a href="#区间修改，区间查询" class="heading-link"><i class="fas fa-link"></i></a><a href="#区间修改，区间查询" class="headerlink" title="区间修改，区间查询"></a>区间修改，区间查询</h2>
+      <p>维护两个差分数组</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span> + <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>  n, q;</span><br><span class="line"><span class="keyword">int</span> a[maxn];</span><br><span class="line"><span class="keyword">int</span> sum[maxn];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> BIT[maxn], BIT2[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Lowbit</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &amp; (-a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = k; i &lt;= n; i += <span class="built_in">Lowbit</span>(i))&#123;</span><br><span class="line">		BIT[i] += x;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update2</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = k; i &lt;= n; i += <span class="built_in">Lowbit</span>(i))&#123;</span><br><span class="line">		BIT2[i] += (<span class="keyword">long</span> <span class="keyword">long</span>)x * (k - <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">Sum</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = x; i &gt; <span class="number">0</span>; i -= <span class="built_in">Lowbit</span>(i))&#123;</span><br><span class="line">		ans += BIT[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">Sum2</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = x; i &gt; <span class="number">0</span>; i -= <span class="built_in">Lowbit</span>(i))&#123;</span><br><span class="line">		ans += BIT2[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;q);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);</span><br><span class="line">		sum[i] = a[i] - a[i - <span class="number">1</span>];</span><br><span class="line">		<span class="built_in">Update</span>(sum[i], i);</span><br><span class="line">		<span class="built_in">Update2</span>(sum[i], i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= q; i ++)&#123;</span><br><span class="line">		<span class="keyword">int</span> flag;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;flag);</span><br><span class="line">		<span class="keyword">if</span>(flag == <span class="number">1</span>)&#123;</span><br><span class="line">			<span class="keyword">int</span> x, l, r;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d&quot;</span>, &amp;l, &amp;r, &amp;x);</span><br><span class="line">			<span class="built_in">Update</span>(x, l);</span><br><span class="line">			<span class="built_in">Update</span>(-x, r + <span class="number">1</span>);</span><br><span class="line">			<span class="built_in">Update2</span>(x, l);</span><br><span class="line">			<span class="built_in">Update2</span>(-x, r + <span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">int</span> l, r;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;l, &amp;r);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, (r * <span class="built_in">Sum</span>(r) - <span class="built_in">Sum2</span>(r)) - ((l - <span class="number">1</span>) * <span class="built_in">Sum</span>(l - <span class="number">1</span>) - <span class="built_in">Sum2</span>(l - <span class="number">1</span>))); </span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></div></figure>
+
+]]></content>
+      <categories>
+        <category>acm</category>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>acm</tag>
+        <tag>data structure</tag>
       </tags>
   </entry>
 </search>
