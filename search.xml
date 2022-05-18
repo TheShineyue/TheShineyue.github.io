@@ -7992,7 +7992,7 @@ b/gcd 是 b 的因子， a/gcd 是 a 的因子是吧？
   <entry>
     <title>220515赛后补题</title>
     <url>/2022/05/17/2022%E8%AE%AD%E7%BB%83%E8%B5%9B-220515%E8%B5%9B%E5%90%8E%E8%A1%A5%E9%A2%98/</url>
-    <content><![CDATA[<p>补题    反悔贪心&amp;线段树二分&amp;模拟</p>
+    <content><![CDATA[<p>补题    反悔贪心&amp;线段树</p>
 <span id="more"></span>
 
 
@@ -8045,6 +8045,34 @@ b/gcd 是 b 的因子， a/gcd 是 a 的因子是吧？
       <tags>
         <tag>acm</tag>
         <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>双指针（尺取）</title>
+    <url>/2022/05/18/%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>双指针</p>
+<span id="more"></span>
+
+<p><span class="exturl"><a class="exturl__link"   href="https://oi-wiki.org/misc/two-pointer/" >https://oi-wiki.org/misc/two-pointer/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h1 id="维护区间信息"   >
+          <a href="#维护区间信息" class="heading-link"><i class="fas fa-link"></i></a><a href="#维护区间信息" class="headerlink" title="维护区间信息"></a>维护区间信息</h1>
+      <p><span class="exturl"><a class="exturl__link"   href="https://leetcode.cn/problems/subarray-product-less-than-k/" >https://leetcode.cn/problems/subarray-product-less-than-k/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numSubarrayProductLessThanK</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n=nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> now=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> l=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> r=<span class="number">0</span>;r&lt;n;r++)&#123;<span class="comment">//不断移动右指针</span></span><br><span class="line">            now*=nums[r];<span class="comment">//更新维护值</span></span><br><span class="line">            <span class="keyword">while</span>(l&lt;=r&amp;&amp;now&gt;=k)&#123;<span class="comment">//不满足条件则移动左指针</span></span><br><span class="line">                now/=nums[l];</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans+=(r-l+<span class="number">1</span>);<span class="comment">//更新答案</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="子序列匹配"   >
+          <a href="#子序列匹配" class="heading-link"><i class="fas fa-link"></i></a><a href="#子序列匹配" class="headerlink" title="子序列匹配"></a>子序列匹配</h1>
+      <p><span class="exturl"><a class="exturl__link"   href="https://leetcode.cn/problems/longest-word-in-dictionary-through-deleting/" >https://leetcode.cn/problems/longest-word-in-dictionary-through-deleting/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>这种两个指针指向不同对象然后逐步进行比对</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">findLongestWord</span><span class="params">(string s, vector&lt;string&gt;&amp; dictionary)</span> </span>&#123;</span><br><span class="line">        string ans=<span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">int</span> len=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">sort</span>(dictionary.<span class="built_in">begin</span>(),dictionary.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=dictionary.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            string t=dictionary[i];</span><br><span class="line">            <span class="keyword">int</span> r=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">0</span>;l&lt;s.<span class="built_in">size</span>();l++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s[l]==t[r])r++;<span class="comment">//如果能匹配两者一起移动</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(r==t.<span class="built_in">size</span>())&#123;</span><br><span class="line">                <span class="keyword">if</span>(t.<span class="built_in">size</span>()&gt;=len)&#123;</span><br><span class="line">                    len=t.<span class="built_in">size</span>();</span><br><span class="line">                    ans=t;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></div></figure>
+
+]]></content>
+      <categories>
+        <category>base</category>
+      </categories>
+      <tags>
+        <tag>base</tag>
       </tags>
   </entry>
 </search>
