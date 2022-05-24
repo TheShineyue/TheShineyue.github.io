@@ -21,7 +21,8 @@
 							<span class="index">{{ index+1 }}.</span>
 							<label>{{ item }}</label>
 							<!--img class="destroy" @click="remove(index)"></button-->
-							<img src="img/叉.jpg" class="destroy" @click="remove(index)">
+							<!--img src="img/叉.jpg" class="destroy" @click="remove(index)"-->
+							<button class="destroy" @click="remove(index)"></button>
 						</div>
 					</li>
 				</ul>
