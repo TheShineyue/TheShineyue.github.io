@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>For WJN</title>
+		<link rel="stylesheet" type="text/css" href="index.css">
+	</head>
+	<body>
+		<section id="app">
+			<!--输入区域-->
+			<header>
+				<h1>小越记事本</h1>
+				<input type="text" v-model="inputValue" @keyup.enter="add" autofocus="autofocus" autocomplete="off" 
+				placeholder="请输入" class="new-todo">
+			</header>
+			<!--列表区域-->
+			<section class="main">
+				<ul class="todo-list">
+					<li class="todo" v-for="(item,index) in list">
+						<div class="view">
+							<span class="index">{{ index+1 }}.</span>
+							<label>{{ item }}</label>
+							<!--img class="destroy" @click="remove(index)"></button-->
+							<img src="img/叉.jpg" class="destroy" @click="remove(index)">
+						</div>
+					</li>
+				</ul>
+			</section>
+			<!-- 统计和清空 -->
+			<footer class="footer">
+				<span class="todo-count" v-if="list.length!=0">
+					现有
+					<strong>{{ list.length }}</strong>
+					条记录
+				</span>
+				<button class="clear-completed"  v-if="list.length!=0" @click="clear">
+					Clear
+				</button>
+			</footer>
+			<!--底部-->
+		</section>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var app = new Vue({
+				el:"#app",
+				data:{
+					list:["梦中情粉","生生乌龙","冰奶茶","生日02.03.18","风生西柚红茶","杨枝甘露"],
+					inputValue:""
+				},
+				methods:{
+					add:function(){
+						this.list.push(this.inputValue);
+					},
+					remove:function(index){
+						this.list.splice(index,1);
+					},
+					clear:function(){
+						this.list = [];
+					}
+				},
+			})
+		</script>
+	</body>
+</html>

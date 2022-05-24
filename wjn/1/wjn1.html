@@ -1,0 +1,99 @@
+<!DOCTYPE html>o
+<head>
+    <meta charset="UTF-8">
+	<meta name="author" content="李越">
+    <title>For 王嘉妮</title>
+	<style type="text/css">
+		body{background-color:white;}
+	</style>
+	<script>
+		window.onload=function(){
+			var oBtn=document.getElementsByTagName("input")
+			oBtn[0].onclick=function(){
+				alert("嘉妮，晚安哦^-^");
+			};
+		}
+	</script>
+    <style type="text/css">
+		#div2{
+			font-size: 20px;
+			text-align: center;
+			margin: 30px auto;
+		}
+        .imgBox{
+            border-top: 5px solid cadetblue;
+			/*border-bottom: 5px solid cadetblue;*/
+            width: 550px;
+            height: 600px;
+            margin: 0 auto;
+        }
+        .imgBox img{
+            width: 550px;
+            height: 550px;
+            margin: 0 auto;
+            padding-top: 30px;
+        }
+		.img1{
+			display: none;
+		}
+		.img2{
+			display: none;
+		}
+		.img3{
+			display: none;
+		}
+		.img4{
+			display: none;
+		}
+		.img5{
+			display: block;
+		}
+		#words{
+			text-align: center;
+			font-size: 28px;/*字体大小*/
+			line-height: 100px;
+			font-weight: 700;
+			margin: 10px auto;
+		}
+		#mus{
+			text-align: center;
+			margin: 10px auto;
+		}
+    </style>
+</head>
+<body>
+<div id="words">实现循环展示:</div>
+<div id="mus">
+	<audio controls autoplay>
+		<source src="music/1.mp3">
+	</audio>
+</div>
+<div id="div2">
+	<form method="POST">
+		<input id="wjn" type="button" style="width: 200px;height: 100px;" value="点开我哦^-^">		
+	</form>
+</div>
+<div class="imgBox">
+    <img class="img-slide img1" src="img/1.jpg" alt="1">
+    <img class="img-slide img2" src="img/2.jpg" alt="2">
+    <img class="img-slide img3" src="img/3.jpg" alt="3">
+	<img class="img-slide img4" src="img/4.jpg" alt="4">
+	<img class="img-slide img5" src="img/5.jpg" alt="5">
+</div>
+<script type="text/javascript">
+    var index=0;
+    //效果
+    function ChangeImg() {
+        index++;
+        var a=document.getElementsByClassName("img-slide");
+        if(index>=a.length) index=0;
+        for(var i=0;i<a.length;i++){
+            a[i].style.display='none';
+        }
+        a[index].style.display='block';
+    }
+    setInterval(ChangeImg,2600);
+</script>
+</body>
+</html>
+
