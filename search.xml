@@ -2032,9 +2032,16 @@
           <a href="#v-model" class="heading-link"><i class="fas fa-link"></i></a><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h3>
       <p>双向数据绑定</p>
 
-        <h2 id="应用-小越ji"   >
-          <a href="#应用-小越ji" class="heading-link"><i class="fas fa-link"></i></a><a href="#应用-小越ji" class="headerlink" title="应用 小越ji"></a>应用 小越ji</h2>
-      ]]></content>
+        <h2 id="网络应用"   >
+          <a href="#网络应用" class="heading-link"><i class="fas fa-link"></i></a><a href="#网络应用" class="headerlink" title="网络应用"></a>网络应用</h2>
+      
+        <h3 id="axios"   >
+          <a href="#axios" class="heading-link"><i class="fas fa-link"></i></a><a href="#axios" class="headerlink" title="axios"></a>axios</h3>
+      <figure class="highlight html"><div class="table-container"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/axios/dist/axios.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+<p>axios.get(地址?key=value).then(fuction(){},fuction(){})</p>
+<p>axios.post(地址,{key:value}).then(fuction(){},fuction(){})</p>
+]]></content>
       <categories>
         <category>前端</category>
         <category>study</category>

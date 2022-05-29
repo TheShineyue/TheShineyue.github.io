@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>数值分析实验</title>
+		<!--script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts-en.common.js" rel="external nofollow" ></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script-->
+		<link rel="stylesheet" href="css/main.css" type="text/css">
+	</head>
+	<body>
+		<script src="axios.js"></script>
+		<script src="axios.min.js"></script>
+		<script src="echarts-en.common.js"></script>
+
+		<h2>粮食产量预测平台欢迎您</h2>
+		<div class="app">
+			<div class="di">
+				<p>输入数据组数</p>
+				<input type="text" v-model="InputN" >
+				<br>
+				<p>选择拟合函数阶数</p>
+				<input type="radio" name="M" value="1" @click="Set1"> <span>1阶</span>
+				<input type="radio" name="M" value="2" @click="Set2"> <span>2阶</span>
+				<br>
+				<p>输入自变量 用空格隔开</p>
+				<input type="text" v-model="X">
+				<br>
+				<p>输入因变量 用空格隔开</p>
+				<input type="text" v-model="Y">
+				<br>
+			</div>
+			<div class="di">
+				<p>输入预测年份</p>
+				<input type="text" v-model="forecast">
+				<br
+				>
+				<input type="button" value="Submit"  @click="submit">
+				<!--style="width: 180px;height: 100px;"-->
+				<br>
+			</div>
+			<div class="di">
+				<p>预测结果:</p>
+				<br>
+				<p>{{ fx }}</p>
+				<br>
+				<p>{{ answer }}</p>
+				<br>
+			</div>
+			<h2>折线图:</h2>
+			<div id="draw" style="width: 600px;height: 400px;" ></div>
+		</div>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var app = new Vue({
+				el:".app",
+				data:{
+					InputN:"",
+					InputM:"",
+					X:"",
+					Y:"",
+					forecast:"",
+					listX:[],
+					listY1:[],
+					listY2:[],
+					answer:0.00,
+					fx:""
+				},
+				methods:{
+					submit:function(){
+						var url="http://43.138.17.109:5000/LS"	
+						let dataObj= {
+							InputN:this.InputN,
+							InputM:this.InputM,
+							X:this.X,
+							Y:this.Y,
+							forecast:this.forecast,
+						}
+						axios.post(url,dataObj).then( resq => {
+							this.listX=resq.data.ListX,
+							this.listY2=resq.data.ListY2,
+							this.listY1=resq.data.ListY1,
+							this.answer=resq.data.res,
+							this.fx=resq.data.fx,
+							this.echartsInit()
+						})
+					},
+					Set1:function(){
+						this.InputM="1";
+					},
+					Set2:function(){
+						this.InputM="2";
+					},
+					echartsInit(){
+					console.log(this.listY1)
+					console.log(this.listY2)
+					let myChart = echarts.init(document.getElementById(("draw")))
+					var option = {
+						title:{
+							text: '粮食产量预测'
+						},
+						tooltip:{
+							trigger: 'axis'
+						},
+						legend:{
+							data:['粮食产量','拟合二乘函数']
+						},
+						xAxis:{
+							type: 'category',
+							data: this.listX,
+							name:"年份",
+							nameTextStyle:{
+								fontWeight: 600,
+								fontSzie: 18
+							}
+						},
+						yAxis:{
+							type: "value",
+							name: "粮食产量",
+							nameTextStyle:{
+								fontWeight: 600,
+								fontSzie: 18
+							},
+							min:(value)=>{
+								return value.min
+							},
+							max:(value)=>{
+								//return (parseInt(value.max * 10000) / 10000).toFixed(4)
+								return value.max
+							}
+						},
+						series:[
+							{
+								name:'粮食产量',
+								type:'line',//bar
+								data:this.listY1
+							},
+							{
+								name:'拟合二乘函数',
+								type:'line',
+								data:this.listY2
+							}
+						],
+						axisTick: {
+						  alignWithLabel: true,
+						},
+ 						grid: {
+						  left: "10%",
+						  containLabel: true,
+						  bottom: "20%",
+						  right: "10%",
+						}, 
+					}
+					myChart.setOption(option);
+				}
+				},
+			})
+			
+		</script>
+	</body>
+</html>
+
