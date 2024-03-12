@@ -628,7 +628,7 @@ body::after {
   position: fixed;
   height: 100vh;
   z-index: -2;
-  background: url("https://cdn.jsdelivr.net/gh/TheShineyue/cdn@1.3/360/2000691.jpg") no-repeat center/cover;
+  background: url("https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/2000691.jpg") no-repeat center/cover;
 }
 .container {
   white-space: normal;
@@ -933,7 +933,7 @@ body::after {
   z-index: 0;
   width: 100%;
   height: 100%;
-  background: url("https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed/img/长沙.jpg") no-repeat center/cover;
+  background: url("https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/长沙.jpg") no-repeat center/cover;
 }
 .header-banner-info {
   position: absolute;
