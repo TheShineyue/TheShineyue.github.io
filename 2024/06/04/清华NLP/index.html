@@ -1,0 +1,591 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="清华刘知远大语言模型公开课笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NLP学习">
+<meta property="og:url" content="http://example.com/2024/06/04/%E6%B8%85%E5%8D%8ENLP/index.html">
+<meta property="og:site_name" content="Liyue">
+<meta property="og:description" content="清华刘知远大语言模型公开课笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/direct/208665145c294afaa884157a93326aa6.png">
+<meta property="og:image" content="http://example.com/image-1.png">
+<meta property="og:image" content="http://example.com/image-3.png">
+<meta property="og:image" content="http://example.com/image-4.png">
+<meta property="og:image" content="http://example.com/image-5.png">
+<meta property="og:image" content="http://example.com/image-6.png">
+<meta property="og:image" content="http://example.com/image-7.png">
+<meta property="og:image" content="http://example.com/image-8.png">
+<meta property="og:image" content="http://example.com/image-9.png">
+<meta property="og:image" content="http://example.com/image-10.png">
+<meta property="og:image" content="http://example.com/image-11.png">
+<meta property="og:image" content="http://example.com/image-12.png">
+<meta property="og:image" content="http://example.com/image-13.png">
+<meta property="og:image" content="http://example.com/image-14.png">
+<meta property="og:image" content="http://example.com/image-15.png">
+<meta property="og:image" content="http://example.com/image-16.png">
+<meta property="og:image" content="http://example.com/image-17.png">
+<meta property="og:image" content="http://example.com/image-26.png">
+<meta property="og:image" content="http://example.com/image-20.png">
+<meta property="og:image" content="http://example.com/image-21.png">
+<meta property="og:image" content="http://example.com/image-22.png">
+<meta property="og:image" content="http://example.com/image-23.png">
+<meta property="og:image" content="http://example.com/image-24.png">
+<meta property="og:image" content="http://example.com/image-25.png">
+<meta property="og:image" content="http://example.com/image-27.png">
+<meta property="article:published_time" content="2024-06-04T14:25:36.153Z">
+<meta property="article:modified_time" content="2024-07-01T12:34:37.498Z">
+<meta property="article:author" content="TheShineyue">
+<meta property="article:tag" content="nlp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/direct/208665145c294afaa884157a93326aa6.png"><title>NLP学习 | Liyue</title><link ref="canonical" href="http://example.com/2024/06/04/%E6%B8%85%E5%8D%8ENLP/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 7.1.1"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/links/"><span class="header-nav-menu-item__icon"><i class="fas fa-link"></i></span><span class="header-nav-menu-item__text">友链</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Liyue</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">NLP学习</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2024-06-04</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2024-07-01</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>清华刘知远大语言模型公开课笔记</p>
+<span id="more"></span>
+
+        <h1 id="基础"   >
+          <a href="#基础" class="heading-link"><i class="fas fa-link"></i></a><a href="#基础" class="headerlink" title="基础"></a>基础</h1>
+      
+        <h2 id="基本任务"   >
+          <a href="#基本任务" class="heading-link"><i class="fas fa-link"></i></a><a href="#基本任务" class="headerlink" title="基本任务"></a>基本任务</h2>
+      <ol>
+<li>词性标注（Part of speech）</li>
+<li>实体识别（Named entity recognition）</li>
+<li>共指消解（Co-reference）<br>代指识别</li>
+<li>依赖关系（Basic dependencies）</li>
+</ol>
+
+        <h2 id="知识图谱"   >
+          <a href="#知识图谱" class="heading-link"><i class="fas fa-link"></i></a><a href="#知识图谱" class="headerlink" title="知识图谱"></a>知识图谱</h2>
+      <p>表示实体关系的图网络</p>
+
+        <h2 id="词表示"   >
+          <a href="#词表示" class="heading-link"><i class="fas fa-link"></i></a><a href="#词表示" class="headerlink" title="词表示"></a>词表示</h2>
+      
+        <h3 id="独热编码"   >
+          <a href="#独热编码" class="heading-link"><i class="fas fa-link"></i></a><a href="#独热编码" class="headerlink" title="独热编码"></a>独热编码</h3>
+      <p>对于文档的表示还是比较好用的<br>表示词的时候，无法计算两个词词向量的相似度</p>
+
+        <h3 id="上下文表示"   >
+          <a href="#上下文表示" class="heading-link"><i class="fas fa-link"></i></a><a href="#上下文表示" class="headerlink" title="上下文表示"></a>上下文表示</h3>
+      <p>一个词的词义和这个词经常出现位置的上下文有着密切关系<br>向量：每一维表示这个词的上下文出现了多少次、重要性如何<br>eg:<br>stars &#x3D; (38[shining], 45[night])<br>可以计算相似度<br>缺点</p>
+<ol>
+<li>词表扩大后过于占用空间</li>
+<li>出现次数少的词的向量会比较稀疏，表现能力弱</li>
+</ol>
+
+        <h3 id="Word-Embedding"   >
+          <a href="#Word-Embedding" class="heading-link"><i class="fas fa-link"></i></a><a href="#Word-Embedding" class="headerlink" title="Word Embedding"></a>Word Embedding</h3>
+      <p>用空间里的某个位置表示一个词</p>
+
+        <h2 id="Language-Model"   >
+          <a href="#Language-Model" class="heading-link"><i class="fas fa-link"></i></a><a href="#Language-Model" class="headerlink" title="Language Model"></a>Language Model</h2>
+      <p>任务：</p>
+<ol>
+<li>计算一个词序列是否是一个合法的语言序列（联合概率）</li>
+<li>根据前文预测下一个词</li>
+</ol>
+<p>基本假设：<br>一个未来的词只会受前面的词的影响 条件概率之累积</p>
+
+        <h3 id="N-gram"   >
+          <a href="#N-gram" class="heading-link"><i class="fas fa-link"></i></a><a href="#N-gram" class="headerlink" title="N-gram"></a>N-gram</h3>
+      <p>4-gram: 前面出现了三个词，计算第四个词的概率</p>
+
+        <h3 id="神经网络"   >
+          <a href="#神经网络" class="heading-link"><i class="fas fa-link"></i></a><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h3>
+      <p>把词表示成低维向量，然后拼接成上下文向量，再进行非线性转换</p>
+
+        <h1 id="神经网络-1"   >
+          <a href="#神经网络-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#神经网络-1" class="headerlink" title="神经网络"></a>神经网络</h1>
+      
+        <h2 id="基本组成元素"   >
+          <a href="#基本组成元素" class="heading-link"><i class="fas fa-link"></i></a><a href="#基本组成元素" class="headerlink" title="基本组成元素"></a>基本组成元素</h2>
+      <p><img src="https://img-blog.csdnimg.cn/direct/208665145c294afaa884157a93326aa6.png" alt="神经元"></p>
+<p>接受n个输入，在参数w和b和激活函数的影响下得到输出。w和x都是向量。</p>
+<p><img src="/image-1.png" alt="alt text"></p>
+<p>多个神经元的组合，得到了一层的神经网络<br>W为矩阵，b为向量<br>激活函数将会对每一个值进行计算</p>
+<p><img src="/image-3.png" alt="alt text"></p>
+<p>多层神经网络</p>
+<p><img src="/image-4.png" alt="alt text"></p>
+<p>如果激活函数不存在，将会变成线性变换，多层毫无意义，表达效果一致。</p>
+<p><img src="/image-5.png" alt="alt text"></p>
+<p><img src="/image-6.png" alt="alt text"></p>
+<p>添加输出层得到完整的神经网络</p>
+<ol>
+<li>线性输出<br>在输出层加一个线性层，去预测一个具体的连续值，回归（根据输入数据拟合具体的值）</li>
+</ol>
+<p><img src="/image-7.png" alt="alt text"></p>
+<ol start="2">
+<li>sigmoid<br>添加线性层的基础上使用sigmoid激活函数，把输出压到0到1区间内，解决2分类的问题<br>输出y代表符合当前分类的概率，1-y代表符合另一类的概率</li>
+<li>softmax<br>多分类问题</li>
+</ol>
+<p><img src="/image-8.png" alt="alt text"></p>
+<p>对于最后一个隐藏层，定义普通的分类数相同维度的线性层，然后使用softmax激活函数，计算他们的e的幂次（去除负数），然后求平均，得到属于某一类别的概率。</p>
+
+        <h2 id="如何训练神经网络"   >
+          <a href="#如何训练神经网络" class="heading-link"><i class="fas fa-link"></i></a><a href="#如何训练神经网络" class="headerlink" title="如何训练神经网络"></a>如何训练神经网络</h2>
+      <p>以降低损失函数为目标调整<br>均方差、交叉熵</p>
+
+        <h3 id="梯度下降法"   >
+          <a href="#梯度下降法" class="heading-link"><i class="fas fa-link"></i></a><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a>梯度下降法</h3>
+      <p>向损失函数下降最快的方向移动一步<br>因为我们需要降低，所以要向梯度的反方向移动，所以要用负号</p>
+
+        <h3 id="计算梯度"   >
+          <a href="#计算梯度" class="heading-link"><i class="fas fa-link"></i></a><a href="#计算梯度" class="headerlink" title="计算梯度"></a>计算梯度</h3>
+      <p><img src="/image-9.png" alt="alt text"></p>
+<p>m个神经元的一层得到n维输出，每行是一个神经元的偏导计算</p>
+
+        <h4 id="反向传播"   >
+          <a href="#反向传播" class="heading-link"><i class="fas fa-link"></i></a><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h4>
+      <p><img src="/image-10.png" alt="alt text"></p>
+<p><img src="/image-11.png" alt="alt text"></p>
+<p><img src="/image-12.png" alt="alt text"></p>
+<p><img src="/image-13.png" alt="alt text"></p>
+<p>若计算输入参与了多次，可累加</p>
+
+        <h2 id="Word2Vec"   >
+          <a href="#Word2Vec" class="heading-link"><i class="fas fa-link"></i></a><a href="#Word2Vec" class="headerlink" title="Word2Vec"></a>Word2Vec</h2>
+      
+        <h3 id="滑动窗口"   >
+          <a href="#滑动窗口" class="heading-link"><i class="fas fa-link"></i></a><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3>
+      <p>文本中连续的一段词，中间的被称作目标词，其他的是上下文</p>
+
+        <h3 id="cbow"   >
+          <a href="#cbow" class="heading-link"><i class="fas fa-link"></i></a><a href="#cbow" class="headerlink" title="cbow"></a>cbow</h3>
+      <p>根据输入的上下文预测当前词</p>
+<p>假设：上下文词的顺序不影响预测</p>
+<p><img src="/image-14.png" alt="alt text"></p>
+<p>n分类问题（n:词表大小）</p>
+
+        <h3 id="skip-gram"   >
+          <a href="#skip-gram" class="heading-link"><i class="fas fa-link"></i></a><a href="#skip-gram" class="headerlink" title="skip-gram"></a>skip-gram</h3>
+      <p>根据当前词预测上下文</p>
+<p>模型同时预测多个词不大容易，分解问题，逐个预测概率</p>
+<p><img src="/image-15.png" alt="alt text"></p>
+
+        <h3 id="提高效率"   >
+          <a href="#提高效率" class="heading-link"><i class="fas fa-link"></i></a><a href="#提高效率" class="headerlink" title="提高效率"></a>提高效率</h3>
+      <ol>
+<li>负采样</li>
+<li>分层softmax</li>
+</ol>
+<p>不把整个词表去做softmax，采样一部分（根据词频）</p>
+
+        <h2 id="RNN"   >
+          <a href="#RNN" class="heading-link"><i class="fas fa-link"></i></a><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h2>
+      <p><img src="/image-16.png" alt="alt text"></p>
+
+        <h2 id="GRN"   >
+          <a href="#GRN" class="heading-link"><i class="fas fa-link"></i></a><a href="#GRN" class="headerlink" title="GRN"></a>GRN</h2>
+      <p>门控机制：对输入信息进行筛选<br>更新门：新的状态获得<br>重置门：去除之前状态的影响</p>
+
+        <h2 id="LSTM"   >
+          <a href="#LSTM" class="heading-link"><i class="fas fa-link"></i></a><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2>
+      <ul>
+<li>遗忘门</li>
+<li>输出门 过滤一些信息</li>
+<li>输入门 加上新信息</li>
+</ul>
+
+        <h2 id="双向RNN"   >
+          <a href="#双向RNN" class="heading-link"><i class="fas fa-link"></i></a><a href="#双向RNN" class="headerlink" title="双向RNN"></a>双向RNN</h2>
+      <p><img src="/image-17.png" alt="alt text"><br>得到过去和未来的信息</p>
+
+        <h2 id="Transformer"   >
+          <a href="#Transformer" class="heading-link"><i class="fas fa-link"></i></a><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h2>
+      
+        <h3 id="注意力机制"   >
+          <a href="#注意力机制" class="heading-link"><i class="fas fa-link"></i></a><a href="#注意力机制" class="headerlink" title="注意力机制"></a>注意力机制</h3>
+      <p>信息瓶颈： 源句子编码成的向量需要表示所有的信息</p>
+<p>注意力： 在decoder的每一步，专注于源序列的特定部分</p>
+<p>用s1选择encoder端的数据</p>
+<ol>
+<li>用s1和之前的隐向量进行点积，得到一些标量（注意力分数），代表与hi的相似程度</li>
+<li>用softmax将注意力分数转换为概率分布</li>
+<li>用得到的注意力分数的概率分布对原有的hi进行加权平均</li>
+</ol>
+<p><img src="/image-26.png" alt="alt text"></p>
+<p><img src="/image-20.png" alt="alt text"></p>
+<p>把注意力分数放入decoder端，帮助生成时关注特定的位置</p>
+<p><img src="/image-21.png" alt="alt text"></p>
+<p>输出是加权求和</p>
+
+        <h3 id="结构"   >
+          <a href="#结构" class="heading-link"><i class="fas fa-link"></i></a><a href="#结构" class="headerlink" title="结构"></a>结构</h3>
+      <p><img src="/image-22.png" alt="alt text"></p>
+<p>input &#x3D; PE + BPE</p>
+
+        <h4 id="BPE"   >
+          <a href="#BPE" class="heading-link"><i class="fas fa-link"></i></a><a href="#BPE" class="headerlink" title="BPE"></a>BPE</h4>
+      <p>byte pair encoding</p>
+<p>不断的把连续几个词单独放入词表</p>
+<p>为了解决出现了没有在词表里的词的问题</p>
+
+        <h4 id="PE"   >
+          <a href="#PE" class="heading-link"><i class="fas fa-link"></i></a><a href="#PE" class="headerlink" title="PE"></a>PE</h4>
+      <p>positional encoding<br>加入位置向量，让不同位置的相同单词得到不同的表示</p>
+<p><img src="/image-23.png" alt="alt text"></p>
+
+        <h3 id="Transformer-Block"   >
+          <a href="#Transformer-Block" class="heading-link"><i class="fas fa-link"></i></a><a href="#Transformer-Block" class="headerlink" title="Transformer Block"></a>Transformer Block</h3>
+      <p>Encoder</p>
+<p><img src="/image-24.png" alt="alt text"></p>
+<p><img src="/image-25.png" alt="alt text"></p>
+<p>Decoder</p>
+<p><img src="/image-27.png" alt="alt text"></p>
+<p>保证是顺序生成的</p>
+
+        <h2 id="Bert"   >
+          <a href="#Bert" class="heading-link"><i class="fas fa-link"></i></a><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h2>
+      <p>具有双向性，模型会同时考虑序列中每个单词的左右上下文信息。</p>
+<p>通过完型填空的方式</p>
+<p>随机选择15%的词汇用于预测</p>
+<ul>
+<li>80% 用MASK替换</li>
+<li>10% 用任意词</li>
+<li>10% 保持不变</li>
+</ul>
+<p>Next Sentence Prediction<br>预测两句话是否是上下文，段落重排序</p>
+
+        <h1 id="Transformers"   >
+          <a href="#Transformers" class="heading-link"><i class="fas fa-link"></i></a><a href="#Transformers" class="headerlink" title="Transformers"></a>Transformers</h1>
+      
+        <h2 id="Pipeline"   >
+          <a href="#Pipeline" class="heading-link"><i class="fas fa-link"></i></a><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from transformers import pipeline</span><br><span class="line">classifier = pipeline(&#x27;sentiment-analysis&#x27;)</span><br><span class="line">classifier(&#x27;I love you!&#x27;)</span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from transformers import pipeline</span><br><span class="line">question_answerer = pipeline(&#x27;question-answering&#x27;)</span><br><span class="line">question_answerer(&#123;</span><br><span class="line">  &#x27;question&#x27; : &#x27;What is the name of the repository ?&#x27;,</span><br><span class="line">  &#x27;context&#x27; : &#x27;Pipeline has been included in the huggingface / transformers repository&#x27;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="Tokenization"   >
+          <a href="#Tokenization" class="heading-link"><i class="fas fa-link"></i></a><a href="#Tokenization" class="headerlink" title="Tokenization"></a>Tokenization</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from transformers import AutoTokenizer</span><br><span class="line">tokenizer = AutoTokenizer.from_pretrained(&#x27;model_name&#x27;)</span><br><span class="line">inputs = tokenizer(&#x27;I love you&#x27;)</span><br></pre></td></tr></table></div></figure>
+
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://example.com">TheShineyue</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://example.com/2024/06/04/%E6%B8%85%E5%8D%8ENLP/">http://example.com/2024/06/04/%E6%B8%85%E5%8D%8ENLP/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/nlp/">nlp</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2024/06/22/transformer/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">tranformer</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2024/03/13/Selfrag_Lora/"><span class="paginator-prev__text">用Lora微调SelfRAG-7B</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">
+          基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.1.</span> <span class="toc-text">
+          基本任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1"><span class="toc-number">1.2.</span> <span class="toc-text">
+          知识图谱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%8D%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.3.</span> <span class="toc-text">
+          词表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8B%AC%E7%83%AD%E7%BC%96%E7%A0%81"><span class="toc-number">1.3.1.</span> <span class="toc-text">
+          独热编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.3.2.</span> <span class="toc-text">
+          上下文表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Word-Embedding"><span class="toc-number">1.3.3.</span> <span class="toc-text">
+          Word Embedding</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Language-Model"><span class="toc-number">1.4.</span> <span class="toc-text">
+          Language Model</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#N-gram"><span class="toc-number">1.4.1.</span> <span class="toc-text">
+          N-gram</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-number">1.4.2.</span> <span class="toc-text">
+          神经网络</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-1"><span class="toc-number">2.</span> <span class="toc-text">
+          神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90%E5%85%83%E7%B4%A0"><span class="toc-number">2.1.</span> <span class="toc-text">
+          基本组成元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-number">2.2.</span> <span class="toc-text">
+          如何训练神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95"><span class="toc-number">2.2.1.</span> <span class="toc-text">
+          梯度下降法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%A2%AF%E5%BA%A6"><span class="toc-number">2.2.2.</span> <span class="toc-text">
+          计算梯度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">
+          反向传播</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Word2Vec"><span class="toc-number">2.3.</span> <span class="toc-text">
+          Word2Vec</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3"><span class="toc-number">2.3.1.</span> <span class="toc-text">
+          滑动窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cbow"><span class="toc-number">2.3.2.</span> <span class="toc-text">
+          cbow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#skip-gram"><span class="toc-number">2.3.3.</span> <span class="toc-text">
+          skip-gram</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87"><span class="toc-number">2.3.4.</span> <span class="toc-text">
+          提高效率</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RNN"><span class="toc-number">2.4.</span> <span class="toc-text">
+          RNN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GRN"><span class="toc-number">2.5.</span> <span class="toc-text">
+          GRN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LSTM"><span class="toc-number">2.6.</span> <span class="toc-text">
+          LSTM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E5%90%91RNN"><span class="toc-number">2.7.</span> <span class="toc-text">
+          双向RNN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transformer"><span class="toc-number">2.8.</span> <span class="toc-text">
+          Transformer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="toc-number">2.8.1.</span> <span class="toc-text">
+          注意力机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84"><span class="toc-number">2.8.2.</span> <span class="toc-text">
+          结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BPE"><span class="toc-number">2.8.2.1.</span> <span class="toc-text">
+          BPE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PE"><span class="toc-number">2.8.2.2.</span> <span class="toc-text">
+          PE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Transformer-Block"><span class="toc-number">2.8.3.</span> <span class="toc-text">
+          Transformer Block</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bert"><span class="toc-number">2.9.</span> <span class="toc-text">
+          Bert</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Transformers"><span class="toc-number">3.</span> <span class="toc-text">
+          Transformers</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pipeline"><span class="toc-number">3.1.</span> <span class="toc-text">
+          Pipeline</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tokenization"><span class="toc-number">3.2.</span> <span class="toc-text">
+          Tokenization</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/小狗熬夜.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">It's 95 percent pain</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">28</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>TheShineyue</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v7.1.1</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script type="application/json" src="/search.json"></script></body></html>
