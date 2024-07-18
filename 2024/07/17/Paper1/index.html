@@ -1,0 +1,440 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="论文阅读 Evaluating and Mitigating Number Hallucinations in LargeVision-Language Models: A Consistency Perspective">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读 Evaluating and Mitigating Number Hallucinations in Large">
+<meta property="og:url" content="http://example.com/2024/07/17/Paper1/index.html">
+<meta property="og:site_name" content="Liyue">
+<meta property="og:description" content="论文阅读 Evaluating and Mitigating Number Hallucinations in LargeVision-Language Models: A Consistency Perspective">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240718211727.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240718213315.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240718222244.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240718223246.png">
+<meta property="article:published_time" content="2024-07-17T08:11:37.742Z">
+<meta property="article:modified_time" content="2024-07-18T14:35:45.006Z">
+<meta property="article:author" content="TheShineyue">
+<meta property="article:tag" content="nlp">
+<meta property="article:tag" content="paper">
+<meta property="article:tag" content="hallucination">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240718211727.png"><title>论文阅读 Evaluating and Mitigating Number Hallucinations in Large | Liyue</title><link ref="canonical" href="http://example.com/2024/07/17/Paper1/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 7.1.1"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/links/"><span class="header-nav-menu-item__icon"><i class="fas fa-link"></i></span><span class="header-nav-menu-item__text">友链</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Liyue</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">论文阅读 Evaluating and Mitigating Number Hallucinations in Large</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2024-07-17</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2024-07-18</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>论文阅读 Evaluating and Mitigating Number Hallucinations in Large<br>Vision-Language Models: A Consistency Perspective </p>
+<span id="more"></span>
+
+
+        <h1 id="翻译"   >
+          <a href="#翻译" class="heading-link"><i class="fas fa-link"></i></a><a href="#翻译" class="headerlink" title="翻译"></a>翻译</h1>
+      
+        <h2 id="Abstract"   >
+          <a href="#Abstract" class="heading-link"><i class="fas fa-link"></i></a><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2>
+      <p>Large vision language models have demonstrated remarkable efficacy in addressing challenges related to both textual and visual content.<br>Nevertheless, these models are susceptible to<br>various hallucinations. In this paper, we focus<br>on a new form of hallucination, specifically<br>termed as number hallucination, which denotes<br>instances where models fail to accurately identify the quantity of objects in an image. We establish a dataset and employ evaluation metrics<br>to assess number hallucination, revealing a pronounced prevalence of this issue across mainstream large vision language models (LVLMs).<br>Additionally, we delve into a thorough analysis<br>of number hallucination, examining inner and<br>outer inconsistency problem from two related<br>perspectives. We assert that this inconsistency<br>is one cause of number hallucination and propose a consistency training method as a means<br>to alleviate such hallucination, which achieves<br>an average improvement of 8% compared with<br>direct finetuning method.</p>
+<p>大规模视觉语言模型（LVLMs）在处理文本和视觉内容方面表现出色，但仍然容易出现各种幻觉。其中一种新形式的幻觉被称为“数字幻觉”，指的是模型在识别图像中物体数量时出现的问题。研究人员建立了一个数据集，并使用评估指标来评估数字幻觉，结果显示这一问题在主流的LVLMs中普遍存在。此外，研究还从两个相关的角度对数字幻觉进行了深入分析，探讨了内部和外部不一致性问题。研究认为这种不一致性是数字幻觉的一个原因，并提出了一种一致性训练方法，以减轻这种幻觉，该方法相对于直接微调方法平均改善了8%</p>
+
+        <h2 id="Introduction"   >
+          <a href="#Introduction" class="heading-link"><i class="fas fa-link"></i></a><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2>
+      <p>Large language models (LLMs) have demonstrated<br>remarkable capabilities in solving diverse problems<br>by adhering to human instructions. Consequently,<br>researchers have undertaken numerous endeavors<br>to integrate multiple modalities into a single large<br>language model, with the most successful being<br>large vision-language models (LVLMs). LVLMs<br>are designed to process both images and text as<br>input and generate text-only responses. Among all<br>LVLMs, GPT4-V(OpenAI et al., 2023)stands out<br>as the most powerful one, showcasing extraordinary proficiency in addressing various vision-text<br>challenges, including tasks such as vision question<br>answering (VQA) and image captioning.</p>
+<p>大型语言模型（llm）在通过坚持人类指令来解决各种问题方面表现出了非凡的能力。因此，研究人员已经进行了许多努力，将多种模式集成到一个单一的大型语言模型中，其中最成功的是大型视觉语言模型（lvlm）。lvlm被设计为处理图像和文本作为输入，并生成仅限文本的响应。在所有的lvlm中，GPT4-V（OpenAI et al.，2023）是最强大的一个，显示了在解决各种视觉文本挑战方面的非凡熟练程度，包括视觉问题回答（VQA）和图像字幕等任务。</p>
+<p>Nevertheless, despite the success of large visionlanguage models, they still grapple with several<br>challenges, with hallucination being the most severe among them. In this context, hallucination<br>primarily pertains to the discrepancy between the<br>model’s output and the content present in the input image. Among various forms of hallucination,<br>object hallucination, which centers on determining whether an object is present in the image, has<br>been extensively discussed. Numerous methods for<br>evaluation and mitigation have been proposed to<br>tackle this particular challenge(Zhou et al. (2023),<br>Leng et al. (2023), Zhai et al. (2023)). The majority of prior studies employ binary classification<br>questions (answered with ‘yes’ or ‘no’) to assess<br>the model’s performance(Li et al. (2023b), Wang<br>et al. (2023b)).</p>
+<p>然而，尽管大型远见语言模型取得了成功，但他们仍在应对一些挑战，幻觉是其中最严重的。在这种情况下，幻觉主要涉及到模型的输出和输入图像中出现的内容之间的差异。在各种形式的幻觉中，物体幻觉，它主要是确定一个物体是否存在于图像中，已经被广泛讨论。为了应对这一特殊挑战，已经提出了许多评估和缓解的方法（Zhou等人（2023），Leng等人（2023），Zhai等人（2023））。之前的大多数研究采用二元分类问题（回答为“是”或“否”）来评估模型的性能（Li等人（2023b），Wang等人（2023b））。</p>
+<p>While simple object hallucination has been extensively studied, a more nuanced and broadly applicable discussion on object hallucination is still<br>lacking. For a comprehensive understanding of an<br>image, the model must not only discern the presence of a specific object but also accurately determine the quantity of that particular object. Without<br>this capability, the model cannot fully comprehend<br>the image, thereby leaving the door open to potential risks of other forms of hallucination.</p>
+<p>虽然简单的物体幻觉已经被广泛的研究，但关于物体幻觉更细致和更广泛适用的讨论仍然缺乏。为了全面理解一幅图像，模型不仅必须识别一个特定物体的存在，而且必须准确地确定该特定物体的数量。如果没有这种能力，该模型就不能完全理解图像，从而为其他形式的幻觉的潜在风险敞开了大门。</p>
+<p>In this study, we focus on investigating a new<br>form of object hallucination, specifically termed<br>as number hallucination. Number hallucination occurs when models are unable to accurately identify<br>the correct quantity of a particular type of object in<br>an image. Table 1 illustrates two typical examples<br>of number hallucination. We also conduct detailed<br>experiments and point that using binary classification questions is not enough to fully assess the<br>model’s performance. Instead, we choose to use<br>a direct inquiry to the model about the number of<br>a specific object in an image, utilizing prompts to<br>control its output. This approach is more aligned<br>with real-world scenarios and facilitates a more<br>quantitative evaluation of model performance.</p>
+<p>在这项研究中，我们专注于调查一种新形式的物体幻觉，特别被称为数字幻觉。当模型无法准确识别图像中特定类型物体的正确数量时，就会产生数字幻觉。表1说明了数字幻觉的两个典型例子。我们还进行了详细的实验，并指出使用二元分类问题并不足以充分评估模型的性能。相反，我们选择使用一个直接的查询到一个模型，关于一个图像中的一个特定对象的数量，利用提示来控制其输出。这种方法更符合真实世界的场景，并有利于对模型性能进行更定量的评估。</p>
+<p>Furthermore, in the context of the counting task,<br>there exist multiple related tasks that help reflect<br>overall performance such as binary classification questions (Section 3.1) and comparative questions<br>(Section 3.2). Naturally we would like to investigate the consistency between these tasks to attain a<br>more comprehensive understanding of number hallucination. We find that inconsistency is a common<br>problem that appears despite task format. Building<br>upon these analyses, we introduce a consistency<br>training method to enhance the model’s capability.<br>Our findings demonstrate that finetuning the model<br>from different perspectives yields superior results<br>compared to direct finetuning on the single primary<br>task. This methodological insight is intriguing and<br>holds potential for extension to various tasks that<br>necessitate finetuning of LVLMs.</p>
+<p>此外，在计数任务的上下文中，存在多个有助于反映整体性能的相关任务，如二进制分类问题（第3.1节）和比较问题（第3.2节）。自然，我们想调查这些任务之间的一致性，以获得对数字幻觉的更全面的理解。我们发现，不一致性是一个常见的问题，尽管任务格式。在此基础上，我们引入了一种一致性训练方法来增强模型的能力。我们的研究结果表明，与直接微调模型相比，从不同的角度微调模型会产生更好的结果。这种方法上的见解是有趣的，并有可能扩展到需要对lvlm进行微调的各种任务。</p>
+<p>To summarize, our contributions are listed as<br>follows:</p>
+<p>• We introduce a new form of object hallucination, specifically referred to as number hallucination, and present a dataset with 20k pieces<br>of data along with corresponding evaluation<br>results. We point out that all LVLMs we investigated have an average MAE of around 2<br>on this dataset, which is disasterous. To the<br>best of our knowledge, our study represents<br>the first comprehensive and quantitative exploration of this particular type of hallucination.</p>
+<p>• We conduct a detailed analysis of number hallucinations by exploring the inner and outer<br>inconsistency from different perspectives. We<br>point out that all models suffer from both<br>inner and outer inconsistencies despite task<br>or prompt format, which reveals the model’s<br>uncertainty and confusion and is a potential<br>cause of number hallucination.</p>
+<p>• We propose a consistency training method<br>which is extendable to any large visionlanguage model (LVLM). We substantiate the<br>effectiveness of this method through our experiments by averagely 8% compared with<br>directly finetuning methods.</p>
+<p>我们引入了一种新的物体幻觉形式，特别是被称为数字幻觉，并提供了一个包含20k条数据以及相应的评估结果的数据集。我们指出，我们调查的所有lvlm在这个数据集上的平均MAE约为2，这是可怕的。据我们所知，我们的研究是对这种特殊类型的幻觉的首次全面和定量的探索。</p>
+<p>我们从不同的角度探讨内在和外部的不一致性，对数量幻觉进行了详细的分析。我们指出，无论任务或提示格式，所有模型都存在内部和外部的不一致，这揭示了模型的不确定性和混乱，是数字幻觉的潜在原因。</p>
+<p>我们提出了一种可扩展到任何大型视觉语言模型（LVLM）的一致性训练方法。与直接微调方法相比，我们通过平均8%的实验证实了该方法的有效性。</p>
+
+        <h2 id="Evaluating-Number-Hallucination-in-LVLMs"   >
+          <a href="#Evaluating-Number-Hallucination-in-LVLMs" class="heading-link"><i class="fas fa-link"></i></a><a href="#Evaluating-Number-Hallucination-in-LVLMs" class="headerlink" title="Evaluating Number Hallucination in LVLMs"></a>Evaluating Number Hallucination in LVLMs</h2>
+      <p>In this section, we begin by providing a concise<br>definition of number hallucination in large visionlanguage models (LVLMs) and outline our evaluation settings for assessing this phenomenon. Subsequently, we present the results of our evaluation<br>and provide brief discussions on the findings.</p>
+<p>在本节中，我们首先提供了大型视觉语言模型（LVLMs）中的数字幻觉的简明定义，并概述了我们评估这一现象的评估设置。随后，我们提出我们的评估结果，并对调查结果进行简短的讨论。</p>
+
+        <h3 id="Task-Definition"   >
+          <a href="#Task-Definition" class="heading-link"><i class="fas fa-link"></i></a><a href="#Task-Definition" class="headerlink" title="Task Definition"></a>Task Definition</h3>
+      <p>Number hallucination occurs when models fail to<br>accurately determine the correct quantity of a specific object category in a given image. Formally,<br>for an image i and given object c, let nc denote the<br>ground truth number of c visible in i. If a model<br>responds with n<br>′<br>(&#x3D; nc) c in i (in any format), we<br>classify the model as suffering from number hallucination.</p>
+<p>当模型不能准确地确定给定图像中特定对象类别的正确数量时，就会产生数字幻觉。形式上，对于一个图像i和给定的对象c，让nc表示在i中可见的c的地面真数。如果一个模型在i中（任何格式）响应n‘c（&#x3D;nc）c，我们将该模型归类为患有数字幻觉。</p>
+<p>As observed, number hallucination can manifest<br>in various vision-language tasks, including image<br>captioning and vision-question answering (VQA).<br>For the sake of simplicity in quantitative evaluation,<br>we opt for VQA as the foundational format for<br>assessing number hallucinations. For any given<br>image i and object c, the question is formatted as:<br>Prompt: How many c are there in this picture?<br>Answer in a single number.</p>
+<p>据观察，数字幻觉可以在各种视觉语言任务中表现出来，包括图像字幕和视觉问题回答（VQA）。为了定量评估的简单性，我们选择VQA作为评估幻觉数量的基本格式。对于任何给定的图像i和对象c，问题的格式化为：提示：在这张图片中有多少个c？用一个数字来回答。</p>
+<p>This task format offers several advantages. In<br>comparison to caption-based evaluation methods,<br>this format makes it considerably easier to extract<br>meaningful responses (numbers) and provides a<br>clearer indication of the model’s performance. Captions may segregate the same object into different<br>sentences or overlook existing objects, even when<br>the model has detected them. These complexities<br>in captions add extra challenges to the evaluation<br>of number hallucinations.</p>
+<p>caption-based evaluation methods是用于评估图像描述质量的方法 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/60deff0f64e1" >link</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>这种任务格式有几个优点。与基于标题的评估方法相比，这种格式使提取有意义的响应（数字）变得相当容易，并更清晰地提供了模型性能的指示。标题可能会将同一个对象分离到不同的句子中，或者忽略现有的对象，即使模型已经检测到它们。标题中的这些复杂性给对幻觉数量的评估增加了额外的挑战。</p>
+<p>In contrast to binary classification-based methods, firstly, this approach aligns more closely with<br>real-life scenarios and provides a clearer insight<br>into the model’s view on this task. Secondly, as can be seen in Table 3, all models exhibit a notable inclination to answer ‘Yes’ more frequently<br>than ‘No’. This observation underscores the inherent bias of all models toward answering ‘Yes’,<br>making evaluation methods employing binary classification questions less reliable. Binary classification questions also suffer from severe inconsistency<br>problems, which will be further discussed in Section 3.1. Lastly, binary classification questions fail<br>to capture the severity of hallucinations. For instance, mistaking 4 cats as 3 cats may be relatively<br>acceptable, but mistaking 4 cats as 10 cats is disastrous and entirely unacceptable. It is difficult<br>for binary classification questions to delineate this<br>fine-grained difference.</p>
+<p>与基于二元分类的方法相比，首先，这种方法更接近于<br>并提供了更清晰的见解<br>到该任务的模型视图中。其次，如表3所示，所有模型都明显倾向于更频繁地回答“是”<br>不是“不”。这一观察结果强调了所有模型对回答“是”的固有偏见，<br>使采用二元分类问题的评价方法可靠性降低。二元分类问题也存在严重的不一致性<br>问题，这将在3.1节进一步讨论。最后，二元分类题失败<br>捕捉幻觉的严重性。例如，将4只猫误认为3只猫可能是相对的<br>可以接受，但把4只猫当成10只猫是灾难性的，完全不能接受。这很难<br>对于二元分类问题来描绘这一点<br>细粒度的不同。</p>
+
+        <h3 id="Dataset-and-Evaluation-Metrics"   >
+          <a href="#Dataset-and-Evaluation-Metrics" class="heading-link"><i class="fas fa-link"></i></a><a href="#Dataset-and-Evaluation-Metrics" class="headerlink" title="Dataset and Evaluation Metrics"></a>Dataset and Evaluation Metrics</h3>
+      <p>Dataset MSCOCO (Lin et al., 2014) is a largescale object detection, segmentation, and captioning dataset. All tests in this study are conducted<br>on the MSCOCO2014 validation set.1 Leveraging<br>the provided detection and segmentation labels, we<br>can construct a counting VQA dataset. Symbolically, for any given image i with labeled bounding<br>boxes {(b1, c1), …,(bm, cm)}, where bi represents<br>a bounding box and ci represents its corresponding<br>object, the total number no of a certain object o in<br>image i can be denoted as:</p>
+<p>MSCOCO（Lin et al.，2014）是一个大规模的对象检测、分割和字幕数据集。本研究中的所有测试均在MSCOCO2014验证集上进行。1利用所提供的检测和分割标签，我们可以构建一个计数的VQA数据集。符号地，对于任何带有标记边界框{（b1，c1），…，（bm，cm）}的图像i，其中bi表示一个边界框，ci表示其对应的对象，图像i中某个对象o的总数no可以表示为：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240718211727.png"></p>
+<p>Following this approach, we can construct a<br>dataset with ground truth where each data instance<br>can be denoted as (i, c, nc), with i denoting the<br>given image and c denoting the specified object.<br>However, based on our observation, the distribution of answers is not uniform. For instance, in<br>the original dataset, there are about 68% questions<br>with answer nc &#x3D; 1. What’s more, the distribution<br>of objects is also non-uniform. To address these biases, we propose double k-uniform sampling. The<br>core of this algorithm is limiting the number of<br>data with object c and answer nc &#x3D; n not exceeding k. The details of our algorithm can be found<br>in Algorithm 1. With this method we construct<br>our evaluation dataset with 20k pieces of data. For<br>details of our algorithm and dataset, please refer to<br>Appendix A.</p>
+<p>根据这种方法，我们可以构造一个具有地面真实值的数据集，其中每个数据实例可以表示为（i，c，nc），i表示给定的图像，c表示指定的对象。然而，根据我们的观察，答案的分布并不均匀的。例如，在原始数据集中，大约有68%的问题的答案为nc &#x3D; 1。此外，物体的分布也是不均匀的。为了解决这些偏差，我们提出了双k均匀抽样。该算法的核心是限制对象c和答案的数据数量不超过k。我们的算法的细节在算法1中可以找到。利用这种方法，我们构建了包含20k块数据的评估数据集。关于我们的算法和数据集的详细信息，请参考附录A。</p>
+<p>Evaluation Metrics In evaluating the counting<br>task, our focus extends to two perspectives. Firstly,<br>we aim for the model to provide correct answers<br>to as many questions as possible. Secondly, we<br>seek minimal errors. To address the first perspective, we treat this problem as a multi-classification<br>task and employ F-scores(macro-F1 and weightedF1) to evaluate the model’s performance. For the<br>second perspective, we use mean absolute error<br>(MAE) as an evaluation metric. The employment<br>of both metrics provides a more comprehensive<br>and quantitative understanding of the severity of<br>number hallucination. For instance, a model that<br>never accurately counts objects, even with a small<br>MAE, is considered ineffective. Similarly, a model<br>that occasionally counts objects correctly but often makes significant errors should also be deemed<br>problematic. Only when a model that exhibits both<br>high F-scores and low MAE can it be considered<br>free from number hallucinations.</p>
+<p>在评估计数任务时，我们的重点扩展到两个角度。首先，我们的目标是让该模型为尽可能多的问题提供正确的答案。其次，我们寻求最小的误差。为了解决第一个问题，我们将这个问题视为一个多分类任务，并使用f分数（宏f1和加权f1）来评估模型的性能。对于第二个角度，我们使用平均绝对误差（MAE）作为评价度量。这两个指标的使用提供了对数字幻觉的严重程度的更全面和定量的理解。例如，一个从不准确计数对象的模型，即使有一个很小的MAE，也被认为是无效的。类似地，一个偶尔会正确计算对象但经常出现重大错误的模型也应该被认为是有问题的。只有当一个同时表现出高f分数和低MAE的模型时，它才能被认为没有数量幻觉。</p>
+
+        <h3 id="Evaluation-Results"   >
+          <a href="#Evaluation-Results" class="heading-link"><i class="fas fa-link"></i></a><a href="#Evaluation-Results" class="headerlink" title="Evaluation Results"></a>Evaluation Results</h3>
+      <p>We assess number hallucinations using four<br>of the most advanced large vision-language<br>models (LVLMs)2<br>, which are LLaVA-v1.5-<br>7B(namely LLaVA), LLaVA-v1.5-13B (namely<br>LLaVA-L)(Liu et al., 2023a), InstructBLIP (Dai<br>et al. (2023), equipped with Vicuna-7B) and<br>MiniGPT-v2 (Chen et al. (2023a), equipped with<br>LLaMA-2-chat-7B). The results are shown in Table<br>2. We also add a random result (randomly select an<br>answer ranging from from 1 to 10) as a comparison.</p>
+<p>我们使用四种最先进的大型视觉语言模型（LVLMs）2，即LLaVA-v1.5-7B（即LLaVA)、LLaVA-v1.5-13B（即LLaVA-L）（刘等，2023a)、指导（Dai等（2023），配备Vicuna-7B）和MiniGPT-v2（Chen等（2023a），配备LLaMA-2-chat-7B）。结果如表2所示。我们还添加了一个随机的结果（随机选择一个从1到10的答案）作为比较。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240718213315.png"></p>
+<p>We can see all models exhibit severe number<br>hallucinations, as their performance over MacroF1, Weighted-F1 and MAE is generally poor. For instance, they exhibit an average MAE of about<br>2, while random answers just bear an MAE of<br>3.56. Even LLaVA-v1.5 models, which demonstrate higher POPE (Liu et al., 2023a)(indicating<br>less severe object hallucination), still experience<br>number hallucinations similar to other models.<br>This outcome underscores the limitations of traditional object hallucination studies and evaluations,<br>and emphasizes the significance of addressing this<br>number hallucination.</p>
+<p>我们可以看到所有的模型都表现出严重的数量幻觉，因为它们在MacroF1、加权f1和MAE上的表现通常很差。例如，它们的平均MAE约为2，而随机答案的MAE仅为3.56。即使是LLaVA-v1.5模型，显示出更高的POPE（Liu et al.，2023a）（表明较不严重的物体幻觉），仍然经历了与其他模型类似的数量幻觉。这一结果强调了传统的物体幻觉研究和评估的局限性，并强调了解决这一数字幻觉的重要性。</p>
+<p>Furthermore, the comparison between LLaVA<br>and LLaVA-L yields a surprising result that larger<br>models do not significantly outperform smaller<br>models. This finding suggests that merely scaling up models might not be an effective strategy<br>for mitigating number hallucination, indicating that<br>the issue may not solely stem from a lack of expressive ability. This observation underscores the<br>need for more detailed and comprehensive studies<br>on number hallucination.</p>
+<p>此外，LLaVA和LLaVA-L之间的比较产生了一个令人惊讶的结果，即较大的模型并不明显优于较小的模型。这一发现表明，仅仅扩大模型可能不是减少数量幻觉的有效策略，这表明这个问题可能不仅仅源于缺乏表达能力。这一观察结果强调了对数字幻觉进行更详细和全面的研究的必要性。</p>
+
+        <h2 id="Consistency-Analysis-from-Multiple-Perspectives"   >
+          <a href="#Consistency-Analysis-from-Multiple-Perspectives" class="heading-link"><i class="fas fa-link"></i></a><a href="#Consistency-Analysis-from-Multiple-Perspectives" class="headerlink" title="Consistency Analysis from Multiple Perspectives"></a>Consistency Analysis from Multiple Perspectives</h2>
+      <p>In addition to the primary counting task mentioned<br>in Section 2.1 (namely primal task), there are also<br>relevant tasks that provide insights into the number hallucination exhibited by a model from different perspectives. Therefore, we can achieve a<br>more comprehensive understanding of number hallucination by analyzing the consistency among the<br>outputs of the related tasks and the primal task.<br>In this context, we mainly analyze two types of<br>consistency, which are inner consistency and outer<br>consistency. Inner consistency represents the consistency of output within the same task format with<br>different settings, while outer consistency represents the consistency between outputs of the primal<br>task and the related task. We take two related tasks<br>and reveal the severe inner and outer inconsistency<br>that both tasks exhibit. This inconsistency is a<br>common problem shared by both tasks, and is a<br>potential cause of number hallucination.</p>
+<p>除了第2.1节中提到的主要计数任务（即原始任务）外，还有一些相关任务可以从不同的角度深入了解模型的数量所表现出的幻觉。因此，通过分析相关任务与原始任务输出的一致性，我们可以得到更全面的理解。在此背景下，我们主要分析两种一致性，即内部一致性和外部一致性。内部一致性表示同一任务格式在不同设置下输出的一致性，而外部一致性表示原始任务与相关任务输出的一致性。我们采取两个相关的任务，并揭示这两个任务表现出的严重的内在和外部不一致。这种不一致性是两个任务共有的共同问题，也是导致数字幻觉的潜在原因。</p>
+
+        <h3 id="Binary-Classification-Questions"   >
+          <a href="#Binary-Classification-Questions" class="heading-link"><i class="fas fa-link"></i></a><a href="#Binary-Classification-Questions" class="headerlink" title="Binary Classification Questions"></a>Binary Classification Questions</h3>
+      <p>Binary classification questions are widely used for<br>evaluating hallucinations in LVLMs. In this task,<br>for any given object c and number n, the binary<br>classification question can be formatted as:<br>Prompt: There is(are) n c in this picture, is that<br>correct? Answer yes or no.</p>
+<p>二元分类问题被广泛用于评估lvlm中的幻觉。在这个任务中，对于任何给定的对象c和数字n，二进制分类问题可以格式化为：提示：在这张图中有（是）nc，这正确吗？回答是或否。</p>
+<p>By modifying n, we can generate different questions and explore the inner inconsistency between<br>different settings of n. To analyze outer inconsistency, we can specify n as the response to direct<br>asking question (the prompt given in Section 2.1)<br>of the model. We generate questions using the<br>following three ways:</p>
+<p>• I: Let n equal to the ground truth.<br>• II: Let n equal to the model’s own generated<br>answer.<br>• III: With a 50% probability, uniformly select<br>n around the ground truth. Otherwise, let n<br>equal to the ground truth.</p>
+<p>通过修改n，我们可以产生不同的问题，并探讨了n的不同设置之间的内在不一致性。为了分析外部的不一致性，我们可以指定n作为对模型的直接询问问题（在第2.1节中给出的提示）的响应。我们使用以下三种方式来生成问题：</p>
+<p>•I: 让n等于真理。</p>
+<p>•II：设n等于模型自己生成的答案。</p>
+<p>•III：以50%的概率，在真相周围统一选择n。否则，设n等于地面值。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240718222244.png"></p>
+<p>Inner Inconsistency In this context, inner inconsistency refers to model responding ‘yes’ to even<br>contradictory questions. An example is presented<br>in Table 5 in Appendix B. Despite the evident contradiction between the two questions (different n<br>setting), the model answer ‘yes’ to both. In fact, by<br>comparing prompt I and prompt II, model shows<br>this inner inconsistency at a ratio of 41%, which is<br>very high because a model that randomly answers<br>‘yes’ or ‘no’ will bear an inner inconsistency of<br>just about 25%. This high ratio reveals a significant challenge that it becomes uncertain what the<br>model’s actual understanding is towards the question. Specifically, if the model answers ‘yes’ to a<br>ground truth, we cannot confidently assert that the<br>model precisely knows the number of objects in<br>the given image. Moreover, even if the model answers ‘no’ to a hallucinated expression, it remains unclear whether the model accurately comprehends<br>the ground truth or not. This inner inconsistency<br>suggests that the model struggles to count the number of objects accurately and exhibits confusion,<br>thereby contributing to number hallucination.</p>
+<p>内在不一致性</p>
+<p>在这种情况下，内在不一致性指的是模型对甚至是相互矛盾的问题做出“是”的回答。附录b中的表5给出了一个例子。尽管这两个问题之间存在明显的矛盾（不同的n设置），但模型对两者的回答都是“是的”。事实上，通过比较提示I和提示II，模型显示了41%的这种内部不一致性，这是非常高的，因为一个随机回答“是”或“否”的模型将承担大约25%的内部不一致性。这个高比率揭示了一个重大的挑战，即它变得不确定模型对这个问题的实际理解是什么。具体来说，如果该模型对一个地面事实的回答是“是的”，那么我们就不能自信地断言该模型精确地知道给定图像中的物体的数量。此外，即使该模型对幻觉的表达回答“不”，它仍然存在目前尚不清楚该模型是否准确地理解了地面真相。这种内在的不一致性表明，该模型努力准确地计算物体的数量，并表现出混乱，从而导致了数量幻觉。</p>
+<p>Outer Inconsistency In this context, outer inconsistency refers to models responds ‘no’ to prompt<br>II (because prompt II sets n equaling to its own<br>answer to the direct asking question). If it says this<br>answers is incorrect, it conflicts with itself, which is<br>inconsistent. As can be seen from the ‘yes’ ratio of<br>prompt II, although model generally tends to agree<br>with its own answers (prompt II), there are still<br>notable instances where the model disagree with<br>its own answers. In fact, models have an average<br>inconsistency rate of 16.5% with its own answers<br>except InstructBLIP. For InstructBLIP, it answers<br>‘yes’ to almost every question, and interestingly it<br>still has the lowest ‘yes’ ratio of prompt II among<br>the three prompts. This outer inconsistency further<br>reveals the model’s uncertainty about the counting<br>problem and may contribute to number hallucination.</p>
+<p>外部不一致性在这种情况下，外部不一致性指的是模型对提示II的响应是“不”（因为提示II设置的n等于它自己对直接询问问题的回答）。如果它说这个答案是不正确的，那么它就会与自身发生冲突，这是不一致的。从提示II的“是”比率可以看出，虽然模型通常倾向于同意自己的答案（提示II），但仍有一些显著的例子表明，模型不同意自己的答案。事实上，除了DoulaltBLIP外，模型与自身答案的平均不一致性率为16.5%。对于DoudeltBLIP，它对几乎每个问题都回答“是”，有趣的是，在三个提示中，提示II的“是”比率仍然最低。这种外部的不一致性进一步揭示了模型对计数问题的不确定性，并可能导致数字幻觉。</p>
+
+        <h3 id="Comparison-Questions"   >
+          <a href="#Comparison-Questions" class="heading-link"><i class="fas fa-link"></i></a><a href="#Comparison-Questions" class="headerlink" title="Comparison Questions"></a>Comparison Questions</h3>
+      <p>In addition to directly querying the number of a certain object, assessing the model’s ability by comparing the numbers of two objects can also provide<br>insights. Comparison is a task that shares both<br>similarities and differences with direct questioning.<br>To some extent, it is more complex as it involves<br>counting two different objects and comparing the<br>results. However, since the comparison task does<br>not necessitate the model to know the exact number<br>of any object, it cannot fully represent the model’s<br>counting ability.</p>
+<p>除了直接查询某个对象的数量外，通过比较两个对象的数量来评估模型的能力也可以提供见解。比较是一项与直接询问时既有相似又有异同的任务。在某种程度上，它更为复杂，因为它涉及到计算两个不同的对象和比较结果。但是，由于比较任务不需要模型知道任何对象的确切数量，因此它不能完全表示模型的计数能力。</p>
+<p>Given an image and two objects c1 and c2, the<br>corresponding comparison question can be formatted in the following two ways. By analyzing the<br>output of both prompts and the primal task, we can<br>also observe inner and outer inconsistency.</p>
+<p>给定一个图像和两个对象c1和c2，相应的比较问题可以通过以下两种方式进行格式化。通过分析提示和原始任务的输出，我们也可以观察到内部和外部的不一致性。</p>
+<p>• I: Prompt: Which object has a larger number<br>in this picture, c1 or c2? If they have the same<br>number, answer same.</p>
+<p>• II: Prompt: Please select the correct option<br>according to the given picture. A. There are<br>more c1 than c2 in this picture. B. There are<br>more c2 than c1 in this picture. C. The number<br>of c1 and c2 are the same in this picture.</p>
+<p>•I提示：哪个对象在图片中有较大的数字，c1还是c2？如果他们有相同的数字，那就回答相同。</p>
+<p>•II：提示：请根据给定的图片选择正确的选项。A.在这张图中，c1比c2更多。B.在这张图中，c2比c1更多。C. 本图中c1和c2的数量是相同的。</p>
+<p>It can be observed that c1 and c2 are symmetric<br>in this format. To mitigate the influence of order<br>and analyze inner consistency, each question is<br>repeated with c1 and c2 flipped. The results is<br>shown in Table 4</p>
+<p>可以观察到c1和c2在这种格式下是对称的。为了减轻顺序的影响，分析内部一致性，每个问题都重复使用c1和c2翻转。结果如表4 3 所示。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240718223246.png"></p>
+<p>As the results demonstrate, all models perform<br>poorly on this comparison task, aligning with our<br>expectations given the earlier findings that all models suffer from severe number hallucination. As a<br>comparison, if the model only guesses an answer<br>randomly, it will still achieve an accuracy of about<br>0.33. What’s more, a model that always responds<br>with a particular pattern (e.g., always answering<br>‘A’) will achieve an accuracy of even more than<br>0.40, so this result is very disappointing. It is natural that models struggle with comparison problems<br>when they exhibit challenges in accurately counting<br>numbers. However, inner and outer inconsistency<br>in the results can still be observed.</p>
+<p>正如结果所证明的，所有模型在这个比较任务上都表现不佳，这与我们的预期一致，因为之前的发现，所有模型都患有严重的数字幻觉。作为比较，如果模型只随机猜测一个答案，它仍然会达到约0.33的准确性。更重要的是，一个模型总是以特定的模式（例如，总是回答“a”）进行响应，将达到甚至超过0.40的准确性，所以这个结果非常令人失望。当模型在准确计数数字方面表现出挑战时，它们难以面对比较问题是很自然的。然而，在结果中仍然可以观察到内部和外部的不一致。</p>
+<p>Inner Inconsistency Inner inconsistency is similar to what occurs in binary classification questions. In this context, inner inconsistency refers to<br>the model providing different answers to the same<br>question. By comparing within the same prompt<br>format, it is surprising to find that after c1 and c2 are<br>flipped, the model’s response sometimes changes<br>(see one example in Appendix B in Table 8).</p>
+<p>内在不一致性内在不一致性类似于在二元分类问题中发生的问题。在这种情况下，内部不一致性指的是为同一问题提供不同答案的模型。通过在相同的提示格式中进行比较，令人惊讶地发现，在c1和c2被翻转后，模型的响应有时会发生变化（见表8中附录B中的一个例子）。</p>
+<p>Our quantitative result shows that models generally output inconsistent answers for prompt I at<br>a ratio of 25%, which is non-negligible. Prompt<br>II also experiences this inconsistency even more<br>severely (an example can be found in Appendix B<br>in Table 9). For prompt II, the model responds with<br>inconsistent answers of around 80%, which is disasterous. This inconsistency reveals two facts. Firstly,<br>the order of input and the format of prompt have a notable influence on the model’s output, making<br>it challenging to evaluate the model’s performance<br>with multiple-choice questions. Secondly, this inconsistency also reflects the model’s uncertainty<br>about this question, which is a potential cause of<br>number hallucination.</p>
+<p>我们的定量结果表明，模型通常以25%的比例输出不一致的提示I的答案，这是不可忽略的。Prompt II也经历了更严重的这种不一致（一个例子可以在表9的附录B中找到）。对于提示II，模型的回答不一致，约为80%，这是可怕的。这种不一致揭示了两个事实。首先，输入的顺序和提示的格式都有这对模型的输出有显著的影响，这使得用多项选择题来评估模型的性能具有挑战性。其次，这种不一致性也反映了模型对这个问题的不确定性，这是数字幻觉的潜在原因。</p>
+<p>Outer Inconsistency Outer inconsistency in this<br>context refers to such a phenomenon that the<br>model’s response to comparison task conflicts with<br>its response to primal task. For instance, if the<br>model responds there being 1 cat and 2 dogs in<br>primal task but it answers there being more cats<br>than dogs in comparison task, we say the model<br>suffers from outer inconsistency.<br>Based on the definition above, we conduct a<br>quantitative analysis, and it is not surprising to find<br>that models also suffer from outer inconsistency<br>severely on this comparison task. In fact, models only output 32% consistent answers averagely,<br>which means under most circumstances the model<br>does not completely agree with its own answer.<br>In fact, a model that randomly responds to these<br>questions will still achieve an outer consistency<br>of about 33%, which is even higher than current<br>results. Although this comparison task is more<br>complicated and requires more complex reasoning,<br>this low consistency is still absolutely a notable<br>problem and should not be completely attributed to<br>the complexity of this task.<br>In summary, through the analysis of results from<br>these two perspectives, we observe severe inner and<br>outer inconsistency problems. This inconsistency<br>problem is not limited to any certain task or specific<br>prompt. Instead, inconsistency appears everywhere<br>without any regular pattern. These issues undermine the reliability of evaluation methods based on<br>indirect questions. And, since this inconsistency<br>represents the model’s uncertainty and confusion<br>towards this task, we believe inconsistency is a potential contributing factor to number hallucination.</p>
+<p>外部不一致性此时的外部不一致性是指模型对比较任务的反应与对原始任务的反应相冲突的现象。例如，如果模型在原始任务中回答有1只猫和2只狗，但它回答在比较任务中猫比狗多，我们说模型存在外部不一致性。</p>
+<p>基于上述定义，我们进行了定量分析，发现模型在这个比较任务中也存在严重的外部不一致并不奇怪。事实上，模型平均只输出32%的一致答案，这意味着在大多数情况下，模型并不完全同意它自己的答案。事实上，一个随机回答这些问题的模型仍然会达到大约33%的外部一致性，这甚至比目前的结果更高。虽然这个比较任务更复杂，需要更复杂的推理，但这种低一致性仍然绝对是一个值得注意的问题，不应该完全归因于这个任务的复杂性。</p>
+<p>总之，通过从这两个角度分析结果，我们观察到严重的内部和外部不一致的问题。这个不一致性问题不局限于任何特定任务或特定提示。相反，不一致出现在任何地方，而没有任何规则的模式。这些问题破坏了基于间接问题的评价方法的可靠性。而且，由于这种不一致性代表了模型对这项任务的不确定性和困惑，我们认为不一致性是导致数量幻觉的一个潜在因素。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://example.com">TheShineyue</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://example.com/2024/07/17/Paper1/">http://example.com/2024/07/17/Paper1/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/nlp/">nlp</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/paper/">paper</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/hallucination/">hallucination</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2024/06/30/TransformerCode/"><span class="paginator-prev__text">Tranformer代码实战</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BF%BB%E8%AF%91"><span class="toc-number">1.</span> <span class="toc-text">
+          翻译</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-number">1.1.</span> <span class="toc-text">
+          Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.2.</span> <span class="toc-text">
+          Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Evaluating-Number-Hallucination-in-LVLMs"><span class="toc-number">1.3.</span> <span class="toc-text">
+          Evaluating Number Hallucination in LVLMs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Task-Definition"><span class="toc-number">1.3.1.</span> <span class="toc-text">
+          Task Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dataset-and-Evaluation-Metrics"><span class="toc-number">1.3.2.</span> <span class="toc-text">
+          Dataset and Evaluation Metrics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Evaluation-Results"><span class="toc-number">1.3.3.</span> <span class="toc-text">
+          Evaluation Results</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Consistency-Analysis-from-Multiple-Perspectives"><span class="toc-number">1.4.</span> <span class="toc-text">
+          Consistency Analysis from Multiple Perspectives</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Binary-Classification-Questions"><span class="toc-number">1.4.1.</span> <span class="toc-text">
+          Binary Classification Questions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comparison-Questions"><span class="toc-number">1.4.2.</span> <span class="toc-text">
+          Comparison Questions</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/小狗熬夜.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">It's 95 percent pain</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">28</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>TheShineyue</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v7.1.1</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script type="application/json" src="/search.json"></script></body></html>
