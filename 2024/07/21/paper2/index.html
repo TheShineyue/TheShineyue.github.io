@@ -1,0 +1,698 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="论文阅读 Holistic Evaluation of Language Models">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读 Holistic Evaluation of Language Models">
+<meta property="og:url" content="http://example.com/2024/07/21/paper2/index.html">
+<meta property="og:site_name" content="Liyue">
+<meta property="og:description" content="论文阅读 Holistic Evaluation of Language Models">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240724000615.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240724001527.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240724132332.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240724164010.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240724164040.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240724201345.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240724203031.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240725215340.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240725221815.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240725223311.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240725230209.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240726162942.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240726202634.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240727161247.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240727171937.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240727210020.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240727211816.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240727212525.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240727215149.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240727215409.png">
+<meta property="article:published_time" content="2024-07-21T07:43:56.467Z">
+<meta property="article:modified_time" content="2024-07-27T14:06:02.016Z">
+<meta property="article:author" content="TheShineyue">
+<meta property="article:tag" content="nlp">
+<meta property="article:tag" content="paper">
+<meta property="article:tag" content="hallucination">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240724000615.png"><title>论文阅读 Holistic Evaluation of Language Models | Liyue</title><link ref="canonical" href="http://example.com/2024/07/21/paper2/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 7.1.1"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/links/"><span class="header-nav-menu-item__icon"><i class="fas fa-link"></i></span><span class="header-nav-menu-item__text">友链</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Liyue</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">论文阅读 Holistic Evaluation of Language Models</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2024-07-21</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2024-07-27</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>论文阅读 Holistic Evaluation of Language Models </p>
+<span id="more"></span>
+
+
+        <h1 id="对模型的全面评价"   >
+          <a href="#对模型的全面评价" class="heading-link"><i class="fas fa-link"></i></a><a href="#对模型的全面评价" class="headerlink" title="对模型的全面评价"></a>对模型的全面评价</h1>
+      <p>可能存在一组广泛的期望，例如accurate、robust、fair和efficient。根据不同的场景、人们的视角和价值观，这些需求和期望的重要性可能还会变化。</p>
+<p>应当包括这么三个要素：</p>
+<ol>
+<li>广泛的覆盖范围和对缺失的识别<br>尽可能的多的考虑应用场景，但是不可能考虑所有相关的期望，所以需要自顶向下的分类法，并明确所有的主要场景互合指标。</li>
+<li>multi-metric<br>应当考虑每个场景的每个需求，而并不是仅仅考虑准确性</li>
+<li>标准化<br>控制模型们在尽可能相同的场景下进行比较</li>
+</ol>
+
+        <h1 id="HELM"   >
+          <a href="#HELM" class="heading-link"><i class="fas fa-link"></i></a><a href="#HELM" class="headerlink" title="HELM"></a>HELM</h1>
+      <p>Holistic Evaluation of Language Models（语言模型的整体评价）</p>
+<ol>
+<li>场景和度量的抽象分类，以定义模型评估的设计空间</li>
+<li>选择一组具体的实现场景和度量，以优先考虑覆盖范围、价值和可行性</li>
+</ol>
+<p>标准化时采用5-shot prompt</p>
+
+        <h2 id="Targeted-evaluations"   >
+          <a href="#Targeted-evaluations" class="heading-link"><i class="fas fa-link"></i></a><a href="#Targeted-evaluations" class="headerlink" title="Targeted evaluations:"></a>Targeted evaluations:</h2>
+      <p>Accuracy Calibration Fairness（例如面对方言） Bias Toxicity Efficiency</p>
+
+        <h2 id="Adaptation阶段"   >
+          <a href="#Adaptation阶段" class="heading-link"><i class="fas fa-link"></i></a><a href="#Adaptation阶段" class="headerlink" title="Adaptation阶段"></a>Adaptation阶段</h2>
+      <p>模型已经通过初始训练集训练完成后，使用额外的任务相关数据对模型进行调整，以提高模型在特定任务或目标数据上的表现能力。</p>
+<ul>
+<li>用GPT3提供的few-shot prompt</li>
+<li>使用了相对简单、通用的prompt，以便引导LM的开发，对直接的自然语言做出稳健鲁棒的回应，而不是通过特定的咒语</li>
+</ul>
+<p>The exploration of adaptation strategies is another dimension of benchmarking which we leave to future work.</p>
+
+        <h2 id="实证结果"   >
+          <a href="#实证结果" class="heading-link"><i class="fas fa-link"></i></a><a href="#实证结果" class="headerlink" title="实证结果"></a>实证结果</h2>
+      <p>4,939次运行中，一共花费了12,169,227,491个tokens 和 17,431,479个询问</p>
+<ol>
+<li>instruction-tuning可以带来性能的巨大提升</li>
+<li>模型准确性和访问权限联系起来</li>
+<li>准确性和校准的关系取决于场景和适应 （模型校准的作用就是要将模型预测的概率或其它值转换为 真实的概率）</li>
+<li>准确性、鲁棒性和fairness存在很强的相关性</li>
+<li>所有的模型在处理不同的方言的时候都存在较大的性能差异</li>
+<li>Bais和Toxicity在很大程度上是恒定的</li>
+<li>准确性和效率是对抗的。模型变大，准确性提高，但是推理和训练的成本也同时变高</li>
+<li>QA问题中封闭模型的表现更好</li>
+<li>查询排序候选文章的任务中优于经典方法</li>
+<li>CNN&#x2F;DailyMail和XSUM是总结的标准基准，但是这些数据集的自动评估很难区分差异</li>
+<li>情绪分析任务在IMDB上实现的很好</li>
+<li>毒性问题很多模型不会很准确，并且鲁棒性差异很大</li>
+<li>文本分类，<br>等等等等</li>
+</ol>
+
+        <h2 id="总结"   >
+          <a href="#总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结" class="headerlink" title="总结"></a>总结</h2>
+      <ol>
+<li>分类，将LM评估的巨大设计空间分为场景和度量，可以系统的从中间选择</li>
+<li>广泛覆盖，16个核心场景，全面衡量了7个指标，包含7个有针对性的技能和风险评估，引入了21个从未出现过的新场景</li>
+<li>评估现有模型，评估了30种语言模型，10个open,17个limited-access,3个closed</li>
+<li>广泛的评估产生了大量的发现，这在某些情况下强化了文献中的发现，而在另一些情况下则产生了关于当今语言模型的新知识。</li>
+<li>交互性：提供了相应的网站</li>
+</ol>
+
+        <h1 id="预处理"   >
+          <a href="#预处理" class="heading-link"><i class="fas fa-link"></i></a><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h1>
+      
+        <h2 id="场景"   >
+          <a href="#场景" class="heading-link"><i class="fas fa-link"></i></a><a href="#场景" class="headerlink" title="场景"></a>场景</h2>
+      <p>场景为一个语言模型实例化了一个所需的用例。有用的语言模型在各种场景中都有性能：场景是我们希望模型要做的。</p>
+<p>分为一个训练集和一个或多个测试集。每个实例都包括(i)一个输入（一个字符串）和（ii）一个引用列表。每个引用都是一个字符串，其中注释了与评估相关的属性。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240724000615.png"></p>
+
+        <h2 id="适应"   >
+          <a href="#适应" class="heading-link"><i class="fas fa-link"></i></a><a href="#适应" class="headerlink" title="适应"></a>适应</h2>
+      <p>适应程序的例子包括prompting、lightweight-finetuning和finetuning；我们在这项工作中专注于prompting。</p>
+<p>我们将一个语言模型定义为一个黑盒子，它将一个提示符（字符串）以及解码参数（如温度）作为输入。该模型输出一个完成符（字符串），以及提示符和完成符的日志概率。我们不假设可以访问内部模型激活或其训练数据，这反映了研究人员可用访问API的实际现实。事实上，我们甚至都没有对语言模型的构建方式做出任何假设。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240724001527.png"></p>
+<p>所有的答案选择一次呈现和每个答案单独呈现</p>
+<p>把LM视为text-to-text的黑盒</p>
+
+        <h2 id="度量"   >
+          <a href="#度量" class="heading-link"><i class="fas fa-link"></i></a><a href="#度量" class="headerlink" title="度量"></a>度量</h2>
+      <p>示例</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240724132332.png"></p>
+
+        <h2 id="Roadmap"   >
+          <a href="#Roadmap" class="heading-link"><i class="fas fa-link"></i></a><a href="#Roadmap" class="headerlink" title="Roadmap"></a>Roadmap</h2>
+      <p>为了评估一个语言模型，我们必须指定一系列的运行，其中每个运行都由一个（场景、自适应方法、度量）三重来定义。这些场景、适应和度量都定义了一个复杂和结构化的空间，人们在评估语言模型时隐式地导航这个空间来做出决策。我们的整体评估方法的核心是，我们使空间和决策都是明确的。在3：核心场景和4：度量标准中，我们首先对这两个空间进行分类，然后系统地从空间中选择点。</p>
+
+        <h1 id="核心场景"   >
+          <a href="#核心场景" class="heading-link"><i class="fas fa-link"></i></a><a href="#核心场景" class="headerlink" title="核心场景"></a>核心场景</h1>
+      <ol>
+<li>一个任务（如问题回答，总结）对场景进行分类，它描述了我们想要一个系统做的事情</li>
+<li>一个域（如维基百科），描述了我们希望系统能够正常使用的数据类型</li>
+<li>语言或语言多样性（如西班牙语）。任务、域和语言不是原子的或明确的结构：它们可以变得更粗、更精细，但我们将它们作为场景空间的直观结构</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240724164010.png"></p>
+<p>基于这种结构，我们特意根据三个总体原则来选择场景： (i)空间的覆盖范围，（ii）所选场景集的最小性，以及（iii）对与面向用户的任务相对应的场景进行优先排序</p>
+
+        <h1 id="分类"   >
+          <a href="#分类" class="heading-link"><i class="fas fa-link"></i></a><a href="#分类" class="headerlink" title="分类"></a>分类</h1>
+      <p>Task Taxonomy </p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240724164040.png"></p>
+<p>范围域是自然语言处理中一个常见的结构，但它们的不精确性使域的系统覆盖变得复杂。我们根据3W：进一步分解域。</p>
+<ul>
+<li><p>What（类型）：文本的类型，捕捉主题和记录差异。例如：维基百科、社交媒体、新闻、科学论文、小说。 </p>
+</li>
+<li><p>When（时间段）：文本创建的时间。例如：20世纪80年代，在互联网出现之前，现在（例如，它涵盖了最近的数据吗？）</p>
+</li>
+<li><p>Who（人口统计组）：谁生成数据或数据属于谁。例如：黑人&#x2F;白人，男女男性，儿童&#x2F;老人</p>
+</li>
+</ul>
+
+        <h1 id="Accuracy"   >
+          <a href="#Accuracy" class="heading-link"><i class="fas fa-link"></i></a><a href="#Accuracy" class="headerlink" title="Accuracy"></a>Accuracy</h1>
+      <p>准确性是人工智能中研究最广泛和习惯性评估的特性</p>
+<p>the F1 score for word overlap in question answering, the MRR and NDCG scores for information retrieval, and the ROUGE score for summarization, among others</p>
+
+        <h2 id="General"   >
+          <a href="#General" class="heading-link"><i class="fas fa-link"></i></a><a href="#General" class="headerlink" title="General"></a>General</h2>
+      
+        <h3 id="精确匹配"   >
+          <a href="#精确匹配" class="heading-link"><i class="fas fa-link"></i></a><a href="#精确匹配" class="headerlink" title="精确匹配"></a>精确匹配</h3>
+      <p>模型生成的回答和正确的答案字符串完全匹配</p>
+<p>这是HellaSwag、OpenBookQA、TruthfulQA、MMLU和BLiMP的默认acc度量</p>
+
+        <h3 id="Quasi-exact-match-准精确匹配"   >
+          <a href="#Quasi-exact-match-准精确匹配" class="heading-link"><i class="fas fa-link"></i></a><a href="#Quasi-exact-match-准精确匹配" class="headerlink" title="Quasi-exact match 准精确匹配"></a>Quasi-exact match 准精确匹配</h3>
+      <p>扩展了精确匹配的正确性条件，允许对模型生成的回答进行细微的处理（删除空格、标点等等）</p>
+<p>是BoolQ, IMDB, CivilComments, RAFT, WikiFact, synthetic reasoning (abstract symbols), bAbI LegalSupport, LSAT,EntityMatching, DataImputation的acc度量</p>
+
+        <h3 id="F1"   >
+          <a href="#F1" class="heading-link"><i class="fas fa-link"></i></a><a href="#F1" class="headerlink" title="F1"></a>F1</h3>
+      <p>在匹配的基础上进行F1计算，使得结果更加分层，不会过于极端</p>
+<p>是NaturalQuestions (open-book), NaturalQuestions (closed-book), NarrativeQA, QuAC的acc度量</p>
+
+        <h2 id="Information-Retrieval-信息检索"   >
+          <a href="#Information-Retrieval-信息检索" class="heading-link"><i class="fas fa-link"></i></a><a href="#Information-Retrieval-信息检索" class="headerlink" title="Information Retrieval 信息检索"></a>Information Retrieval 信息检索</h2>
+      
+        <h3 id="RR-K"   >
+          <a href="#RR-K" class="heading-link"><i class="fas fa-link"></i></a><a href="#RR-K" class="headerlink" title="RR@K"></a>RR@K</h3>
+      <p>第一个相关文档的倒数秩 MS MARCO (regular) K &#x3D; 10 的 acc</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240724201345.png"></p>
+
+        <h3 id="NDCG-K"   >
+          <a href="#NDCG-K" class="heading-link"><i class="fas fa-link"></i></a><a href="#NDCG-K" class="headerlink" title="NDCG@K"></a>NDCG@K</h3>
+      <p>取决于一组分级排名的质量（即评估不仅仅是二元相关性）</p>
+<p>MS MARCO (TREC) for K&#x3D;10</p>
+<p>根据文档出现的等级，对文档的分级相关性值进行折扣。也就是说，graded_relevance（di）是第个文档的分级相关性（例如，0、1、2或3，其中更高更相关）：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240724203031.png"></p>
+<p>NDCG@K通过将DCG@K除以IDCG@K来规范化DCG@K，IDCG@K是文档的理想排序的DCG@K（即，按相关性等级按降序排序）</p>
+
+        <h2 id="Summarization"   >
+          <a href="#Summarization" class="heading-link"><i class="fas fa-link"></i></a><a href="#Summarization" class="headerlink" title="Summarization"></a>Summarization</h2>
+      <p>ROUGE-2</p>
+<p>2-gram overlap</p>
+<p>This is the default accuracy metric for CNN&#x2F;DailyMail and XSUM.</p>
+
+        <h2 id="Language"   >
+          <a href="#Language" class="heading-link"><i class="fas fa-link"></i></a><a href="#Language" class="headerlink" title="Language"></a>Language</h2>
+      <p>BPB</p>
+<p>每字节的平均位数。具体而言，它衡量了在某个数据集或模型中，每个字节（8位）所包含的平均位数。这通常用于评估文本生成模型的输出质量，特别是在自然语言处理任务中。例如，如果一个模型生成的文本中平均每个字节包含了更多的信息（更多的位数），那么它可能更准确或更丰富。</p>
+<p>This is the default accuracy metric for The Pile, ICE, and TwitterAAE.</p>
+
+        <h2 id="Reasoning"   >
+          <a href="#Reasoning" class="heading-link"><i class="fas fa-link"></i></a><a href="#Reasoning" class="headerlink" title="Reasoning"></a>Reasoning</h2>
+      
+        <h3 id="F1-set-match"   >
+          <a href="#F1-set-match" class="heading-link"><i class="fas fa-link"></i></a><a href="#F1-set-match" class="headerlink" title="F1 set match"></a>F1 set match</h3>
+      <p>f1的正确性条件（集合匹配）的正确性条件是在模型预测的集合和正确的参考之间计算的f1分数，这是综合推理（自然）的默认精度度量。</p>
+
+        <h3 id="精确匹配-1"   >
+          <a href="#精确匹配-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#精确匹配-1" class="headerlink" title="精确匹配"></a>精确匹配</h3>
+      <p>精确匹配的正确性条件（直到指定的指标）的正确性条件与精确匹配相同，仅在第一次提到指定指标之间的预测的前缀和引用的前缀时预期。这是Dyck和GSM8K的默认精度度量。</p>
+
+        <h3 id="Equivalent"   >
+          <a href="#Equivalent" class="heading-link"><i class="fas fa-link"></i></a><a href="#Equivalent" class="headerlink" title="Equivalent"></a>Equivalent</h3>
+      <p>等效的正确性条件是，如果模型的生成在数学上等价于正确的参考，这是MATH的默认精度度量</p>
+
+        <h1 id="Calibration-and-uncertainty"   >
+          <a href="#Calibration-and-uncertainty" class="heading-link"><i class="fas fa-link"></i></a><a href="#Calibration-and-uncertainty" class="headerlink" title="Calibration and uncertainty"></a>Calibration and uncertainty</h1>
+      <p>当机器学习模型集成到更广泛的系统中时，这些模型同时准确(即经常正确)并能够表达它们的不确定性(以便它们的错误可以是适当的预期和调整)。</p>
+<p>模型不确定性的校准和恰当表达，对于系统在高风险环境中部署的可行性尤其关键。如果模型的预测不确定，系统设计师可以进行干预，通过人工执行任务来避免潜在的错误(即选择性分类)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240725215340.png"></p>
+<p>为了量化校准，我们计算预期校准误差，它测量了模型的预测概率和模型正确次数的分数之间的差异。默认情况下，我们使用10个箱子，每个箱子的概率数量相等。</p>
+<p>选择性分类的潜力：我们评估模型分配的最高概率的C分数的准确性，其中其余1个−C例子的模型不变。我们报告了C &#x3D; 0.1的选择分类精度和所有C从0到1的平均精度（覆盖-精度曲线下的面积）。</p>
+
+        <h1 id="Robustness"   >
+          <a href="#Robustness" class="heading-link"><i class="fas fa-link"></i></a><a href="#Robustness" class="headerlink" title="Robustness"></a>Robustness</h1>
+      <p>在实践中部署时，模型将面临开放世界的复杂性（如打字错误），导致大多数当前系统显著退化</p>
+<p>因此，为了在实践中更好地捕捉这些模型的性能，我们需要将我们的评估扩展到我们的场景中包含的确切实例之外</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240725221815.png"></p>
+<p>为了实现这个目标，我们通过评估一个实例的转换来衡量不同模型的鲁棒性。也就是说，给定给定实例的一组转换，我们将度量模型跨这些转换的最坏情况性能。因此，要使模型在这个度量下表现良好，它需要在实例转换之间表现良好。</p>
+<p>具体来说，我们将重点关注下面描述的两个转换的概念，即不变性Invariance和等方差Equivariance。请注意，这两者都捕获了模型的局部鲁棒性，也就是模型对每个实例邻域中的转换的鲁棒性。我们关注这些局部鲁棒性的概念，因为它们与广泛的场景直接相关，并且可以以可伸缩的方式合理地测量。</p>
+<p>还有一些难以测量的鲁棒性</p>
+<p>Specifically, on one hand, measuring robustness to distribution or subpopulation shift (Oren et al., 2019; Santurkar et al., 2020; Goel et al., 2020; Koh et al., 2021) requires scenarios with special structure (i.e., explicit domain&#x2F;subpopulation annotations) as well as information about the training data of the models.</p>
+
+        <h2 id="Invariance"   >
+          <a href="#Invariance" class="heading-link"><i class="fas fa-link"></i></a><a href="#Invariance" class="headerlink" title="Invariance"></a>Invariance</h2>
+      <p>我们评估了模型的预测在小的、保留语义的扰动下有多大的稳定性。这种基于转换&#x2F;扰动的范式已被广泛用于研究模型的稳健性。</p>
+<p>我们将自己限制在自然和相对温和的扰动中——例如，大写，常见的拼写错误。由于很难在长形式文本生成或语言建模中，统一指定这些扰动的黄金标准应该如何变化，因此我们将对不变性相关鲁棒性的度量限制在文本分类、问题回答和信息检索场景中。</p>
+
+        <h2 id="Equivariance"   >
+          <a href="#Equivariance" class="heading-link"><i class="fas fa-link"></i></a><a href="#Equivariance" class="headerlink" title="Equivariance"></a>Equivariance</h2>
+      <p>为了补充不变性，我们还测试了具有语义改变的扰动如何影响模型的行为。其目标是了解模型是否对改变目标输出的扰动敏感，而不锁定实例的不相关部分。不幸的是，与不变性不同，指定通用的过程来生成语义改变的扰动（以及相应的目标输出）是具有挑战性的</p>
+<p>因此，我们依赖于对比集Contrast Sets，一个资源包括对现有数据集的转换版本（由原始数据集的作者生成），旨在通过反事实增强的数据测试等方差。由于这样的对比集只存在于少数数据集，所以我们在对比集可用时使用对比集（即BoolQ问题回答场景和IMDB情绪分析场景）。此外，我们只考虑改变目标输出的转换（这对于原始的BoolQ对比集并不一定如此）</p>
+
+        <h1 id="Fairness"   >
+          <a href="#Fairness" class="heading-link"><i class="fas fa-link"></i></a><a href="#Fairness" class="headerlink" title="Fairness"></a>Fairness</h1>
+      <p>counterfactual fairness（反事实） 和 statistical fairness（统计学） or performance disparities（性能差异）</p>
+
+        <h2 id="counterfactual-fairness"   >
+          <a href="#counterfactual-fairness" class="heading-link"><i class="fas fa-link"></i></a><a href="#counterfactual-fairness" class="headerlink" title="counterfactual fairness"></a>counterfactual fairness</h2>
+      <p>我们指的是通过干扰现有的测试示例而产生的反事实数据上的模型行为，类似于我们测试模型对不变性的鲁棒性。这些干扰要么对应于社会群体，包括(i)产生数据的说话者（例如非裔美国人英语），要么（ii）在数据中提到的文本的主题</p>
+<p>我们考虑了几个扰动，它们用附加实例来增强原始测试实例，这些实例可以替代特定组相关的术语（参见下图）。。通过这些扰动，我们测量了标准美式英语vs非裔美国人英语，以及种族和二元性别的主题属性。类似于我们的鲁棒性方法，我们将我们对反事实公平性的测量限制在文本分类、问题回答和信息检索场景中，以更好地确保扰动的有效性。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240725223311.png"></p>
+
+        <h2 id="Performance-disparities"   >
+          <a href="#Performance-disparities" class="heading-link"><i class="fas fa-link"></i></a><a href="#Performance-disparities" class="headerlink" title="Performance disparities"></a>Performance disparities</h2>
+      <p>由于底层分布依赖于一个组的数据（即数据被干扰的组），当组间的数据分布以更复杂的方式不同时，它们不能反映不公平。因此，我们通过报告每个组对应的测试集子集上的准确性，来衡量测试实例被（预先存在的）组级元数据注释的场景的性能差异。由于这些度量依赖于组级元数据的可用性，我们不能在大多数情况下产生这样的度量，然而，在基准中，我们确实报告了作为说话人属性(性别、国籍、口语与书面)的函数的性能差异语言和主题属性(性别、性别、种族、宗教、残疾状况)。</p>
+
+        <h1 id="Bias-and-stereotypes"   >
+          <a href="#Bias-and-stereotypes" class="heading-link"><i class="fas fa-link"></i></a><a href="#Bias-and-stereotypes" class="headerlink" title="Bias and stereotypes"></a>Bias and stereotypes</h1>
+      <p>除了公平之外，社会偏见也是语言技术风险研究的核心。我们明确地将社会偏见定义为“语言选择中的系统性不对称”。因此，公平性和（社会性）偏见是不同的。公平性指的是不同社会群体的模型在特定任务的准确性方面的差异。相比之下，偏差指的是模型生成的属性，即与给定任务的准确性或细节没有（明确的）关系</p>
+<p>我们在模型生成的背景下研究偏差，其中我们研究了两个这样的不对称性。首先，我们测量人口统计代表中的偏差，指不同人口统计群体的发病率，以识别擦除和过度代表。这些度量依赖于在模型代中表示人口统计群体的单词的发生统计数据。其次，我们衡量刻板的联想，指的是不同群体与社会中刻板的术语（如职业）相关的比率的不平等。在这两种情况下，我们所说的不等是指观察到的比率偏离均匀分布的程度，即所有组被提及或与同等关联。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240725230209.png"></p>
+<p>这些度量依赖于模型代中这些刻板术语的人口统计词的一致性统计。我们注意到，这种基于计数的度量通常在几个方面都是脆弱的。对于社会偏见特别重要，我们强调社会群体的不同语言标记（例如。由于社会文化预设和刻板印象，“女护士”和“男护士”可能存在差异）。我们报告了二元性别偏见和种族偏见的测量方法，尽管我们鼓励未来的工作来探索其他社会偏见的测量方法，特别是考虑到我们释放了所有的模型代。</p>
+
+        <h1 id="Toxicity"   >
+          <a href="#Toxicity" class="heading-link"><i class="fas fa-link"></i></a><a href="#Toxicity" class="headerlink" title="Toxicity"></a>Toxicity</h1>
+      <p>虽然我们研究的偏差反映了文本的分布特性，但我们认为毒性是文本的实例级属性。模型已被证明在提示时产生有毒文本，即使该文本本身没有毒性，并包括针对特定群体的仇恨文本（如穆斯林）。毒性本身是一个复杂的结构；在这里，我们使用这个术语作为相关概念的保护伞，如仇恨言论、暴力言论和侮辱性语言。</p>
+<p>毒性的概念有更广泛的背景，并明确谁在决定毒性，这是我们在广泛的评估中缺乏的。我们认识到这项工作未能明确一个更精确的（可操作化的）的毒性定义，部分原因是毒性测量是在不同的场景中统一进行的，以确保可伸缩性。</p>
+<p>为了实施毒性测量，我们使用透视图API来检测模型代中的毒性含量</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240726162942.png"></p>
+<p>与其他（可能更好，但很大程度上未经证实的）毒性检测方法相比，我们更倾向于使用具有广泛测试和明确测量其局限性的毒性检测方法。</p>
+<p>由于这些指标是通过模型生成的文本来度量的，因此我们报告了涉及文本生成的所有核心场景的这些毒性指标。</p>
+
+        <h1 id="Efficiency"   >
+          <a href="#Efficiency" class="heading-link"><i class="fas fa-link"></i></a><a href="#Efficiency" class="headerlink" title="Efficiency"></a>Efficiency</h1>
+      <p>效率是评估语言模型的另一个重要维度，因为昂贵的训练和推理成本使模型不可使用。例如，如果模型的训练或推断模型，用户可能不想再花10×的时间或金钱提高0.1%。我们在训练和推理中评估语言模型的效率，检查能源、碳和WALL-CLOCK(计算机程序开始到结束所用的实际时间)效率是否相关。</p>
+
+        <h2 id="Training-efficiency"   >
+          <a href="#Training-efficiency" class="heading-link"><i class="fas fa-link"></i></a><a href="#Training-efficiency" class="headerlink" title="Training efficiency"></a>Training efficiency</h2>
+      <p>对于每个模型，我们报告训练的能量成本(千瓦时)以及训练模型所用的二氧化碳(公斤)。这两个指标都捕获了所使用的加速器的数量（用于分布式训练）和类型，而后者模拟了环境影响，也考虑了用于动力模型训练的能源类型。我们没有报告训练运行时，有两个原因： (i)它们没有被广泛报道，（ii）它们没有捕获所使用的加速器的数量（即理论上更多的加速器可以用来减少训练时间），这可能在不同的模型创建者之间有很大的差异。</p>
+<p>对于能源成本和排放，我们使用模型创造者的表面价值报告的数字。在没有报告数字的情况下，如果使用硬件和培训时间的详细信息，我们用以下计算来估算能源成本和排放:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240726202634.png"></p>
+<p>为简单起见，我们假设用于训练的加速器是gpu，但上述计算结果类似于tpu等其他加速器。e是千瓦时使用的能量，nGPU是用于分布式训练（需要训练llm考虑在这个工作），WGPU是平均功率在千瓦的培训，和火车是培训时间为小时。提示或功率使用效率表示数据中心冷却成本以及GPU能源消耗本身之外的其他能源成本，并设置为1.1，与之前的工作类似于1.1。eCO2是碳排放的估计；cregion是训练模型的数据中心的碳强度（kgco2&#x2F;kWh）。当数据中心位置不用时，我们使用美国国家平均碳强度。由于潜在的估计误差和假设，所有的数字都是近似的，但应该是正确的数量级。</p>
+
+        <h2 id="Inference-efficiency"   >
+          <a href="#Inference-efficiency" class="heading-link"><i class="fas fa-link"></i></a><a href="#Inference-efficiency" class="headerlink" title="Inference efficiency"></a>Inference efficiency</h2>
+      <p>对于推理，理想情况下，我们希望做类似的事情，通过为每个推理请求报告发出的总二氧化碳或kWh来实现；然而，这不是立即可处理的，因为用于服务请求的硬件不是公共信息。</p>
+<p>另一种选择是报告每个请求运行时，这是使用部署系统的用户在其应用程序中的体验。但是，由于这些模型的服务方式不同，因此不能将每个请求的运行时用于比较模型和模型提供者。例如，两个模型提供商的部署在以下方面可能有所不同：</p>
+<ul>
+<li>硬件：加速器的类型和加速器的数量</li>
+<li>软件的实现和优化</li>
+<li>由于争用而导致的性能变化量，这可能导致请求在队列中花费时间等待资源可用，而不是进行补偿</li>
+</ul>
+<p>不幸的是，这些都不是模型本身的基础，因此不允许我们在一个水平的基础上比较模型，而这是这项工作的目标。为了能够更公平地比较模型，我们设计了两个指标：</p>
+<ul>
+<li><p>去噪推理运行时。运行时使用与原始模型提供商相同的硬件和软件实现，但剔除了性能变化产生的噪声。</p>
+</li>
+<li><p>理想化的推理运行时。运行时使用统一优化的硬件和软件实现，允许模型的推理效率直接相互比较。</p>
+</li>
+</ul>
+<p>我们提出这两个指标，因为我们相信都很重要：去噪运行时给我们一个估计需要多长时间查询终端用户使用部署接口如OpenAIAPI在最好的情况下，而理想化的运行时允许模型更公平地比较，可以用来理解效率-能力的权衡。我们为每个模型提供去噪的运行时，并为所有具有公开可用的模型架构信息的模型提供理想化的运行时。</p>
+
+        <h1 id="Experiments-and-results"   >
+          <a href="#Experiments-and-results" class="heading-link"><i class="fas fa-link"></i></a><a href="#Experiments-and-results" class="headerlink" title="Experiments and results"></a>Experiments and results</h1>
+      <p>总之，我们对16个核心场景（如自然问题、IMDB）的30个语言模型（如175B）评估了7个指标类别（如准确性、公平性）。在这里，我们使用我们的综合评估来提供该领域的重要问题的答案，比如模型的准确性是否与规模相关，或者更稳健的模型是否偏差更小。</p>
+<p>度量间关系</p>
+<p>我们整体评估的一个核心原则是突出超出准确性的指标，确保我们确实期望测量每个场景的许多系统需求）。因此，这澄清了不同的度量之间如何相互关联。许多先前的工作针对特定度量对广泛探索了这些类型的关系：例如，准确性-稳健性、准确性效率、校准公平性和偏置毒性。在语言模型的背景下，我们可以假设在以前的工作中发现的关系将继续存在，但许多对还没有被研究，我们也没有明确的证据表明这些关系是可靠的。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240727161247.png"></p>
+<p>因此，我们利用评估对这些指标的覆盖范围来提供两种资源。首先，在图24中，我们描述了精度和其他6个需求之间的关系。在其他解释中，这个数字有助于澄清更准确的系统何时与其他关键需求的改进相一致，以及何时存在重要的权衡。此外，通过在每个场景的基础上绘制这些图，这有助于展示趋势中的潜在异质性：什么时候不同场景之间的度量关系是一致的，什么时候它们高度依赖于场景，以及异常是什么？</p>
+<p>其次，在图25中，我们为特定的场景整合了跨模型之间的关系。具体地说，在每个子图中，我们考虑一对度量，其中每个灰点对应于该场景中所有模型中这些度量之间的皮尔逊相关性（即线性拟合）。这再次有助于展示两两度量关系中的传播和异质性，以及宏观层面的趋势。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240727171937.png"></p>
+<p>虽然这些数字一起提供了丰富的信息，但我们通过它们来说明具体的结论。最引人注目的是，我们发现在所有场景中，准确性、鲁棒性和公平性都是非常强的相关性。在某种程度上，我们认为这一发现取决于我们如何选择衡量稳健性&#x2F;公平性。对于鲁棒性，这与其他形式的（非对抗性）鲁棒性的研究结果一致，如Miller等人（2021）对分布鲁棒性的研究，这表明域内和域外的准确性位于一条直线上。另一方面，为了公平起见，我们发现这一点相当令人惊讶。我们确实强调了之前的一些工作，而不是发现了公平和准确性之间的权衡，但我们不认为我们的工作应该被解释为与他们的发现相矛盾。我们不仅对公平性的衡量与这些作品不同，而且语言模型的少镜头提示的设置与之前这些作品中研究的设置有很大的不同</p>
+<p>将焦点转移到校准上，这些趋势更依赖于场景，这可以从图24中给定场景的点的可视化聚类中看出。引人注目的是，我们发现精度和校准之间的关系可以非常不同非常相似的场景：对于两个以常识为中心的QA场景，我们看到准确性和校准高度相关openBookQA（相关性大于0.8）而准确性和校准误差高度相关在HellaSwag高度相关（相关性大于0.85）。此外，虽然考虑到准确性、稳健性和公平性之间的强相关性并不令人惊讶，但更稳健和更公平的模型可以不那么被很好地校准的发现是反直觉和令人惊讶的</p>
+<p>对于生成性危害，我们也看到了与其他指标的关系的显著变化。对于毒性，与其他指标的平均相关性均接近于零，因为毒性的毒性率本身相对恒定且接近于零，图24中的NarrativeQA明显例外。与偏差相比，我们看到准确性和性别表征偏差之间存在一些正相关关系（越低越好），公平性（越高越好）和性别表征偏差（越低越好）之间的情景的平均相关性越显著。换句话说，我们看到了一个清晰而令人惊讶的权衡：模型往往有更好的公平表现，这取决于特定任务的表现，往往有更糟糕的性别偏见，这取决于模型的生成，而不是特定任务的表现。至于这两种产生性的危害，我们看到在一些情况下，它们是相当反相关的，这表明，性别偏见较少的模型对这些情况往往毒性更大。这些发现表明，仅仅测量其中一种类型的危害可能是不够的，而努力减少其中一种危害可能会产生副作用</p>
+<p>最后，为了提高效率，我们看到与其他指标的相关性相当弱。特别是，我们没有看到准确性和效率之间的一个强有力的总体权衡，这是我们可能预先预见到的。图24清楚地说明了这一点，它显示了效率的趋势往往相当依赖于场景。这对于去噪的度量来说尤其如此，因为驱动测量的许多因素与场景的基本分布特性有关（即输入和输出的长度）有关。</p>
+
+        <h2 id="Direct-model-comparisons"   >
+          <a href="#Direct-model-comparisons" class="heading-link"><i class="fas fa-link"></i></a><a href="#Direct-model-comparisons" class="headerlink" title="Direct model comparisons"></a>Direct model comparisons</h2>
+      <p>我们评估的一个中心目标是实现对所有可用模型的共同和统一的理解。特别是，正如我们在附录F中所记录的那样，我们在这项工作中评估的30个模型之前已经在不同的条件下对不同的评估套件进行了评估。特别是，在不同的模型中，重叠的程度出奇地低和不均匀。因此，我们缺乏关于不同模型之间关系的清晰度。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240727210020.png"></p>
+<p>我们将报告不同的模型将如何通过对所有核心场景中的每个指标进行面对面的比较。我们发现， text-davinci-002显然是最准确的模型，有超过90%的时间在这些比较中获胜。在剩下的模型中，我们可以看到最大的模型TNLG v2（530B）是第二精确的，其次是Anshopic-lmv4-s3（52B）。鉴于模型规模的显著差异超过10倍TNLG v2（530B）和人类lmv4-s3（52b），给定文本数据-002和人类lmv4-s3（52b）共享指令调整共同（其他模型，除了小OpenAI文本变体，不），这表明指令调整和使用人类反馈是提高模型精度的一个有效和有效的手段</p>
+<p>此外，虽然我们稍后会看到模型尺度和准确性之间的总体关系可能会很复杂（图29），但在这里我们看到了模型尺度方面的一个清晰的阈值效应。所有的精度胜率明显高于概率（例如55%或以上）的模型都有超过50个B参数，而这组前10名之外的大型模型是YaLM（100B）。YaLM（100B）的准确率胜率低得令人惊讶，低于25%，这可能是因为在俄语而不是英语方面的大量训练)。在前10名中，我们看到模型尺度对等级的预测性较低，因为两个最大的模型（BLOOM（176B）和J1-Jumbo v1（178B）；100B+参数）都在这一层的底部，而人类-lmv4-s3（52B）和Coherexmlarev20220609（52.4B）（该层中最小的两个模型）是在这个层的上半部分。类似地，在一个模型家族中，我们可以看到模型规模与模型精度赢得率完全单调相关（例如，参见OpenAI和Cohere模型变量）。我们强调，这当然并不意味着表现不佳的模型，或小模型，在所有条件下都是不准确的：我们期望我们使用的提示方法不适合这些小模型，也许，微调这些模型。</p>
+<p>与之前关于准确性与鲁棒性和公平性相关的发现一致，我们看到这些场景的模型排名相似。然而，我们注意到，BLOOM（176B）在鲁棒性&#x2F;公平性方面的表现明显好于（相对意义上的），OPT（175B）和GLM（130B）在鲁棒性和准确性(即GLM（130B）比OPT（175B）相比更稳健，更不准确。相比之下，也许也正如预期的那样，考虑到生成危害与其他指标的弱相关性，我们看到毒性和偏倚的排名明显相当不同。我们特别强调了T0++（11B）和davinci（175B）在比较它们的偏倚赢得率和毒性赢得率时，如何表现出相反的趋势。也就是说，与所有其他模型相比，T0++（11B）是毒性最大的，但三个最小（性别）偏差之一，而davinci（175B）是四种最严重的模型之一，但毒性较小的模型之一。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240727211816.png"></p>
+<p>准确性作为其他变量的函数。为了建立在这些模型比较的基础上，我们现在将模型精度的趋势作为其他相关变量的函数来考虑。在图27中，我们报告了模型精度作为时间的函数（即模型发布日期）。作为时间的函数，我们看到GPT-3的发布（Brown et al.，2020）清楚地为所有场景的未来模型建立了一个强有力的基线，比T5（11B）有明显的改进。在某种程度上有向上运动的准确性以来，我们经常看到它的引入Anshopic-lmv4-s3（52B）大约18个月后12月，2021年（第一个模型使用强化学习与人类反馈我们评估），尽管我们看到一个令人惊讶的明显单调改善中介时期自然问题。</p>
+<p>在图28中，我们根据模型的可访问性对结果进行了精度分层（见Liang等人，2022年），正如我们在6：模型中所讨论的那样。对于每个访问类别，我们报告了该类别中模型的每个场景的精度，这是最准确的（全条），通常是最准确的（较小的暗子条；基于图26）。这意味着子条总是开放模型的OPT（175B），有限访问模型的文本数据-002，以及封闭模型的TNLG v2（530B）的准确性。我们看到，这些针对有限访问的模型在其类别中始终是最好的，但OPT（175B）有时是这样的与TNLG v2（530B）一样（例如，MMLU和民用评论提高了10分）（例如，自然问题（开书）和真实QA提高了5分以上）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240727212525.png"></p>
+<p>总的来说，我们看到精度通常下降在限制访问&gt;关闭&gt;打开的方向，这与图26一致。说，我们看到一些乐观关于开放科学通过开源模型，最好的公共模型通常是有些竞争力的准确性（即在5点最好的非开放模型），除了MMLU的更多的知识密集型的场景，自然问题（封闭）和真实质量以及信息检索场景。这一点特别值得注意，因为我们还没有看到开源的模型能够大量使用人类偏好和来自人类反馈的强化学习，这可能会进一步弥补这一差距。然而，我们确实强调了其他混杂因素：一些模型可能不会向公众公开（更不用说发布），一些模型可能在显著延迟后披露，一些高精度模型尚未在HELM中进行评估（如Gopher、钦奇利亚、PaLM；见10.4：缺失模型）。我们希望我们关于模型可访问性和模型性能（例如准确性）之间关系的发现将为社区规范的发展提供信息</p>
+<p>预测准确性。考虑到生成语言模型的资源密集型性质，特别是最强大的模型（我们将不同场景的准确性作为代理），预测模型能力的能力对于定向决策是有价值的。先前的工作证明了模型规模（无论是以模型大小、数据大小或计算&#x2F;训练流程测量）可靠地预测语言模型的模型损失，建立了尺度定律（Kaplan等，2020；Hoffmann等，2022年）。另一方面，研究也表明，某些定性能力（例如，上下文学习；Brown等人，2020年）不可预测地超过了一个临界尺度阈值（见Wei等人，2022年b）。许多工作都隐含地假设并证明了语言建模损失（即困惑）方面的改进可以转化为下游用例方面的改进。在图29中，我们报告了模型规模和准确性之间的关系，而在图30中，我们报告了困惑度（在堆上测量）与准确性之间的关系。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240727215149.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240727215409.png"></p>
+<p>我们在训练flop方面尝试类似的分析，但我们希望这样的分析可能更有助于证明训练计算和下游精度之间更清晰的关系。当我们积累图29中模型的性能时，以便理解尺度是否更必要来提高精度，我们确实看到了许多场景的一些显著跳跃，既在12B参数范围内，也有50B参数的跳跃。这些跳跃是专门归因于T0++（11B）和人类lmv4-s3（52B），这可能表明将这些跳跃被其他变化（即训练过程T0++（11B）故意提高少提示性能和RLHF参与人类lmv4-s3（52B））。同样，我们看到了堆上的困惑（或者更准确地说，每字节的日志位）和下游精度之间的关系同样是混乱的（图30），尽管我们预计污染的混淆（一些模型是在堆上训练的，而其他模型没有）加剧了这些发现的混乱。</p>
+
+        <h1 id="Limitations-and-future-work"   >
+          <a href="#Limitations-and-future-work" class="heading-link"><i class="fas fa-link"></i></a><a href="#Limitations-and-future-work" class="headerlink" title="Limitations and future work"></a>Limitations and future work</h1>
+      
+        <h2 id="Limitations-of-results"   >
+          <a href="#Limitations-of-results" class="heading-link"><i class="fas fa-link"></i></a><a href="#Limitations-of-results" class="headerlink" title="Limitations of results"></a>Limitations of results</h2>
+      <ul>
+<li>与实际使用的相关性<br>在实践中，语言模型不仅用于不同的场景，而且还用于不同的上下文中。在这些上下文中，语言模型可能会进一步专门化（例如，对比感兴趣领域的5个示例更大的数据进行微调）。因此，我们的结果不应该被视为是一种普遍的主张，即表现良好的模型总是可取的，而表现较差的模型总是不可取的。例如，GPT-J（6B）的表现并不是特别好，但由于其较小的尺寸和易于微调（例如，使用更少的硬件&#x2F;计算约束），因此模型可以使用更多的分布内数据，因此该模型可能适用于许多环境。更广泛地说，我们期望我们提供的所有结果并不与每个实际用例相关：我们期望从业者应该首先识别与其使用条件相关的场景和度量，然后在解释这个基准测试的结果时对这些场景&#x2F;度量进行优先排序。</li>
+<li>普遍性<br>为了使我们的结果构成可推广的结果，来自测试分布的实例不应该包含在模型的（前）训练数据中（即不应该存在列车测试污染）。然而，正如一些作品所讨论的那样（例如布朗等人，2020年；道奇等人，2021年；Sanh等人，2021年），鉴于我们考虑的语言模型是在大量、多源、文档不完整的数据（例如从互联网上提取的文本）上训练的，很难直接确定它们是否受到了污染。我们在附录G中记录了所有来自先前污染工作的已知证据，尽管我们承认模型在多大程度上被污染，这损害了我们结果的有效性在很大程度上仍然不清楚。</li>
+<li>Adaptation<br>我们强调，我们的结果和从结果中得出的定性趋势，取决于提示作为适应机制的选择和实施。换句话说，如果模型进行微调或提示被明确优化，我们不应该假设我们将看到相同的趋势。我们在8.2中展示的证据：提示分析，以及之前的一些作品（例如Bach等人，2022年），模型行为对提示设计非常敏感。此外，由于资源的限制，没有对许多低层次决策（例如解码超参数）的敏感性进行调查，而且仍然不清楚</li>
+</ul>
+
+        <h2 id="HELM实施的局限性"   >
+          <a href="#HELM实施的局限性" class="heading-link"><i class="fas fa-link"></i></a><a href="#HELM实施的局限性" class="headerlink" title="HELM实施的局限性"></a>HELM实施的局限性</h2>
+      <p>许多数据集可以实例化一个场景（即在任务和领域上达成一致），但在这些数据集上报告的结果有用的扩展上有很大的不同。在测量建模的说法，我们希望我们报告的结果是有效的（即反映潜在的结构，如法律文件的总结）。而我们使用的所有数据集都是在一些过程中引入的为了质量保证，我们引入的数据集同样也有一些质量保证的过程，我们注意到没有设置统一的标准来确保所有数据集都足够有效。因此，我们的基准测试的质量和有用性取决于这个假设：我们鼓励未来的工作来询问我们的数据集的有效性，并引入协议来帮助确保未来数据集的有效性。由于基准激励未来的工作，以建立改进基准的模型，鉴于经常引用的斯特拉斯定律——“当一个措施成为目标，它不再是一个好的衡量”。</p>
+<p>此外，除了有效性之外，度量建模和其他度量设计方法也强调度量的可靠性（即，度量不应该对不希望的变化来源过于敏感，如标记数据的特定注释者的属性）。与效度类似，我们缺乏统一的证据来证明我们的测量的可靠性。特别地，我们强调了显著性测试对于进行有意义的比较的重要性，因为我们只运行3个随机种子（由于成本）来选择上下文例子，我们对1000个实例进行评估，而不是对给定数据集的完整验证&#x2F;测试集。也就是说，我们的评估的这两种设置可能使我们的一些主张在统计上无关紧要；我们鼓励未来的工作考虑如何在这种评估的规模下更好地处理重要性。</p>
+
+        <h2 id="HELM设计的限制"   >
+          <a href="#HELM设计的限制" class="heading-link"><i class="fas fa-link"></i></a><a href="#HELM设计的限制" class="headerlink" title="HELM设计的限制"></a>HELM设计的限制</h2>
+      <p>鉴于我们的基准设计的性质，我们强调了聚合的重要问题。与之前的工作相比，一个模型将获得一个分数（例如SQuAD F1准确性）或一个分数向量（例如GLUE准确性），我们为每个模型产生一个更复杂的结果集合（即场景×指标的得分矩阵）。我们认为，这对于捕捉我们所描述的文物的复杂性是必要的：语言模型的通用性和我们应该需要的这些系统的需求的多样性</p>
+<p>然而，这种复杂性确实要付出了严重的代价。例如，与ImageNet或SQuAD这样的基准相比，我们不能简单地根据准确性对模型进行排序以得到总顺序：我们认为这正确地反映了不同模型对评估空间施加的权衡。换句话说，虽然模型A在每个度量上都可能严格比模型B更好（即严格的帕累托优势），但在几乎所有的情况下，A有时更好，当一个模型足够整体&#x2F;扩展时，B有时更好。要将A或B指定为更好，就需要做出（含蓄地&#x2F;明确地）权衡每种情况都比两者更好的判断</p>
+<p>实际上，通过显著增加我们为每个模型报告的结果量，我们的基准可能会使消费者过载，使其难以解释或对它们采取行动。通过提供结构（例如，分类场景和度量，将其分解为核心场景和特定组件），我们希望在提供细微差别时保持清晰度。总的来说，我们的基准测试的细节暴露了不同涉众的决策点，让他们根据自己的价值观、偏好和环境更喜欢一个模型而不是另一个模型（例如，在移动设备上部署模型的组织应该为效率结果分配更高的优先级）。</p>
+<p>我们将聚合模型性能的问题留给一个单个数字（或每个场景的单个数字，或每个度量），然后留给未来的工作。我们不认为存在一种满足所有偏好、反映所有值或适当地捕获所有情况的通用聚合。然而，我们确实相信单数度量，虽然简化，但是简化决策的有用的实用工具</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://example.com">TheShineyue</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://example.com/2024/07/21/paper2/">http://example.com/2024/07/21/paper2/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/nlp/">nlp</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/paper/">paper</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/hallucination/">hallucination</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2024/07/17/Paper1/"><span class="paginator-prev__text">论文阅读 Evaluating and Mitigating Number Hallucinations in Large</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%85%A8%E9%9D%A2%E8%AF%84%E4%BB%B7"><span class="toc-number">1.</span> <span class="toc-text">
+          对模型的全面评价</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HELM"><span class="toc-number">2.</span> <span class="toc-text">
+          HELM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Targeted-evaluations"><span class="toc-number">2.1.</span> <span class="toc-text">
+          Targeted evaluations:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adaptation%E9%98%B6%E6%AE%B5"><span class="toc-number">2.2.</span> <span class="toc-text">
+          Adaptation阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E8%AF%81%E7%BB%93%E6%9E%9C"><span class="toc-number">2.3.</span> <span class="toc-text">
+          实证结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.4.</span> <span class="toc-text">
+          总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">
+          预处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF"><span class="toc-number">3.1.</span> <span class="toc-text">
+          场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%82%E5%BA%94"><span class="toc-number">3.2.</span> <span class="toc-text">
+          适应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%A6%E9%87%8F"><span class="toc-number">3.3.</span> <span class="toc-text">
+          度量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Roadmap"><span class="toc-number">3.4.</span> <span class="toc-text">
+          Roadmap</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%9C%BA%E6%99%AF"><span class="toc-number">4.</span> <span class="toc-text">
+          核心场景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">5.</span> <span class="toc-text">
+          分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Accuracy"><span class="toc-number">6.</span> <span class="toc-text">
+          Accuracy</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#General"><span class="toc-number">6.1.</span> <span class="toc-text">
+          General</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B2%BE%E7%A1%AE%E5%8C%B9%E9%85%8D"><span class="toc-number">6.1.1.</span> <span class="toc-text">
+          精确匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Quasi-exact-match-%E5%87%86%E7%B2%BE%E7%A1%AE%E5%8C%B9%E9%85%8D"><span class="toc-number">6.1.2.</span> <span class="toc-text">
+          Quasi-exact match 准精确匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#F1"><span class="toc-number">6.1.3.</span> <span class="toc-text">
+          F1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Information-Retrieval-%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2"><span class="toc-number">6.2.</span> <span class="toc-text">
+          Information Retrieval 信息检索</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RR-K"><span class="toc-number">6.2.1.</span> <span class="toc-text">
+          RR@K</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NDCG-K"><span class="toc-number">6.2.2.</span> <span class="toc-text">
+          NDCG@K</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Summarization"><span class="toc-number">6.3.</span> <span class="toc-text">
+          Summarization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Language"><span class="toc-number">6.4.</span> <span class="toc-text">
+          Language</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reasoning"><span class="toc-number">6.5.</span> <span class="toc-text">
+          Reasoning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#F1-set-match"><span class="toc-number">6.5.1.</span> <span class="toc-text">
+          F1 set match</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B2%BE%E7%A1%AE%E5%8C%B9%E9%85%8D-1"><span class="toc-number">6.5.2.</span> <span class="toc-text">
+          精确匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Equivalent"><span class="toc-number">6.5.3.</span> <span class="toc-text">
+          Equivalent</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Calibration-and-uncertainty"><span class="toc-number">7.</span> <span class="toc-text">
+          Calibration and uncertainty</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Robustness"><span class="toc-number">8.</span> <span class="toc-text">
+          Robustness</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Invariance"><span class="toc-number">8.1.</span> <span class="toc-text">
+          Invariance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Equivariance"><span class="toc-number">8.2.</span> <span class="toc-text">
+          Equivariance</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Fairness"><span class="toc-number">9.</span> <span class="toc-text">
+          Fairness</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#counterfactual-fairness"><span class="toc-number">9.1.</span> <span class="toc-text">
+          counterfactual fairness</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Performance-disparities"><span class="toc-number">9.2.</span> <span class="toc-text">
+          Performance disparities</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bias-and-stereotypes"><span class="toc-number">10.</span> <span class="toc-text">
+          Bias and stereotypes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Toxicity"><span class="toc-number">11.</span> <span class="toc-text">
+          Toxicity</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Efficiency"><span class="toc-number">12.</span> <span class="toc-text">
+          Efficiency</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Training-efficiency"><span class="toc-number">12.1.</span> <span class="toc-text">
+          Training efficiency</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Inference-efficiency"><span class="toc-number">12.2.</span> <span class="toc-text">
+          Inference efficiency</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Experiments-and-results"><span class="toc-number">13.</span> <span class="toc-text">
+          Experiments and results</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Direct-model-comparisons"><span class="toc-number">13.1.</span> <span class="toc-text">
+          Direct model comparisons</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Limitations-and-future-work"><span class="toc-number">14.</span> <span class="toc-text">
+          Limitations and future work</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Limitations-of-results"><span class="toc-number">14.1.</span> <span class="toc-text">
+          Limitations of results</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HELM%E5%AE%9E%E6%96%BD%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">14.2.</span> <span class="toc-text">
+          HELM实施的局限性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HELM%E8%AE%BE%E8%AE%A1%E7%9A%84%E9%99%90%E5%88%B6"><span class="toc-number">14.3.</span> <span class="toc-text">
+          HELM设计的限制</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/小狗熬夜.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">It's 95 percent pain</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">29</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>TheShineyue</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v7.1.1</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script type="application/json" src="/search.json"></script></body></html>
