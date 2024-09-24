@@ -1,0 +1,487 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="论文阅读 DAVIDSONIAN SCENE GRAPH : IMPROVING RELIABILITY IN FINE-GRAINED EVALUATION FOR TEXT-TO-IMAGE GENERATION">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读 DAVIDSONIAN SCENE GRAPH:IMPROVING RELIABILITY IN FINE-GRAINED EVALUATION FOR TEXT-TO-IMAGE GENERATION">
+<meta property="og:url" content="http://example.com/2024/09/21/paper4/index.html">
+<meta property="og:site_name" content="Liyue">
+<meta property="og:description" content="论文阅读 DAVIDSONIAN SCENE GRAPH : IMPROVING RELIABILITY IN FINE-GRAINED EVALUATION FOR TEXT-TO-IMAGE GENERATION">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240921220618.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924101126.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924103240.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924104601.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924105439.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924111005.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924105439.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924150506.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924150825.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924164159.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924164720.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924165326.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924165430.png">
+<meta property="article:published_time" content="2024-09-21T13:12:55.124Z">
+<meta property="article:modified_time" content="2024-09-24T09:14:16.106Z">
+<meta property="article:author" content="TheShineyue">
+<meta property="article:tag" content="nlp">
+<meta property="article:tag" content="paper">
+<meta property="article:tag" content="hallucination">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240921220618.png"><title>论文阅读 DAVIDSONIAN SCENE GRAPH:IMPROVING RELIABILITY IN FINE-GRAINED EVALUATION FOR TEXT-TO-IMAGE GENERATION | Liyue</title><link ref="canonical" href="http://example.com/2024/09/21/paper4/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 7.1.1"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/links/"><span class="header-nav-menu-item__icon"><i class="fas fa-link"></i></span><span class="header-nav-menu-item__text">友链</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Liyue</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">论文阅读 DAVIDSONIAN SCENE GRAPH:IMPROVING RELIABILITY IN FINE-GRAINED EVALUATION FOR TEXT-TO-IMAGE GENERATION</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2024-09-21</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2024-09-24</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>论文阅读 DAVIDSONIAN SCENE GRAPH : IMPROVING RELIABILITY IN FINE-GRAINED EVALUATION FOR TEXT-TO-IMAGE GENERATION</p>
+<span id="more"></span>
+
+
+        <h1 id="Abstract"   >
+          <a href="#Abstract" class="heading-link"><i class="fas fa-link"></i></a><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1>
+      <p>一种评估test-to-image模型可信度的方法是基于QG&#x2F;A(Question Generation &#x2F; Answer) ：使用预训练的基础模型从prompt开始自动生成一组问题和答案，并根据“从视觉问题回答模型”提取的答案是否和上述的答案一致对输出图像进行评分。</p>
+<p>这依赖于底层QG和VQA模型的质量。我们确定并解决了现有工作中的几个可靠性挑战：</p>
+<ol>
+<li>QG问题应该要尊重prompt（在这一步避免幻觉、重复和遗漏）</li>
+<li>VQA的答案需要保持一致性（多个答案之间不应该自相矛盾）</li>
+</ol>
+<p>我们使用Davidsonian Scene Graph（DSG）解决了这些问题，这一个由形式语义启发的基于经验的评估框架，适用于任何QG&#x2F;A,生成在依赖关系图中组织的原子和唯一问题，这确保恰当的语义覆盖和避免了不一致的答案。</p>
+<p>我们最后提出了DSG-1k评估基准，包含1060个prompt，覆盖了广泛的细粒度语义类别，分布均衡。</p>
+
+        <h1 id="Introduction"   >
+          <a href="#Introduction" class="heading-link"><i class="fas fa-link"></i></a><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1>
+      <p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240921220618.png"></p>
+<p>与流行的基于单分数相似性指标相比，GQ&#x2F;A方法更有校准、可解释性和和人类的判断密切相关</p>
+<ol>
+<li>校准：CLPSorce 0.3 对于真实图像来说是低值，但是对于像素艺术来说是高值</li>
+<li>可解释性：问答对提供了更细粒度的视图，有可能模型生成的图像正确的描绘了实体和空间关系，但是颜色错误了</li>
+</ol>
+<p>但是存在一些问题：</p>
+<ol>
+<li>提取的问题可能会涉及多个细节，这会导致歧义（回答的否不知道是否定哪一个）（是否有一辆蓝色摩托车，颜色and存在）</li>
+<li>重复，可能几个问题存在语义上的相关性</li>
+</ol>
+<p>我们认为好的框架应当有以下一些特点：</p>
+<ul>
+<li>原子问题，每个问题都应该覆盖尽可能小的语义单元，以便：（1）答案是明确可解释的，（2）它有助于VQA模型或者回答它的人的任务。如果覆盖了过多问题，可能会因为其中一个问题的错误导致这些问题全部被认定为错误。</li>
+<li>全语义覆盖，无幻觉，生成的问题应该表示全部prompt的内容</li>
+<li>独特（或者说不应该重复），“有摩托车吗”和“这是什么类型的交通工具”是相似的</li>
+<li>有效问题，有些问题的错误会使得其他问题也应该被跳过。例如假如“有摩托车是错误的”，“摩托车是蓝色的”也应该被跳过</li>
+</ul>
+<p>我们引入了DSG，这是一种自然满足上述要求的文本描述的结构化表示。收到语言形式主义的启发，递归的把句子分解成一组原子命题来表示句子的语义。</p>
+<ul>
+<li>不多也不少的表示了句子的语义 </li>
+<li>我们把QG问题实现为有向无环边，其中节点代表唯一性问题</li>
+<li>有向边代表了语义依赖，它们是得节点表现出来拓扑的关系</li>
+</ul>
+<p>QA阶段实现了根据图结构，跳过相关的问题</p>
+
+        <h1 id="DSG-Davidsonian-score-graph"   >
+          <a href="#DSG-Davidsonian-score-graph" class="heading-link"><i class="fas fa-link"></i></a><a href="#DSG-Davidsonian-score-graph" class="headerlink" title="DSG Davidsonian score graph"></a>DSG Davidsonian score graph</h1>
+      <p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924101126.png"></p>
+<p>流程如下：</p>
+<p>给定文本提示t和生成的图像i，外面从t生成一组验证问题q和它们的预期答案a。然后，我们在i的基础上从VQA模型a<del>获得q的答案，比较a和a</del>，我们可以计算t和i的对齐分数，越大越接近。</p>
+<p>受Davidsonian语义学启发，我们把t的语义表示成有向无环图，其中节点是原子命题，边是原子命题之间的蕴含依赖关系。</p>
+<p>一个原子命题是这样一种描述，它：</p>
+<ol>
+<li>有一个真值，可以用i来验证 </li>
+<li>不能进一步分解为具有真值的组成命题。如果必须考虑父命题的真实性，那么子命题与其父命题处于蕴含依赖关系中</li>
+</ol>
+<p>确定了四种类型的原子命题，实体、属性、关系和全局，实体和全局是一元组（实体或全局特征本身）；属性是二元组（属性和他引用的实体）；关系是三元组（关系，主体实体和客体实体）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924103240.png"></p>
+
+        <h2 id="自动生成DSG"   >
+          <a href="#自动生成DSG" class="heading-link"><i class="fas fa-link"></i></a><a href="#自动生成DSG" class="headerlink" title="自动生成DSG"></a>自动生成DSG</h2>
+      <ol>
+<li><p>prompt - tuples<br>从输入prompt生成原子语义元组列表，每个元组都有一个数字标识符</p>
+</li>
+<li><p>tuples - questions<br>每个语义元组都被翻译成一个自然语言问题，带有预期的二进制答案（是&#x2F;否）</p>
+</li>
+<li><p>tuples - dependencies<br>元组之间的依赖关系是通过父子标识符对来建立的</p>
+</li>
+</ol>
+<p>每个步骤都是由给定任务特定的上下文示例的LLM实现的，保证格式正确，三步比一步更加有效，因为可以包含更多的上下文示例</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924104601.png"></p>
+<p>生成需要满足前面提到的四种可靠性属性，我们进行两层质量保证</p>
+<ol>
+<li>问题集要三个人类专家一致认可有效的才会被保留</li>
+<li>对DSG进行自动和人工评估</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924105439.png"></p>
+
+        <h2 id="DSG-1k数据集"   >
+          <a href="#DSG-1k数据集" class="heading-link"><i class="fas fa-link"></i></a><a href="#DSG-1k数据集" class="headerlink" title="DSG-1k数据集"></a>DSG-1k数据集</h2>
+      <p>通过组合涵盖不同挑战的公开prompt来构建DSG-1k，核心是TIFA160，带有人类标注</p>
+<p>他的大小只有160，所以我们从其他9个数据集采集了900多个prompt，涵盖了多种写作风格和技能。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924111005.png"></p>
+
+        <h1 id="EXPERIMENTS-AND-DISCUSSION"   >
+          <a href="#EXPERIMENTS-AND-DISCUSSION" class="heading-link"><i class="fas fa-link"></i></a><a href="#EXPERIMENTS-AND-DISCUSSION" class="headerlink" title="EXPERIMENTS AND DISCUSSION"></a>EXPERIMENTS AND DISCUSSION</h1>
+      <p>根据准确性（精度和召回率）、简单性&#x2F;直接性（原子性）、是否相互重叠（唯一性）以及相互依赖关系的准确性来评估</p>
+
+        <h2 id="Precision-Recall"   >
+          <a href="#Precision-Recall" class="heading-link"><i class="fas fa-link"></i></a><a href="#Precision-Recall" class="headerlink" title="Precision &amp; Recall"></a>Precision &amp; Recall</h2>
+      <p>一组人类注释的语义元组T &#x3D; {t1, . . . , t|T|}和一组模型生成的提问Q &#x3D; {q1, . . . , q|Q|}， 当 q matches t (e.g., q &#x3D; “is there a motorcycle?” matches t &#x3D;(entity - motorcycle))µt,q 是 1。</p>
+<ul>
+<li>precision &#x3D; 累和 µt,q &#x2F; |Q|</li>
+<li>recall &#x3D; 累和µt,q &#x2F; |T|</li>
+</ul>
+<p>可以进行人工or自动判断</p>
+<p>对于前者，我们抽取TIFA160的30个prompt，并请三位领域专家进行提供匹配判断；对于后者，使用GPT3.5</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924105439.png"></p>
+<p>SDG在匹配语义元组方面接近完美<br>还是有一些不匹配</p>
+<ol>
+<li>关系分解的粒度，顶部有行李袋和钱包的桌子，人工注释把钱包和表格之间的关系视为隐式的，但DSG明确包含了问题</li>
+<li>引用范围的粒度，例如两个轮子一个在一个后面，人工注释把车轮们视为单个实体，但是DSG把前轮和后轮分开</li>
+<li>主观细节，“一群长颈鹿在围栏里”，长颈鹿占领围栏没有被人工注释说明，但是被DSG注意到了</li>
+</ol>
+
+        <h2 id="唯一性"   >
+          <a href="#唯一性" class="heading-link"><i class="fas fa-link"></i></a><a href="#唯一性" class="headerlink" title="唯一性"></a>唯一性</h2>
+      <p>计算原子题占比</p>
+<p>DSG表现出来较好的结果</p>
+
+        <h2 id="问题依赖"   >
+          <a href="#问题依赖" class="heading-link"><i class="fas fa-link"></i></a><a href="#问题依赖" class="headerlink" title="问题依赖"></a>问题依赖</h2>
+      <p>检查父问题提到的非全局问题是否被包含在子问题中</p>
+
+        <h2 id="VQA"   >
+          <a href="#VQA" class="heading-link"><i class="fas fa-link"></i></a><a href="#VQA" class="headerlink" title="VQA"></a>VQA</h2>
+      <ol>
+<li>研究了text-image对的VQA准确性和人类评分之间的相关性</li>
+<li>检查了来自VQA的每个问题的答案和人类评分者</li>
+</ol>
+<p>DSG和VQ2A是二元选择的，TIFA是多选的</p>
+<p>报告了平均VQA分数和人类评分的相关性（Spearman’s ρ and Kendall’s τ），被称为中度到强的相关性</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924150506.png"></p>
+<p>反映了VQA模型和人类评分者之间匹配问题的比例，PaLi最好，所有模型对实体问题的输出更准确</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924150825.png"></p>
+<p>更详细的语义类别，对于实体而言，整体和部分的匹配很高（猫和猫的脖子），空间和行动的关系也有类似的观察；属性的度量分布不均匀：视觉上明确的类别（颜色、纹理）高于抽象&#x2F;高阶的类别（计数和文本呈现），特别是文本渲染，这可能反映了VQA模型还不能很好的学习深度语义；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924164159.png"></p>
+<p>问题可能在于主观性和领域知识，例如判断目标的材料、形状、风格可能比较主观，而且一般人类可能没有过于全面的知识</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924164720.png"></p>
+
+        <h2 id="text到image的评估"   >
+          <a href="#text到image的评估" class="heading-link"><i class="fas fa-link"></i></a><a href="#text到image的评估" class="headerlink" title="text到image的评估"></a>text到image的评估</h2>
+      <p>比较了三种T2I的模型</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924165326.png"></p>
+<p>DSG + PaLI 和人类的匹配程度在SDv2.1较差,其他两个差不多.但是PaLI会过度乐观超过人类评分.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20240924165430.png"></p>
+<ol>
+<li>counting对于模型来说很难</li>
+<li>Text 大多数情况下是错的</li>
+<li>主观性和领域性依旧是导致模型和人类分歧的原因</li>
+</ol>
+<p>总体而言,对于语义上更为具体的类型的模型评估,当前的VQA模型能够支持QG&#x2F;A;在特定难度(主观性和领域性,例如这张图片是8k的吗),VQA依然是足够可靠的</p>
+
+        <h1 id="Conclusion"   >
+          <a href="#Conclusion" class="heading-link"><i class="fas fa-link"></i></a><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1>
+      <p>DSG加持下的QG&#x2F;A方法比以前的工作更好的解决了可靠性问题,此外它们的细粒度问题类型允许进行更深入的诊断.</p>
+<p>最后,我们收集了一个基准数据集DSG-1k</p>
+<p>我们的工作揭示了QG&#x2F;A的未来方向</p>
+<ol>
+<li>主观性和领域知识可能导致人与模型以及人与人之间的分歧</li>
+<li>一些语义类别仍然超出了现有大模型的能力(例如文本渲染)</li>
+</ol>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://example.com">TheShineyue</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://example.com/2024/09/21/paper4/">http://example.com/2024/09/21/paper4/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/nlp/">nlp</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/paper/">paper</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/hallucination/">hallucination</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2024/09/15/paper3/"><span class="paginator-prev__text">论文阅读 LLMs hallucinate graph\:too a structural perspective</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Abstract"><span class="toc-number">1.</span> <span class="toc-text">
+          Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">2.</span> <span class="toc-text">
+          Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DSG-Davidsonian-score-graph"><span class="toc-number">3.</span> <span class="toc-text">
+          DSG Davidsonian score graph</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90DSG"><span class="toc-number">3.1.</span> <span class="toc-text">
+          自动生成DSG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DSG-1k%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">3.2.</span> <span class="toc-text">
+          DSG-1k数据集</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EXPERIMENTS-AND-DISCUSSION"><span class="toc-number">4.</span> <span class="toc-text">
+          EXPERIMENTS AND DISCUSSION</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Precision-Recall"><span class="toc-number">4.1.</span> <span class="toc-text">
+          Precision &amp; Recall</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%94%AF%E4%B8%80%E6%80%A7"><span class="toc-number">4.2.</span> <span class="toc-text">
+          唯一性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E4%BE%9D%E8%B5%96"><span class="toc-number">4.3.</span> <span class="toc-text">
+          问题依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VQA"><span class="toc-number">4.4.</span> <span class="toc-text">
+          VQA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#text%E5%88%B0image%E7%9A%84%E8%AF%84%E4%BC%B0"><span class="toc-number">4.5.</span> <span class="toc-text">
+          text到image的评估</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Conclusion"><span class="toc-number">5.</span> <span class="toc-text">
+          Conclusion</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/小狗熬夜.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">It's 95 percent pain</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">31</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>TheShineyue</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v7.1.1</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script type="application/json" src="/search.json"></script></body></html>
