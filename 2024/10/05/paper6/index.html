@@ -1,0 +1,567 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="论文阅读 DARG:Dynamic Evaluation of Large Language Models via Adaptive Reasoning Graph">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读 DARG:Dynamic Evaluation of Large Language Models via Adaptive Reasoning Graph">
+<meta property="og:url" content="http://example.com/2024/10/05/paper6/index.html">
+<meta property="og:site_name" content="Liyue">
+<meta property="og:description" content="论文阅读 DARG:Dynamic Evaluation of Large Language Models via Adaptive Reasoning Graph">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005193321.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005205312.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005193321.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005205357.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005205426.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005215154.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005215246.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005215820.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005205357.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005221426.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005222145.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005222503.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005223938.png">
+<meta property="article:published_time" content="2024-10-05T09:54:33.598Z">
+<meta property="article:modified_time" content="2024-10-05T14:45:43.024Z">
+<meta property="article:author" content="TheShineyue">
+<meta property="article:tag" content="nlp">
+<meta property="article:tag" content="paper">
+<meta property="article:tag" content="benchmark">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005193321.png"><title>论文阅读 DARG:Dynamic Evaluation of Large Language Models via Adaptive Reasoning Graph | Liyue</title><link ref="canonical" href="http://example.com/2024/10/05/paper6/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 7.1.1"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/links/"><span class="header-nav-menu-item__icon"><i class="fas fa-link"></i></span><span class="header-nav-menu-item__text">友链</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Liyue</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">论文阅读 DARG:Dynamic Evaluation of Large Language Models via Adaptive Reasoning Graph</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2024-10-05</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2024-10-05</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>论文阅读 DARG:Dynamic Evaluation of Large Language Models via Adaptive Reasoning Graph</p>
+<span id="more"></span>
+
+
+        <h1 id="Abstract"   >
+          <a href="#Abstract" class="heading-link"><i class="fas fa-link"></i></a><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1>
+      <ul>
+<li>静态基准评估LLM存在局限：易受数据污染，对LLM不断发展的能力缺乏适应性，需要适应并生成具有受控复杂度的评估数据的方法</li>
+<li>通过 自适应推理图演化（DARG）对LLM进行动态评估，以动态扩展具有受控复杂度和多样性的基准</li>
+<li>具体来讲：先提供当前基准中数据点的推理图，然后扰动推理图以形成新的测试数据</li>
+<li>进一步 使用代码增强的LLM（专注于编程和软件开发任务的LLM）以爆炸新生成数据标签的正确性</li>
+<li>把DARG应用于四个领域的各种推理任务，实验表明，几乎所有的LLM都会随着复杂度的上升而性能下降，某些甚至会显著下降</li>
+<li>通过复杂度更高的DARG生成的数据进行评估，LLM会表现出更多的偏差</li>
+</ul>
+
+        <h1 id="Introduction"   >
+          <a href="#Introduction" class="heading-link"><i class="fas fa-link"></i></a><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1>
+      <p>现有的静态基准数据集存在以下问题：</p>
+<ol>
+<li>数据污染，指的是 LLM 的训练语料库和基准数据点之间可能存在重叠。这引发了人们的担忧，即 LLM 是否只是记忆和过度拟合这些基准，而不是学习如何解决任务，这可能导致泛化能力差</li>
+<li>静态数据集只有固定的复杂性，缺乏发展的灵活性。随着 LLM 的快速发展和扩大，现有的静态基准测试可能无法与其不断增强的功能保持一致，因为当前基准测试的复杂性保持不变。</li>
+</ol>
+<p>一些做法引入了基于模板的方法，为数学和逻辑推理任务生成具有不同复杂度的评估样本，但是这是合成的，缺乏语言多样性</p>
+<p>还有一些做法提示LLM直接修改评估数据，利用具有各种prompt策略的LLM扰乱现有数据，更好的适用了现在的基准，但是可控性较低，也受到LLM不稳定的影响。</p>
+<p>我们在本研究中提出了 DARG，即通过自适应推理图对 LLM 进行动态评估，这些推理图代表了解决问题所需的基本推理组件的底层结构。</p>
+<p>具体来说：</p>
+<ol>
+<li>我们首先使用 LLM 为给定基准中的数据点构建推理图（例如，用于解决数学问题的计算推理图如图所示）。</li>
+<li>接下来，我们根据推理图的各个维度执行细粒度的图扰动，我们可以通过增加图的深度、宽度和节点值的数值复杂度来动态增加图的复杂性。</li>
+<li>之后，我们将推理图转换回适应语言多样性作为原始数据的描述。</li>
+</ol>
+<p>为了确保推理图构建和图到文本生成的正确性，我们使用工具增强型 LLM 来验证推理图和生成文本的质量，以生成有效的测试示例。<br>通过这种方式，可以生成具有可控复杂度、适应性语言多样性和经过验证的标签的新型测试用例。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005193321.png"></p>
+<p>使用DARG生成的示例对15个LLM进行了评估，涉及数学推理、社会推理、空间推理和符号推理。</p>
+<ol>
+<li>所有当前的 LLM 在由 DARG 生成的这些数据上的性能都随着复杂度的增加而下降，这表明使用静态基准对 LLM 能力的评估不可靠，需要动态和自适应地评估 LLM。</li>
+<li>在社会和空间推理的任务中，我们发现 LLM 反映的偏差（偏见和倾向性）会随着复杂度的增加而增加。</li>
+<li>较大的模型对复杂度的增加更具抵抗力，对偏见问题更有敏感性</li>
+</ol>
+
+        <h1 id="Method-DARG"   >
+          <a href="#Method-DARG" class="heading-link"><i class="fas fa-link"></i></a><a href="#Method-DARG" class="headerlink" title="Method DARG"></a>Method DARG</h1>
+      <ol>
+<li>提取推理图</li>
+<li>细粒度的图扰动来演化复杂性</li>
+<li>转换成匹配的自然语言描述</li>
+</ol>
+
+        <h2 id="推理图"   >
+          <a href="#推理图" class="heading-link"><i class="fas fa-link"></i></a><a href="#推理图" class="headerlink" title="推理图"></a>推理图</h2>
+      <p>对于一个推理任务，定义一个推理图G &#x3D; （VR,ER），这是一个有向无环图。<br>节点代表基本的推理单位，边代表其中的操作符（计算操作或数据处理）</p>
+<p>为了量化复杂度：</p>
+<ol>
+<li>推理图的结构复杂性，包括图的宽度（它衡量推理过程中需要并行维护的最大变量数）和图的深度（它衡量解决任务所需的最高推理步骤级别）；</li>
+<li>推理图中节点的属性和设置复杂性</li>
+</ol>
+<p>我们可以应用扰动来改变任何给定推理图的复杂性，例如增加节点的数值或添加边和节点以增加图的宽度和图的深度</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005205312.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005193321.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005205357.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005205426.png"></p>
+<p>使用具有情景范例的LLM为每个数据点构建推理图</p>
+<p>简单的prompt工程构建准确的推理图是很困难的，哪怕是最强大的模型GPT-4 Turbo，也无法一次性准确地合成推理图，即使是使用了自我校正技术也是如此。</p>
+<p>为了解决不稳定性，使用基于规则的函数来使用图结构计算标签，再和原始标签进行匹配，如果不匹配，使用高温迭代LLM直到对齐</p>
+
+        <h2 id="推理图扰动"   >
+          <a href="#推理图扰动" class="heading-link"><i class="fas fa-link"></i></a><a href="#推理图扰动" class="headerlink" title="推理图扰动"></a>推理图扰动</h2>
+      <p>对于推理图G（V,E），定义一个扰动函数P(G，L，I)，其中L代表复杂度类型，I代表选定的间隔</p>
+<p>使用基于规则的函数来修改推理图，该P调整节点V和边E，得到新的推理图，<br>应用与上一阶段相同的标签计算函数来确定该图的新标签。</p>
+<p>我们使用基于规则的函数进行图形插值，而不使用LLM，所以不会引入噪音</p>
+
+        <h2 id="测试示例生成"   >
+          <a href="#测试示例生成" class="heading-link"><i class="fas fa-link"></i></a><a href="#测试示例生成" class="headerlink" title="测试示例生成"></a>测试示例生成</h2>
+      
+        <h3 id="图形到文本解码"   >
+          <a href="#图形到文本解码" class="heading-link"><i class="fas fa-link"></i></a><a href="#图形到文本解码" class="headerlink" title="图形到文本解码"></a>图形到文本解码</h3>
+      <p>给定一个推理图G和原始文本T，选择k个样本指导LLM生成新文本T’</p>
+<p>这样，新的数据点不仅可以保持一致的语言风格，还可以以类似的方式在文本中编码推理图结构</p>
+
+        <h3 id="数据验证"   >
+          <a href="#数据验证" class="heading-link"><i class="fas fa-link"></i></a><a href="#数据验证" class="headerlink" title="数据验证"></a>数据验证</h3>
+      <p>LLM有着不稳定性和幻觉，所以要确保文本和推理图对齐</p>
+<p>使用代码解释器等工具增强 LLM 可以显著缓解这些幻觉，从而提高事实性和性能</p>
+<p>我们使用一个代码增强型 LLM 代理，它将 T ′ 作为输入，生成代码来解决推理任务，并利用外部代码解释器计算最终答案 A′。然后，我们将这个计算出的答案 A′ 与从推理图 GR 得出的标签 A 进行比较。如果 A′ &#x3D; A，我们认为新数据点生成正确。</p>
+<p>如果不是，我们迭代地将求解过程和代码输出返回给 LLM，以改进其新数据点的生成。我们发现使用代码和代码输出作为监督信号可显著帮助 LLM 减少新数据生成过程中的幻觉。</p>
+
+        <h1 id="实验"   >
+          <a href="#实验" class="heading-link"><i class="fas fa-link"></i></a><a href="#实验" class="headerlink" title="实验"></a>实验</h1>
+      <p>使用最常用的数据集(LLM表现高性能解决的那些)，用DARG重新评估这些</p>
+
+        <h2 id="数学推理-GSM8K"   >
+          <a href="#数学推理-GSM8K" class="heading-link"><i class="fas fa-link"></i></a><a href="#数学推理-GSM8K" class="headerlink" title="数学推理 GSM8K"></a>数学推理 GSM8K</h2>
+      
+        <h3 id="任务和图表设置"   >
+          <a href="#任务和图表设置" class="heading-link"><i class="fas fa-link"></i></a><a href="#任务和图表设置" class="headerlink" title="任务和图表设置"></a>任务和图表设置</h3>
+      <p>每个节点代表一个数字，每个边用作数学运算符，例如加法和除法。</p>
+
+        <h3 id="推理图扰动和复杂度计算"   >
+          <a href="#推理图扰动和复杂度计算" class="heading-link"><i class="fas fa-link"></i></a><a href="#推理图扰动和复杂度计算" class="headerlink" title="推理图扰动和复杂度计算"></a>推理图扰动和复杂度计算</h3>
+      <ol>
+<li><p>节点复杂度的数值复杂度，定义为计算中的单位加法次数。我们以 +2、+4、+6、+8 的间隔增加数值复杂度。基于原始推理图，我们为每个节点随机抽取一组新值，以满足所需的数值复杂度要求。</p>
+</li>
+<li><p>推理图的深度代表结构复杂度，定义为从叶节点到答案节点的最长路径中的节点数。我们以 +1、+2、+3、+4<br>为间隔增加原始推理图的深度。为了将深度增加,我们确定原始推理图中的最长路径，然后将起始节点拆分为<br>两个新节点，其值保持相同的数值复杂度。 </p>
+</li>
+<li><p>结构复杂性的推理图宽度，定义为在图中最长路径之外添加的节点对的数量增加。我们通过分解非最长路径的起始节点（如果存在）以 +1、+2、+3 和 +4 为间隔增加图宽度。</p>
+</li>
+</ol>
+
+        <h3 id="评估"   >
+          <a href="#评估" class="heading-link"><i class="fas fa-link"></i></a><a href="#评估" class="headerlink" title="评估"></a>评估</h3>
+      <p>准确度之外，为了评估 LLM 在 DARG 内对复杂性增加的响应的稳健性，我们还引入了复杂性诱导的准确度保留率 (CIARR)。</p>
+<p>Ai 表示复杂度级别 i 的模型在特定复杂度维度 D 中的准确度。</p>
+<p>从 0 到 n 的增量复杂度级别序列的 CIARR 定义为每个复杂度增量的准确度平均百分比保留，如下所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005215154.png"></p>
+<p>值越高，表示该维度对复杂性增加的鲁棒性越大</p>
+
+        <h3 id="结论"   >
+          <a href="#结论" class="heading-link"><i class="fas fa-link"></i></a><a href="#结论" class="headerlink" title="结论"></a>结论</h3>
+      <p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005215246.png"></p>
+<ul>
+<li><p>一般来说，所有模型的准确度都会随着三个维度上复杂度的增加而降低。Claude-3-Opus 的性能在使用不同的提示策略时显着下降了 54.2%，尽管它在原始测试集上达到了 95% 的准确率。这表明，现有静态基准的优异性能并不能反映模型的实际推理能力，这可能部分是由于数据污染问题</p>
+</li>
+<li><p>具有更大参数的较大模型表现出对增加的复杂性的更强的弹性，例如，与 Llama3-8B 相比，Llama3-70B 对复杂性增加的弹性更强</p>
+</li>
+<li><p>在具有相似数量的活动参数的情况下，MoE 模型对复杂性增加的抵抗力更强</p>
+</li>
+</ul>
+<p>MoE 模型是指”Mixture of Experts”（专家混合）模型。这是一种用于处理复杂数据和任务的神经网络架构。在 MoE 模型中，网络被划分为多个专家模块，每个专家模块负责处理特定方面的数据或任务，然后通过一个门控模块来动态地选择哪个专家模块应该负责当前的输入。</p>
+<p>从每个复杂度级别抽样了 20 个 GPT-4 Trubo 故障案例，并分析了 GSM8K 中涉及的错误类型</p>
+<ol>
+<li><p>数值计算错误，其中模型生成正确的问题解决过程，但在算术运算中犯了错误</p>
+</li>
+<li><p>推理错误，源于不正确的推理或数学概念的错误应用</p>
+</li>
+<li><p>其他错误，包括不正确的标签和其他杂项问题</p>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005215820.png"></p>
+<p>随着数值复杂度的增加，错误的数值计算数量也随之增加；随着推理图的宽度和深度的增加，错误推理过程中的错误也随之增加。这表明，目前的 LLM 仍然缺乏处理更大数字和需要更多推理步骤的数学问题的能力。</p>
+
+        <h2 id="社会推理-BBQ"   >
+          <a href="#社会推理-BBQ" class="heading-link"><i class="fas fa-link"></i></a><a href="#社会推理-BBQ" class="headerlink" title="社会推理 BBQ"></a>社会推理 BBQ</h2>
+      
+        <h3 id="任务和图设置"   >
+          <a href="#任务和图设置" class="heading-link"><i class="fas fa-link"></i></a><a href="#任务和图设置" class="headerlink" title="任务和图设置"></a>任务和图设置</h3>
+      <p>该数据集通过多项选择QA评估对9个受保护群体的偏见。</p>
+<p>该数据集包括两种类型的上下文：模棱两可的（没有明确的答案证据）和明确的（证据支持一个明确的答案）。</p>
+<p>每个问题都有三个选择：支持偏见、反对偏见或中立（例如，无法确定）。</p>
+
+        <h3 id="图复杂性和扰动"   >
+          <a href="#图复杂性和扰动" class="heading-link"><i class="fas fa-link"></i></a><a href="#图复杂性和扰动" class="headerlink" title="图复杂性和扰动"></a>图复杂性和扰动</h3>
+      <ol>
+<li><p>节点复杂度的属性，描述一个人的属性是正面的还是负面的。<br>我们检查在偏见选项中添加负面属性和在反偏见选项中添加正面属性是否会影响 LLM 生成更多有偏见的输出。</p>
+</li>
+<li><p>结构复杂度的推理图宽度，即人的属性数量。</p>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005205357.png"></p>
+
+        <h3 id="评估-1"   >
+          <a href="#评估-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#评估-1" class="headerlink" title="评估"></a>评估</h3>
+      <ol>
+<li>偏见和不偏见上下文的acc</li>
+<li>两种上下文的偏差分数，分数越低偏差越小</li>
+<li>总体回避率：过于保守选择无法确定的现象，发生的频率</li>
+</ol>
+
+        <h3 id="结论-1"   >
+          <a href="#结论-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#结论-1" class="headerlink" title="结论"></a>结论</h3>
+      <p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005221426.png"></p>
+<ol>
+<li>复杂度增加，整体准确率下降</li>
+<li>虽然GPT-4 Turbo 和 Gemini-1.5-Pro 等闭源模型表现出更好的整体准确率，但当我们深入研究偏见和无偏见子类别时，它们在无偏见准确率方面落后于许多开源模型</li>
+<li>GPT-4 Turbo 和 Gemini-1.5-Pro的保守和敏感是最严重的</li>
+</ol>
+
+        <h2 id="空间推理-BBH-导航"   >
+          <a href="#空间推理-BBH-导航" class="heading-link"><i class="fas fa-link"></i></a><a href="#空间推理-BBH-导航" class="headerlink" title="空间推理 BBH 导航"></a>空间推理 BBH 导航</h2>
+      
+        <h3 id="任务和图设置-1"   >
+          <a href="#任务和图设置-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#任务和图设置-1" class="headerlink" title="任务和图设置"></a>任务和图设置</h3>
+      <p>我们构造推理图，其中节点表示具有属性的动作，包括步骤数和方向，而方向边表示动作的顺序。这就形成了一个线性图来建模任务的推理结构。图的复杂度和扰动操作被定义为结构复杂度的推理图的深度，即线性推理图中的节点数。我们通过+2、+4、+8和+16来增加了节点的数量。</p>
+<p>为了实现这种复杂性的增加，我们随机选择一个动作节点，并将其分割为多个节点</p>
+<p>我们通过“是”和“否”标记数据点的总体准确性和单独准确性来评估llm，分别称为正准确性和负准确性</p>
+
+        <h3 id="结论-2"   >
+          <a href="#结论-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#结论-2" class="headerlink" title="结论"></a>结论</h3>
+      <p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005222145.png"></p>
+<p>随着复杂性的增加，所有模型的总体精度总体都呈下降的趋势。</p>
+<p>更值得注意的是，如下图所示，随着推理步骤数的增加，所有模型的正准确性都显著下降。</p>
+<p>特别是除了GPT-4 Turbo外，所有模型显示，当节点数量增加16个时，正的精度下降了40%以上<br>，而负的精度保持相对稳定。</p>
+<p>这一现象可能表明这些llm中的偏差，导致积极和消极表现的极度不平衡的变化。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005222503.png"></p>
+
+        <h2 id="符号推理-BBH-Dyck"   >
+          <a href="#符号推理-BBH-Dyck" class="heading-link"><i class="fas fa-link"></i></a><a href="#符号推理-BBH-Dyck" class="headerlink" title="符号推理 BBH Dyck"></a>符号推理 BBH Dyck</h2>
+      
+        <h3 id="任务和图设置-2"   >
+          <a href="#任务和图设置-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#任务和图设置-2" class="headerlink" title="任务和图设置"></a>任务和图设置</h3>
+      <p>BBH Dyck数据集需要模型预测缺少最后几个右括号的 Dyck-4 单词的右括号序列</p>
+<p>推理图中每个节点代表四种类型之一的括号。<br>有三种类型的边：表示操作顺序、输入中的匹配以及输入中的括号和输出中的括号之间的预期匹配</p>
+<p>整个推理图可以分为输入部分和输出部分。输入部分由输入中提供的节点组成，而输出部分由真实标签中的节点组成</p>
+<ol>
+<li>图结构复杂度的输入部分深度，定义为图输入部分的节点数，我们将图输<br>入部分的深度增加 +2、+4、+8 和 +16。 </li>
+<li>图结构复杂度的输出部分深度，定义为图输出部分的节点数。为确保输出序列唯一，输入括号的数量必须大于或等于标签中的括号数量。<br>因此，我们将标签节点数增加 +0.25×（节点数差异）和 +0.5 ×（节点数差异）。</li>
+</ol>
+<p>我们使用精确匹配准确率作为评估指标</p>
+
+        <h3 id="结论-3"   >
+          <a href="#结论-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#结论-3" class="headerlink" title="结论"></a>结论</h3>
+      <p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241005223938.png"></p>
+<ol>
+<li><p>当输入的节点数增加到4和8时，GPT-4<br>Mixtral 8×22b模型的准确率甚至有所提高，而其他模型的性能也有所显示<br>显著下降。当输入的节点数增加到16和32时，所有模型的<br>精度下降。其中，GPT-4 Turbo和Mixtral 8×22b的性能最好<br>适应不断增加的输入复杂性。</p>
+</li>
+<li><p>另一方面，随着预期输出中节点数量的增加，几乎所有模型的性能都会下降。这表明 LLM 仍然受到长上下文的影响，无论是输入时更长还是所需输出时更长。</p>
+</li>
+</ol>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://example.com">TheShineyue</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://example.com/2024/10/05/paper6/">http://example.com/2024/10/05/paper6/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/nlp/">nlp</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/paper/">paper</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/benchmark/">benchmark</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2024/10/05/paper5RL/"><span class="paginator-prev__text">论文阅读 A COMPREHENSIVE SURVEY OF LLM ALIGNMENT TECHNIQUES:RLHF, RLAIF, PPO, DPO AND MORE</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Abstract"><span class="toc-number">1.</span> <span class="toc-text">
+          Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">2.</span> <span class="toc-text">
+          Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Method-DARG"><span class="toc-number">3.</span> <span class="toc-text">
+          Method DARG</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E7%90%86%E5%9B%BE"><span class="toc-number">3.1.</span> <span class="toc-text">
+          推理图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E7%90%86%E5%9B%BE%E6%89%B0%E5%8A%A8"><span class="toc-number">3.2.</span> <span class="toc-text">
+          推理图扰动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E7%A4%BA%E4%BE%8B%E7%94%9F%E6%88%90"><span class="toc-number">3.3.</span> <span class="toc-text">
+          测试示例生成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E5%88%B0%E6%96%87%E6%9C%AC%E8%A7%A3%E7%A0%81"><span class="toc-number">3.3.1.</span> <span class="toc-text">
+          图形到文本解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%AA%8C%E8%AF%81"><span class="toc-number">3.3.2.</span> <span class="toc-text">
+          数据验证</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-number">4.</span> <span class="toc-text">
+          实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E6%8E%A8%E7%90%86-GSM8K"><span class="toc-number">4.1.</span> <span class="toc-text">
+          数学推理 GSM8K</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%9B%BE%E8%A1%A8%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.1.1.</span> <span class="toc-text">
+          任务和图表设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E7%90%86%E5%9B%BE%E6%89%B0%E5%8A%A8%E5%92%8C%E5%A4%8D%E6%9D%82%E5%BA%A6%E8%AE%A1%E7%AE%97"><span class="toc-number">4.1.2.</span> <span class="toc-text">
+          推理图扰动和复杂度计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0"><span class="toc-number">4.1.3.</span> <span class="toc-text">
+          评估</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">4.1.4.</span> <span class="toc-text">
+          结论</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BE%E4%BC%9A%E6%8E%A8%E7%90%86-BBQ"><span class="toc-number">4.2.</span> <span class="toc-text">
+          社会推理 BBQ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%9B%BE%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.2.1.</span> <span class="toc-text">
+          任务和图设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%A4%8D%E6%9D%82%E6%80%A7%E5%92%8C%E6%89%B0%E5%8A%A8"><span class="toc-number">4.2.2.</span> <span class="toc-text">
+          图复杂性和扰动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0-1"><span class="toc-number">4.2.3.</span> <span class="toc-text">
+          评估</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA-1"><span class="toc-number">4.2.4.</span> <span class="toc-text">
+          结论</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E6%8E%A8%E7%90%86-BBH-%E5%AF%BC%E8%88%AA"><span class="toc-number">4.3.</span> <span class="toc-text">
+          空间推理 BBH 导航</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%9B%BE%E8%AE%BE%E7%BD%AE-1"><span class="toc-number">4.3.1.</span> <span class="toc-text">
+          任务和图设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA-2"><span class="toc-number">4.3.2.</span> <span class="toc-text">
+          结论</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%E6%8E%A8%E7%90%86-BBH-Dyck"><span class="toc-number">4.4.</span> <span class="toc-text">
+          符号推理 BBH Dyck</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%9B%BE%E8%AE%BE%E7%BD%AE-2"><span class="toc-number">4.4.1.</span> <span class="toc-text">
+          任务和图设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA-3"><span class="toc-number">4.4.2.</span> <span class="toc-text">
+          结论</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/小狗熬夜.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">It's 95 percent pain</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">33</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>TheShineyue</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v7.1.1</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script type="application/json" src="/search.json"></script></body></html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="Abstract       一个关于LLM对齐方法的综述                     Introduction       LLM可能会产生不希望得到的响应，例如如何实施非法活动的说明。为了减轻这种风险，必须把LLM和人类价值观相一致。 内容：                      关键元素">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读 A COMPREHENSIVE SURVEY OF LLM ALIGNMENT TECHNIQUES:RLHF, RLAIF, PPO, DPO AND MORE">
+<meta property="og:url" content="http://example.com/2024/10/05/paper5RL/index.html">
+<meta property="og:site_name" content="Liyue">
+<meta property="og:description" content="Abstract       一个关于LLM对齐方法的综述                     Introduction       LLM可能会产生不希望得到的响应，例如如何实施非法活动的说明。为了减轻这种风险，必须把LLM和人类价值观相一致。 内容：                      关键元素">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241002192338.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241002200345.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241002194934.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241002195025.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241002195357.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241003230305.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241004154615.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241004174536.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241004174805.png">
+<meta property="article:published_time" content="2024-10-05T07:44:10.875Z">
+<meta property="article:modified_time" content="2024-10-05T09:54:44.703Z">
+<meta property="article:author" content="TheShineyue">
+<meta property="article:tag" content="paper">
+<meta property="article:tag" content="rl">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241002192338.png"><title>论文阅读 A COMPREHENSIVE SURVEY OF LLM ALIGNMENT TECHNIQUES:RLHF, RLAIF, PPO, DPO AND MORE | Liyue</title><link ref="canonical" href="http://example.com/2024/10/05/paper5RL/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 7.1.1"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/links/"><span class="header-nav-menu-item__icon"><i class="fas fa-link"></i></span><span class="header-nav-menu-item__text">友链</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Liyue</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">论文阅读 A COMPREHENSIVE SURVEY OF LLM ALIGNMENT TECHNIQUES:RLHF, RLAIF, PPO, DPO AND MORE</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2024-10-05</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2024-10-05</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h1 id="Abstract"   >
+          <a href="#Abstract" class="heading-link"><i class="fas fa-link"></i></a><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1>
+      <p>一个关于LLM对齐方法的综述</p>
+
+        <h1 id="Introduction"   >
+          <a href="#Introduction" class="heading-link"><i class="fas fa-link"></i></a><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1>
+      <p>LLM可能会产生不希望得到的响应，例如如何实施非法活动的说明。为了减轻这种风险，必须把LLM和人类价值观相一致。</p>
+<p>内容：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241002192338.png"></p>
+
+        <h1 id="关键元素"   >
+          <a href="#关键元素" class="heading-link"><i class="fas fa-link"></i></a><a href="#关键元素" class="headerlink" title="关键元素"></a>关键元素</h1>
+      
+        <h2 id="Reward-Model-奖励模型"   >
+          <a href="#Reward-Model-奖励模型" class="heading-link"><i class="fas fa-link"></i></a><a href="#Reward-Model-奖励模型" class="headerlink" title="Reward Model (奖励模型)"></a>Reward Model (奖励模型)</h2>
+      <p>这是一个经过微调的LLM，根据prompt和生成的response来分配分数。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241002200345.png"></p>
+
+        <h3 id="显式奖励模型和隐式奖励模型"   >
+          <a href="#显式奖励模型和隐式奖励模型" class="heading-link"><i class="fas fa-link"></i></a><a href="#显式奖励模型和隐式奖励模型" class="headerlink" title="显式奖励模型和隐式奖励模型"></a>显式奖励模型和隐式奖励模型</h3>
+      <p>偏好数据集：由三元组组成，包括 prompt x , 期望的 response yw 和不期望的response yt</p>
+<p>基于偏好数据集，通过对预训练的LLM进行微调，得到显示奖励模型，为每个prompt和response分配奖励。该奖励模型随后被用于RL设置，以调整LLM策略。这是显性奖励模型，表示为：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241002194934.png"></p>
+<p>相反的，绕过训练显式奖励模型的被表示为：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241002195025.png"></p>
+<p>例如，在DPO中，建立了最优奖励模型与RL中的最优策略的映射，使得LLM可以在不直接导出奖励模型的情况下对齐。<br><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241002195357.png"></p>
+
+        <h3 id="积分（Ponitwise）奖励模型和偏好（Preferencewise）奖励模型"   >
+          <a href="#积分（Ponitwise）奖励模型和偏好（Preferencewise）奖励模型" class="heading-link"><i class="fas fa-link"></i></a><a href="#积分（Ponitwise）奖励模型和偏好（Preferencewise）奖励模型" class="headerlink" title="积分（Ponitwise）奖励模型和偏好（Preferencewise）奖励模型"></a>积分（Ponitwise）奖励模型和偏好（Preferencewise）奖励模型</h3>
+      <p>RHLF的原始工作得到了一个积分奖励模型，给定prompt和response，返回一个奖励分数r(x,y)。</p>
+<p>BT模型是用来预测两个方案相对能力的概率，给定期望响应和不期望响应，可以得到期望响应优于不期望响应的概率。</p>
+<p>但是BT模型只能处理成对的偏好，也无法处理人类标注中的不一致性和主观偏差</p>
+<p>为了解决上述问题，提出了Nash学习：</p>
+<ol>
+<li>纳什均衡：<br>在博弈论中，纳什均衡是一个状态，其中每个参与者在考虑其他参与者的策略后，选择的策略都是最优的。<br>没有参与者可以通过单方面改变策略来提高自己的收益。</li>
+<li>Nash学习过程：<br>多个策略或模型相互竞争和学习，调整各自策略以达到最优。<br>通过不断调整，逐渐趋向纳什均衡</li>
+</ol>
+<p>这样就可以处理多个策略了</p>
+
+        <h3 id="response级奖励和token级奖励"   >
+          <a href="#response级奖励和token级奖励" class="heading-link"><i class="fas fa-link"></i></a><a href="#response级奖励和token级奖励" class="headerlink" title="response级奖励和token级奖励"></a>response级奖励和token级奖励</h3>
+      <p>在RLHF和DPO中，奖励是针对每个response的</p>
+<p>但是在马尔可夫决策中，每个行动都会产生奖励，导致状态的变化，为了保证一致性，引入了令牌级奖励</p>
+
+        <h3 id="负偏好优化"   >
+          <a href="#负偏好优化" class="heading-link"><i class="fas fa-link"></i></a><a href="#负偏好优化" class="headerlink" title="负偏好优化"></a>负偏好优化</h3>
+      <p>一些人认为LLM可以产生比人类标注更好的期望回复<br>收集prompt和负response，让LLM生成正response</p>
+
+        <h2 id="反馈"   >
+          <a href="#反馈" class="heading-link"><i class="fas fa-link"></i></a><a href="#反馈" class="headerlink" title="反馈"></a>反馈</h2>
+      <p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241003230305.png"></p>
+
+        <h3 id="偏好反馈和二元反馈"   >
+          <a href="#偏好反馈和二元反馈" class="heading-link"><i class="fas fa-link"></i></a><a href="#偏好反馈和二元反馈" class="headerlink" title="偏好反馈和二元反馈"></a>偏好反馈和二元反馈</h3>
+      <p>偏好反馈：yw &gt; yt 这样</p>
+<p>但是KTO和DRO指出了这种数据收集起来是比较困难的</p>
+<p>提出了二元反馈：针对一个response 给出是积极的还是负面的</p>
+
+        <h3 id="成对反馈和列表反馈"   >
+          <a href="#成对反馈和列表反馈" class="heading-link"><i class="fas fa-link"></i></a><a href="#成对反馈和列表反馈" class="headerlink" title="成对反馈和列表反馈"></a>成对反馈和列表反馈</h3>
+      <p>RLHF中按列表收集反馈，把K个不同的response收集到一个列表中，然后两两组队就可以获得多个成对偏好</p>
+<p>LiPO等工作中提出，可以看成排序问题，而不是视为多个成对偏好</p>
+
+        <h3 id="人类反馈和AI反馈"   >
+          <a href="#人类反馈和AI反馈" class="heading-link"><i class="fas fa-link"></i></a><a href="#人类反馈和AI反馈" class="headerlink" title="人类反馈和AI反馈"></a>人类反馈和AI反馈</h3>
+      <p>收集人类反馈是昂贵的、乏味的</p>
+<p>随着LLM的发展，收集AI反馈以调整LLM成为了可能</p>
+
+        <h2 id="RL（Reinforcement-Learning）-强化学习"   >
+          <a href="#RL（Reinforcement-Learning）-强化学习" class="heading-link"><i class="fas fa-link"></i></a><a href="#RL（Reinforcement-Learning）-强化学习" class="headerlink" title="RL（Reinforcement Learning） 强化学习"></a>RL（Reinforcement Learning） 强化学习</h2>
+      <p>强化学习的目标是找到最优策略，以最大化response的奖励和最小化和对齐模型的差异。</p>
+
+        <h3 id="有无参考的RL"   >
+          <a href="#有无参考的RL" class="heading-link"><i class="fas fa-link"></i></a><a href="#有无参考的RL" class="headerlink" title="有无参考的RL"></a>有无参考的RL</h3>
+      <p>一个方法是尽量减少当前策略和参考策略的差距，但是这会带来内存负担。SimPO提出了不需要参考策略的方法</p>
+
+        <h3 id="长度控制的RL"   >
+          <a href="#长度控制的RL" class="heading-link"><i class="fas fa-link"></i></a><a href="#长度控制的RL" class="headerlink" title="长度控制的RL"></a>长度控制的RL</h3>
+      <p>LLM倾向于长的回答，即使不提供额外的信息，这可能会影响到对齐，也会影响人类的阅读理解。R-DPO和SimPO纳入了对长度的考虑。</p>
+
+        <h3 id="衡量方法的分歧"   >
+          <a href="#衡量方法的分歧" class="heading-link"><i class="fas fa-link"></i></a><a href="#衡量方法的分歧" class="headerlink" title="衡量方法的分歧"></a>衡量方法的分歧</h3>
+      <p>通常使用diverse Kullback-Leibler(DKL)，但是会降低响应的多样性（1. 使得当前策略贴近参考策略，减少探索；2. 可能陷入局部最优 ；3. 会倾向于重复成功的（但可能有限）的策略）</p>
+<p>所以探讨了其他差异措施</p>
+
+        <h3 id="On-policy-or-Off-policy-Learning"   >
+          <a href="#On-policy-or-Off-policy-Learning" class="heading-link"><i class="fas fa-link"></i></a><a href="#On-policy-or-Off-policy-Learning" class="headerlink" title="On-policy or Off-policy Learning"></a>On-policy or Off-policy Learning</h3>
+      <p>策略学习：从最新的策略中抽样response<br>Off-policy 依赖于早先产生的response，可以避免在train的时候生成新的response，节约时间，但是可能导致response和策略不一致</p>
+
+        <h2 id="Optimization-优化"   >
+          <a href="#Optimization-优化" class="heading-link"><i class="fas fa-link"></i></a><a href="#Optimization-优化" class="headerlink" title="Optimization 优化"></a>Optimization 优化</h2>
+      <p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241004154615.png"></p>
+
+        <h3 id="迭代-在线偏好优化和非迭代-离线偏好优化"   >
+          <a href="#迭代-在线偏好优化和非迭代-离线偏好优化" class="heading-link"><i class="fas fa-link"></i></a><a href="#迭代-在线偏好优化和非迭代-离线偏好优化" class="headerlink" title="迭代&#x2F;在线偏好优化和非迭代&#x2F;离线偏好优化"></a>迭代&#x2F;在线偏好优化和非迭代&#x2F;离线偏好优化</h3>
+      <p>在只使用收集到的数据集进行对齐的时候，被称作非迭代&#x2F;离线偏好优化</p>
+<p>迭代&#x2F;在线偏好优化： 1. 使用人类标记的新数据 2. LLM既能产生response，又能评估他们。</p>
+
+        <h3 id="分离与否-SFT和对齐"   >
+          <a href="#分离与否-SFT和对齐" class="heading-link"><i class="fas fa-link"></i></a><a href="#分离与否-SFT和对齐" class="headerlink" title="分离与否 SFT和对齐"></a>分离与否 SFT和对齐</h3>
+      <p>传统上，SFT和对齐是分离的，这可能导致遗忘</p>
+<ul>
+<li>orpo 将SFT和对齐集成到单一的过程中</li>
+<li>paft 同时对SFT和对齐进行微调LLM，再合并</li>
+</ul>
+
+        <h1 id="一些paper的细节"   >
+          <a href="#一些paper的细节" class="heading-link"><i class="fas fa-link"></i></a><a href="#一些paper的细节" class="headerlink" title="一些paper的细节"></a>一些paper的细节</h1>
+      
+        <h2 id="RLHF-PPO"   >
+          <a href="#RLHF-PPO" class="heading-link"><i class="fas fa-link"></i></a><a href="#RLHF-PPO" class="headerlink" title="RLHF&#x2F;PPO"></a>RLHF&#x2F;PPO</h2>
+      <ol>
+<li>LLM在大量不同来源的语料上进行预训练的，这本质上无法保证数据集的质量。</li>
+<li>LLM的主要目的是预测下一个token，偏离了 有效且安全的遵循用户指令的目标</li>
+</ol>
+<p>LLM可能会产生不真实的、有害的或对用户没有帮助的输出，本质而言，和用户的意图不一致</p>
+<p>RLHF&#x2F;PPO的主要目标是通过使用人类反馈对LM进行微调，使得LLM和用户的意图保持一致</p>
+
+        <h3 id="InstructGPT"   >
+          <a href="#InstructGPT" class="heading-link"><i class="fas fa-link"></i></a><a href="#InstructGPT" class="headerlink" title="InstructGPT"></a>InstructGPT</h3>
+      <p>InstructGPT是Chat-GPT和GPT-4等模型的基础。BLEU, ROUGE, and BERTScore常被用来评价LLM，但不能保证和人类偏好的一致性。</p>
+<p>把人类偏好纳入LLM提高性能：</p>
+<ol>
+<li>奖励模型学习 使用prompt和成对的response训练，用BT模型标记期望和不期望</li>
+<li>强化学习策略训练</li>
+</ol>
+<p>定义了损失函数，准确评估两个响应的优劣</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241004174536.png"></p>
+<p>策略训练的目标函数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241004174805.png"></p>
+<p>目标：</p>
+<ol>
+<li>最大化奖励模型给出的奖励</li>
+<li>最小化当前策略和初始参考策略之间的差异</li>
+<li>避免RLHHF过程中的对齐税，表示为log(πθ(x))。对齐税指的是对齐后LLM在下游任务中的性能下降。</li>
+</ol>
+<p>使用了三个数据集：</p>
+<ol>
+<li>SFT数据集</li>
+<li>RM数据集，包含模型输出的标签器排名</li>
+<li>PPO数据集，prompt组成，作为RLHF微调的输入</li>
+</ol>
+<p>由于相同的输入prompt产生的输出是相关的，一个直接做法是随机洗牌和训练，但是会导致过拟合。</p>
+<p>把所有的响应的两两组合作为一个批训练，可以改善过拟合问题。</p>
+<p>InstructGPT从Helpful, Honest, and Harms三个角度进行评估。</p>
+<ol>
+<li>Helpful : 顾名思义</li>
+<li>Honest : 评估模型在封闭领域任务中伪造信息的倾向；在TruthfulQA中的表现</li>
+<li>Harm : 顾名思义</li>
+</ol>
+<p>使用PPO和PPO-ptx减缓对齐税</p>
+<ul>
+<li>PPO ：一种强化学习算法，旨在稳定地更新策略；通过限制更新步长，防止策略更新过大导致的不稳定。</li>
+<li>PPO-ptx ：PPO-ptx 结合了 PPO 的稳定性和预训练的效率，通常用于需要大量数据和计算资源的复杂任务中。</li>
+</ul>
+
+        <h3 id="RLHF-Anthropic"   >
+          <a href="#RLHF-Anthropic" class="heading-link"><i class="fas fa-link"></i></a><a href="#RLHF-Anthropic" class="headerlink" title="RLHF - Anthropic"></a>RLHF - Anthropic</h3>
+      <p>上一个工作评价标注的好坏用了agreement rate（多个人在同一个地方的选择一致性）或者直接评价标签的质量过滤工作。</p>
+<p>Aothripic的工作假设那些表现出强大写作技能并且人LLM参与激烈讨论的众包会更好的判断哪些人工智能的回答是有帮助（包含了诚实）、无害的。</p>
+<ul>
+<li>对于有用数据集：使用LLM协助生成response</li>
+<li>对于无害数据集：参与对抗性探测（故意设计输入以诱导模型生成意外或不当的输出）或“red-teaming”（模拟攻击者的视角，主动寻找系统中的弱点，以改善模型的安全性。）生成有害response</li>
+</ul>
+<p>这俩个指标有时候是对立的，把这些数据集集成到偏好模型中可以提高两个指标的性能。当偏好模型足够大时，忽略强度信息，平等对待所有偏好对。</p>
+<p>针对对齐税，Aothropic的工作人员发现对于小模型而言问题严重，对于大模型来说反而有好处。 </p>
+<p>奖励模型的准确性与模型和数据集的大小存在近似对数线性关系，较大的奖励模型比较小的模型有更强的鲁棒性</p>
+<p>把奖励模型分为训练RM和测试RM，发现RM过拟合了训练数据</p>
+<p>探索了一种在线train方式，周期性的更新奖励模式和强化学习策略。</p>
+
+        <h3 id="Online-Iterative-迭代-RLHF"   >
+          <a href="#Online-Iterative-迭代-RLHF" class="heading-link"><i class="fas fa-link"></i></a><a href="#Online-Iterative-迭代-RLHF" class="headerlink" title="Online&#x2F;Iterative(迭代) RLHF"></a>Online&#x2F;Iterative(迭代) RLHF</h3>
+      <p>传统的离线做法：</p>
+<ol>
+<li>准备一个静态数据集，D&#x3D;(x,yw,yt)的偏好数据集</li>
+<li>基于BT模型训练奖励函数r(x,y)</li>
+<li>利用RLHF&#x2F;PPO算法优化LLM策略，优化建立模型的约束策略</li>
+<li>在DPO等直接偏好优化方法中，跳过了奖励函数建模，利用静态数据集来近似最优策略。</li>
+</ol>
+<p>使用离线数据集训练的缺点在于静态数据集的response来自其他LLM的策略，而偏好数据来自人类或AI，被固定，导致过拟合的风险。</p>
+<p>Online&#x2F;Iterative方法通过中间策略的新prompt生成成对的response，从数据库获得偏好反馈并将其反馈给策略</p>
+<ol>
+<li><p>偏好数据库训练，由于很难在新数据上连续专家的人类偏好反馈，因此在大量不同离线偏好数据集上训练一个偏好模型。该模型在得到一个新的prompt和回答对时，可以对他们进行评分</p>
+</li>
+<li><p>迭代策略优化，从预训练的LLM中对基本的策略模型进行指令微调，然后，使用开发和勘探框架进行不断微调策略。在探索阶段，当前的主要策略为每个prompt生成一个response，增强策略为同一prompt生成另一个response，并为从前一步的首选预测其获得的响应提供首选项标签。增强策略的工作在于对主要策略具有更高不确定性的空间进行探索；在开发阶段，利用RLHHF、PPO或者DPO技术，对新的偏好数据更新当前的主要策略。最后重复该过程。</p>
+</li>
+</ol>
+<p>在实践中，可以使用启发式方法（调整主策略的温度以创建增强策略，或拒绝抽样），其中主策略产生多个response，并按偏好排序，并从主策略和增强策略中获得最佳和最差response。</p>
+
+        <h2 id="RLAIF"   >
+          <a href="#RLAIF" class="heading-link"><i class="fas fa-link"></i></a><a href="#RLAIF" class="headerlink" title="RLAIF"></a>RLAIF</h2>
+      
+        <h3 id="RLAIF-Anthropic"   >
+          <a href="#RLAIF-Anthropic" class="heading-link"><i class="fas fa-link"></i></a><a href="#RLAIF-Anthropic" class="headerlink" title="RLAIF-Anthropic"></a>RLAIF-Anthropic</h3>
+      <ol>
+<li>通过“宪法”指导下的批评和修订，进行监督学习</li>
+</ol>
+<p>使用Chain of thought CoT框架，使用特定的基于原则的指令识别无害数据中的潜在危害，称之为宪法人工智能（CAI）。对于CAI，LLM充当批评者，提供修订，取得了超越人类的表现。</p>
+<p>在此过程中，Helpfulness得分下降，但是Harmlessness和Helpfulness的综合得分上升了</p>
+<p>增加修订次数被证明是有利的，可以识别和纠正更多的有害response。批评过程至关重要，批评-修订比单独的修订表现要好。</p>
+<p>在批评-修订过程后，使用修订response进行SFT</p>
+<ol start="2">
+<li>RLAIF</li>
+</ol>
+<p>用RLAIF替代RLHF，人工注释者标记有用性数据，而人工智能系统标记无害性数据。采用不同的构成和CoT推理原则对齐LLM，旨在尽可能减少有害性，同时保持有用性。</p>
+<p>它仅限于无害而不是有用，因为确保无害的任务比确保有用要简单得多。</p>
+
+        <h3 id="RLAIF-Google"   >
+          <a href="#RLAIF-Google" class="heading-link"><i class="fas fa-link"></i></a><a href="#RLAIF-Google" class="headerlink" title="RLAIF-Google"></a>RLAIF-Google</h3>
+      <p>直接比较了RLAIF和RLHF</p>
+<p>收集反馈的结构化prompt：</p>
+<ol>
+<li>序言</li>
+<li>少量样本（可选）</li>
+<li>注释样本</li>
+<li>结尾</li>
+</ol>
+<p>第一，prompt的四个部分和CoT结合，用于生成来自LLM的response。</p>
+<p>第二，</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://example.com">TheShineyue</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://example.com/2024/10/05/paper5RL/">http://example.com/2024/10/05/paper5RL/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/paper/">paper</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/rl/">rl</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2024/10/05/paper6/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">论文阅读 DARG:Dynamic Evaluation of Large Language Models via Adaptive Reasoning Graph</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2024/09/21/paper4/"><span class="paginator-prev__text">论文阅读 DAVIDSONIAN SCENE GRAPH:IMPROVING RELIABILITY IN FINE-GRAINED EVALUATION FOR TEXT-TO-IMAGE GENERATION</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Abstract"><span class="toc-number">1.</span> <span class="toc-text">
+          Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">2.</span> <span class="toc-text">
+          Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%85%83%E7%B4%A0"><span class="toc-number">3.</span> <span class="toc-text">
+          关键元素</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reward-Model-%E5%A5%96%E5%8A%B1%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">
+          Reward Model (奖励模型)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E5%BC%8F%E5%A5%96%E5%8A%B1%E6%A8%A1%E5%9E%8B%E5%92%8C%E9%9A%90%E5%BC%8F%E5%A5%96%E5%8A%B1%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.1.1.</span> <span class="toc-text">
+          显式奖励模型和隐式奖励模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%AF%E5%88%86%EF%BC%88Ponitwise%EF%BC%89%E5%A5%96%E5%8A%B1%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%81%8F%E5%A5%BD%EF%BC%88Preferencewise%EF%BC%89%E5%A5%96%E5%8A%B1%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.1.2.</span> <span class="toc-text">
+          积分（Ponitwise）奖励模型和偏好（Preferencewise）奖励模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#response%E7%BA%A7%E5%A5%96%E5%8A%B1%E5%92%8Ctoken%E7%BA%A7%E5%A5%96%E5%8A%B1"><span class="toc-number">3.1.3.</span> <span class="toc-text">
+          response级奖励和token级奖励</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%9F%E5%81%8F%E5%A5%BD%E4%BC%98%E5%8C%96"><span class="toc-number">3.1.4.</span> <span class="toc-text">
+          负偏好优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E9%A6%88"><span class="toc-number">3.2.</span> <span class="toc-text">
+          反馈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%8F%E5%A5%BD%E5%8F%8D%E9%A6%88%E5%92%8C%E4%BA%8C%E5%85%83%E5%8F%8D%E9%A6%88"><span class="toc-number">3.2.1.</span> <span class="toc-text">
+          偏好反馈和二元反馈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E5%AF%B9%E5%8F%8D%E9%A6%88%E5%92%8C%E5%88%97%E8%A1%A8%E5%8F%8D%E9%A6%88"><span class="toc-number">3.2.2.</span> <span class="toc-text">
+          成对反馈和列表反馈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%BA%E7%B1%BB%E5%8F%8D%E9%A6%88%E5%92%8CAI%E5%8F%8D%E9%A6%88"><span class="toc-number">3.2.3.</span> <span class="toc-text">
+          人类反馈和AI反馈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RL%EF%BC%88Reinforcement-Learning%EF%BC%89-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.3.</span> <span class="toc-text">
+          RL（Reinforcement Learning） 强化学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E6%97%A0%E5%8F%82%E8%80%83%E7%9A%84RL"><span class="toc-number">3.3.1.</span> <span class="toc-text">
+          有无参考的RL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%BF%E5%BA%A6%E6%8E%A7%E5%88%B6%E7%9A%84RL"><span class="toc-number">3.3.2.</span> <span class="toc-text">
+          长度控制的RL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A1%E9%87%8F%E6%96%B9%E6%B3%95%E7%9A%84%E5%88%86%E6%AD%A7"><span class="toc-number">3.3.3.</span> <span class="toc-text">
+          衡量方法的分歧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#On-policy-or-Off-policy-Learning"><span class="toc-number">3.3.4.</span> <span class="toc-text">
+          On-policy or Off-policy Learning</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optimization-%E4%BC%98%E5%8C%96"><span class="toc-number">3.4.</span> <span class="toc-text">
+          Optimization 优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3-%E5%9C%A8%E7%BA%BF%E5%81%8F%E5%A5%BD%E4%BC%98%E5%8C%96%E5%92%8C%E9%9D%9E%E8%BF%AD%E4%BB%A3-%E7%A6%BB%E7%BA%BF%E5%81%8F%E5%A5%BD%E4%BC%98%E5%8C%96"><span class="toc-number">3.4.1.</span> <span class="toc-text">
+          迭代&#x2F;在线偏好优化和非迭代&#x2F;离线偏好优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%A6%BB%E4%B8%8E%E5%90%A6-SFT%E5%92%8C%E5%AF%B9%E9%BD%90"><span class="toc-number">3.4.2.</span> <span class="toc-text">
+          分离与否 SFT和对齐</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E4%BA%9Bpaper%E7%9A%84%E7%BB%86%E8%8A%82"><span class="toc-number">4.</span> <span class="toc-text">
+          一些paper的细节</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RLHF-PPO"><span class="toc-number">4.1.</span> <span class="toc-text">
+          RLHF&#x2F;PPO</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#InstructGPT"><span class="toc-number">4.1.1.</span> <span class="toc-text">
+          InstructGPT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RLHF-Anthropic"><span class="toc-number">4.1.2.</span> <span class="toc-text">
+          RLHF - Anthropic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Online-Iterative-%E8%BF%AD%E4%BB%A3-RLHF"><span class="toc-number">4.1.3.</span> <span class="toc-text">
+          Online&#x2F;Iterative(迭代) RLHF</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RLAIF"><span class="toc-number">4.2.</span> <span class="toc-text">
+          RLAIF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RLAIF-Anthropic"><span class="toc-number">4.2.1.</span> <span class="toc-text">
+          RLAIF-Anthropic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RLAIF-Google"><span class="toc-number">4.2.2.</span> <span class="toc-text">
+          RLAIF-Google</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/小狗熬夜.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">It's 95 percent pain</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">33</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>TheShineyue</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v7.1.1</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script type="application/json" src="/search.json"></script></body></html>
