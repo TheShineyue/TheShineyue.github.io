@@ -1,0 +1,505 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="论文阅读 MedBench: A Large-Scale Chinese Benchmark for Evaluating Medical Large Language Models">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读 MedBench:A Large-Scale Chinese Benchmark for Evaluating Medical Large Language Models">
+<meta property="og:url" content="http://example.com/2024/10/06/paper7/index.html">
+<meta property="og:site_name" content="Liyue">
+<meta property="og:description" content="论文阅读 MedBench: A Large-Scale Chinese Benchmark for Evaluating Medical Large Language Models">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241006223203.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241006223347.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241006223220.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007154852.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007155922.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007161905.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007162613.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007163504.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007163516.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007174832.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007174720.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007184217.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007184919.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007184957.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007185235.png">
+<meta property="article:published_time" content="2024-10-06T08:23:25.591Z">
+<meta property="article:modified_time" content="2024-10-07T13:25:05.966Z">
+<meta property="article:author" content="TheShineyue">
+<meta property="article:tag" content="nlp">
+<meta property="article:tag" content="paper">
+<meta property="article:tag" content="benchmark">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241006223203.png"><title>论文阅读 MedBench:A Large-Scale Chinese Benchmark for Evaluating Medical Large Language Models | Liyue</title><link ref="canonical" href="http://example.com/2024/10/06/paper7/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 7.1.1"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/links/"><span class="header-nav-menu-item__icon"><i class="fas fa-link"></i></span><span class="header-nav-menu-item__text">友链</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Liyue</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">论文阅读 MedBench:A Large-Scale Chinese Benchmark for Evaluating Medical Large Language Models</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2024-10-06</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2024-10-07</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>论文阅读 MedBench: A Large-Scale Chinese Benchmark for Evaluating Medical Large Language Models</p>
+<span id="more"></span>
+
+
+        <h1 id="Abstract"   >
+          <a href="#Abstract" class="heading-link"><i class="fas fa-link"></i></a><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1>
+      <p>MedBench，这是一个针对中国医学领域的综合基准，包含 40041 个问题，这些问题来自各个医学分支的真实考试练习和医疗报告。</p>
+<p>这个基准由四个关键部分组成：</p>
+<ul>
+<li>中国医师资格考试</li>
+<li>住院医师规范化培训考试</li>
+<li>主治医生资格考试</li>
+<li>涵盖检查、诊断和治疗的真实临床病例。</li>
+</ul>
+<ol>
+<li>中文医学LLM在此基准上表现不佳，凸显了临床知识和诊断精度需要取得重大进步。</li>
+<li>一些通用领域的LLM令人惊讶地拥有大量医学知识</li>
+</ol>
+
+        <h1 id="Introduction"   >
+          <a href="#Introduction" class="heading-link"><i class="fas fa-link"></i></a><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1>
+      <p>MedQA和MedMCQA通常包含从教科书、研究论文和考试中收集的公开医学问答数据集。</p>
+<p>于最近使用这些开放获取数据集进行模型训练的研究（用这个数据集训练的工作比较多），这一过程可能会导致评估数据污染，越来越明显的是，现行基准表现出相当大的局限性。</p>
+<p>通过引入人工评估框架和 MultiMedQA取得了进展，MultiMedQA 是一个多方面的基准，将现有的 QA 数据集与一组新的在线医学问题相结合。</p>
+<p>我们无法依赖这个基准来评估中文大型语言模型：</p>
+<ol>
+<li>多样化的语言之间的差异(中文和英语)</li>
+<li>不同国家独特的临床标准和程序</li>
+</ol>
+<p>现有一些中文医疗评测基准，基于中国国家医师资格考试 (CNMLE)的MLEC-QA和CMExam</p>
+<p>它们并不详尽，并且可能无法让我们全面衡量 LLM 在全面医学知识方面的潜力及其在现实世界临床诊断场景中的实际效用</p>
+<p>在中国大陆，采用了独特的三阶段考试流程，其中的关键组成部分，包括住院医师标准化培训和主治医生资格考试，在先前的工作中基本上被忽视了。</p>
+<p>此外，先前的工作没有充分纳入对现实世界临床实践技能的评估。</p>
+<p>为了弥补这些差距，并与中国医生的学习和成长轨迹保持一致，我们引入了 MedBench，这是一种新型的大型中国医学基准。</p>
+<ol>
+<li>它既涵盖真实的三阶段医学检查，也涵盖现实世界的临床诊断案例。它超越了之前的基准，因为它完全来自最新的经过验证的考试和专家注释的 EHR，从而确保符合医疗标准和实践。（新颖和符合实际）</li>
+<li>此外，我们进行了广泛的实验并提供详细的分析，为评估各个医学分支的 LLM 的临床知识回忆和推理能力提供了不同的视角。（有效）</li>
+</ol>
+<p>结果：</p>
+<ol>
+<li><p>中文医学大型语言模型在此基准上表现不佳，需要在临床知识和诊断准确性方面进行大幅改进，并完善其原有的上下文学习能力</p>
+</li>
+<li><p>一些为通用领域任务设计的大型语言模型拥有丰富的医学知识，因此展现出良好的潜力。</p>
+</li>
+<li><p>人工评估表明，ChatGPT 拥有丰富的临床实践知识，而目前的中文医学法学硕士缺乏高质量的对话能力和足够的医学知识。</p>
+</li>
+<li><p>ChatGPT 在案例分析中的表现不尽如人意，而案例分析是一种需要深刻的医学知识理解和临床推理能力的问题类型，这表明医学领域还有很大的改进空间。</p>
+</li>
+</ol>
+
+        <h1 id="The-Proposed-Benchmark"   >
+          <a href="#The-Proposed-Benchmark" class="heading-link"><i class="fas fa-link"></i></a><a href="#The-Proposed-Benchmark" class="headerlink" title="The Proposed Benchmark"></a>The Proposed Benchmark</h1>
+      
+        <h2 id="概述"   >
+          <a href="#概述" class="heading-link"><i class="fas fa-link"></i></a><a href="#概述" class="headerlink" title="概述"></a>概述</h2>
+      <ol>
+<li><p>MedBench作为一个大型基准，其中包含40041个练习，这些练习源自真实的医学检查和现实世界的诊断和治疗案例。</p>
+</li>
+<li><p>收集了三阶段的医学检查，这些检查忠实反映了在中国大陆获得行医执照的全面过程，体现了基本的医学知识。</p>
+</li>
+<li><p>根据电子健康记录构建了许多现实世界的案例，这些案例根据患者的症状提供检查计划、诊断和治疗，这可以揭示现实世界中LLM的医学知识利用和推理能力。</p>
+</li>
+</ol>
+
+        <h2 id="结构和统计"   >
+          <a href="#结构和统计" class="heading-link"><i class="fas fa-link"></i></a><a href="#结构和统计" class="headerlink" title="结构和统计"></a>结构和统计</h2>
+      <p>对于三级医学考试，我们收集了近年来中国医师资格考试（CNMLE）、住院医师规范化培训考试、主治医师资格考试2的代表性练习，分别涵盖27,248道、2,841道、8,927道题目。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241006223203.png"></p>
+<p>多项选择题，可分为三类：<br>• A1&#x2F;A2&#x2F;B：单项陈述题，五个选项中只有一个正确答案。<br>• A3&#x2F;A4：一系列问题伴随着一个临床病例，五个选项中只有一个正确答案。<br>• 病例分析：给定一个临床病例，创建一系列问题，每个问题有 6-12 个选项。有些问题可能有多个正确答案</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241006223347.png"></p>
+<p>描述了 MedBench 中部分检查的医学分支分类。请注意，考虑到这些领域内大量的子类别，我们使用内科和外科作为后两个阶段的代表示例</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241006223220.png"></p>
+<p>我们收集了 2000 多份现实世界的电子健康记录，并聘请专家从报告中识别症状、诊断、治疗和检查，最终生成 701 份高质量报告，平均长度为每份报告 60-100 字</p>
+<p>注释者完成了专业培训，并严格遵循预定义的注释标准以确保准确性。基于这些带注释的报告，最终形成了总共 1,025 个问答对</p>
+
+        <h2 id="特征"   >
+          <a href="#特征" class="heading-link"><i class="fas fa-link"></i></a><a href="#特征" class="headerlink" title="特征"></a>特征</h2>
+      <ol>
+<li>真实性和新颖性。它专门利用专家注释的 EHR 和真实的最新医疗检查来减轻污染。</li>
+<li>全面性和多面性。课程经过精心设计，结合了三阶段多学科检查和真实临床病例，符合中国医学标准和实践。</li>
+<li>实用性。对临床真实病例的人工评估确保与医学实际情况相一致，而 MedBench 中的分层划分可实现快速评估。</li>
+</ol>
+
+        <h2 id="主要结果"   >
+          <a href="#主要结果" class="heading-link"><i class="fas fa-link"></i></a><a href="#主要结果" class="headerlink" title="主要结果"></a>主要结果</h2>
+      <p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007154852.png"></p>
+<ol>
+<li>我们对三个考试中不同的llm的准确性指标进行了全面的分析。一个显著的观察结果是，ChatGPT始终超过其他模型，尽管后者是在广泛的中文语料库或优质医疗数据集上进行的训练</li>
+<li>ChatGPT对CNMLE的准确率在50%左右，对其他评估的准确率在60%左右，暴露了增强的空间</li>
+<li>ChatGPT在中医（TCM）和中西医结合（CWM）等问题上表现不佳，准确率指标在40-45%之间振荡。<br>在更广泛的中国数据集上训练的llm在TCM和CWM问题上的性能差异更小。<br>这表明，ChatGPT降低MedBench效率的一个原因可能是其在培训前阶段有限接触中国数据，从而影响了其在中医知识中的知识</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007155922.png"></p>
+<ol start="4">
+<li><p>百川-13B和华佗在案例分析问题上遇到了差异，强调了其逻辑推理或多回合对话能力的潜在重构领域。</p>
+</li>
+<li><p>最近新开发的模型没有被注意到在基准测试上的性能有任何显著的增强。<br>例如，MedLLaMA在A1&#x2F;A2&#x2F;B类型问题上的准确率达到了24.5%的准确性，略优于ChatMed，略有提高了1.5%。</p>
+</li>
+</ol>
+
+        <h2 id="真实世界的临床病例表现"   >
+          <a href="#真实世界的临床病例表现" class="heading-link"><i class="fas fa-link"></i></a><a href="#真实世界的临床病例表现" class="headerlink" title="真实世界的临床病例表现"></a>真实世界的临床病例表现</h2>
+      <p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007161905.png"></p>
+<ol>
+<li>我们使用BLEU和rouge-L评分指标来评估结果。</li>
+<li>ChatGPT和GPT- 4表现出卓越的表现，突出了它们在医学和会话问题回答方面的显著能力。然而，即使是在多次试验中表现最好的ChatGPT和GPT-4，得分仍然相对中等。</li>
+<li>这在一定程度上可以归因于像BLEU和ROUGE这样的指标可能不能整体地捕获结果质量。此外，在现实世界的临床病例中，增强这些llm的能力仍有相当大的空间。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007162613.png"></p>
+<p>请研究生医学专家对各种llm对现实世界案例的输出进行评估。本评估工作的目的是定量评估华佗、ChatMed、ChatGPT和GPT- 4的正确性、完整性、前瞻性和友好性。</p>
+<ol>
+<li>研究人员发现，GPT-4在所有描述的标准上都始终表现出优越的性能，而ChatGPT则略微落后于GPT-4，特别是在正确性和完整性方面。</li>
+<li>华陀对友好度的评价有所下降，主要是由于零星产生不协调的内容。然而，值得注意的是，华佗显示了明显的正确性和完整性水平，表明了深刻的医学知识。</li>
+<li>ChatMed虽然因其丰富和友好而值得称赞，但在正确性和完整性上的分数不佳。这种差异可能表明，在SFT阶段，医疗专业知识可能会减弱。</li>
+</ol>
+
+        <h1 id="定量分析"   >
+          <a href="#定量分析" class="heading-link"><i class="fas fa-link"></i></a><a href="#定量分析" class="headerlink" title="定量分析"></a>定量分析</h1>
+      
+        <h2 id="对不同问题类型的比较"   >
+          <a href="#对不同问题类型的比较" class="heading-link"><i class="fas fa-link"></i></a><a href="#对不同问题类型的比较" class="headerlink" title="对不同问题类型的比较"></a>对不同问题类型的比较</h2>
+      <p>CNMLE、住院医师标准化培训考试和住院医师主管资格考试的详细结果</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007163504.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007163516.png"></p>
+<p>显然，ChatGPT继续表现出实质性的性能优势。A3&#x2F;A4问题和案例分析问题，以其多问题结构为特征，对模型的会话能力提出了重大挑战。</p>
+<p>如果一个给定的LLM在这些问题类型上表现不佳，它表明了它在有效管理多回合对话或需要复杂推理步骤的问题方面的固有局限性。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007174832.png"></p>
+<p>值得注意的是，在普通提示下，百川-13B显示出对选项F的强烈倾向，尽管这个选项不是有效选择集（A-E）的一部分。相比之下，在使用思路提示时，百川-13b主要倾向于有效的选择。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007174720.png"></p>
+<p>此外，表3详细说明了普通提示和思维提示相关的准确性。数据表明，使用思维提示时，百川-13b的准确性有显著提高。在ChatGLM-6B上进行了并行实验，ChatGLM-6B在使用思维链提示时的准确性提高可以忽略不计。</p>
+
+        <h2 id="更少的问题，更高的分化"   >
+          <a href="#更少的问题，更高的分化" class="heading-link"><i class="fas fa-link"></i></a><a href="#更少的问题，更高的分化" class="headerlink" title="更少的问题，更高的分化"></a>更少的问题，更高的分化</h2>
+      <p>在评估过程中，一些缺点变得很明显： </p>
+<ol>
+<li><p>某些llm在GPU上表现出次优的推理速度，或通过API接口时计算成本高。考虑到MedBench包含大约40,000个问题，对于llm，连续对整个数据集执行推理需要相当长的时间</p>
+</li>
+<li><p>虽然基于类型的问题分类提供了一个基本的衡量差异，但重要的是要承认，在同一类别内的问题可以表现出不同的差异水平</p>
+</li>
+<li><p>向能力较差的llm提出挑战性的问题是不可取的，因为它最终可能会导致统一降低的准确性，使有意义的区分不可能。（区分度问题）</p>
+</li>
+</ol>
+<p>为了缓解这些挑战，我们提出了一些方法论策略，根据相似类型的问题固有的难度梯度对其进行分类。通过采用这种模式，我们可以优化评估过程，让 LLM 对一组有限的问题进行推理。</p>
+<p>LLM 和难度等级相等的问题之间能够进行更细致的匹配，与他们各自的能力相一致。</p>
+<p>借鉴了IRP</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007184217.png"></p>
+<p>θj 表示 LLM j 的熟练程度，P(Xij &#x3D;1|θj ) 是熟练程度为 θj<br>的 LLM j 对问题 i 给出正确答案的概率</p>
+<p>该方程强调了每个问题 i 的三个关键参数：辨别力 (ai)、难度 (bi) 和猜测因素 (ci)。在我们的方法中，我们假设 ai 和<br>ci 均为常数值，然后根据共享的难度指标 bi 对项目进行分组。</p>
+<p>该方程捕获了 LLM 的概率 θj ，该概率由与特定子集交互时的推理结果确定。</p>
+<p>共有7335个问题被分为10个不同的水平。</p>
+<p>（没有特别懂，难不成是倒过来计算bi，应该是吧）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007184919.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007184957.png"></p>
+<p>值得注意的是，当问题的差异是适当的时，llm之间的差异是显著的。</p>
+
+        <h2 id="推理能力"   >
+          <a href="#推理能力" class="heading-link"><i class="fas fa-link"></i></a><a href="#推理能力" class="headerlink" title="推理能力"></a>推理能力</h2>
+      <ol>
+<li>多条件单跳推理：一种需要LLM基于临床场景进行单跳推理的推理类型。</li>
+<li>语句识别：一种需要LLM来判断多个语句的正确性的推理类型，它进一步测试了LLM的知识库。</li>
+<li>多跳推理：一种具有多个问题的推理，其中问题相互相关，要求LLM执行多跳推理。</li>
+</ol>
+<p>（多跳可能是指得是问题个数？）</p>
+<p>为了确定llm在多大程度上根据他们对相关知识的掌握情况做出准确的决定，我们扩展了我们的调查，其中包括要求llm为他们的答复提供正当理由</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241007185235.png"></p>
+<p>当llm的答案是准确的时，它们可以证实它们的答案。在给出错误回答的情况下，伴随的解释往往被证明不合逻辑</p>
+<p>这提供了令人信服的证据，表明这些llm要么在该领域缺乏必要的知识，要么无法对正确的解决方案进行合理化。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://example.com">TheShineyue</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://example.com/2024/10/06/paper7/">http://example.com/2024/10/06/paper7/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/nlp/">nlp</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/paper/">paper</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/benchmark/">benchmark</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2024/10/05/paper6/"><span class="paginator-prev__text">论文阅读 DARG:Dynamic Evaluation of Large Language Models via Adaptive Reasoning Graph</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Abstract"><span class="toc-number">1.</span> <span class="toc-text">
+          Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">2.</span> <span class="toc-text">
+          Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#The-Proposed-Benchmark"><span class="toc-number">3.</span> <span class="toc-text">
+          The Proposed Benchmark</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">3.1.</span> <span class="toc-text">
+          概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%92%8C%E7%BB%9F%E8%AE%A1"><span class="toc-number">3.2.</span> <span class="toc-text">
+          结构和统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%BE%81"><span class="toc-number">3.3.</span> <span class="toc-text">
+          特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E7%BB%93%E6%9E%9C"><span class="toc-number">3.4.</span> <span class="toc-text">
+          主要结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%B8%B4%E5%BA%8A%E7%97%85%E4%BE%8B%E8%A1%A8%E7%8E%B0"><span class="toc-number">3.5.</span> <span class="toc-text">
+          真实世界的临床病例表现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-number">4.</span> <span class="toc-text">
+          定量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E4%B8%8D%E5%90%8C%E9%97%AE%E9%A2%98%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">4.1.</span> <span class="toc-text">
+          对不同问题类型的比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%B0%91%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E6%9B%B4%E9%AB%98%E7%9A%84%E5%88%86%E5%8C%96"><span class="toc-number">4.2.</span> <span class="toc-text">
+          更少的问题，更高的分化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E7%90%86%E8%83%BD%E5%8A%9B"><span class="toc-number">4.3.</span> <span class="toc-text">
+          推理能力</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/小狗熬夜.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">It's 95 percent pain</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">34</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>TheShineyue</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v7.1.1</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script type="application/json" src="/search.json"></script></body></html>
