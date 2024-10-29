@@ -1,0 +1,584 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.8.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.8.0" type="image/png" sizes="32x32"><meta name="description" content="论文阅读 Image Textualization An Automatic Framework for Creating Accurate and Detailed Image Descriptions">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读 Image Textualization An Automatic Framework for Creating Accurate and Detailed Image Descriptions">
+<meta property="og:url" content="http://example.com/2024/10/29/paper10/index.html">
+<meta property="og:site_name" content="Liyue">
+<meta property="og:description" content="论文阅读 Image Textualization An Automatic Framework for Creating Accurate and Detailed Image Descriptions">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241026213056.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241026214207.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027164143.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027170835.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027171522.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027171415.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027171934.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027172112.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027172218.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027172300.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027172322.png">
+<meta property="article:published_time" content="2024-10-29T13:53:44.779Z">
+<meta property="article:modified_time" content="2024-10-27T12:32:03.239Z">
+<meta property="article:author" content="TheShineyue">
+<meta property="article:tag" content="paper">
+<meta property="article:tag" content="mllm">
+<meta property="article:tag" content="benchmark">
+<meta property="article:tag" content="image-to-text">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241026213056.png"><title>论文阅读 Image Textualization An Automatic Framework for Creating Accurate and Detailed Image Descriptions | Liyue</title><link ref="canonical" href="http://example.com/2024/10/29/paper10/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 7.1.1"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/links/"><span class="header-nav-menu-item__icon"><i class="fas fa-link"></i></span><span class="header-nav-menu-item__text">友链</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Liyue</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">论文阅读 Image Textualization An Automatic Framework for Creating Accurate and Detailed Image Descriptions</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2024-10-29</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2024-10-27</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>论文阅读 Image Textualization An Automatic Framework for Creating Accurate and Detailed Image Descriptions</p>
+<span id="more"></span>
+
+
+        <h1 id="Abstract"   >
+          <a href="#Abstract" class="heading-link"><i class="fas fa-link"></i></a><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1>
+      <ul>
+<li><p>图像描述数据集的来源：</p>
+<ul>
+<li>从网络上抓取的图像-文本对：尽管这些描述丰富多彩，但通常质量较差且噪声较大</li>
+<li>人工标记：诸如 COCO 之类的数据集通常非常简短且缺乏细节。</li>
+</ul>
+</li>
+<li><p>虽然详细的图像描述可以由人工注释，但高昂的注释成本限制了可行性。这些限制强调了需要更高效、可扩展的方法来生成准确、详细的图像描述</p>
+</li>
+<li><p>提出了Image Textualization IT 的创新框架，它通过以协作方式利用现有的多模态大型语言模型 (MLLM) 和多个视觉专家模型自动生成高质量的图像描述，从而最大限度地将视觉信息转换为文本</p>
+</li>
+<li><p>为了解决目前缺乏详细描述基准的问题，提出了几个综合评估基准，以验证我们框架创建的图像描述的质量</p>
+</li>
+<li><p>LLaVA-7B 受益于 IT 策划的描述的训练，获得了更好的生成更丰富图像描述的能力，大大增加了输出的长度和细节，同时减少了幻觉</p>
+</li>
+</ul>
+
+        <h1 id="Introduction"   >
+          <a href="#Introduction" class="heading-link"><i class="fas fa-link"></i></a><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1>
+      <p>最近的研究强调，图像描述的质量对 MLLM 性能至关重要</p>
+<ul>
+<li>低质量的描述经常会在图像理解任务中引起幻觉</li>
+<li>具有更丰富视觉概念的详细描述可显著提高生成模型的性能</li>
+</ul>
+<p>高质量的图像描述应该传达与相应图像相同的信息，有效地将视觉内容文本化。然而，当前的数据集往往存在不足：</p>
+<ul>
+<li>网络抓取的图像文本对，规模大但质量低且噪声大</li>
+<li>人工标记的数据集，缺乏深入的细节，制作成本高昂</li>
+</ul>
+<p>图像中的信息与其文本描述之间存在很大差距</p>
+<ul>
+<li><p>Dalle-3 已进行早期尝试，使用通过 MLLM 生成的描述来训练文本到图像的扩散模型，这表明生成的图像质量有所提高。</p>
+</li>
+<li><p>MLLM 有几个弱点，例如众所周知的视觉幻觉问题和缺乏细粒度细节即使最强大的 MLLM，例如 GPT4-V，也表现出这些弱点。因此，仅依靠 MLLM 来生成数据集仍然有很大的局限性</p>
+</li>
+</ul>
+<p>与此同时，我们注意到计算机视觉领域取得了显著进展，例如物体检测、密集字幕和实例分割。</p>
+<p>与使用低分辨率图像（CLIP的默认设置是 336x336）和图像级注释训练的 MLLM 相比，这些视觉专家模型使用高分辨率图像和专门针对感知任务的细粒度对象级注释进行训练，这使得它们能够识别详细内容。然而，这样的模型通常不具备整体理解能力，因此仅依靠这样的模型构建描述是不切实际的。</p>
+<p>因此，一个有趣的想法出现了：我们能否将 MLLM 的理解能力与视觉专家的感知能力结合起来，以生成既细节丰富又没有幻觉的高质量描述</p>
+
+        <h2 id="Image-Textualization-IT"   >
+          <a href="#Image-Textualization-IT" class="heading-link"><i class="fas fa-link"></i></a><a href="#Image-Textualization-IT" class="headerlink" title="Image Textualization(IT)"></a>Image Textualization(IT)</h2>
+      <ol>
+<li>整体文本化：我们利用 MLLM 创建参考描述，尽管它缺乏细节并包含幻觉，但它不仅为视觉信息提供了基本结构，也为语言表达提供了基本结构</li>
+<li>视觉细节文本化：然后，我们借助视觉专家模型强大的感知能力来提取细粒度的对象级信息，并将其转换为文本格式。此阶段从图像端提取多个细节并识别参考描述中包含的幻觉</li>
+<li>文本化重新描述。最后，我们利用 LLM 卓越的理解和推理能力，根据前两个阶段的文本信息生成准确而详细的描述，使 LLM 无需“看到”图像即可对其进行描述。这种方法避免了基于 MLLM 的重新描述弱点</li>
+</ol>
+<p>IT 框架能够创建细节更丰富且没有幻觉的图像描述</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241026213056.png"></p>
+<p>贡献：</p>
+<ol>
+<li>我们提出了图像文本化，这是一个无需人工干预即可自动生成详细图像描述的框架，利用 MLLM 的多模态理解、视觉专家的细粒度感知和 LLM 的推理能力</li>
+<li>我们创建了评估基准并进行了广泛的实验来验证我们框架的有效性。结果表明，生成的图像描述准确捕捉了丰富的视觉细节。</li>
+<li>使用我们的图像文本化框架，我们整理了一个名为 IT-170K 的大规模高质量图像描述数据集。</li>
+</ol>
+
+        <h1 id="Method"   >
+          <a href="#Method" class="heading-link"><i class="fas fa-link"></i></a><a href="#Method" class="headerlink" title="Method"></a>Method</h1>
+      <p>图像文本化自动生成高质量的图像描述。</p>
+<ol>
+<li>给定一张图像，强大的 MLLM 首先生成一个模板描述，以捕获整体图像内容。</li>
+<li>然后，各种视觉专家模型协作提取模板描述中可能缺少的详细对象信息。</li>
+<li>最后，我们利用强大的 LLM 根据整体信息和细粒度细节重新生成描述。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241026214207.png"></p>
+
+        <h2 id="Holistic-Textualization"   >
+          <a href="#Holistic-Textualization" class="heading-link"><i class="fas fa-link"></i></a><a href="#Holistic-Textualization" class="headerlink" title="Holistic Textualization"></a>Holistic Textualization</h2>
+      <p>目前最先进的 MLLM 擅长生成包含更丰富信息和上下文理解的图像描述，相比传统字幕模型生成的描述更是如此。</p>
+<p>我们首先利用 MLLM 生成的描述将图像的整体内容文本化，如上图阶段 (A) 所示。尽管存在幻觉和缺乏细节等缺点，但这种描述可以作为具有相对较好结构的基本模板来描述图像。<br>此后，我们将此描述称为“参考描述”</p>
+<p>这种参考描述有两个关键目的：</p>
+<ol>
+<li>从视觉信息方面来看，它包括图像中存在的主要对象和场景的上下文信息。这些元素充当“锚点”，指导后续阶段纳入更多细节。</li>
+<li>从语言表达的角度来看，MLLM 固有的理解和逻辑能力有助于形成组织良好的描述。例如，参考描述通常包括图像的整体描述，然后是主要对象的详细信息，最后以总结性句子结束。与传统的字幕模型相比，这种描述更具逻辑性，表达更自然，这是描述质量的关键因素。</li>
+</ol>
+
+        <h2 id="Visual-Detail-Textualization"   >
+          <a href="#Visual-Detail-Textualization" class="heading-link"><i class="fas fa-link"></i></a><a href="#Visual-Detail-Textualization" class="headerlink" title="Visual Detail Textualization"></a>Visual Detail Textualization</h2>
+      <p>第一阶段生成的参考描述通常缺乏视觉细节，并且包含幻​​觉。<br>在此阶段，我们利用视觉专家模型从图像和参考描述中提取信息。<br>从图像中，我们捕捉到更多的视觉细节，从参考描述中，我们识别出幻觉内容。最后，我们将细粒度的视觉信息和幻觉对象文本化，如上图阶段 (B) 最右边的灰色框所示。</p>
+
+        <h3 id="Hallucination-Detection"   >
+          <a href="#Hallucination-Detection" class="heading-link"><i class="fas fa-link"></i></a><a href="#Hallucination-Detection" class="headerlink" title="Hallucination Detection"></a>Hallucination Detection</h3>
+      <p>为了识别参考描述中存在的幻觉，我们首先从中提取对象实体（对象名词和短语）。</p>
+<p>在这里，我们利用大型语言模型 (LLM) 强大的指令跟随能力。<br>具体来说，我们精心设计了一个实体提取提示，并手动注释上下文学习示例，以提高 LLM 的指令跟随能力。</p>
+<p>之后，我们使用开放集对象检测器（例如 Grounding Dino）来验证每个提取的实体短语与图像中的对象。<br>任何在图像中未找到的幻觉对象短语都被标记为“幻觉”，以便在后期删除。 【只考虑了未找到？】</p>
+
+        <h3 id="Fine-Grained-Objects-Annotation"   >
+          <a href="#Fine-Grained-Objects-Annotation" class="heading-link"><i class="fas fa-link"></i></a><a href="#Fine-Grained-Objects-Annotation" class="headerlink" title="Fine-Grained Objects Annotation"></a>Fine-Grained Objects Annotation</h3>
+      
+        <h4 id="Dense-Caption-Generation"   >
+          <a href="#Dense-Caption-Generation" class="heading-link"><i class="fas fa-link"></i></a><a href="#Dense-Caption-Generation" class="headerlink" title="Dense Caption Generation"></a>Dense Caption Generation</h4>
+      <p>为了识别原始描述中可能缺失的对象，我们采用了密集字幕器 (DC)</p>
+<p>它不仅提供指示对象位置的准确边界框，还将它们与基本属性（例如对象类型、形状和颜色）相关联。</p>
+<p>与仅预测对象类别（例如猫）的对象检测器相比，<br>DC 提供了更详细的描述，例如“一只灰白相间的猫”；</p>
+<p>与仅预测图像级字幕的传统字幕模型相比，<br>DC 能够预测图像中所有可见对象的描述。</p>
+<p>这些吸引人的特性使 DC 成为最大化对象信息文本化的合适选择，<br>这对后续的重新字幕阶段大有裨益。</p>
+
+        <h4 id="Spatial-Information-Collection"   >
+          <a href="#Spatial-Information-Collection" class="heading-link"><i class="fas fa-link"></i></a><a href="#Spatial-Information-Collection" class="headerlink" title="Spatial Information Collection"></a>Spatial Information Collection</h4>
+      <p>现在，我们已经获得了图像中各种对象的密集标题及其边界框坐标。<br>然而，与原始图像的信息相比，文本化的信息仍然不足。</p>
+<p>最关键的原因是，当前的文本化只能传达 2D 平面上对象的相对左右关系，并且可能导致重新描述错误。</p>
+<p>例如，考虑一张背景中有一辆汽车而前景中有一个人的图像。他们的边界框可能具有非常接近的坐标。如果我们仅使用这些信息进入重新描述阶段，LLM 可能会使用其逻辑功能错误地将场景描述为“一个人站在汽车旁边”。</p>
+<p>发生这种情况的原因是当前的文本化无法捕捉 3D 空间上下文，例如深度（表示对象的前后关系），这对于准确和全面的图像描述至关重要。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027164143.png"></p>
+<ol>
+<li>我们首先使用单目深度预测模型获取距离图，其中每个像素的值表示其与相机的距离，从而得出此深度信息。</li>
+<li>我们使用密集字幕器生成的对象边界框，通过 SAM 生成对象分割掩码，从而给出对象的精确像素</li>
+<li>最后，通过平均其相应分割掩码内的深度值来获得对象深度</li>
+</ol>
+<p>这样，文本化的信息可以传达对象与相机之间的距离，从而有效地将 2D 密集字幕转换为 3D 字幕</p>
+<p>在此过程中，我们注意到两个重要因素：</p>
+<ol>
+<li><p>利用像素掩码进行尺寸计算：计算对象尺寸的一种简单方法是使用边界框。但是，边界框<br>仅提供两个对角，这对于形状不规则的物体（例如长棍）来说可能不准确。如果我们仅依靠边界框的覆盖范围作为对象的大小，则可能导致严重的高估。因此，使用像素级掩码来准确表示对象的大小至关重要。</p>
+</li>
+<li><p>规范化：我们对边界框坐标和深度分数进行规范化，以确保值是相对的，这有助于 LLM 在重新捕捉阶段适应不同的图像。</p>
+</li>
+</ol>
+
+        <h2 id="Textualized-Recaptioning"   >
+          <a href="#Textualized-Recaptioning" class="heading-link"><i class="fas fa-link"></i></a><a href="#Textualized-Recaptioning" class="headerlink" title="Textualized Recaptioning"></a>Textualized Recaptioning</h2>
+      <p>我们利用从前几个阶段收集的已转换为文本表示的综合信息，通过 LLM 重建图像描述</p>
+<p>包含整体描述和广泛的对象级信息使 LLM 能够准确地解释整个图像及其组成对象，从而无需直接视觉输入</p>
+<p>我们在附录中展示了我们方法的有效性，我们精心设计了提示并提供了一些示例来指导 LLM 的生成过程<br>这确保了 LLM 可以有效地整合新对象，同时最大限度地减少幻觉内容的存在</p>
+
+        <h1 id="Experiments"   >
+          <a href="#Experiments" class="heading-link"><i class="fas fa-link"></i></a><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h1>
+      <p>由于缺乏针对长图像描述的标准评估基准，我们首先提出了 DID-Bench、D2I-Bench 和 LIN-Bench 来全面评估详细描述</p>
+<p>然后，我们进行了一系列实验来验证我们的图像文本化的有效性，该文本化可以生成高质量的描述</p>
+<p>之后，我们验证使用我们框架生成的数据训练 MLLM 可以增强其功能</p>
+<p>最后，我们进行语言评估并对我们发布的数据集进行统计分析</p>
+
+        <h2 id="Benchmarks-and-Evaluations"   >
+          <a href="#Benchmarks-and-Evaluations" class="heading-link"><i class="fas fa-link"></i></a><a href="#Benchmarks-and-Evaluations" class="headerlink" title="Benchmarks and Evaluations"></a>Benchmarks and Evaluations</h2>
+      
+        <h3 id="Benchmarks"   >
+          <a href="#Benchmarks" class="heading-link"><i class="fas fa-link"></i></a><a href="#Benchmarks" class="headerlink" title="Benchmarks"></a>Benchmarks</h3>
+      
+        <h4 id="DID-Bench"   >
+          <a href="#DID-Bench" class="heading-link"><i class="fas fa-link"></i></a><a href="#DID-Bench" class="headerlink" title="DID-Bench"></a>DID-Bench</h4>
+      <p>详细图像描述基准 (DID-Bench) 包含 200 个样本</p>
+<ol>
+<li><p>首先，我们利用 MLLM 生成参考描述。为了避免不同 MLLM 的输出习惯带来的偏差，在生成参考描述时，我们对 100 个样本使用 GPT4-V，对剩余的 100 个样本使用 LLaVA</p>
+</li>
+<li><p>然后，我们手动检查这些描述的正确性，添加缺失的细节，并删除幻觉内容以建立人工标记的地面真实描述</p>
+</li>
+</ol>
+<p>稍后，我们将使用 LLaVA 参考描述获得地面真实性的分区称为 GT-{LLaVA}，将另一个分区称为 GT-{GPT4-V}</p>
+<p>我们采用基于参考的图像描述指标，包括 BLEU、ROUGE-L、METEOR、SPICE和WMD。<br>这些指标评估生成的描述的各个方面，例如 n-gram 重叠、召回率、准确率、语义内容以及与人工标记描述的整体相似性</p>
+
+        <h4 id="D2I-Bench"   >
+          <a href="#D2I-Bench" class="heading-link"><i class="fas fa-link"></i></a><a href="#D2I-Bench" class="headerlink" title="D2I-Bench"></a>D2I-Bench</h4>
+      <p>我们提出描述到图像基准 (D2I-Bench) 来评估描述所捕获的图像信息的完整性。</p>
+<ol>
+<li>首先，我们将描述提供给预先训练的文本到图像模型 (例如 PixArt) 并获得生成的图像</li>
+<li>然后，我们使用来自预先训练的 CLIP的图像编码器提取原始图像和生成图像的图像嵌入</li>
+<li>我们计算图像嵌入之间的余弦相似度</li>
+</ol>
+<p>较高的相似度得分表明描述有效地捕捉了图像细节，从而生成与原始图像非常相似的图像</p>
+
+        <h4 id="LIN-Bench"   >
+          <a href="#LIN-Bench" class="heading-link"><i class="fas fa-link"></i></a><a href="#LIN-Bench" class="headerlink" title="LIN-Bench"></a>LIN-Bench</h4>
+      <p>为了全面评估描述的可读性和语言特征，我们提出了<br>语言基准 (LIN-Bench)，它采用了 ARI、FK 和 SMOG 等指标。</p>
+<p>如果句子中的单词更多且字符更多，ARI 往往会更高，而 FK 和 SMOG 则更注重多音节单词的数量。更详细的描述往往会在这些指标中获得更高的值。</p>
+
+        <h4 id="POPE"   >
+          <a href="#POPE" class="heading-link"><i class="fas fa-link"></i></a><a href="#POPE" class="headerlink" title="POPE"></a>POPE</h4>
+      <p>评估 MLLM 所遭受的幻觉程度，其中包括有关图像中物体存在的问题，并附有“是”或“否”等简短答案</p>
+
+        <h3 id="Image-Description-Quality-Evaluation"   >
+          <a href="#Image-Description-Quality-Evaluation" class="heading-link"><i class="fas fa-link"></i></a><a href="#Image-Description-Quality-Evaluation" class="headerlink" title="Image Description Quality Evaluation"></a>Image Description Quality Evaluation</h3>
+      
+        <h4 id="DID-Bench-Results"   >
+          <a href="#DID-Bench-Results" class="heading-link"><i class="fas fa-link"></i></a><a href="#DID-Bench-Results" class="headerlink" title="DID-Bench Results"></a>DID-Bench Results</h4>
+      <p>为了验证我们的图像文本化注释框架在生成详细而准确的图像描述方面的有效性，我们将图像文本化生成的描述的质量与 MLLM 直接生成的描述的质量进行了比较</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027170835.png"></p>
+<p>我们观察到不同 MLLM 和地面实况注释的所有指标都有显著提高</p>
+<p>有趣的是，我们观察到 IT 生成的描述的评估结果也取决于整体文本化阶段使用的 MLLM。这是因为评估指标不仅考虑了视觉正确性，还考虑了描述的风格，例如代词和介词</p>
+<p>因此，为了排除语言偏见的影响，使用不同风格的 GT 注释进行评估至关重要。</p>
+
+        <h4 id="D2I-Bench-Results"   >
+          <a href="#D2I-Bench-Results" class="heading-link"><i class="fas fa-link"></i></a><a href="#D2I-Bench-Results" class="headerlink" title="D2I-Bench Results"></a>D2I-Bench Results</h4>
+      <p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027171522.png"></p>
+<p>我们的 IT 框架生成的描述产生的图像与原始图像的相似度得分高于 COCO 的描述和 MLLM 生成的描述</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027171415.png"></p>
+<p>我们提供了定性示例，以显示 IT 生成的描述产生的图像与原始图像更相似。这些结果证明了我们的框架在准确捕捉图像内容细节方面的有效性。</p>
+
+        <h3 id="MLLM-Tuning-Evaluation"   >
+          <a href="#MLLM-Tuning-Evaluation" class="heading-link"><i class="fas fa-link"></i></a><a href="#MLLM-Tuning-Evaluation" class="headerlink" title="MLLM Tuning Evaluation"></a>MLLM Tuning Evaluation</h3>
+      
+        <h4 id="DID-Bench-Results-1"   >
+          <a href="#DID-Bench-Results-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#DID-Bench-Results-1" class="headerlink" title="DID-Bench Results"></a>DID-Bench Results</h4>
+      <p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027171934.png"></p>
+<p>我们比较了 1) 原始 LLaVA-7B 模型生成的图像描述的质量；2) 使用 MLLM 生成的描述进行微调的 LLaVA 和 3) 使用图像文本化生成的描述进行微调的 LLaVA。</p>
+<p>我们观察到，使用 IT 策划的数据集进行微调的 MLLM 在所有指标和 GT 注释中始终优于其他基线</p>
+<ol>
+<li>GT-LLaVA 上的得分大多高于 GT-GPT4V，这是 LLaVA 的响应方式</li>
+<li>对于每个 GT 分割，IT 调整后的 LLaVA 的表现都大大优于基线和 MLLM 调整后的 LLaVA</li>
+<li>从组合 GT 的评估来看，我们观察到 IT-LLaVA 的有效性接近 GPT4-V，而 IT-GPT4-V 仍然明显超过所有同行。这表明图像文本化有潜力缩小不同 MLLM 之间的能力差距</li>
+</ol>
+
+        <h4 id="POPE-and-LIN-Bench-Results"   >
+          <a href="#POPE-and-LIN-Bench-Results" class="heading-link"><i class="fas fa-link"></i></a><a href="#POPE-and-LIN-Bench-Results" class="headerlink" title="POPE and LIN-Bench Results"></a>POPE and LIN-Bench Results</h4>
+      <p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027172112.png"></p>
+<p>左侧，我们评估了使用不同图像描述数据调整的 MLLM 的幻觉。我们观察到，使用 IT 生成的描述进行调整可以最显著地缓解幻觉。</p>
+<p>在右侧，我们还展示了 LIN-Bench 上的结果，这表明使用 IT 生成的描述进行调整可以在生成包含更丰富细节的描述方面获得最大的收益。</p>
+
+        <h3 id="Linguistic-based-Evaluation"   >
+          <a href="#Linguistic-based-Evaluation" class="heading-link"><i class="fas fa-link"></i></a><a href="#Linguistic-based-Evaluation" class="headerlink" title="Linguistic-based Evaluation"></a>Linguistic-based Evaluation</h3>
+      
+        <h4 id="Statistical-Analysis"   >
+          <a href="#Statistical-Analysis" class="heading-link"><i class="fas fa-link"></i></a><a href="#Statistical-Analysis" class="headerlink" title="Statistical Analysis"></a>Statistical Analysis</h4>
+      <p>我们分别总结了图像文本化和 MLLM 基线生成的图像描述的统计数据。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027172218.png"></p>
+<p>显示 IT 生成的描述的字数和句子数高于 MLLM 生成的描述。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027172300.png"></p>
+<p>我们显示了不同类型单词的计数，这表明 IT 生成的描述包含更多单词，例如名词、动词和形容词。这些统计分析表明，IT 生成的描述从图像中捕获了更全面的视觉信息。</p>
+
+        <h4 id="LIN-Bench-Results"   >
+          <a href="#LIN-Bench-Results" class="heading-link"><i class="fas fa-link"></i></a><a href="#LIN-Bench-Results" class="headerlink" title="LIN-Bench Results"></a>LIN-Bench Results</h4>
+      <p><img src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/20241027172322.png"></p>
+<p>IT 生成的描述在所有指标上都获得了更高的分数，这表明这些描述能够从图像中包含更丰富的视觉细节</p>
+
+        <h1 id="Conclusion"   >
+          <a href="#Conclusion" class="heading-link"><i class="fas fa-link"></i></a><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1>
+      <p>总之，本文解决了现有图像描述数据集的局限性，并提出了一个创新框架，即图像文本化 (IT)，以生成详细而准确的图像描述。</p>
+<p>该框架以协作的方式利用多模态大型语言模型 (MLLM) 和多个视觉专家模型的强大功能。<br>通过对图像理解和生成任务的大量实验，我们验证了该框架生成的描述的高质量。<br>我们希望我们的工作能够为设计更高效、更可扩展的方法来生成详细而准确的图像描述提供灵感。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://example.com">TheShineyue</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://example.com/2024/10/29/paper10/">http://example.com/2024/10/29/paper10/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/paper/">paper</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/mllm/">mllm</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/benchmark/">benchmark</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/image-to-text/">image-to-text</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2024/10/21/paper9/"><span class="paginator-prev__text">论文阅读 CliMedBench A Large-Scale Chinese Benchmark for Evaluating MedicalLarge Language Models in Clinical Scenarios</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Abstract"><span class="toc-number">1.</span> <span class="toc-text">
+          Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">2.</span> <span class="toc-text">
+          Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Image-Textualization-IT"><span class="toc-number">2.1.</span> <span class="toc-text">
+          Image Textualization(IT)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Method"><span class="toc-number">3.</span> <span class="toc-text">
+          Method</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Holistic-Textualization"><span class="toc-number">3.1.</span> <span class="toc-text">
+          Holistic Textualization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Visual-Detail-Textualization"><span class="toc-number">3.2.</span> <span class="toc-text">
+          Visual Detail Textualization</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hallucination-Detection"><span class="toc-number">3.2.1.</span> <span class="toc-text">
+          Hallucination Detection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fine-Grained-Objects-Annotation"><span class="toc-number">3.2.2.</span> <span class="toc-text">
+          Fine-Grained Objects Annotation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Dense-Caption-Generation"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">
+          Dense Caption Generation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spatial-Information-Collection"><span class="toc-number">3.2.2.2.</span> <span class="toc-text">
+          Spatial Information Collection</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Textualized-Recaptioning"><span class="toc-number">3.3.</span> <span class="toc-text">
+          Textualized Recaptioning</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Experiments"><span class="toc-number">4.</span> <span class="toc-text">
+          Experiments</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Benchmarks-and-Evaluations"><span class="toc-number">4.1.</span> <span class="toc-text">
+          Benchmarks and Evaluations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Benchmarks"><span class="toc-number">4.1.1.</span> <span class="toc-text">
+          Benchmarks</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DID-Bench"><span class="toc-number">4.1.1.1.</span> <span class="toc-text">
+          DID-Bench</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#D2I-Bench"><span class="toc-number">4.1.1.2.</span> <span class="toc-text">
+          D2I-Bench</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LIN-Bench"><span class="toc-number">4.1.1.3.</span> <span class="toc-text">
+          LIN-Bench</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#POPE"><span class="toc-number">4.1.1.4.</span> <span class="toc-text">
+          POPE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Image-Description-Quality-Evaluation"><span class="toc-number">4.1.2.</span> <span class="toc-text">
+          Image Description Quality Evaluation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DID-Bench-Results"><span class="toc-number">4.1.2.1.</span> <span class="toc-text">
+          DID-Bench Results</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#D2I-Bench-Results"><span class="toc-number">4.1.2.2.</span> <span class="toc-text">
+          D2I-Bench Results</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MLLM-Tuning-Evaluation"><span class="toc-number">4.1.3.</span> <span class="toc-text">
+          MLLM Tuning Evaluation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DID-Bench-Results-1"><span class="toc-number">4.1.3.1.</span> <span class="toc-text">
+          DID-Bench Results</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#POPE-and-LIN-Bench-Results"><span class="toc-number">4.1.3.2.</span> <span class="toc-text">
+          POPE and LIN-Bench Results</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linguistic-based-Evaluation"><span class="toc-number">4.1.4.</span> <span class="toc-text">
+          Linguistic-based Evaluation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Statistical-Analysis"><span class="toc-number">4.1.4.1.</span> <span class="toc-text">
+          Statistical Analysis</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LIN-Bench-Results"><span class="toc-number">4.1.4.2.</span> <span class="toc-text">
+          LIN-Bench Results</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Conclusion"><span class="toc-number">5.</span> <span class="toc-text">
+          Conclusion</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://cdn.jsdelivr.net/gh/TheShineyue/GraphBed@image//img/小狗熬夜.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">It's 95 percent pain</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">37</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">13</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">13</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>TheShineyue</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v7.1.1</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.8.0</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.8.0"></script><script src="/js/stun-boot.js?v=2.8.0"></script><script src="/js/scroll.js?v=2.8.0"></script><script src="/js/header.js?v=2.8.0"></script><script src="/js/sidebar.js?v=2.8.0"></script><script type="application/json" src="/search.json"></script></body></html>
