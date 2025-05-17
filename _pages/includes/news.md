@@ -1,2 +1,2 @@
 # 🔥 News
-- *2025.05*: 🎉 I have completed the establishment of my personal homepage.
+- *2025.05*: 🎉 My first paper as the first author has been accepted by ACL2025!
