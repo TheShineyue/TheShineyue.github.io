@@ -1,2 +1,2 @@
 # 🔥 News
-- *2025.05*: 🎉 My first paper as the first author has been accepted by ACL2025!
+- *2025.05*: 🎉 My first paper as the first author has been accepted by ACL 2025!
