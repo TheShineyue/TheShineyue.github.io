@@ -1,14 +1,3 @@
-<script>
-  fetch('{{ url }}')
-    .then(response => response.json())
-    .then(data => {
-      var citedBy = data.message;
-      // 在这里可以使用 citedBy 变量，它包含了被引用次数
-      console.log("被引用次数:", citedBy);
-      document.getElementById('total_cit').innerHTML = citedBy;
-    });
-</script>
-
 I am currently a master's student at the School of Computer Science and Technology, East China Normal University, under the supervision of Young Researcher Linlin Wang. My primary collaborator, Ph.D. Xin Yi, has provided me with invaluable guidance and support throughout my studies. Prior to this, I earned my BEng degree from Xiangtan University, where I was mentored by Associate Professor Xuan Lin.
 
-My research focuses on the safety of large language models (including multi-modal large language models), and I am very interested in the internals of safety alignment of large language models. I have published some papers <a href='https://scholar.google.com/citations?user=Tyk8UuwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>.
+My research focuses on the safety of large language models (including multi-modal large language models), and I am very interested in the internals of safety alignment of large language models.
