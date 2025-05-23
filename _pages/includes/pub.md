@@ -6,7 +6,7 @@
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025</div><img src='images/hsr.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[Hierarchical Safety Realignment: Lightweight Restoration of Safety in Pruned Large Vision-Language Models](https://openreview.net/forum?id=) \\ 
+[Hierarchical Safety Realignment: Lightweight Restoration of Safety in Pruned Large Vision-Language Models](https://arxiv.org/abs/2505.16104) \\ 
 **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Gerard de Melo, Xiaoling Wang, Linlin Wang<sup>†</sup>.
 
 [**Project**](https://github.com/TheShineyue/HSR) 
