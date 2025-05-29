@@ -11,7 +11,7 @@
 
 [**Project**](https://github.com/TheShineyue/HSR) 
   - The current pruning methods will lead to a significant degradation of the model's safety at a higher sparsity.
-  - The HSR (**H**ierarchical **S**afety **R**ealignment) method we proposed can achieve safety realalignment for the pruned model by restoring only a very small number of neurons. HSR is effective for both LLM and LVLM.
+  - The HSR (**H**ierarchical **S**afety **R**ealignment) method we proposed can achieve safety realignment for the pruned model by restoring only a very small number of neurons. HSR is effective for both LLM and LVLM.
 </div>
 </div>
 
