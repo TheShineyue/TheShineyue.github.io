@@ -6,10 +6,9 @@
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025</div><img src='images/hsr.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[Hierarchical Safety Realignment: Lightweight Restoration of Safety in Pruned Large Vision-Language Models](https://arxiv.org/abs/2505.16104) \\ 
-**Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Gerard de Melo, Xiaoling Wang, Linlin Wang<sup>†</sup>.
+Hierarchical Safety Realignment: Lightweight Restoration of Safety in Pruned Large Vision-Language Models, **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Gerard de Melo, Xiaoling Wang, Linlin Wang<sup>†</sup>.
 
-[**Project**](https://github.com/TheShineyue/HSR) 
+[**Paper**](https://arxiv.org/abs/2505.16104) | [**Project**](https://github.com/TheShineyue/HSR) 
   - The current pruning methods will lead to a significant degradation of the model's safety at a higher sparsity.
   - The HSR (**H**ierarchical **S**afety **R**ealignment) method we proposed can achieve safety realignment for the pruned model by restoring only a very small number of neurons. HSR is effective for both LLM and LVLM.
 </div>
