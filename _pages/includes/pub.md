@@ -3,7 +3,7 @@
 
 ## 🗡️🛡️ Jailbreak Attacks and Defenses
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025</div><img src='images/hsr.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025 (CCF A)</div><img src='images/hsr.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [Hierarchical Safety Realignment: Lightweight Restoration of Safety in Pruned Large Vision-Language Models](https://arxiv.org/abs/2505.16104) \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Gerard de Melo, Xiaoling Wang, Linlin Wang<sup>†</sup>.
@@ -14,7 +14,7 @@
 </div>
 </div>
 
-- `Preprint` [Latent-space adversarial training with post-aware calibration for defending large language models against jailbreak attacks](https://arxiv.org/abs/2501.10639), Xin Yi, **Yue Li**, Linlin Wang<sup>†</sup>, Xiaoling Wang and Liang He.
+- `ESWA (SCI Q1)` [Latent-space adversarial training with post-aware calibration for defending large language models against jailbreak attacks](https://arxiv.org/abs/2501.10639), Xin Yi, **Yue Li**, Linlin Wang<sup>†</sup>, Xiaoling Wang and Liang He.
 
 ## 📄🔍 Watermarks and Fingerprints
 
