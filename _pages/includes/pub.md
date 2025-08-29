@@ -18,4 +18,4 @@
 
 ## 📄🔍 Watermarks and Fingerprints
 
-- `KBS 2026` [Unified Attacks to Large Language Model Watermarks: Spoofing and Scrubbing in Unauthorized Knowledge Distillation](https://arxiv.org/abs/2504.17480), Xin Yi, **Yue Li**, Shunfan Zheng, Linlin Wang<sup>†</sup>, Xiaoling Wang and Liang He.
+- `KBS 2025` [Unified Attacks to Large Language Model Watermarks: Spoofing and Scrubbing in Unauthorized Knowledge Distillation](https://arxiv.org/abs/2504.17480), Xin Yi, **Yue Li**, Shunfan Zheng, Linlin Wang<sup>†</sup>, Xiaoling Wang and Liang He.
