@@ -18,7 +18,7 @@
 
 ## 📄🔍 Watermarks and Fingerprints
 
-- `Preprint` [From Evaluation to Defense: Constructing Persistent Edit-Based Fingerprints for Large Language Models](https://arxiv.org/abs/2509.03122), **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo, Xiaoling Wang and Linlin Wang<sup>†</sup>.
+- `Preprint` [From Evaluation to Defense: Constructing Persistent Edit-Based Fingerprints for Large Language Models](https://arxiv.org/abs/2509.03122), **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo and Linlin Wang<sup>†</sup>.
 
 - `KBS 2025` [Unified Attacks to Large Language Model Watermarks: Spoofing and Scrubbing in Unauthorized Knowledge Distillation](https://arxiv.org/abs/2504.17480), Xin Yi, **Yue Li**, Shunfan Zheng, Linlin Wang<sup>†</sup>, Xiaoling Wang and Liang He.
 
