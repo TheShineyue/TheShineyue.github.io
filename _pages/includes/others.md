@@ -6,5 +6,5 @@
   
 # 🛎️ Reviewer
 - The ACM Web Conference (The International World Wide Web Conference, WWW)
-- Annual Meeting of the Association for Computational Linguistics (ACL)
+- IEEE/INNS International Joint Conference on Neural Networks (IJCNN)
 - Association for the Advancement of Artificial Intelligence (AAAI)
