@@ -16,9 +16,18 @@
 
 - `ESWA 2026` [Latent-space adversarial training with post-aware calibration for defending large language models against jailbreak attacks](https://arxiv.org/abs/2501.10639), Xin Yi, **Yue Li**, Dongsheng Shi, Linlin Wang<sup>†</sup>, Xiaoling Wang and Liang He.
 
-## 📄🔍 Watermarks and Fingerprints
+## 📄🔍 Model Watermarks and Fingerprints
 
-- `Preprint` [From Injection to Defense: Constructing Edit-Based Fingerprints for Large Language Models](https://arxiv.org/abs/2509.03122), **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo and Linlin Wang<sup>†</sup>.
+- `Preprint` [AGMark: Attention-Guided Dynamic Watermarking for Large Vision-Language Models](https://arxiv.org/abs/2602.09611), **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo and Linlin Wang<sup>†</sup>.
+
+- `Preprint` [From Construction to Injection: Edit-Based Fingerprints for Large Language Models](https://arxiv.org/abs/2509.03122), **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo and Linlin Wang<sup>†</sup>.
 
 - `KBS 2025` [Unified Attacks to Large Language Model Watermarks: Spoofing and Scrubbing in Unauthorized Knowledge Distillation](https://arxiv.org/abs/2504.17480), Xin Yi, **Yue Li**, Shunfan Zheng, Linlin Wang<sup>†</sup>, Xiaoling Wang and Liang He.
 
+## 🗃️📊 Benchmarks
+
+- `ESWA 2026` Benchmarking Large Language Models for End-to-End Clinical Support in Traditional Chinese Medicine, Dongsheng Shi, Xin Yi, **Yue Li**, Linlin Wang<sup>†</sup>.
+
+## 👻💭 Model Hallucinations
+
+- `IJCNN 2026` Process Alignment: Verifiable Knowledge Distillation for Mitigating Hallucinations in Large Language Models, Weicong Ni, **Yue Li**, Dongsheng Shi, Linlin Wang<sup>†</sup>.
