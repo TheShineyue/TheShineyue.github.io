@@ -16,6 +16,8 @@
 
 - `ESWA 2026` [Latent-space adversarial training with post-aware calibration for defending large language models against jailbreak attacks](https://arxiv.org/abs/2501.10639), Xin Yi, **Yue Li**, Dongsheng Shi, Linlin Wang<sup>†</sup>, Xiaoling Wang and Liang He.
 
+- `Preprint` [Unified defense for large language models against jailbreak and fine-tuning attacks in education](https://arxiv.org/pdf/2511.14423), Xin Yi, **Yue Li**, Dongsheng Shi, Linlin Wang<sup>†</sup>, Xiaoling Wang and Liang He.
+
 ## 📄🔍 Model Watermarks and Fingerprints
 
 - `Preprint` [AGMark: Attention-Guided Dynamic Watermarking for Large Vision-Language Models](https://arxiv.org/abs/2602.09611), **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo and Linlin Wang<sup>†</sup>.
