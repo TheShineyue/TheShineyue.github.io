@@ -8,6 +8,3 @@
 - The ACM Web Conference (The International World Wide Web Conference, WWW)
 - IEEE/INNS International Joint Conference on Neural Networks (IJCNN)
 - Association for the Advancement of Artificial Intelligence (AAAI)
-
-# 💻 Internships
-- <img src="images/ailab-logo.png" style="width: 1.8em;">**Shanghai AI Lab**</span>
