@@ -10,4 +10,4 @@
 - Association for the Advancement of Artificial Intelligence (AAAI)
 
 # 💻 Internships
-- Shanghai AI Lab 
+- <img src="images/ailab-logo.png" style="width: 1.8em;">**Shanghai AI Lab**</span>
