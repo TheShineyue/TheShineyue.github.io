@@ -28,7 +28,7 @@
 
 ## 🗃️📊 Benchmarks
 
-- `ESWA 2026` Benchmarking Large Language Models for End-to-End Clinical Support in Traditional Chinese Medicine, Dongsheng Shi, Xin Yi, **Yue Li**, Linlin Wang<sup>†</sup>.
+- `ESWA 2026` [Benchmarking Large Language Models for End-to-End Clinical Support in Traditional Chinese Medicine](https://www.sciencedirect.com/science/article/abs/pii/S0957417426011802), Dongsheng Shi, Xin Yi, **Yue Li**, Linlin Wang<sup>†</sup>.
 
 ## 👻💭 Model Hallucinations
 
