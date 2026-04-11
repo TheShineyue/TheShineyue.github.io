@@ -17,6 +17,12 @@ If you like the template of this homepage, welcome to star and fork my open-sour
 
 {% include_relative includes/pub.md %}
 
-{% include_relative includes/honers.md %}
-
-{% include_relative includes/others.md %}
+# 📖 Educations
+- *2024.09 - Present*, Master, East China Normal University, Shanghai.
+- *2020.09 - 2024.06*, Undergraduate, Xiangtan Univeristy, Xiangtan.
+- *2017.09 - 2020.06*, Zhejiang Yueqing Middle School, Wenzhou.
+  
+# 🛎️ Academic Services {#-academic-services}
+- The ACM Web Conference (The International World Wide Web Conference, WWW)
+- IEEE/INNS International Joint Conference on Neural Networks (IJCNN)
+- Association for the Advancement of Artificial Intelligence (AAAI)
