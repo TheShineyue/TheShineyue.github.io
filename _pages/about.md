@@ -23,9 +23,9 @@ My research focuses on the safety of large language models (including multi-moda
 - *2023.05*, The 2023 China College Student Programming Competition (CCPC) National Invitational (Hunan), Silver Medalist
 - *2022.04*, The 46th International Collegiate Programming Contest (ICPC) Asian Regional Competition (Kunming), Bronze Medalist
 
-# 💼 Internships
 
-<div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; padding: 15px; border-radius: 8px; background: #f8f9fa;">
+
+<!-- # 💼 Internships <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; padding: 15px; border-radius: 8px; background: #f8f9fa;">
   <div style="flex-shrink: 0;">
     <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 8px;">
       <img src="/images/ailab-logo.png" alt="Shanghai AI Lab" style="width: 80px; height: 80px; object-fit: contain; display: block;">
@@ -38,7 +38,7 @@ My research focuses on the safety of large language models (including multi-moda
       <li><strong>Mentor:</strong> Jie Li</li>
     </ul>
   </div>
-</div>
+</div> -->
 
 # 🎓 Educations
 - *2024.09 - Present*, Master, East China Normal University, Shanghai.
