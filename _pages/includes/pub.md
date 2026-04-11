@@ -26,6 +26,12 @@
 
 - `KBS 2025` [Unified Attacks to Large Language Model Watermarks: Spoofing and Scrubbing in Unauthorized Knowledge Distillation](https://arxiv.org/abs/2504.17480), Xin Yi, **Yue Li**, Shunfan Zheng, Linlin Wang<sup>†</sup>, Xiaoling Wang and Liang He.
 
+## 🤖🎯 Agents
+
+- `Preprint` MAE: Continuous Learning–based Medical Multi-Agent System via Experience Mining and Reuse, Dongsheng Shi, Xin Yi, **Yue Li**, Linlin Wang<sup>†</sup>.
+
+- `Preprint` SURGENT: A Surgical Multi-Agent Assistance System Across the Perioperative Workflow, Dongsheng Shi, **Yue Li**, Xin Yi, Huawei Feng, Linlin Wang<sup>†</sup>.
+
 ## 🗃️📊 Benchmarks
 
 - `ESWA 2026` [Benchmarking Large Language Models for End-to-End Clinical Support in Traditional Chinese Medicine](https://www.sciencedirect.com/science/article/abs/pii/S0957417426011802), Dongsheng Shi, Xin Yi, **Yue Li**, Linlin Wang<sup>†</sup>.
