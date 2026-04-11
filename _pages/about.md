@@ -25,20 +25,22 @@ My research focuses on the safety of large language models (including multi-moda
 
 # 💼 Internships
 
-<div class='intern-box' style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; padding: 15px; border-radius: 8px; background: #f8f9fa;">
-  <div class='intern-box-image' style="flex-shrink: 0;">
+<div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; padding: 15px; border-radius: 8px; background: #f8f9fa;">
+  <div style="flex-shrink: 0;">
     <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 8px;">
-      <img src='/images/ailab-logo.png' alt="Shanghai AI Lab" style="width: 80px; height: 80px; object-fit: contain; display: block;">
+      <img src="/images/ailab-logo.png" alt="Shanghai AI Lab" style="width: 80px; height: 80px; object-fit: contain; display: block;">
     </div>
   </div>
-  <div class='intern-box-text' markdown="1">
-
-**Shanghai Artificial Intelligence Laboratory**, Research Intern  
-- **Focus:** LLM/Agent Safety  
-- **Mentor:** Jie Li  
+  <div style="flex: 1;">
+    <strong>Shanghai Artificial Intelligence Laboratory</strong>, Research Intern<br>
+    <ul style="margin-top: 5px; margin-bottom: 0; padding-left: 20px;">
+      <li><strong>Focus:</strong> LLM/Agent Safety</li>
+      <li><strong>Mentor:</strong> Jie Li</li>
+      <!-- <li>2026.02 - Present</li> -->
+    </ul>
   </div>
 </div>
-  
+
 # 🎓 Educations
 - *2024.09 - Present*, Master, East China Normal University, Shanghai.
 - *2020.09 - 2024.06*, Undergraduate, Xiangtan Univeristy, Xiangtan.
