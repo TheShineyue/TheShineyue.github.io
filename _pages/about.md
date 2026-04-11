@@ -32,11 +32,10 @@ My research focuses on the safety of large language models (including multi-moda
     </div>
   </div>
   <div style="flex: 1;">
-    <strong>Shanghai Artificial Intelligence Laboratory</strong>, Research Intern<br>
+    <strong>Shanghai Artificial Intelligence Laboratory</strong> (Pujiang Laboratory), Research Intern<br>
     <ul style="margin-top: 5px; margin-bottom: 0; padding-left: 20px;">
       <li><strong>Focus:</strong> LLM/Agent Safety</li>
       <li><strong>Mentor:</strong> Jie Li</li>
-      <!-- <li>2026.02 - Present</li> -->
     </ul>
   </div>
 </div>
