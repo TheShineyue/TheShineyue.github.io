@@ -22,13 +22,29 @@ My research focuses on the safety of large language models (including multi-moda
 - *2025.10*, East China Normal University Outstanding Academic Scholarship (First Prize)
 - *2023.05*, The 2023 China College Student Programming Competition (CCPC) National Invitational (Hunan), Silver Medalist
 - *2022.04*, The 46th International Collegiate Programming Contest (ICPC) Asian Regional Competition (Kunming), Bronze Medalist
+
+# 💼 Internships
+
+<div class='intern-box' style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; padding: 15px; border-radius: 8px; background: #f8f9fa;">
+  <div class='intern-box-image' style="flex-shrink: 0;">
+    <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 8px;">
+      <img src='/images/ailab-logo.png' alt="Shanghai AI Lab" style="width: 80px; height: 80px; object-fit: contain; display: block;">
+    </div>
+  </div>
+  <div class='intern-box-text' markdown="1">
+
+**Shanghai Artificial Intelligence Laboratory**, Research Intern  
+- **Focus:** LLM/Agent Safety  
+- **Mentor:** Jie Li  
+  </div>
+</div>
   
-# 📖 Educations
+# 🎓 Educations
 - *2024.09 - Present*, Master, East China Normal University, Shanghai.
 - *2020.09 - 2024.06*, Undergraduate, Xiangtan Univeristy, Xiangtan.
 - *2017.09 - 2020.06*, Zhejiang Yueqing Middle School, Wenzhou.
   
-# 📖 Academic Services
+# 📋 Academic Services
 - The ACM Web Conference (The International World Wide Web Conference, WWW)
 - IEEE/INNS International Joint Conference on Neural Networks (IJCNN)
 - Association for the Advancement of Artificial Intelligence (AAAI)
