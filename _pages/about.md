@@ -15,6 +15,7 @@ My research focuses on the safety of large language models (including multi-moda
 
 # 🔥 News
 - *2025.05*: 🎉 My first paper as the first author has been accepted by ACL 2025!
+- *2026.05*: 🎉 My second paper as the first author has been accepted by SIGKDD 2026!
   
 {% include_relative includes/pub.md %}
 
