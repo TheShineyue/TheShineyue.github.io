@@ -20,7 +20,7 @@
 
 ## 📄🔍 Model Watermarks and Fingerprints
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">SIGKDD 2025</div><img src='images/agmark.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">SIGKDD 2026</div><img src='images/agmark.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 **AGMark: Attention-Guided Dynamic Watermarking for Large Vision-Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo and Linlin Wang<sup>†</sup>.
