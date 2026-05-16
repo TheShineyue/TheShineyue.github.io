@@ -20,7 +20,7 @@
 
 ## 📄🔍 Model Watermarks and Fingerprints
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025</div><img src='images/agmark.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">SIGKDD 2025</div><img src='images/agmark.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 **AGMark: Attention-Guided Dynamic Watermarking for Large Vision-Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo and Linlin Wang<sup>†</sup>.
@@ -28,6 +28,8 @@
 [**Arxiv**](https://arxiv.org/abs/2602.09611)
 - We propose AGmark, a watermarking method for LVLMs that follows the red–green token partitioning paradigm.
 - At each step of autoregressive generation, AGmark dynamically identifies candidate token weights and adaptively determines the size of the protected token set, effectively mitigating the trade-off between text quality and watermark detectability.
+</div>
+</div>
 
 - `Preprint` [From Construction to Injection: Edit-Based Fingerprints for Large Language Models](https://arxiv.org/abs/2509.03122), **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo and Linlin Wang<sup>†</sup>.
 
