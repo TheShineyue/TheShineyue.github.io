@@ -31,7 +31,7 @@ My research focuses on the safety of large language models (including multi-moda
 <div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; padding: 16px; border-radius: 8px; background: #f8f9fa;">
   <div style="flex-shrink: 0;">
     <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 10px;">
-      <img src="/images/ailab-logo.png" alt="Shanghai AI Lab" style="width: 105px; height: 105px; object-fit: contain; display: block;">
+      <img src="/images/ailab-logo.png" alt="Shanghai AI Lab" style="width: 125px; height: 105px; object-fit: contain; display: block;">
     </div>
   </div>
 
@@ -40,7 +40,7 @@ My research focuses on the safety of large language models (including multi-moda
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
       <li><strong>Duration:</strong> March 2026 – May 2026</li>
       <li><strong>Mentor:</strong> Jie Li</li>
-      <li><strong>Focus:</strong> LLM/Agent Safety; participated in the construction of the Claw evaluation benchmark and supported safety testing for the Intern series models.</li>
+      <li><strong>Focus:</strong> LLM/Agent Safety, including participation in the construction of the Claw evaluation benchmark and support for safety testing of the Intern series models.</li>
     </ul>
   </div>
 </div>
