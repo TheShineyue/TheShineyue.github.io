@@ -26,7 +26,9 @@ My research focuses on the safety of large language models (including multi-moda
 
 
 
-# 💼 Internships <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; padding: 15px; border-radius: 8px; background: #f8f9fa;">
+# 💼 Internships
+
+<div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; padding: 15px; border-radius: 8px; background: #f8f9fa;">
   <div style="flex-shrink: 0;">
     <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 8px;">
       <img src="/images/ailab-logo.png" alt="Shanghai AI Lab" style="width: 80px; height: 80px; object-fit: contain; display: block;">
@@ -35,12 +37,13 @@ My research focuses on the safety of large language models (including multi-moda
   <div style="flex: 1;">
     <strong>Shanghai Artificial Intelligence Laboratory</strong> (Pujiang Laboratory), Research Intern<br>
     <ul style="margin-top: 5px; margin-bottom: 0; padding-left: 20px;">
+      <li><strong>Time:</strong> March 2026 – May 2026</li>
       <li><strong>Focus:</strong> LLM/Agent Safety</li>
       <li><strong>Mentor:</strong> Jie Li</li>
-      <li>Times:</strong> 2026.03-2026.05</li>
     </ul>
   </div>
 </div>
+
 
 # 🎓 Educations
 - *2024.09 - Present*, Master, East China Normal University, Shanghai.
