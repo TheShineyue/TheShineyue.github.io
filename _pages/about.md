@@ -14,9 +14,10 @@ I am currently a master's student at the School of Computer Science and Technolo
 My research focuses on the safety of large language models (including multi-modal large language models), and I am very interested in the internals of safety alignment of large language models.
 
 # 🔥 News
-- *2025.05*: 🎉 My first paper as the first author has been accepted by ACL 2025!
+
 - *2026.05*: 🎉 My second paper as the first author has been accepted by SIGKDD 2026!
-  
+- *2025.05*: 🎉 My first paper as the first author has been accepted by ACL 2025!
+
 {% include_relative includes/pub.md %}
 
 # 🎖 Honors and Awards
