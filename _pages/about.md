@@ -35,14 +35,13 @@ My research focuses on the safety of large language models (including multi-moda
     </div>
   </div>
   <div style="flex: 1;">
-    <strong>Shanghai Artificial Intelligence Laboratory</strong> (Pujiang Laboratory), Research Intern<br>
-    <ul style="margin-top: 5px; margin-bottom: 0; padding-left: 20px;">
-      <li><strong>Time:</strong> March 2026 – May 2026</li>
-      <li><strong>Focus:</strong> LLM/Agent Safety</li>
-      <li><strong>Mentor:</strong> Jie Li</li>
-    </ul>
-  </div>
-</div>
+    <strong>Shanghai Artificial Intelligence Laboratory</strong>, Center for Safe & Trustworthy AI, Research Intern<br>
+  <ul style="margin-top: 5px; margin-bottom: 0; padding-left: 20px;">
+    <li><strong>Duration:</strong> March 2026 – May 2026</li>
+    <li><strong>Mentor:</strong> Jie Li</li>
+    <li><strong>Focus:</strong> LLM/Agent Safety</li>
+    <li><strong>Contribution:</strong> Participated in the construction of the Claw evaluation benchmark and supported safety testing for the Intern series models.</li>
+</ul>
 
 
 # 🎓 Educations
