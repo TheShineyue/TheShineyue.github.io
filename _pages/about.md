@@ -25,8 +25,6 @@ My research focuses on the safety of large language models (including multi-moda
 - *2023.05*, The 2023 China College Student Programming Competition (CCPC) National Invitational (Hunan), Silver Medalist
 - *2022.04*, The 46th International Collegiate Programming Contest (ICPC) Asian Regional Competition (Kunming), Bronze Medalist
 
-
-
 # 💼 Internships
 
 <div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; padding: 16px; border-radius: 8px; background: #f8f9fa;">
@@ -39,7 +37,7 @@ My research focuses on the safety of large language models (including multi-moda
   <div style="flex: 1;">
     <strong>Shanghai Artificial Intelligence Laboratory</strong>, Center for Safe & Trustworthy AI, Research Intern<br>
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
-      <li><strong>Duration:</strong> March 2026 – May 2026</li>
+      <li><strong>Duration:</strong> March 2026 – June 2026</li>
       <li><strong>Mentor:</strong> Jie Li</li>
       <li><strong>Focus:</strong> LLM/Agent Safety, including participation in the construction of the Claw evaluation benchmark and support for safety testing of the Intern series models.</li>
     </ul>
