@@ -39,7 +39,7 @@
 
 - `Preprint` MAE: Continuous Learning–based Medical Multi-Agent System via Experience Mining and Reuse, Dongsheng Shi, Xin Yi, **Yue Li**, Linlin Wang<sup>†</sup>.
 
-- `Preprint` SURGENT: A Surgical Multi-Agent Assistance System Across the Perioperative Workflow, Dongsheng Shi, **Yue Li**, Xin Yi, Huawei Feng, Linlin Wang<sup>†</sup>.
+- `Preprint` [SURGENT: A Surgical Multi-Agent Assistance System Across the Perioperative Workflow](https://arxiv.org/abs/2605.29368), Dongsheng Shi, **Yue Li**, Xin Yi, Huawei Feng, Linlin Wang<sup>†</sup>.
 
 ## 🗃️📊 Benchmarks
 
@@ -47,4 +47,4 @@
 
 ## 👻💭 Model Hallucinations
 
-- `IJCNN 2026` Process Alignment: Verifiable Knowledge Distillation for Mitigating Hallucinations in Large Language Models, Weicong Ni, **Yue Li**, Dongsheng Shi, Linlin Wang<sup>†</sup>.
+- `Preprint` Process Alignment: Verifiable Knowledge Distillation for Mitigating Hallucinations in Large Language Models, Weicong Ni, **Yue Li**, Dongsheng Shi, Linlin Wang<sup>†</sup>.
