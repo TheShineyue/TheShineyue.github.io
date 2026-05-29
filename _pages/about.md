@@ -11,7 +11,7 @@ redirect_from:
 <span class='anchor' id='about-me'></span>
 I am currently a master's student at the School of Computer Science and Technology, [East China Normal University](https://www.ecnu.edu.cn/), under the supervision of Professor Linlin Wang. My primary collaborator, Ph.D. Xin Yi, provides me with invaluable guidance and support throughout my studies. Prior to this, I earned my BEng degree from [Xiangtan University](https://www.xtu.edu.cn/), where I was mentored by Associate Professor Xuan Lin.
 
-My research primarily focuses on AI safety, covering large language models, large vision language models, agents, and Claw-style frameworks such as OpenClaw. I have published multiple papers in top-tier conferences, including ACL and KDD, and in leading journals such as KBS and ESWA.
+My research primarily focuses on AI safety, covering large language models, large vision language models, agents, and Claw-style frameworks. I have published multiple papers in top-tier conferences, including ACL and KDD, and in leading journals such as KBS and ESWA.
 
 # 🔥 News
 
