@@ -30,7 +30,7 @@ My research primarily focuses on AI safety, covering large language models, larg
 <div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; padding: 16px; border-radius: 8px; background: #f8f9fa;">
   <div style="flex-shrink: 0;">
     <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 10px;">
-      <img src="/images/ailab-logo.png" alt="Shanghai AI Lab" style="width: 125px; height: 105px; object-fit: contain; display: block;">
+      <img src="/images/ailab-logo.png" alt="Shanghai AI Lab" style="width: 125px; height: 110px; object-fit: contain; display: block;">
     </div>
   </div>
 
