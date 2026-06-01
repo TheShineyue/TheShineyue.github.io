@@ -52,7 +52,7 @@ My research primarily focuses on AI safety, covering large language models, larg
   </div>
 
   <div style="flex: 1;">
-    <strong>Ant Group</strong>, Research Intern<br>
+    <strong>Ant Group</strong>, Ant Security, Research Intern<br>
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
       <li><strong>Duration:</strong> June 2026 – Present</li>
       <li><strong>Mentor:</strong> TBD</li>
