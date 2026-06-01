@@ -44,6 +44,22 @@ My research primarily focuses on AI safety, covering large language models, larg
   </div>
 </div>
 
+<div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; padding: 16px; border-radius: 8px; background: #f8f9fa;">
+  <div style="flex-shrink: 0;">
+    <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 10px;">
+      <img src="https://TheShineyue.github.io/images/Ant_Group_logo.svg.png" alt="Ant Group" style="width: 125px; height: 110px; object-fit: contain; display: block;">
+    </div>
+  </div>
+
+  <div style="flex: 1;">
+    <strong>Ant Group</strong>, Research Intern<br>
+    <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
+      <li><strong>Duration:</strong> June 2026 – Present</li>
+      <li><strong>Mentor:</strong> TBD</li>
+      <li><strong>Focus:</strong> TBD</li>
+    </ul>
+  </div>
+</div>
 
 # 🎓 Educations
 - *2024.09 - Present*, Master, East China Normal University, Shanghai.
