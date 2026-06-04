@@ -3,7 +3,7 @@
 
 ## 🗡️🛡️ Jailbreak Attacks and Defenses
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025</div><img src='images/hsr.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025 Findings</div><img src='images/hsr.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 **Hierarchical Safety Realignment: Lightweight Restoration of Safety in Pruned Large Vision-Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Gerard de Melo, Xiaoling Wang and Linlin Wang<sup>†</sup>.
@@ -37,7 +37,7 @@
 
 ## 🤖🎯 Agents
 
-- `Preprint` MAE: Continuous Learning–based Medical Multi-Agent System via Experience Mining and Reuse, Dongsheng Shi, Xin Yi, **Yue Li**, Linlin Wang<sup>†</sup>.
+- `Preprint` EMR: Self-Evolving Medical Multi-Agent System via Experience Mining and Reuse, Dongsheng Shi, Xin Yi, **Yue Li**, Linlin Wang<sup>†</sup>.
 
 - `Preprint` [SURGENT: A Surgical Multi-Agent Assistance System Across the Perioperative Workflow](https://arxiv.org/abs/2605.29368), Dongsheng Shi, **Yue Li**, Xin Yi, Huawei Feng, Linlin Wang<sup>†</sup>.
 
