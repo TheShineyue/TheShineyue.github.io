@@ -27,7 +27,7 @@
 
 [**Arxiv**](https://arxiv.org/abs/2602.09611) | [**Project**](https://github.com/TheShineyue/AGMark)
 - We propose AGmark, a watermarking method for LVLMs that follows the red–green token partitioning paradigm.
-- At each generation step, AGmark dynamically identifies candidate token weights and adaptively determines the size of the protected token set, effectively mitigating the trade-off between text quality and watermark detectability.
+- At each generation step, AGmark identifies candidate token weights and determines the protected token set size, effectively mitigating the trade-off between text quality and watermark detectability.
 </div>
 </div>
 
