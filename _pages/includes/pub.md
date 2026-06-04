@@ -18,7 +18,7 @@
 
 - `Preprint` [Unified defense for large language models against jailbreak and fine-tuning attacks in education](https://arxiv.org/pdf/2511.14423), Xin Yi, **Yue Li**, Dongsheng Shi, Linlin Wang<sup>†</sup>, Xiaoling Wang and Liang He.
 
-## 📄🔍 Model Watermarks and Fingerprints
+## 📄🔍 Intellectual Property Security
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">SIGKDD 2026</div><img src='images/agmark.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
@@ -27,7 +27,7 @@
 
 [**Arxiv**](https://arxiv.org/abs/2602.09611) | [**Project**](https://github.com/TheShineyue/AGMark)
 - We propose AGmark, a watermarking method for LVLMs that follows the red–green token partitioning paradigm.
-- At each step of autoregressive generation, AGmark dynamically identifies candidate token weights and adaptively determines the size of the protected token set, effectively mitigating the trade-off between text quality and watermark detectability.
+- At each generation step, AGmark dynamically identifies candidate token weights and adaptively determines the size of the protected token set, effectively mitigating the trade-off between text quality and watermark detectability.
 </div>
 </div>
 
