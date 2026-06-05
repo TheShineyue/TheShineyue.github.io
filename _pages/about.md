@@ -35,7 +35,7 @@ My research primarily focuses on AI safety, covering large language models, larg
   </div>
 
   <div style="flex: 1;">
-    <strong>Shanghai AI Lab</strong>, Center for Safe & Trustworthy AI | Shanghai<br>
+    <strong>Shanghai AI Laboratory</strong>, Center for Safe & Trustworthy AI | Shanghai<br>
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
       <li><strong>Duration:</strong> March 2026 – June 2026</li>
       <li><strong>Mentor:</strong> Jie Li</li>
