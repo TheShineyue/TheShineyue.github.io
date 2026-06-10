@@ -52,11 +52,11 @@ My research primarily focuses on AI safety, covering large language models, larg
   </div>
 
   <div style="flex: 1;">
-    <strong>Ant Group</strong>, Ant Security | Hangzhou<br>
+    <strong>Ant Group</strong>, Security and Risk Management | Hangzhou<br>
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
       <li><strong>Duration:</strong> June 2026 – Present</li>
       <li><strong>Mentor:</strong> Feng Wen</li>
-      <li><strong>Focus:</strong> Agent RL</li>
+      <li><strong>Focus:</strong> Agentic RL</li>
     </ul>
   </div>
 </div>
