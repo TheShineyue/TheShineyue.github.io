@@ -39,7 +39,7 @@ My research primarily focuses on AI safety, covering large language models, larg
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
       <li><strong>Duration:</strong> March 2026 – June 2026</li>
       <li><strong>Mentor:</strong> Jie Li</li>
-      <li><strong>Focus:</strong> LLM/Agent Safety, including participation in the construction of the Claw evaluation benchmark and support for safety testing of the Intern series models.</li>
+      <li><strong>Focus:</strong> LLM/Agent Safety, including participation in the construction of the OpenClaw evaluation benchmark and support for safety testing of the Intern series models.</li>
     </ul>
   </div>
 </div>
@@ -55,8 +55,8 @@ My research primarily focuses on AI safety, covering large language models, larg
     <strong>Ant Group</strong>, Security and Risk Management | Hangzhou<br>
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
       <li><strong>Duration:</strong> June 2026 – Present</li>
-      <li><strong>Mentor:</strong> Feng Wen</li>
-      <li><strong>Focus:</strong> Agentic RL</li>
+      <li><strong>Mentor:</strong> Feng Wen and Qiu Zhi</li>
+      <li><strong>Focus:</strong> Intrinsic safety of LLMs, including agentic reinforcement learning.</li>
     </ul>
   </div>
 </div>
