@@ -45,6 +45,8 @@
 
 - `ESWA 2026` [Benchmarking Large Language Models for End-to-End Clinical Support in Traditional Chinese Medicine](https://www.sciencedirect.com/science/article/abs/pii/S0957417426011802), Dongsheng Shi, Xin Yi, **Yue Li**, Linlin Wang<sup>†</sup>.
 
+- `Preprint` Evaluating LLMs in Database Scenarios: A Lifecycle Benchmark for Assessing Their Potential in Core Database Tasks, Shunfan Zheng, Dongsheng Shi, **Yue Li**, Xin Yi, Linlin Wang<sup>†</sup>, Gerard de Melo.
+
 ## 👻💭 Model Hallucinations
 
 - `Preprint` Process Alignment: Verifiable Knowledge Distillation for Mitigating Hallucinations in Large Language Models, Weicong Ni, **Yue Li**, Dongsheng Shi, Linlin Wang<sup>†</sup>.
