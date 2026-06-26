@@ -9,7 +9,7 @@ redirect_from:
 ---
 
 <span class='anchor' id='about-me'></span>
-I am currently a master's student at the School of Computer Science and Technology, [East China Normal University](https://www.ecnu.edu.cn/), under the supervision of Professor Linlin Wang. My primary collaborator, Ph.D. Xin Yi, provides me with invaluable guidance and support throughout my studies. Prior to this, I earned my BEng degree from [Xiangtan University](https://www.xtu.edu.cn/), where I was mentored by Associate Professor Xuan Lin.
+I am currently a master's student at the School of Computer Science and Technology, [East China Normal University](https://www.ecnu.edu.cn/), under the supervision of Professor [Linlin Wang](https://scholar.google.com/citations?user=AeLAUE4AAAAJ&hl=zh-CN). My primary collaborator, Ph.D. [Xin Yi](https://scholar.google.com/citations?user=WZ2FVkcAAAAJ&hl=zh-CN), provides me with invaluable guidance and support throughout my studies. Prior to this, I earned my BEng degree from [Xiangtan University](https://www.xtu.edu.cn/), where I was mentored by Associate Professor [Xuan Lin](https://scholar.google.com/citations?hl=zh-CN&user=8B0t8AYAAAAJ).
 
 In 2026, I began my industry internship career. I first joined the Shanghai Artificial Intelligence Laboratory on the Xuhui Riverside in Shanghai, enjoying a rewarding few months with my supportive mentor and colleagues. I then moved to Ant Group in Hangzhou, where I investigated the inherent safety of large language models, especially reinforcement learning (RL) and offline preference optimization (OPD) for agents.
 
@@ -70,6 +70,6 @@ My research primarily focuses on AI safety, covering large language models, larg
   
 # 📋 Academic Services
 - The ACM Web Conference (The International World Wide Web Conference, WWW)
-- IEEE/INNS International Joint Conference on Neural Networks (IJCNN)
 - Association for the Advancement of Artificial Intelligence (AAAI)
+- IEEE/INNS International Joint Conference on Neural Networks (IJCNN)
 - Association for Computational Linguistics Rolling Review (ARR)
