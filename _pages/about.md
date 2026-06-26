@@ -58,7 +58,7 @@ My research primarily focuses on AI safety, covering large language models, larg
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
       <li><strong>Duration:</strong> June 2026 – Present</li>
       <li><strong>Mentor:</strong> Feng Wen and Qiu Zhi</li>
-      <li><strong>Focus:</strong> Intrinsic safety of LLMs, including agentic reinforcement learning and on-policy distillation.</li>
+      <li><strong>Focus:</strong> Intrinsic safety of LLMs, including agentic reinforcement learning and offline preference optimization.</li>
     </ul>
   </div>
 </div>
