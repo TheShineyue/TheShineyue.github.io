@@ -11,7 +11,7 @@ redirect_from:
 <span class='anchor' id='about-me'></span>
 I am currently a master's student at the School of Computer Science and Technology, [East China Normal University](https://www.ecnu.edu.cn/), under the supervision of Professor [Linlin Wang](https://scholar.google.com/citations?user=AeLAUE4AAAAJ&hl=zh-CN). My primary collaborator, Ph.D. [Xin Yi](https://scholar.google.com/citations?user=WZ2FVkcAAAAJ&hl=zh-CN), provides me with invaluable guidance and support throughout my studies. Prior to this, I earned my BEng degree from [Xiangtan University](https://www.xtu.edu.cn/), where I was mentored by Associate Professor [Xuan Lin](https://scholar.google.com/citations?hl=zh-CN&user=8B0t8AYAAAAJ).
 
-In 2026, I began my industry internship career. I first joined the Shanghai Artificial Intelligence Laboratory on the Xuhui Riverside in Shanghai, enjoying a rewarding few months with my supportive mentor and colleagues. I then moved to Ant Group in Hangzhou, where I investigated the inherent safety of large language models, especially reinforcement learning (RL) and offline preference optimization (OPD) for agents.
+In 2026, I began my industry internship career. I first joined the Shanghai Artificial Intelligence Laboratory on the Xuhui Riverside in Shanghai, enjoying a rewarding few months with my supportive mentor and colleagues. I then moved to Ant Group in Hangzhou, where I investigated the inherent safety of large language models, especially reinforcement learning (RL) and on-policy distillation (OPD) for agents.
 
 My research primarily focuses on AI safety, covering large language models, large vision language models, agents, and Claw-style frameworks. I have published multiple papers in top-tier conferences, including ACL and KDD, and in leading journals such as KBS and ESWA.
 
@@ -58,7 +58,7 @@ My research primarily focuses on AI safety, covering large language models, larg
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
       <li><strong>Duration:</strong> June 2026 – Present</li>
       <li><strong>Mentor:</strong> Feng Wen and Qiu Zhi</li>
-      <li><strong>Focus:</strong> Intrinsic safety of LLMs, including agentic reinforcement learning and offline preference optimization.</li>
+      <li><strong>Focus:</strong> Intrinsic safety of LLMs, including agentic reinforcement learning and on-policy distillation.</li>
     </ul>
   </div>
 </div>
