@@ -13,7 +13,7 @@ I am currently a master's student at the School of Computer Science and Technolo
 
 In 2026, I began my industry internship career. I first joined the Shanghai Artificial Intelligence Laboratory on the Xuhui Riverside in Shanghai, enjoying a rewarding few months with my supportive mentor and colleagues. I then moved to Ant Group in Hangzhou, where I investigated the inherent safety of large language models, especially reinforcement learning (RL) and on-policy distillation (OPD) for agents.
 
-My research primarily focuses on AI safety, covering large language models, large vision language models, agents, and Claw-style frameworks. I have published multiple papers in top-tier conferences, including ACL and KDD, and in leading journals such as KBS and ESWA.
+My research primarily focuses on AI safety, covering large language models, large vision language models, agents, and Openclaw frameworks. I have published 5+ papers <a href='https://scholar.google.com/citations?user=Tyk8UuwAAAAJ'><img src="https://img.shields.io/endpoint?logo=Google%20Scholar&url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FRayeRen%2Frayeren.github.io@google-scholar-stats%2Fgs_data_shieldsio.json&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a> at the top international AI conferences and journals such as ACL, KDD, KBS and ESWA.
 
 # 🔥 News
 
