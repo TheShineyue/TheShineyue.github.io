@@ -2,9 +2,8 @@ name: Get Citation Data
 
 on: 
  page_build: 
- workflow_dispatch:
  schedule:
-  - cron:  '0 8 * * *'
+  - cron:  '0 17 * * 1,4,0'
 
 jobs:
   build:
@@ -19,12 +18,16 @@ jobs:
         cd ./google_scholar_crawler
         pip3 install -r requirements.txt
         python3 main.py
-        cd ./results
-        git init
-        git config --local user.name "${GITHUB_ACTOR}"
-        export remote_repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
-        git add *.json
-        git commit -m "Updated Citation Data"
-        git push "${remote_repo}" HEAD:google-scholar-stats --force
+        if [ -d "./results" ]; then
+          cd ./results
+          git init
+          git config --local user.name "${GITHUB_ACTOR}"
+          export remote_repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+          git add *.json
+          git commit -m "Updated Citation Data"
+          git push "${remote_repo}" HEAD:google-scholar-stats --force
+        else
+          echo "results directory does not exist, skipping commit and push"
+        fi
       env: 
         GOOGLE_SCHOLAR_ID: ${{ secrets.GOOGLE_SCHOLAR_ID }}
