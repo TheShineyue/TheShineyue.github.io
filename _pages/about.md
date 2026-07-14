@@ -36,7 +36,6 @@ frameworks. I have published 5+ papers <a href='https://scholar.google.com/citat
       <img src="/images/ailab-logo.png" alt="Shanghai AI Lab" style="width: 125px; height: 110px; object-fit: contain; display: block;">
     </div>
   </div>
-
   <div style="flex: 1;">
     <strong>Shanghai AI Laboratory</strong>, Center for Safe and Trustworthy AI | Shanghai<br>
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
