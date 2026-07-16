@@ -67,7 +67,7 @@ frameworks. I have published 5+ papers <a href='https://scholar.google.com/citat
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
       <li><strong>Duration:</strong> June 2026 – Present</li>
       <li><strong>Mentor:</strong> Feng Wen and Qiu Zhi</li>
-      <li><strong>Focus:</strong> Intrinsic safety of LLMs, including agentic reinforcement learning and on-policy distillation.</li>
+      <li><strong>Focus:</strong> Intrinsic safety of LLMs, with a particular emphasis on agent tool calling, including agentic reinforcement learning and on-policy distillation.</li>
     </ul>
   </div>
 </div>
