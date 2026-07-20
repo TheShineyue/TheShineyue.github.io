@@ -48,7 +48,7 @@ frameworks. I have published 5+ papers <a href='https://scholar.google.com/citat
   <div style="flex: 1;">
     <strong>Shanghai AI Laboratory</strong>, Center for Safe and Trustworthy AI | Shanghai<br>
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
-      <li><strong>Duration:</strong> March 2026 – June 2026</li>
+      <li><strong>Duration:</strong> April 2026 – June 2026</li>
       <li><strong>Mentor:</strong> Jie Li</li>
       <li><strong>Focus:</strong> LLM/Agent Safety, including participation in the construction of the OpenClaw evaluation benchmark and support for safety testing of the Intern series models.</li>
     </ul>
