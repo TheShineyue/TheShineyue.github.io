@@ -35,7 +35,9 @@
 
 - `KBS 2025` [Unified Attacks to Large Language Model Watermarks: Spoofing and Scrubbing in Unauthorized Knowledge Distillation](https://arxiv.org/abs/2504.17480), Xin Yi, **Yue Li**, Shunfan Zheng, Linlin Wang<sup>†</sup>, Xiaoling Wang and Liang He.
 
-## 🤖🎯 Agents
+## 🤖🎯 Agents 
+
+- `Preprint`	Reinforcement Learning for Large Language Model Selective Evidence Adoption from Contaminated Retrieval Results, Yanyu Chen<sup>\*</sup>, **Yue Li**<sup>\*</sup>, Yongyi Cui, Dongsheng Shi, Lichang Dai<sup>†</sup>. 
 
 - `Preprint` EMR: Self-Evolving Medical Multi-Agent System via Experience Mining and Reuse, Dongsheng Shi, Xin Yi, **Yue Li**, Linlin Wang<sup>†</sup>.
 
