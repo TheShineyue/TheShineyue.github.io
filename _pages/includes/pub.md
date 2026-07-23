@@ -37,7 +37,7 @@
 
 ## 🎯⚙️ Model Post-Training
 
-- `Preprint`	Reinforcement Learning for Large Language Model Selective Evidence Adoption from Contaminated Retrieval Results, Yanyu Chen<sup>\*</sup>, **Yue Li**<sup>\*</sup>, Yongyi Cui, Dongsheng Shi, Lichang Dai<sup>†</sup>. 
+- `Preprint`	[Reinforcement Learning for Large Language Model Selective Evidence Adoption from Contaminated Retrieval Results](https://arxiv.org/abs/2607.20090), Yanyu Chen<sup>\*</sup>, **Yue Li**<sup>\*</sup>, Yongyi Cui, Dongsheng Shi, Lichang Dai<sup>†</sup>. 
 
 ## 🏥🤖 Medical Agent Systems
 
