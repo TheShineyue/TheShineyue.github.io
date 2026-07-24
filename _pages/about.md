@@ -22,8 +22,7 @@ I am currently a master's student at the School of Computer Science and Technolo
 
 In 2026, I began my industry internship career. I first joined the Shanghai Artificial Intelligence Laboratory on the Xuhui Riverside in Shanghai, enjoying a rewarding few months with my supportive mentor and colleagues. I then moved to Ant Group in Hangzhou, where I investigated the inherent safety of large language models, especially reinforcement learning (RL) and on-policy distillation (OPD) for agents.
 
-My research primarily focuses on AI safety, covering large language models, large vision language models, agents, and Openclaw 
-frameworks. I have published 5+ papers <a href='https://scholar.google.com/citations?user=Tyk8UuwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a> at the top international AI conferences and journals such as ACL, KDD, KBS and ESWA.
+My research primarily focuses on AI Safety and Agent Reinforcement Learning. I have published 5+ papers <a href='https://scholar.google.com/citations?user=Tyk8UuwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a> at the top international AI conferences and journals such as ACL, KDD, KBS and ESWA.
 
 # 🔥 News
 
@@ -72,8 +71,8 @@ frameworks. I have published 5+ papers <a href='https://scholar.google.com/citat
 - *2022.04*, The 46th International Collegiate Programming Contest (ICPC) Asian Regional Competition (Kunming), Bronze Medalist
  
 # 🎓 Educations
-- *2024.09 - Present*, Master, <img src='./images/ecnu.png' style='width: 6em;'> East China Normal University, Shanghai.
-- *2020.09 - 2024.06*, Undergraduate, <img src='./images/xtu.png' style='width: 6em;'> Xiangtan Univeristy, Xiangtan.
+- *2024.09 - Present*, Master, <img src='./images/ecnu.png' style="height: 1em; vertical-align: middle; margin-right: 0.2em;">  East China Normal University, Shanghai.
+- *2020.09 - 2024.06*, Undergraduate, <img src='./images/xtu.png' style="height: 1em; vertical-align: middle; margin-right: 0.2em;"> Xiangtan Univeristy, Xiangtan.
   
 # 📋 Academic Services
 - The ACM Web Conference (The International World Wide Web Conference, WWW)
