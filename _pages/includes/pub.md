@@ -4,10 +4,9 @@
 ## 🎯 Safety and Trustworthy AI
 
 ### Jailbreak Attacks and Defenses
-<div style="margin-top: -0.8em;"></div>
+<div style="margin-top: -2em;"></div>
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025 Findings</div><img src='images/hsr.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
-
 **Hierarchical Safety Realignment: Lightweight Restoration of Safety in Pruned Large Vision-Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Gerard de Melo, Xiaoling Wang and Linlin Wang<sup>†</sup>.
 
  [**Arxiv**](https://arxiv.org/abs/2505.16104) | [**Project**](https://github.com/TheShineyue/HSR) | [**ACL Anthology**](https://aclanthology.org/2025.findings-acl.394/)
@@ -21,10 +20,9 @@
 - `Preprint` [Unified defense for large language models against jailbreak and fine-tuning attacks in education](https://arxiv.org/pdf/2511.14423), Xin Yi, **Yue Li**, Dongsheng Shi, Linlin Wang<sup>†</sup>, Xiaoling Wang and Liang He.
 
 ### Intellectual Property Security
-
+<div style="margin-top: -2em;"></div>
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">KDD 2026</div><img src='images/agmark.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
-
 **AGMark: Attention-Guided Dynamic Watermarking for Large Vision-Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo and Linlin Wang<sup>†</sup>.
 
 [**Arxiv**](https://arxiv.org/abs/2602.09611) | [**Project**](https://github.com/TheShineyue/AGMark)
