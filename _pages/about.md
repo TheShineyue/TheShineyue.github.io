@@ -72,9 +72,8 @@ frameworks. I have published 5+ papers <a href='https://scholar.google.com/citat
 - *2022.04*, The 46th International Collegiate Programming Contest (ICPC) Asian Regional Competition (Kunming), Bronze Medalist
  
 # 🎓 Educations
-- *2024.09 - Present*, Master, East China Normal University, Shanghai.
-- *2020.09 - 2024.06*, Undergraduate, Xiangtan Univeristy, Xiangtan.
-- *2017.09 - 2020.06*, Zhejiang Yueqing Middle School, Wenzhou.
+- *2024.09 - Present*, Master, <img src='./images/ecnu.png' style='width: 6em;'> East China Normal University, Shanghai.
+- *2020.09 - 2024.06*, Undergraduate, <img src='./images/xtu.png' style='width: 6em;'> Xiangtan Univeristy, Xiangtan.
   
 # 📋 Academic Services
 - The ACM Web Conference (The International World Wide Web Conference, WWW)
