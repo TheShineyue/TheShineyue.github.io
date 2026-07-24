@@ -4,7 +4,7 @@
 ## 🎯 Safety and Trustworthy AI
 
 ### Jailbreak Attacks and Defenses
-
+<div style="margin-top: -0.8em;"></div>
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025 Findings</div><img src='images/hsr.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
