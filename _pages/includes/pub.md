@@ -3,7 +3,7 @@
 
 ## 🎯 Safety and Trustworthy AI
 
-### 🗡️🛡️ Jailbreak Attacks and Defenses
+### Jailbreak Attacks and Defenses
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025 Findings</div><img src='images/hsr.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
@@ -20,7 +20,7 @@
 
 - `Preprint` [Unified defense for large language models against jailbreak and fine-tuning attacks in education](https://arxiv.org/pdf/2511.14423), Xin Yi, **Yue Li**, Dongsheng Shi, Linlin Wang<sup>†</sup>, Xiaoling Wang and Liang He.
 
-### 📄🔍 Intellectual Property Security
+### Intellectual Property Security
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">KDD 2026</div><img src='images/agmark.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
@@ -43,13 +43,13 @@
 
 ## 📦 Others
 
-### 🏥🤖 Medical Agent Systems
+### Medical Agent Systems
 
 - `Preprint` EMR: Self-Evolving Medical Multi-Agent System via Experience Mining and Reuse, Dongsheng Shi, Xin Yi, **Yue Li**, Linlin Wang<sup>†</sup>.
 
 - `Preprint` [SURGENT: A Surgical Multi-Agent Assistance System Across the Perioperative Workflow](https://arxiv.org/abs/2605.29368), Dongsheng Shi, **Yue Li**, Xin Yi, Huawei Feng, Linlin Wang<sup>†</sup>.
 
-### 🗃️📊 Benchmarks
+### Benchmarks
 
 - `ESWA 2026` [Benchmarking Large Language Models for End-to-End Clinical Support in Traditional Chinese Medicine](https://www.sciencedirect.com/science/article/abs/pii/S0957417426011802), Dongsheng Shi, Xin Yi, **Yue Li**, Linlin Wang<sup>†</sup>.
 
