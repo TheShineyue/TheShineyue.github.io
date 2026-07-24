@@ -32,11 +32,6 @@ frameworks. I have published 5+ papers <a href='https://scholar.google.com/citat
 
 {% include_relative includes/pub.md %}
 
-# 🎖 Honors and Awards
-- *2025.10*, East China Normal University Outstanding Academic Scholarship (First Prize)
-- *2023.05*, The 2023 China College Student Programming Competition (CCPC) National Invitational (Hunan), Silver Medalist
-- *2022.04*, The 46th International Collegiate Programming Contest (ICPC) Asian Regional Competition (Kunming), Bronze Medalist
-
 # 💼 Internships
 
 <div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; padding: 16px; border-radius: 8px; background: #f8f9fa;">
@@ -71,7 +66,11 @@ frameworks. I have published 5+ papers <a href='https://scholar.google.com/citat
   </div>
 </div>
 
-
+# 🎖 Honors and Awards
+- *2025.10*, East China Normal University Outstanding Academic Scholarship (First Prize)
+- *2023.05*, The 2023 China College Student Programming Competition (CCPC) National Invitational (Hunan), Silver Medalist
+- *2022.04*, The 46th International Collegiate Programming Contest (ICPC) Asian Regional Competition (Kunming), Bronze Medalist
+ 
 # 🎓 Educations
 - *2024.09 - Present*, Master, East China Normal University, Shanghai.
 - *2020.09 - 2024.06*, Undergraduate, Xiangtan Univeristy, Xiangtan.
