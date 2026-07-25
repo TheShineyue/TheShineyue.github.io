@@ -20,14 +20,14 @@ redirect_from:
 
 My name is Yue Li (李越). I am currently a master's student at the School of Computer Science and Technology, [East China Normal University](https://www.ecnu.edu.cn/), under the supervision of Professor [Linlin Wang](https://scholar.google.com/citations?user=AeLAUE4AAAAJ&hl=zh-CN). My primary collaborator, Dr. [Xin Yi](https://scholar.google.com/citations?user=WZ2FVkcAAAAJ&hl=zh-CN), provides me with invaluable guidance and support throughout my studies. Prior to this, I earned my BEng degree from [Xiangtan University](https://www.xtu.edu.cn/), where I was mentored by Associate Professor [Xuan Lin](https://scholar.google.com/citations?hl=zh-CN&user=8B0t8AYAAAAJ).
 
-In 2026, I started my industry internships. I first joined the Shanghai Artificial Intelligence Laboratory on the Xuhui West Bund in Shanghai, where I spent a rewarding few months with my supportive mentor and colleagues. I then moved to Ant Group in Hangzhou, where I investigated the inherent safety of large language models, particularly in reinforcement learning (RL) and on-policy distillation (OPD) for agents.
+In 2026, I started my industry internships. I first joined the Shanghai Artificial Intelligence Laboratory on the Xuhui West Bund in Shanghai, where I spent a rewarding few months with my supportive mentor and colleagues. I then moved to Ant Group in Hangzhou, where I investigated the inherent safety of large language models, particularly in reinforcement learning and on-policy distillation for agents.
 
 My research interests mainly lie in Trustworthy AI and Model Post-Training (current focus). I have published 5+ papers <a href='https://scholar.google.com/citations?user=Tyk8UuwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a> at the top international AI conferences and journals such as ACL, KDD, KBS and ESWA. 
 
 # 🔥 News
 - *2026.06*: 💼 I joined Ant Group as a research intern in Hangzhou.
 - *2026.05*: 🎉 My first-authored paper has been accepted to KDD 2026!
-- *2026.04*: 💼 I joined Shanghai AI Lab (Pjlab) as a research intern in Shanghai.
+- *2026.04*: 💼 I joined Shanghai AI Lab (PjLab) as a research intern in Shanghai.
 - *2025.05*: 🎉 My first-authored paper has been accepted to ACL 2025!
 
 {% include_relative includes/pub.md %}
@@ -71,8 +71,8 @@ My research interests mainly lie in Trustworthy AI and Model Post-Training (curr
 - *2022.04*, The 46th International Collegiate Programming Contest (ICPC) Asian Regional Competition (Kunming), Bronze Medal
  
 # 🎓 Education
-- *2024.09 - Present*, Master of Engineering, <img src='./images/ecnu.png' style="height: 1.2em; vertical-align: middle; margin-right: 0.3em;">East China Normal University, Shanghai.
-- *2020.09 - 2024.06*, Bachelor of Engineering, <img src='./images/xtu.jpg' style="height: 1.2em; vertical-align: middle; margin-right: 0.3em;">Xiangtan University, Xiangtan.
+- *2024.09 - Present*, Master of Engineering, <img src='./images/ecnu.png' style="height: 1.3em; vertical-align: middle; margin-right: 0.3em;">East China Normal University, Shanghai.
+- *2020.09 - 2024.06*, Bachelor of Engineering, <img src='./images/xtu.jpg' style="height: 1.3em; vertical-align: middle; margin-right: 0.3em;">Xiangtan University, Xiangtan.
   
 # 📋 Academic Services
 - The ACM Web Conference (The International World Wide Web Conference, WWW)
