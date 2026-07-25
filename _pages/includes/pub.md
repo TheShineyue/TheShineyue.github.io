@@ -39,8 +39,8 @@
 
 - `Preprint`	[Reinforcement Learning for Large Language Model Selective Evidence Adoption from Contaminated Retrieval Results](https://arxiv.org/abs/2607.20090), Yanyu Chen<sup>\*</sup>, **Yue Li**<sup>\*</sup>, Yongyi Cui, Dongsheng Shi, Lichang Dai<sup>†</sup>. 
 
-## 📦 Others
-
+<details>
+<summary><b>📦 Others</b></summary>
 ### Medical Agent Systems
 
 - `Preprint` EMR: Self-Evolving Medical Multi-Agent System via Experience Mining and Reuse, Dongsheng Shi, Xin Yi, **Yue Li**, Linlin Wang<sup>†</sup>.
@@ -52,3 +52,4 @@
 - `ESWA 2026` [Benchmarking Large Language Models for End-to-End Clinical Support in Traditional Chinese Medicine](https://www.sciencedirect.com/science/article/abs/pii/S0957417426011802), Dongsheng Shi, Xin Yi, **Yue Li**, Linlin Wang<sup>†</sup>.
 
 - `Preprint` Evaluating LLMs in Database Scenarios: A Lifecycle Benchmark for Assessing Their Potential in Core Database Tasks, Shunfan Zheng, Dongsheng Shi, **Yue Li**, Xin Yi, Linlin Wang<sup>†</sup>, Gerard de Melo.
+</details>
