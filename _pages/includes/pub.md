@@ -32,7 +32,7 @@
 
 - `Preprint` [From Construction to Injection: Edit-Based Fingerprints for Large Language Models](https://arxiv.org/abs/2509.03122), **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo, Linlin Wang<sup>†</sup>.
 
-- `Preprint` Construction-Driven Injection: Linguistically-Grounded Edit-Based Code-Mixing Fingerprints for Large Language Models, Yongyi Cui<sup>\*</sup>, **Yue Li**<sup>\*</sup>, Tianbao Jiang, Xin Yi<sup>\*</sup>.
+- `Preprint` Construction-Driven Injection: Linguistically-Grounded Edit-Based Code-Mixing Fingerprints for Large Language Models, Yongyi Cui<sup>\*</sup>, **Yue Li**<sup>\*</sup>, Tianbao Jiang, Xin Yi<sup>†</sup>.
 
 - `KBS 2025` [Unified Attacks to Large Language Model Watermarks: Spoofing and Scrubbing in Unauthorized Knowledge Distillation](https://arxiv.org/abs/2504.17480), Xin Yi, **Yue Li**, Shunfan Zheng, Linlin Wang<sup>†</sup>, Xiaoling Wang, Liang He.
 
