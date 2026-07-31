@@ -1,24 +1,9 @@
 # 📝 Publications 
 
-## 🎯 Safety and Trustworthy AI
+## 🎯 Trustworthy AI
 
-### Jailbreak Attacks and Defenses
-<div style="margin-top: -1.6em;"></div>
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025 Findings</div><img src='images/hsr.png' alt="sym" width="100%"></div></div>
-<div class='paper-box-text' markdown="1">
-**Hierarchical Safety Realignment: Lightweight Restoration of Safety in Pruned Large Vision-Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Gerard de Melo, Xiaoling Wang, Linlin Wang<sup>†</sup>.
+### Watermarking
 
- [**Arxiv**](https://arxiv.org/abs/2505.16104) | [**Project**](https://github.com/TheShineyue/HSR) | [**ACL Anthology**](https://aclanthology.org/2025.findings-acl.394/) | [**Poster**](https://TheShineyue.github.io/images/ACL2025.pdf)
-  - The current pruning methods will lead to a significant degradation of the model's safety at a higher sparsity.
-  - The HSR (**H**ierarchical **S**afety **R**ealignment) method we proposed can achieve safety realignment for the pruned model by restoring only a very small number of neurons. HSR is effective for both LLM and LVLM.
-</div>
-</div>
-
-- `ESWA 2026` [Latent-space adversarial training with post-aware calibration for defending large language models against jailbreak attacks](https://arxiv.org/abs/2501.10639), Xin Yi, **Yue Li**, Dongsheng Shi, Linlin Wang<sup>†</sup>, Xiaoling Wang, Liang He.
-
-- `Preprint` [Unified defense for large language models against jailbreak and fine-tuning attacks in education](https://arxiv.org/pdf/2511.14423), Xin Yi, **Yue Li**, Dongsheng Shi, Linlin Wang<sup>†</sup>, Xiaoling Wang, Liang He.
-
-### Intellectual Property Security
 <div style="margin-top: -1.6em;"></div>
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">KDD 2026</div><img src='images/agmark.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
@@ -30,13 +15,35 @@
 </div>
 </div>
 
+- `KBS 2025` [Unified Attacks to Large Language Model Watermarks: Spoofing and Scrubbing in Unauthorized Knowledge Distillation](https://arxiv.org/abs/2504.17480), Xin Yi, **Yue Li**, Shunfan Zheng, Linlin Wang<sup>†</sup>, Xiaoling Wang, Liang He.
+
+### Fingerprinting
+
 - `Preprint` [From Construction to Injection: Edit-Based Fingerprints for Large Language Models](https://arxiv.org/abs/2509.03122), **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo, Linlin Wang<sup>†</sup>.
 
 - `Preprint` [Construction-Driven Injection: Linguistically-Grounded Edit-Based Code-Mixing Fingerprints for Large Language Models](https://arxiv.org/abs/2607.25633), Yongyi Cui<sup>\*</sup>, **Yue Li**<sup>\*</sup>, Tianbao Jiang, Xin Yi<sup>†</sup>.
 
-- `KBS 2025` [Unified Attacks to Large Language Model Watermarks: Spoofing and Scrubbing in Unauthorized Knowledge Distillation](https://arxiv.org/abs/2504.17480), Xin Yi, **Yue Li**, Shunfan Zheng, Linlin Wang<sup>†</sup>, Xiaoling Wang, Liang He.
-
 ## ⚙️ Model Post-Training
+
+### Pruning
+<div style="margin-top: -1.6em;"></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025 Findings</div><img src='images/hsr.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+**Hierarchical Safety Realignment: Lightweight Restoration of Safety in Pruned Large Vision-Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Gerard de Melo, Xiaoling Wang, Linlin Wang<sup>†</sup>.
+
+ [**Arxiv**](https://arxiv.org/abs/2505.16104) | [**Project**](https://github.com/TheShineyue/HSR) | [**ACL Anthology**](https://aclanthology.org/2025.findings-acl.394/) | [**Poster**](https://TheShineyue.github.io/images/ACL2025.pdf)
+  - The current pruning methods will lead to a significant degradation of the model's safety at a higher sparsity.
+  - The HSR (**H**ierarchical **S**afety **R**ealignment) method we proposed can achieve safety realignment for the pruned model by restoring only a very small number of neurons. HSR is effective for both LLM and LVLM.
+</div>
+</div>
+
+### Fine-Tuning
+
+- `ESWA 2026` [Latent-space adversarial training with post-aware calibration for defending large language models against jailbreak attacks](https://arxiv.org/abs/2501.10639), Xin Yi, **Yue Li**, Dongsheng Shi, Linlin Wang<sup>†</sup>, Xiaoling Wang, Liang He.
+
+- `Preprint` [Unified defense for large language models against jailbreak and fine-tuning attacks in education](https://arxiv.org/pdf/2511.14423), Xin Yi, **Yue Li**, Dongsheng Shi, Linlin Wang<sup>†</sup>, Xiaoling Wang, Liang He.
+
+### Reinforcement Learning
 
 - `Preprint`	[Reinforcement Learning for Large Language Model Selective Evidence Adoption from Contaminated Retrieval Results](https://arxiv.org/abs/2607.20090), Yanyu Chen<sup>\*</sup>, **Yue Li**<sup>\*</sup>, Yongyi Cui, Dongsheng Shi, Lichang Dai<sup>†</sup>. 
 
