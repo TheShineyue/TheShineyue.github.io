@@ -8,7 +8,7 @@
 <div class='paper-box-text' markdown="1">
 **AGMark: Attention-Guided Dynamic Watermarking for Large Vision-Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo, Linlin Wang<sup>†</sup>.
 
-[**ArXiv**](https://arxiv.org/abs/2602.09611) | [**Project**](https://github.com/TheShineyue/AGMark) | [**Poster**](https://TheShineyue.github.io/images/KDD2026.pdf) | [**ACM**](https://dl.acm.org/doi/10.1145/3770855.3817700)
+[**ArXiv**](https://arxiv.org/abs/2602.09611) | [**Project**](https://github.com/TheShineyue/AGMark) | [**Poster**](https://TheShineyue.github.io/images/KDD2026.pdf) | [**ACM Digital Library**](https://dl.acm.org/doi/10.1145/3770855.3817700)
 - We propose AGmark, a watermarking method for LVLMs that follows the red–green token partitioning paradigm.
 - At each generation step, AGmark identifies candidate token weights and determines the protected token set size, effectively mitigating the trade-off between text quality and watermark detectability.
 </div>
