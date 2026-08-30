@@ -40,10 +40,10 @@ My research interests mainly lie in Trustworthy AI and Model Post-Training (curr
     </div>
   </div>
   <div style="flex: 1;">
-    <strong>Ant Group</strong>, Security and Risk Management | Hangzhou<br>
+    <strong>Ant Group</strong>, Security and Risk Management | Hangzhou & Shanghai<br>
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
       <li><strong>Duration:</strong> June 2026 – Present</li>
-      <li><strong>Mentors:</strong> Feng Wen and Qiu Zhi</li>
+      <li><strong>Mentors:</strong> Qiu Zhi</li>
       <li><strong>Focus:</strong> Intrinsic safety of LLMs, with a particular emphasis on agent tool calling, including agentic reinforcement learning and on-policy distillation.</li>
     </ul>
   </div>
@@ -56,7 +56,7 @@ My research interests mainly lie in Trustworthy AI and Model Post-Training (curr
     </div>
   </div>
   <div style="flex: 1;">
-    <strong>Shanghai AI Laboratory</strong>, Center for Safe and Trustworthy AI | Shanghai<br>
+    <strong>Shanghai AI Laboratory</strong>, Center for Safe & Trustworthy AI | Shanghai<br>
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
       <li><strong>Duration:</strong> April 2026 – June 2026</li>
       <li><strong>Mentor:</strong> Jie Li</li>
