@@ -25,7 +25,7 @@ In 2026, I started my industry internships. I first joined the Shanghai Artifici
 My research interests mainly lie in Trustworthy AI and Model Post-Training (current focus). I have published 5+ papers <a href='https://scholar.google.com/citations?user=Tyk8UuwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a> at the top international AI conferences and journals such as ACL, KDD, KBS and ESWA. 
 
 # 🔥 News
-- *2026.09*: 💼 I Moved to Ant Group's Lujiazui office in Shanghai.
+- *2026.09*: 💼 I moved to Ant Group's Lujiazui office in Shanghai.
 - *2026.06*: 💼 I joined Ant Group as a research intern in Hangzhou.
 - *2026.05*: 🎉 My first-authored paper has been accepted to KDD 2026!
 - *2026.04*: 💼 I joined Shanghai AI Lab (PjLab) as a research intern in Shanghai.
