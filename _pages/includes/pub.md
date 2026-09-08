@@ -49,7 +49,7 @@
 ## 📦 Others 
 ### Medical Agent Systems
 
-- `Preprint` EMR: Self-Evolving Medical Multi-Agent System via Experience Mining and Reuse, Dongsheng Shi, **Yue Li**, Xin Yi, Linlin Wang<sup>†</sup>
+- `AACL 2026` EMR: Self-Evolving Medical Multi-Agent System via Experience Mining and Reuse, Dongsheng Shi, **Yue Li**, Xin Yi, Linlin Wang<sup>†</sup>
 
 - `ArXiv 2026` [SURGENT: A Surgical Multi-Agent Assistance System Across the Perioperative Workflow](https://arxiv.org/abs/2605.29368), Dongsheng Shi, **Yue Li**, Xin Yi, Huawei Feng, Linlin Wang<sup>†</sup>
 
