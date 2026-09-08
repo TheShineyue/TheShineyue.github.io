@@ -43,7 +43,7 @@
 ### Fingerprinting
 
 <div style="margin-top: -1.8em;"></div>
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">AACL 2026 Main</div><img src='images/mcedit.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">AACL-IJCNLP 2026 Main</div><img src='images/mcedit.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 **From Construction to Injection: Edit-Based Fingerprints for Large Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo, Linlin Wang<sup>†</sup>.
 
@@ -59,7 +59,7 @@
 ## 📦 Others 
 ### Medical Agent Systems
 
-- `AACL 2026 Findings` EMR: Self-Evolving Medical Multi-Agent System via Experience Mining and Reuse, Dongsheng Shi, **Yue Li**, Xin Yi, Linlin Wang<sup>†</sup>
+- `AACL-IJCNLP 2026 Findings` EMR: Self-Evolving Medical Multi-Agent System via Experience Mining and Reuse, Dongsheng Shi, **Yue Li**, Xin Yi, Linlin Wang<sup>†</sup>
 
 - `ArXiv 2026` [SURGENT: A Surgical Multi-Agent Assistance System Across the Perioperative Workflow](https://arxiv.org/abs/2605.29368), Dongsheng Shi, **Yue Li**, Xin Yi, Huawei Feng, Linlin Wang<sup>†</sup>
 
