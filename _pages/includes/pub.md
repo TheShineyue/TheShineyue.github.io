@@ -1,27 +1,5 @@
 # 📝 Publications 
 
-## 🎯 Trustworthy AI
-
-### Watermarking
-<div style="margin-top: -1.8em;"></div>
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">KDD 2026</div><img src='images/agmark.png' alt="sym" width="100%"></div></div>
-<div class='paper-box-text' markdown="1">
-**AGMark: Attention-Guided Dynamic Watermarking for Large Vision-Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo, Linlin Wang<sup>†</sup>.
-
-[**ArXiv**](https://arxiv.org/abs/2602.09611) | [**Project**](https://github.com/TheShineyue/AGMark) | [**ACM Digital Library**](https://dl.acm.org/doi/10.1145/3770855.3817700) | [**Poster**](https://TheShineyue.github.io/images/KDD2026.pdf)
-- We propose AGmark, a watermarking method for LVLMs that follows the red–green token partitioning paradigm.
-- At each generation step, AGmark identifies candidate token weights and determines the protected token set size, effectively mitigating the trade-off between text quality and watermark detectability.
-</div>
-</div>
-
-- `KBS 2025` [Unified Attacks to Large Language Model Watermarks: Spoofing and Scrubbing in Unauthorized Knowledge Distillation](https://arxiv.org/abs/2504.17480), Xin Yi, **Yue Li**, Shunfan Zheng, Linlin Wang<sup>†</sup>, Xiaoling Wang, Liang He
-
-### Fingerprinting
-
-- `ArXiv 2025` [From Construction to Injection: Edit-Based Fingerprints for Large Language Models](https://arxiv.org/abs/2509.03122), **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo, Linlin Wang<sup>†</sup>
-
-- `ArXiv 2026` [Construction-Driven Injection: Linguistically-Grounded Edit-Based Code-Mixing Fingerprints for Large Language Models](https://arxiv.org/abs/2607.25633), Yongyi Cui<sup>\*</sup>, **Yue Li**<sup>\*</sup>, Tianbao Jiang, Xin Yi<sup>†</sup>
-
 ## ⚙️ Model Post-Training
 
 ### Pruning
@@ -45,6 +23,38 @@
 ### Reinforcement Learning
 
 - `ArXiv 2026`	[Reinforcement Learning for Large Language Model Selective Evidence Adoption from Contaminated Retrieval Results](https://arxiv.org/abs/2607.20090), Yanyu Chen<sup>\*</sup>, **Yue Li**<sup>\*</sup>, Yongyi Cui, Dongsheng Shi, Lichang Dai<sup>†</sup>
+
+## 🎯 Trustworthy AI
+
+### Watermarking
+<div style="margin-top: -1.8em;"></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">KDD 2026</div><img src='images/agmark.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+**AGMark: Attention-Guided Dynamic Watermarking for Large Vision-Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo, Linlin Wang<sup>†</sup>.
+
+[**ArXiv**](https://arxiv.org/abs/2602.09611) | [**Project**](https://github.com/TheShineyue/AGMark) | [**ACM Digital Library**](https://dl.acm.org/doi/10.1145/3770855.3817700) | [**Poster**](https://TheShineyue.github.io/images/KDD2026.pdf)
+- We propose AGmark, a watermarking method for LVLMs that follows the red–green token partitioning paradigm.
+- At each generation step, AGmark identifies candidate token weights and determines the protected token set size, effectively mitigating the trade-off between text quality and watermark detectability.
+</div>
+</div>
+
+- `KBS 2025` [Unified Attacks to Large Language Model Watermarks: Spoofing and Scrubbing in Unauthorized Knowledge Distillation](https://arxiv.org/abs/2504.17480), Xin Yi, **Yue Li**, Shunfan Zheng, Linlin Wang<sup>†</sup>, Xiaoling Wang, Liang He
+
+### Fingerprinting
+
+<div style="margin-top: -1.8em;"></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">AACL 2026 Main</div><img src='images/mcedit.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+**From Construction to Injection: Edit-Based Fingerprints for Large Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo, Linlin Wang<sup>†</sup>.
+
+[**ArXiv**](https://arxiv.org/abs/2509.03122) | 
+- We introduce code-mixing fingerprints to mitigate the imperceptibility trade-off between accidental activation and adversarial statistical filtering in existing fingerprint constructions.
+- We propose MCEdit, a robust fingerprint injection method that constructs multi-candidate editing pathways and suppresses competing token margins to maintain detectability under adversarial attacks.
+</div>
+</div>
+
+- `ArXiv 2026` [Construction-Driven Injection: Linguistically-Grounded Edit-Based Code-Mixing Fingerprints for Large Language Models](https://arxiv.org/abs/2607.25633), Yongyi Cui<sup>\*</sup>, **Yue Li**<sup>\*</sup>, Tianbao Jiang, Xin Yi<sup>†</sup>
+
 
 ## 📦 Others 
 ### Medical Agent Systems
