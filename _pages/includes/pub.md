@@ -33,7 +33,7 @@
 **AGMark: Attention-Guided Dynamic Watermarking for Large Vision-Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo, Linlin Wang<sup>†</sup>.
 
 [**ArXiv**](https://arxiv.org/abs/2602.09611) | [**Project**](https://github.com/TheShineyue/AGMark) | [**ACM Digital Library**](https://dl.acm.org/doi/10.1145/3770855.3817700) | [**Poster**](https://TheShineyue.github.io/images/KDD2026.pdf)
-- We propose AGmark, a watermarking method for LVLMs that follows the red–green token partitioning paradigm.
+- We propose AGMark, a watermarking method for LVLMs that follows the red–green token partitioning paradigm.
 - At each generation step, AGmark identifies candidate token weights and determines the protected token set size, effectively mitigating the trade-off between text quality and watermark detectability.
 </div>
 </div>
@@ -59,7 +59,7 @@
 ## 📦 Others 
 ### Medical Agent Systems
 
-- `AACL 2026` EMR: Self-Evolving Medical Multi-Agent System via Experience Mining and Reuse, Dongsheng Shi, **Yue Li**, Xin Yi, Linlin Wang<sup>†</sup>
+- `AACL 2026 Findings` EMR: Self-Evolving Medical Multi-Agent System via Experience Mining and Reuse, Dongsheng Shi, **Yue Li**, Xin Yi, Linlin Wang<sup>†</sup>
 
 - `ArXiv 2026` [SURGENT: A Surgical Multi-Agent Assistance System Across the Perioperative Workflow](https://arxiv.org/abs/2605.29368), Dongsheng Shi, **Yue Li**, Xin Yi, Huawei Feng, Linlin Wang<sup>†</sup>
 
