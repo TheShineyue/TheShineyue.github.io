@@ -48,8 +48,8 @@
 **From Construction to Injection: Edit-Based Fingerprints for Large Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo, Linlin Wang<sup>†</sup>.
 
 [**ArXiv**](https://arxiv.org/abs/2509.03122) | 
-- We introduce code-mixing fingerprints to mitigate the imperceptibility trade-off between accidental activation and adversarial statistical filtering in existing fingerprint constructions.
-- We propose MCEdit, a robust fingerprint injection method that constructs multi-candidate editing pathways and suppresses competing token margins to maintain detectability under adversarial attacks.
+- This paper includes CF, a code-mixing fingerprint paradigm, and MCEdit, a knowledge-editing-based multi-candidate fingerprint injection method.
+- Our approach achieves persistent detectability, preserves model utility, and remains imperceptible against accidental activation and perplexity-based filters.
 </div>
 </div>
 
