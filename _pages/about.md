@@ -25,11 +25,65 @@ In 2026, I started my industry internships. I first joined the Shanghai Artifici
 My research interests mainly lie in Trustworthy AI and Model Post-Training (current focus). I have published 5+ papers <a href='https://scholar.google.com/citations?user=Tyk8UuwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a> at the top international AI conferences and journals such as ACL, KDD, KBS and ESWA. 
 
 # 🔥 News
-- *2026.09*: 💼 I moved to Ant Group's Lujiazui office in Shanghai.
-- *2026.06*: 💼 I joined Ant Group as a research intern in Hangzhou.
-- *2026.05*: 🎉 My first-authored paper has been accepted to KDD 2026!
-- *2026.04*: 💼 I joined Shanghai AI Lab (PjLab) as a research intern in Shanghai.
-- *2025.05*: 🎉 My first-authored paper has been accepted to ACL 2025!
+
+<style>
+.news-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.news-list li {
+  margin-bottom: 0.3em;
+  line-height: 1.5;
+}
+.news-list em {
+  color: #666;
+  font-style: normal;
+}
+.news-more details {
+  margin: 0;
+}
+.news-more summary {
+  cursor: pointer;
+  margin-bottom: 0.3em;
+  line-height: 1.5;
+  list-style: none;
+  color: #666;
+  user-select: none;
+}
+.news-more summary::-webkit-details-marker {
+  display: none;
+}
+.news-more summary::before {
+  content: "▸ ";
+}
+.news-more details[open] summary::before {
+  content: "▾ ";
+}
+.news-more details[open] .news-list {
+  margin-top: 0;
+}
+.news-more .news-list {
+  padding-left: 1.2em;
+  margin-bottom: 0;
+}
+</style>
+
+<ul class="news-list">
+  <li><em>2026.09</em>: 🎉 Two papers were accepted to AACL-IJCNLP 2026.</li>
+  <li><em>2026.09</em>: 💼 I moved to Ant Group's Lujiazui office in Shanghai.</li>
+  <li><em>2026.06</em>: 💼 I joined Ant Group as a research intern in Hangzhou.</li>
+  <li><em>2026.05</em>: 🎉 My first-authored paper was accepted to KDD 2026!</li>
+  <li class="news-more">
+    <details>
+      <summary><b>📰 Earlier News</b></summary>
+      <ul class="news-list">
+        <li><em>2026.04</em>: 💼 I joined Shanghai AI Lab as a research intern in Shanghai.</li>
+        <li><em>2025.05</em>: 🎉 My first-authored paper was accepted to ACL 2025!</li>
+      </ul>
+    </details>
+  </li>
+</ul>
 
 {% include_relative includes/pub.md %}
 
