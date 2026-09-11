@@ -79,6 +79,7 @@ My research interests mainly lie in Trustworthy AI and Model Post-Training (curr
       <summary><b>📰 Earlier News</b></summary>
       <ul class="news-list">
         <li><em>2026.04</em>: 💼 I joined Shanghai AI Lab as a research intern in Shanghai.</li>
+        <li><em>2025.10</em>: 🏆 I'm honored to receive the East China Normal University Outstanding Academic Scholarship (First Prize).</li>
         <li><em>2025.05</em>: 🎉 My first-authored paper was accepted to ACL 2025!</li>
       </ul>
     </details>
@@ -120,7 +121,7 @@ My research interests mainly lie in Trustworthy AI and Model Post-Training (curr
   </div>
 </div>
 
-# 🎖 Honors and Awards
+# 🏆 Honors and Awards
 - *2025.10*, East China Normal University Outstanding Academic Scholarship (First Prize)
 - *2023.05*, The 2023 China College Student Programming Competition (CCPC) National Invitational (Hunan), Silver Medal
 - *2022.04*, The 46th International Collegiate Programming Contest (ICPC) Asian Regional Competition (Kunming), Bronze Medal
