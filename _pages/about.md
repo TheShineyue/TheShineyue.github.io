@@ -20,9 +20,9 @@ redirect_from:
 
 My name is Yue Li (李越). I am currently a master's student at the School of Computer Science and Technology, [East China Normal University](https://www.ecnu.edu.cn/), under the supervision of Professor [Linlin Wang](https://scholar.google.com/citations?user=AeLAUE4AAAAJ&hl=zh-CN). My primary collaborator, Dr. [Xin Yi](https://scholar.google.com/citations?user=WZ2FVkcAAAAJ&hl=zh-CN), provides me with invaluable guidance and support throughout my studies. Prior to this, I earned my BEng degree from [Xiangtan University](https://www.xtu.edu.cn/), where I was mentored by Associate Professor [Xuan Lin](https://scholar.google.com/citations?hl=zh-CN&user=8B0t8AYAAAAJ).
 
-In 2026, I started my industry internships. I first joined the Shanghai Artificial Intelligence Laboratory on the Xuhui West Bund in Shanghai, where I spent a rewarding few months with my supportive mentor and colleagues. I then moved to Ant Group in Hangzhou, where I investigated the inherent safety of large language models, particularly in reinforcement learning and on-policy distillation for agents. Since September 2026, I have been based at Ant Group's Lujiazui office in Shanghai.
+In 2026, I completed a series of industry internships across Shanghai and Hangzhou. I began at the Shanghai Artificial Intelligence Laboratory on the Xuhui West Bund, where I enjoyed a comfortable, memorable, and truly wonderful few months with a supportive mentor and team. I then joined Ant Group in Hangzhou, where I was surrounded by a friendly team and a rich technical atmosphere. In early September 2026, I relocated to Ant Group's Lujiazui office in Shanghai, and closed this chapter at the end of the month.
 
-My research interests mainly lie in Trustworthy AI and Model Post-Training (current focus). I have published 5+ papers <a href='https://scholar.google.com/citations?user=Tyk8UuwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a> at the top international AI conferences and journals such as ACL, KDD, KBS and ESWA. 
+My research interests mainly lie in Model Post-Training (current focus) and Trustworthy AI. I have published 5+ papers <a href='https://scholar.google.com/citations?user=Tyk8UuwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a> at the top international AI conferences and journals such as ACL, KDD, KBS and ESWA. 
 
 # 🔥 News
 
@@ -98,7 +98,7 @@ My research interests mainly lie in Trustworthy AI and Model Post-Training (curr
   <div style="flex: 1;">
     <strong>Ant Group</strong>, Security and Risk Management | Hangzhou & Shanghai<br>
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
-      <li><strong>Duration:</strong> June 2026 – Present</li>
+      <li><strong>Duration:</strong> June 2026 – September 2026</li>
       <li><strong>Mentors:</strong> Qiu Zhi</li>
       <li><strong>Focus:</strong> Intrinsic safety of LLMs, with a particular emphasis on agent tool calling, including agentic reinforcement learning and on-policy distillation.</li>
     </ul>
