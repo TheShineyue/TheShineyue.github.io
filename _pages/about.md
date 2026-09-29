@@ -70,6 +70,7 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
 </style>
 
 <ul class="news-list">
+  <li><em>2026.09</em>: 🏆 I'm honored to receive the BYD Scholarship</li>
   <li><em>2026.09</em>: 🎉 Two papers were accepted to AACL-IJCNLP 2026.</li>
   <li><em>2026.09</em>: 💼 I moved to Ant Group's Lujiazui office in Shanghai.</li>
   <li><em>2026.06</em>: 💼 I joined Ant Group as a research intern in Hangzhou.</li>
@@ -122,6 +123,7 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
 </div>
 
 # 🏆 Honors and Awards
+- *2026.09*, BYD Scholarship
 - *2025.10*, East China Normal University Outstanding Academic Scholarship (First Prize)
 - *2023.05*, The 2023 China College Student Programming Competition (CCPC) National Invitational (Hunan), Silver Medal
 - *2022.04*, The 46th International Collegiate Programming Contest (ICPC) Asian Regional Competition (Kunming), Bronze Medal
