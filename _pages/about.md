@@ -75,11 +75,11 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
   <li><em>2026.09</em>: 💼 I moved to Ant Group's Lujiazui office in Shanghai.</li>
   <li><em>2026.06</em>: 💼 I joined Ant Group as a research intern in Hangzhou.</li>
   <li><em>2026.05</em>: 🎉 My first-authored paper was accepted to KDD 2026!</li>
+  <li><em>2026.04</em>: 💼 I joined Shanghai AI Lab as a research intern in Shanghai.</li>
   <li class="news-more">
     <details>
       <summary><b>📰 Earlier News</b></summary>
       <ul class="news-list">
-        <li><em>2026.04</em>: 💼 I joined Shanghai AI Lab as a research intern in Shanghai.</li>
         <li><em>2025.10</em>: 🏆 I'm honored to receive the East China Normal University Outstanding Academic Scholarship (First Prize).</li>
         <li><em>2025.05</em>: 🎉 My first-authored paper was accepted to ACL 2025!</li>
       </ul>
