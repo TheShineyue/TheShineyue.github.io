@@ -100,7 +100,7 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
     <strong>Ant Group</strong>, Security and Risk Management | Hangzhou & Shanghai<br>
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
       <li><strong>Duration:</strong> June 2026 – September 2026</li>
-      <li><strong>Mentors:</strong> Qiu Zhi</li>
+      <li><strong>Mentor:</strong> Qiu Zhi</li>
       <li><strong>Focus:</strong> Intrinsic safety of LLMs, with a particular emphasis on agent tool calling, including agentic reinforcement learning and on-policy distillation.</li>
     </ul>
   </div>
