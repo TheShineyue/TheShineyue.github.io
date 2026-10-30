@@ -70,7 +70,7 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
 </style>
 
 <ul class="news-list">
-  <li><em>2026.10</em>: 🚀 2026.10: 🚀 I contributed to the [ASI](https://www.inclusion-ai.org/venus-asi/) project at Ant Group, which has officially launched!</li>
+  <li><em>2026.10</em>: 🚀 I contributed to the <a href="https://www.inclusion-ai.org/venus-asi/" target="_blank">ASI</a> project at Ant Group, which has officially launched!</li>
   <li><em>2026.09</em>: 🏆 I'm honored to receive the BYD Scholarship!</li>
   <li><em>2026.09</em>: 🎉 Two papers were accepted to AACL-IJCNLP 2026.</li>
   <li><em>2026.09</em>: 💼 I moved to Ant Group's Lujiazui office in Shanghai.</li>
