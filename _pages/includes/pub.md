@@ -1,3 +1,87 @@
+
+<style>
+/* Publication card layout */
+.paper-box {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 20px;
+}
+
+/* Fixed image container */
+.paper-box .paper-box-image {
+    display: block !important;
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
+    flex: 0 0 300px !important;
+    order: 1 !important;
+}
+
+/* Inner wrapper */
+.paper-box .paper-box-image > div {
+    width: 100% !important;
+    position: relative;
+}
+
+/* Clickable preview */
+.paper-box .paper-box-image a {
+    display: block;
+    width: 100%;
+    height: 170px;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+/* Actual image */
+.paper-box .paper-box-image img {
+    display: block;
+    width: 300px !important;
+    height: 170px !important;
+    max-width: none !important;
+    object-fit: cover !important;
+    object-position: center;
+    box-shadow: none !important;
+}
+
+/* Paper information */
+.paper-box .paper-box-text {
+    flex: 1 1 0 !important;
+    min-width: 0;
+    max-width: none !important;
+    order: 2 !important;
+    padding-left: 0 !important;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .paper-box {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+    .paper-box .paper-box-image {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 300px !important;
+        flex: 0 0 auto !important;
+        margin: 0 auto;
+    }
+
+    .paper-box .paper-box-image img {
+        width: 100% !important;
+    }
+
+    .paper-box .paper-box-text {
+        width: 100%;
+    }
+}
+</style>
+
+
+
+
 # 📝 Publications 
 
 ## ⚙️ Model Post-Training
