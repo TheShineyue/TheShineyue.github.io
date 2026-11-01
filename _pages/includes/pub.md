@@ -91,6 +91,7 @@
 
 
 <div style="margin-top: -1.8em;"></div>
+<div class='paper-box'>
 <!-- <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025 Findings</div><img src='images/hsr.png' alt="sym" width="100%"></div></div> -->
 <div class="paper-box-image">
   <div>
@@ -123,6 +124,7 @@
 
 ### Watermarking
 <div style="margin-top: -1.8em;"></div>
+<div class='paper-box'>
 <!-- <div class='paper-box'><div class='paper-box-image'><div><div class="badge">KDD 2026</div><img src='images/agmark.png' alt="sym" width="100%"></div></div> -->
 <div class="paper-box-image">
   <div>
@@ -146,6 +148,7 @@
 ### Fingerprinting
 
 <div style="margin-top: -1.8em;"></div>
+<div class='paper-box'>
 <!-- <div class='paper-box'><div class='paper-box-image'><div><div class="badge">AACL-IJCNLP 2026 Main (Oral)</div><img src='images/mcedit.png' alt="sym" width="100%"></div></div> -->
 <div class="paper-box-image">
   <div>
