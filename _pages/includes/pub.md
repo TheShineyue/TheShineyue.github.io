@@ -3,8 +3,19 @@
 ## ⚙️ Model Post-Training
 
 ### Pruning
+
+
+
 <div style="margin-top: -1.8em;"></div>
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025 Findings</div><img src='images/hsr.png' alt="sym" width="100%"></div></div>
+<!-- <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025 Findings</div><img src='images/hsr.png' alt="sym" width="100%"></div></div> -->
+<div class="paper-box-image">
+  <div>
+    <div class="badge">ACL 2025 Findings</div>
+    <a href="images/hsr.png" target="_blank" rel="noopener noreferrer">
+      <img src="images/hsr.png" alt="HSR Method">
+    </a>
+  </div>
+</div>
 <div class='paper-box-text' markdown="1">
 **Hierarchical Safety Realignment: Lightweight Restoration of Safety in Pruned Large Vision-Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Gerard de Melo, Xiaoling Wang, Linlin Wang<sup>†</sup>
 
@@ -28,7 +39,15 @@
 
 ### Watermarking
 <div style="margin-top: -1.8em;"></div>
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">KDD 2026</div><img src='images/agmark.png' alt="sym" width="100%"></div></div>
+<!-- <div class='paper-box'><div class='paper-box-image'><div><div class="badge">KDD 2026</div><img src='images/agmark.png' alt="sym" width="100%"></div></div> -->
+<div class="paper-box-image">
+  <div>
+    <div class="badge">KDD 2026</div>
+    <a href="images/agmark.png" target="_blank" rel="noopener noreferrer">
+      <img src="images/agmark.png" alt="AGMark Method">
+    </a>
+  </div>
+</div>
 <div class='paper-box-text' markdown="1">
 **AGMark: Attention-Guided Dynamic Watermarking for Large Vision-Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo, Linlin Wang<sup>†</sup>.
 
@@ -43,7 +62,15 @@
 ### Fingerprinting
 
 <div style="margin-top: -1.8em;"></div>
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">AACL-IJCNLP 2026 Main (Oral)</div><img src='images/mcedit.png' alt="sym" width="100%"></div></div>
+<!-- <div class='paper-box'><div class='paper-box-image'><div><div class="badge">AACL-IJCNLP 2026 Main (Oral)</div><img src='images/mcedit.png' alt="sym" width="100%"></div></div> -->
+<div class="paper-box-image">
+  <div>
+    <div class="badge">AACL-IJCNLP 2026 Main (Oral)</div>
+    <a href="images/mcedit.png" target="_blank" rel="noopener noreferrer">
+      <img src="images/mcedit.png" alt="MCEdit Method">
+    </a>
+  </div>
+</div>
 <div class='paper-box-text' markdown="1">
 **From Construction to Injection: Edit-Based Fingerprints for Large Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo, Linlin Wang<sup>†</sup>.
 
