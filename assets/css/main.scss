@@ -111,43 +111,80 @@ h1:before, .anchor:before {
 
 
 
-/* ===== Publication Method Figures ===== */
 
-.paper-box .paper-box-image > div {
-    width: 360px;
-    max-width: 100%;
-    position: relative;
-    flex-shrink: 0;
-}
 
-.paper-box .paper-box-image a {
-    display: block;
-    width: 100%;
-    height: 210px;
-    overflow: hidden;
-    cursor: zoom-in;
-}
 
-.paper-box .paper-box-image img {
-    display: block;
-    width: 100% !important;
-    height: 210px !important;
-    max-width: none !important;
-    object-fit: cover !important;
-    object-position: center center;
-    border-radius: 4px;
-    box-shadow: none;
-}
 
-/* Keep the conference badge visible */
-.paper-box .paper-box-image .badge {
-    z-index: 2;
-}
+/* ===== Fixed Publication Figure Previews ===== */
 
-/* Responsive layout */
-@media (max-width: 767px) {
-    .paper-box .paper-box-image > div {
-        width: 100%;
+.paper-box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    .paper-box-image {
+        width: 300px !important;
+        min-width: 300px !important;
+        max-width: 300px !important;
+        flex: 0 0 300px !important;
+        order: 1;
+        display: flex;
+        justify-content: center;
+
+        > div {
+            width: 100%;
+            min-width: 0;
+            position: relative;
+        }
+
+        a {
+            display: block;
+            width: 100%;
+            height: 170px;
+            overflow: hidden;
+            cursor: zoom-in;
+        }
+
+        img {
+            display: block;
+            width: 100% !important;
+            height: 170px !important;
+            max-width: none !important;
+            object-fit: cover !important;
+            object-position: center;
+            box-shadow: none;
+        }
+    }
+
+    .paper-box-text {
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: none !important;
+        order: 2;
+        padding-left: 2em;
+        box-sizing: border-box;
     }
 }
+
+/* Mobile adaptation */
+@media (max-width: 767px) {
+    .paper-box {
+        flex-direction: column;
+
+        .paper-box-image {
+            width: 100% !important;
+            min-width: 0 !important;
+            max-width: 300px !important;
+            flex: 0 1 auto !important;
+        }
+
+        .paper-box-text {
+            width: 100%;
+            padding-left: 0;
+            padding-top: 1em;
+        }
+    }
+}
+
 
