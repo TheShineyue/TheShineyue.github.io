@@ -47,7 +47,7 @@
 <div class='paper-box-text' markdown="1">
 **From Construction to Injection: Edit-Based Fingerprints for Large Language Models** \\ **Yue Li**<sup>\*</sup>, Xin Yi<sup>\*</sup>, Dongsheng Shi, Yongyi Cui, Gerard de Melo, Linlin Wang<sup>†</sup>.
 
-[**ArXiv**](https://arxiv.org/abs/2509.03122) | 
+[**ArXiv**](https://arxiv.org/abs/2509.03122) | [**Poster**](https://TheShineyue.github.io/images/AACL2026.pdf)
 - We include CF, a code-mixing fingerprint paradigm, and MCEdit, a knowledge-editing-based multi-candidate fingerprint injection method.
 - Our approach achieves persistent detectability, preserves utility, and remains imperceptible against accidental activation and perplexity-based filters.
 </div>
