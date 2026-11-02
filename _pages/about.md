@@ -132,7 +132,7 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
 - *2023.05*, The 2023 China College Student Programming Competition (CCPC) National Invitational (Hunan), Silver Medal
 - *2022.04*, The 46th International Collegiate Programming Contest (ICPC) Asian Regional Competition (Kunming), Bronze Medal
  
-# 🎓 Education
+# 🎓 Educations
 - *2024.09 - Present*, Master of Engineering, <img src='./images/ecnu.png' style="height: 1.3em; vertical-align: middle; margin-right: 0.3em;">East China Normal University, Shanghai.
 - *2020.09 - 2024.06*, Bachelor of Engineering, <img src='./images/xtu.jpg' style="height: 1.3em; vertical-align: middle; margin-right: 0.3em;">Xiangtan University, Xiangtan.
   
