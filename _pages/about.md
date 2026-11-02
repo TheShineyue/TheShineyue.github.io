@@ -88,8 +88,6 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
   </li>
 </ul>
 
-{% include_relative includes/pub.md %}
-
 # 💼 Internships
 <div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; padding: 16px; border-radius: 8px; background: #f8f9fa;">
   <div style="flex-shrink: 0;">
@@ -122,6 +120,11 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
     </ul>
   </div>
 </div>
+
+
+{% include_relative includes/pub.md %}
+
+
 
 # 🏆 Honors and Awards
 - *2026.09*, BYD Scholarship
