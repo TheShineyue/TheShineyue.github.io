@@ -70,6 +70,7 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
 </style>
 
 <ul class="news-list">
+  <li><em>2026.11</em>: 💼 I joined NetEase as a research intern in Beijing</li>
   <li><em>2026.10</em>: 🚀 I contributed to the <a href="https://www.inclusion-ai.org/venus-asi/" target="_blank">ASI</a> project at Ant Group, which has officially launched!</li>
   <li><em>2026.09</em>: 🏆 I'm honored to receive the BYD Scholarship!</li>
   <li><em>2026.09</em>: 🎉 Two papers were accepted to AACL-IJCNLP 2026.</li>
@@ -89,6 +90,23 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
 </ul>
 
 # 💼 Internships
+
+<div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; padding: 16px; border-radius: 8px; background: #f8f9fa;">
+  <div style="flex-shrink: 0;">
+    <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 10px;">
+      <img src="https://TheShineyue.github.io/images/网易-half.png" alt="NetEase" style="width: 125px; height: 110px; object-fit: contain; display: block;">
+    </div>
+  </div>
+  <div style="flex: 1;">
+    <strong>NetEase</strong>, Youdao Business Group | Beijing<br>
+    <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
+      <li><strong>Duration:</strong> November 2026 – Present</li>
+      <li><strong>Mentor:</strong> TBD</li>
+      <li><strong>Focus:</strong> Agent Harness Engineering, including the design and development of agent execution frameworks.</li>
+    </ul>
+  </div>
+</div>
+
 <div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; padding: 16px; border-radius: 8px; background: #f8f9fa;">
   <div style="flex-shrink: 0;">
     <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 10px;">
