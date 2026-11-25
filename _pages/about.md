@@ -94,7 +94,9 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
 <div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; padding: 16px; border-radius: 8px; background: #f8f9fa;">
   <div style="flex-shrink: 0;">
     <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 10px;">
-      <img src="https://TheShineyue.github.io/images/wangyi_logo.png" alt="NetEase" style="width: 125px; height: 110px; object-fit: contain; display: block;">
+      <img src="https://TheShineyue.github.io/images/wangyi_logo.png" 
+           alt="NetEase" 
+           style="width: 125px; height: 110px; object-fit: contain; display: block; transform: scale(0.8);">
     </div>
   </div>
   <div style="flex: 1;">
