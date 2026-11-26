@@ -91,7 +91,7 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
 
 # 💼 Internships
 
-<div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 16px; padding: 14px; border-radius: 8px; background: #f8f9fa;">
+<div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 16px; padding: 12px; border-radius: 8px; background: #f8f9fa;">
   <div style="flex-shrink: 0;">
     <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 8px;">
       <img src="https://TheShineyue.github.io/images/wangyi_logo.png" 
@@ -109,9 +109,9 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
   </div>
 </div>
 
-<div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 16px; padding: 14px; border-radius: 8px; background: #f8f9fa;">
+<div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 16px; padding: 12px; border-radius: 8px; background: #f8f9fa;">
   <div style="flex-shrink: 0;">
-    <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 10px;">
+    <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 8px;">
       <img src="https://TheShineyue.github.io/images/Ant_Group_logo.svg.png" alt="Ant Group" 
         style="width: 88px; height: 60px; 
         object-fit: contain; display: block;">
@@ -127,9 +127,9 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
   </div>
 </div>
 
-<div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 16px; padding: 14px; border-radius: 8px; background: #f8f9fa;">
+<div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 16px; padding: 12px; border-radius: 8px; background: #f8f9fa;">
   <div style="flex-shrink: 0;">
-    <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 10px;">
+    <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 8px;">
       <img src="/images/ailab-logo.png" alt="Shanghai AI Lab" 
         style="width: 88px; height: 60px; object-fit: contain; display: block;">
     </div>
