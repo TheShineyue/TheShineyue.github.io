@@ -96,12 +96,13 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
     <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 8px;">
       <img src="https://TheShineyue.github.io/images/wangyi_logo.png" 
            alt="NetEase" 
-           style="width: 100px; height: 70px; object-fit: contain; display: block; transform: scale(0.8);">
+           style="width: 90px; height: 65px; object-fit: contain; display: block; transform: scale(0.8);">
     </div>
   </div>
   <div style="flex: 1;">
     <strong>NetEase</strong>, Youdao Business Group | Beijing<br>
-    <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
+    <!-- <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;"> -->
+    <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 2px;">
       <li><strong>Duration:</strong> November 2026 – Present</li>
       <!-- <li><strong>Mentor:</strong> TBD</li> -->
       <li><strong>Focus:</strong> Agent Harness Engineering, including the design and development of agent execution frameworks.</li>
