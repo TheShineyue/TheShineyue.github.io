@@ -102,9 +102,9 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
   <div style="flex: 1;">
     <strong>NetEase</strong>, Youdao Business Group | Beijing<br>
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
-      <li style="margin-bottom: 0px;"><strong>Duration:</strong> November 2026 – Present</li>
+      <li style="margin-bottom: 1px;"><strong>Duration:</strong> November 2026 – Present</li>
       <!-- <li><strong>Mentor:</strong> TBD</li> -->
-      <li style="margin-bottom: 0px;"><strong>Focus:</strong> Agent Harness Engineering.</li>
+      <li style="margin-bottom: 1px;"><strong>Focus:</strong> Agent Harness Engineering.</li>
     </ul>
   </div>
 </div>
@@ -112,15 +112,17 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
 <div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; padding: 16px; border-radius: 8px; background: #f8f9fa;">
   <div style="flex-shrink: 0;">
     <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 10px;">
-      <img src="https://TheShineyue.github.io/images/Ant_Group_logo.svg.png" alt="Ant Group" style="width: 125px; height: 110px; object-fit: contain; display: block;">
+      <img src="https://TheShineyue.github.io/images/Ant_Group_logo.svg.png" alt="Ant Group" 
+        style="width: 88px; height: 62px; 
+        object-fit: contain; display: block;">
     </div>
   </div>
   <div style="flex: 1;">
     <strong>Ant Group</strong>, Security and Risk Management | Hangzhou & Shanghai<br>
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
-      <li><strong>Duration:</strong> June 2026 – September 2026</li>
-      <li><strong>Mentor:</strong> Qiu Zhi</li>
-      <li><strong>Focus:</strong> Intrinsic safety of LLMs, with a particular emphasis on agent tool calling, including agentic reinforcement learning and on-policy distillation.</li>
+      <li style="margin-bottom: 1px;"><strong>Duration:</strong> June 2026 – September 2026</li>
+      <!-- <li><strong>Mentor:</strong> Qiu Zhi</li> -->
+      <li style="margin-bottom: 1px;"><strong>Focus:</strong> LLM safety alignment and agent safety (evaluation, dataset construction, and training).</li>
     </ul>
   </div>
 </div>
@@ -128,15 +130,15 @@ My research interests mainly lie in Model Post-Training (current focus) and Trus
 <div style="display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; padding: 16px; border-radius: 8px; background: #f8f9fa;">
   <div style="flex-shrink: 0;">
     <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: white; padding: 10px;">
-      <img src="/images/ailab-logo.png" alt="Shanghai AI Lab" style="width: 125px; height: 110px; object-fit: contain; display: block;">
+      <img src="/images/ailab-logo.png" alt="Shanghai AI Lab" style="width: 88px; height: 62px; object-fit: contain; display: block;">
     </div>
   </div>
   <div style="flex: 1;">
     <strong>Shanghai AI Laboratory</strong>, Center for Safe & Trustworthy AI | Shanghai<br>
     <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
-      <li><strong>Duration:</strong> April 2026 – June 2026</li>
-      <li><strong>Mentor:</strong> Jie Li</li>
-      <li><strong>Focus:</strong> LLM/Agent Safety, including participation in the construction of the OpenClaw evaluation benchmark and support for safety testing of the Intern series models.</li>
+      <li style="margin-bottom: 1px;"><strong>Duration:</strong> April 2026 – June 2026</li>
+      <!-- <li><strong>Mentor:</strong> Jie Li</li> -->
+      <li style="margin-bottom: 1px;"><strong>Focus:</strong> LLM/Agent Safety evaluation.</li>
     </ul>
   </div>
 </div>
